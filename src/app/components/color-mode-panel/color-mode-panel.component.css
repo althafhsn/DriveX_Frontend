@@ -1,0 +1,22 @@
+.color-mode-panel {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #333;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .color-mode-panel button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+  }
+  
