@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavBarComponent } from './components/Admin/nav-bar/nav-bar.component';
 import { SideBarComponent } from './components/Admin/side-bar/side-bar.component';
 import { ColorModePanelComponent } from './components/color-mode-panel/color-mode-panel.component';
+import { AddCarComponent } from './components/Admin/add-car/add-car.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ColorModePanelComponent } from './components/color-mode-panel/color-mod
     RegisterComponent,
     NavBarComponent,
     SideBarComponent,
-    ColorModePanelComponent
+    ColorModePanelComponent,
+    AddCarComponent
   
   ],
   imports: [
