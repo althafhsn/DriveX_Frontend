@@ -1,1 +1,123 @@
-<nav></nav>
+<div class="outer">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-5">
+                <div class="panel border bg-white">
+                    <div class="panel-heading text-center mb-3">
+                        <h3 class="pt-3 font-weight-bold">Sign Up</h3>
+                    </div>
+                    <div class="panel-body mx-3">
+                        <form action="" class="mb-4" [formGroup]="signUpForm">
+                            <div class="form-group pt-3 row">
+                                <div class="col mx-1">
+                                    <div class="input-field"
+                                        [class.error]="signUpForm.controls['firstName'].dirty && signUpForm.controls['firstName'].hasError('required')">
+                                        <span class="fa fa-user p-2"></span>
+                                        <input formControlName="firstName" type="text" placeholder="First Name">
+                                    </div>
+                                    <small
+                                        *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.controls['firstName'].hasError('required')"
+                                        class="text-danger">*First name is required</small>
+                                </div>
+                                <div class="col mx-1">
+                                    <div class="input-field"
+                                        [class.error]="signUpForm.controls['lastName'].dirty && signUpForm.controls['lastName'].hasError('required')">
+                                        <span class="fa fa-user p-2"></span>
+                                        <input formControlName="lastName" type="text" placeholder="Last Name">
+                                    </div>
+                                    <small
+                                        *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.controls['lastName'].hasError('required')"
+                                        class="text-danger">*Last name is required</small>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3 row mx-1">
+                                <div class="input-field"
+                                    [class.error]="signUpForm.controls['email'].dirty && (signUpForm.controls['email'].hasError('required') || signUpForm.controls['email'].hasError('email'))">
+                                    <span class="fa fa-envelope p-2"></span>
+                                    <input formControlName="email" type="email" placeholder="Email">
+                                </div>
+                                <small
+                                    *ngIf="signUpForm.controls['email'].dirty && signUpForm.controls['email'].hasError('required')"
+                                    class="text-danger">*Email is required</small>
+                                <small
+                                    *ngIf="signUpForm.controls['email'].dirty && signUpForm.controls['email'].hasError('email')"
+                                    class="text-danger">*Invalid email format</small>
+                            </div>
+
+                            <div class="form-group pt-3 row mx-1">
+                                <div class="input-field"
+                                    [class.error]="signUpForm.controls['nicOrPassport'].dirty && signUpForm.controls['nicOrPassport'].hasError('required')">
+                                    <span class="fa fa-id-card p-2"></span>
+                                    <input formControlName="nicOrPassport" type="text" placeholder="NIC / Passport">
+                                </div>
+                                <small
+                                    *ngIf="signUpForm.controls['nicOrPassport'].dirty && signUpForm.controls['nicOrPassport'].hasError('required')"
+                                    class="text-danger">*NIC / Passport is required</small>
+                            </div>
+                            <div class="form-group pt-3 row mx-1">
+                                <div class="input-field"
+                                    [class.error]="signUpForm.controls['password'].dirty && (signUpForm.controls['password'].hasError('required') || signUpForm.controls['password'].hasError('noUppercase') || signUpForm.controls['password'].hasError('noNumber'))">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="typePassword" placeholder="Password">
+                                    <span (click)="hideShowPassword()" class="fa {{eyeIconPassword}} px-2"></span>
+                                </div>
+                                <small
+                                    *ngIf="signUpForm.controls['password'].dirty && signUpForm.controls['password'].hasError('required')"
+                                    class="text-danger">*Password is required</small>
+                                <small
+                                    *ngIf="signUpForm.controls['password'].hasError('noUppercase') && signUpForm.controls['password'].dirty"
+                                    class="text-danger">*Password must contain at least one uppercase letter!</small>
+                                <small
+                                    *ngIf="signUpForm.controls['password'].hasError('noNumber') && signUpForm.controls['password'].dirty"
+                                    class="text-danger">*Password must contain at least one number!</small>
+                                <small
+                                    *ngIf="signUpForm.controls['password'].hasError('minLength') && signUpForm.controls['password'].dirty"
+                                    class="text-danger">*Password must be more that 8 charectors</small>
+
+                            </div>
+
+
+
+                            <div class="form-group pt-3 row mx-1">
+                                <div class="input-field"
+                                    [class.error]="signUpForm.controls['confirmPassword'].dirty && signUpForm.controls['confirmPassword'].hasError('required')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="confirmPassword" [type]="typeConfirmPassword"
+                                        placeholder="Confirm Password">
+                                    <span (click)="hideShowConfirmPassword()"
+                                        class="fa {{eyeIconConfirmPassword}} px-2"></span>
+                                </div>
+                                <small
+                                    *ngIf="signUpForm.controls['confirmPassword'].dirty && signUpForm.controls['confirmPassword'].hasError('required')"
+                                    class="text-danger">*Confirm password is required</small>
+                            </div>
+
+                            <!-- Password Mismatch Error Message -->
+                            <small
+                                *ngIf="signUpForm.hasError('passwordMismatch') && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['password'].dirty)"
+                                class="text-danger">*Passwords do not match!</small>
+
+                            <button (click)="onSignUp()" type="submit" class="btn btn-primary btn-block mt-4 w-100">Sign
+                                Up</button>
+                            <div class="text-center pt-4 text-muted">Already have an account? <a id="forget"
+                                    routerLink="/login">Login</a></div>
+                        </form>
+                    </div>
+                    <div class="mx-3 my-2 py-2 bordert">
+                        <div class="text-center py-3">
+                            <a href="https://www.facebook.com" target="_blank" class="px-2"><img
+                                    src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
+                                    alt=""></a>
+                            <a href="https://www.google.com" target="_blank" class="px-2"><img
+                                    src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-icon-PNG.png"
+                                    alt=""></a>
+                            <a href="https://www.x.com" target="_blank" class="px-2"><img
+                                    src="https://freepnglogo.com/images/all_img/1691832581twitter-x-icon-png.png"
+                                    alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
