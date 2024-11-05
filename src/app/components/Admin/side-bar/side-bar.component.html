@@ -1,0 +1,41 @@
+<div class="sidebar">
+    <ul class="sidebar-links">
+      <li>
+        <a href="#" (click)="toggleMenu('dashboard')" class="menu-item">
+          Dashboard
+          <span class="icon" *ngIf="isMenuOpen('dashboard')">-</span>
+          <span class="icon" *ngIf="!isMenuOpen('dashboard')">+</span>
+        </a>
+        <ul *ngIf="isMenuOpen('dashboard')" class="sub-menu">
+          <li><a href="#" class="sub-item">Overview</a></li>
+          <li><a href="#" class="sub-item">Statistics</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" (click)="toggleMenu('carManagement')" class="menu-item">
+          Car Management
+          <span class="icon" *ngIf="isMenuOpen('carManagement')">-</span>
+          <span class="icon" *ngIf="!isMenuOpen('carManagement')">+</span>
+        </a>
+        <ul *ngIf="isMenuOpen('carManagement')" class="sub-menu">
+          <li><a href="#" class="sub-item">Add New Car</a></li>
+          <li><a href="#" class="sub-item">View Cars</a></li>
+          <li><a href="#" class="sub-item">Edit Car Details</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" (click)="toggleMenu('customerManagement')" class="menu-item">
+          Customer Management
+          <span class="icon" *ngIf="isMenuOpen('customerManagement')">-</span>
+          <span class="icon" *ngIf="!isMenuOpen('customerManagement')">+</span>
+        </a>
+        <ul *ngIf="isMenuOpen('customerManagement')" class="sub-menu">
+          <li><a href="#" class="sub-item">Add Customer</a></li>
+          <li><a href="#" class="sub-item">View Customers</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  
+
