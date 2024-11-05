@@ -11,20 +11,23 @@ import { ColorModePanelComponent } from './components/color-mode-panel/color-mod
 import { AddCarComponent } from './components/Admin/add-car/add-car.component';
 
 
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavBarComponent,
+       NavBarComponent,
     SideBarComponent,
     ColorModePanelComponent,
     AddCarComponent
-  
+
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
