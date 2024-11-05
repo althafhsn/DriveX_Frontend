@@ -1,0 +1,35 @@
+<section id="side-bar">
+    <a href="#" class="brand text-decoration-none">
+        <i class="fa-solid fa-face-smile icon"></i>
+        <span class="sidebar" style="font-size: 32px;">Admin Site</span>
+    </a>
+    <ul class="side-manu">
+        <li>
+            <a href="#" class="active text-decoration-none" onclick="showSection('dashboard-section', this)">
+                <i class="fa-solid fa-table-columns icon"></i>
+                <span class="sidebar">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="text-decoration-none" onclick="showSection('car-section', this)">
+                <i class="fa-solid fa-car icon"></i>
+                <span class="sidebar">Cars</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="text-decoration-none" onclick="showSection('customer-section', this)">
+                <i class="fa-solid fa-users icon"></i>
+                <span class="sidebar">Customer</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="text-decoration-none" onclick="showSection('rental-request-section', this)">
+                <span class="fa-stack fa-lg icon">
+                    <i class="fa-solid fa-car fa-stack-1x"></i>
+                    <i class="fa-solid fa-clipboard-check fa-stack-2x" style="opacity: 0.8; font-size: 0.5em; margin-top: -1px;"></i>
+                </span>
+                <span class="sidebar">Rental Request</span>
+            </a>
+        </li>
+    </ul>
+</section>
