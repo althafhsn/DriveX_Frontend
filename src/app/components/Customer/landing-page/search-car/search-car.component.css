@@ -1,0 +1,21 @@
+.animate-top {
+    position: relative;
+    animation: slideFromTop 2s ease-out forwards;
+  background-color: #1f0259;      color: aliceblue;
+    padding-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  @keyframes slideFromTop {
+    0% {
+      transform: translateY(50px);
+      /* Starts 100px above its original position */
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(-53px);
+      /* Ends at its original position */
+      opacity: 1;
+    }
+}

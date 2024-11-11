@@ -11,72 +11,81 @@
       <!-- Brand -->
       <div class="col-md-2">
         <label for="brand" class="form-label">Brand</label>
-        <select id="brand" class="form-select" [(ngModel)]="car.brand" name="brand" required>
+       <select>
+         <!-- <select id="brand" class="form-select" [(ngModel)]="car.brand" name="brand" required> -->
           <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
-        </select>
+        <!-- </select> -->
+       </select>
       </div>
   
       <!-- Model -->
       <div class="col-md-2">
         <label for="model" class="form-label">Model</label>
-        <select id="model" class="form-select" [(ngModel)]="car.model" name="model" required>
+       <select>
+         <!-- <select id="model" class="form-select" [(ngModel)]="car.model" name="model" required> -->
           <option *ngFor="let model of models" [value]="model">{{ model }}</option>
-        </select>
+        <!-- </select> -->
+       </select>
       </div>
   
       <!-- Gear Type -->
       <div class="col-md-2">
         <label for="gearType" class="form-label">Gear Type</label>
-        <select id="gearType" class="form-select" [(ngModel)]="car.gearType" name="gearType" required>
+     <select>
+         <!-- <select id="gearType" class="form-select" [(ngModel)]="car.gearType" name="gearType" required> -->
           <option value="Automatic">Automatic</option>
           <option value="Manual">Manual</option>
-        </select>
+        <!-- </select> -->
+     </select>
       </div>
   
       <!-- Seat Count -->
       <div class="col-md-2">
         <label for="seatCount" class="form-label">Seat Count</label>
-        <input type="number" id="seatCount" class="form-control" [(ngModel)]="car.seatCount" name="seatCount" min="2" required />
+        <!-- <input type="number" id="seatCount" class="form-control" [(ngModel)]="car.seatCount" name="seatCount" min="2" required /> -->
       </div>
   
       <!-- Fuel Type -->
       <div class="col-md-2">
         <label for="fuelType" class="form-label">Fuel Type</label>
-        <select id="fuelType" class="form-select" [(ngModel)]="car.fuelType" name="fuelType" required>
-          <option value="Petrol">Petrol</option>
-          <option value="Diesel">Diesel</option>
-          <option value="Electric">Electric</option>
+        <select>
+ <!-- <select id="fuelType" class="form-select" [(ngModel)]="car.fuelType" name="fuelType" required> -->
+  <option value="Petrol">Petrol</option>
+  <option value="Diesel">Diesel</option>
+  <option value="Electric">Electric</option>
+<!-- </select> -->
         </select>
+       
       </div>
   
       <!-- Year -->
       <div class="col-md-2">
         <label for="year" class="form-label">Year</label>
-        <input type="number" id="year" class="form-control" [(ngModel)]="car.year" name="year" min="1980" max="2024" required />
+        <!-- <input type="number" id="year" class="form-control" [(ngModel)]="car.year" name="year" min="1980" max="2024" required /> -->
       </div>
   
       <!-- Mileage -->
       <div class="col-md-2">
         <label for="mileage" class="form-label">Mileage (km)</label>
-        <input type="number" id="mileage" class="form-control" [(ngModel)]="car.mileage" name="mileage" required />
+        <!-- <input type="number" id="mileage" class="form-control" [(ngModel)]="car.mileage" name="mileage" required /> -->
       </div>
   
       <!-- Registration Number -->
       <div class="col-md-2">
         <label for="regNo" class="form-label">Registration No</label>
-        <input type="text" id="regNo" class="form-control" [(ngModel)]="car.regNo" name="regNo" required />
+        <!-- <input type="text" id="regNo" class="form-control" [(ngModel)]="car.regNo" name="regNo" required /> -->
       </div>
   
       <!-- Day Price -->
       <div class="col-md-2">
         <label for="dayPrice" class="form-label">Day Price</label>
-        <input type="number" id="dayPrice" class="form-control" [(ngModel)]="car.dayPrice" name="dayPrice" required />
+        <!-- <input type="number" id="dayPrice" class="form-control" [(ngModel)]="car.dayPrice" name="dayPrice" required /> -->
       </div>
   
       <!-- Hour Price -->
       <div class="col-md-2">
         <label for="hourPrice" class="form-label">Hour Price</label>
-        <input type="number" id="hourPrice" class="form-control" [(ngModel)]="car.hourPrice" name="hourPrice" required />
+        <!-- <input type="number" id="hourPrice" class="form-control" [(ngModel)]="car.hourPrice" name="hourPrice" required /> -->
       </div>
   
       <div class="col-12 text-end">
@@ -85,3 +94,4 @@
     </form>
   </div>
   
+<!-- Hasni is change line 15,17,25,27,35,38,45,52,56,70,76,82 and 88 for her easy in 1st commit -->
