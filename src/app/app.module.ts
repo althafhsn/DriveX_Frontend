@@ -14,7 +14,6 @@ import { AddCarComponent } from './components/Admin/add-car/add-car.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
 import { SearchComponent } from './components/Customer/search/search.component';
-import { BookingComponent } from './components/Customer/booking/booking.component';
 import { NavbarComponent } from './components/Customer/landing-page/navbar/navbar.component';
 import { SlideshowComponent } from './components/Customer/landing-page/slideshow/slideshow.component';
 import { SearchCarComponent } from './components/Customer/landing-page/search-car/search-car.component';
@@ -23,6 +22,9 @@ import { CardComponent } from './components/Customer/landing-page/card/card.comp
 import { TypeComponent } from './components/Customer/landing-page/type/type.component';
 import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
 import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
+import { Card2Component } from './components/Customer/search/card2/card2.component';
+import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
+import { CarDetailsComponent } from './components/Customer/conform-rent/car-details/car-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,6 @@ import { FooterComponent } from './components/Customer/landing-page/footer/foote
     AddCarComponent,
     LandingPageComponent,
     SearchComponent,
-    BookingComponent,
     NavbarComponent,
     SlideshowComponent,
     SearchCarComponent,
@@ -42,7 +43,10 @@ import { FooterComponent } from './components/Customer/landing-page/footer/foote
     CardComponent,
     TypeComponent,
     ScrollComponent,
-    FooterComponent
+    FooterComponent,
+    Card2Component,
+    ConformRentComponent,
+    CarDetailsComponent
 
     
   ],
