@@ -1,0 +1,133 @@
+<!-- Main Content -->
+<div class="container my-4">
+    <div class="row">
+        <!-- Left Section - Car Details -->
+        <div class="col-lg-8">
+            <!-- Car Title and Location -->
+            <div class="mb-3">
+                <h2>Acura Sport Version</h2>
+                <p class="text-muted"><i class="bi bi-geo-alt"></i> Location: Tower Bridge | Views: 652</p>
+            </div>
+
+            <!-- Car Image Carousel -->
+            <div id="carCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-03.jpg" class="d-block w-100" alt="Car Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-02.jpg" class="d-block w-100" alt="Car Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-05.jpg" class="d-block w-100" alt="Car Image 2">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-06.jpg">
+                    </div>
+                    <!-- Add more images as needed -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <!-- Specifications -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Specifications</h5>
+                    <div class="row">
+                        <div class="col-6"><strong>Gear Type:</strong> Manual</div>
+                        <div class="col-6"><strong>Mileage:</strong> 14 KM</div>
+                        <div class="col-6"><strong>Fuel:</strong> Diesel</div>
+                        <div class="col-6"><strong>Model:</strong> 2022</div>
+                        <div class="col-6"><strong>Seating Capacity:</strong> 5 Persons</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Car Features -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Car Features</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Multi-zone A/C</li>
+                        <li class="list-inline-item">Heated front seats</li>
+                        <li class="list-inline-item">Android Auto</li>
+                        <!-- Add more features as needed -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Description</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem ut velit malesuada consequat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Pricing and Booking Form -->
+        <div class="col-lg-4">
+            <!-- Pricing Details -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Pricing Details</h5>
+                    <p>$10 <small class="text-muted">per hour</small></p>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Booking Form</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="rentalType" class="form-label">Rental Type</label>
+                            <select class="form-select" id="rentalType">
+                                <option value="hour">Per Hour</option>
+                                <option value="day">Per Day</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pickupLocation" class="form-label">Pickup Location</label>
+                            <select class="form-select" id="pickupLocation">
+                                <option>Select Location</option>
+                                <!-- Add options -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pickupDate" class="form-label">Pickup Date</label>
+                            <input type="date" class="form-control" id="pickupDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="dropOffDate" class="form-label">Drop-off Date</label>
+                            <input type="date" class="form-control" id="dropOffDate">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Book Now</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Extra Services -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5>Extra Services</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="babySeat">
+                        <label class="form-check-label" for="babySeat">Baby Seat - $10</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="bumperGuard">
+                        <label class="form-check-label" for="bumperGuard">Bumper Guard - $10</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
