@@ -9,6 +9,7 @@ import { AllCarsComponent } from './components/Customer/all-cars/all-cars.compon
 import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
+import { CustomerComponent } from './components/dashboard/customer/customer.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'LandingPage',pathMatch:'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path : 'dashboard', component:DashboardComponent,
     children : [
       { path: '', redirectTo: './admin-landing', pathMatch: 'full' },
-      {path: '',component:AdminLandingComponent}
+      {path: 'main',component:AdminLandingComponent},
+      { path: 'customers', component: CustomerComponent },
     ]
    } //canActivate: [authGuard]
 ];

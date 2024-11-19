@@ -35,6 +35,7 @@ import { CustomerComponent } from './components/dashboard/customer/customer.comp
 import { AllCustomersListComponent } from './components/dashboard/customer/all-customers-list/all-customers-list.component';
 import { CustomerDetailsComponent } from './components/dashboard/customer/customer-details/customer-details.component';
 import { CustomerPaymentComponent } from './components/dashboard/customer/customer-payment/customer-payment.component';
+import { CustomerTripHistoryComponent } from './components/dashboard/customer/customer-trip-history/customer-trip-history.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { CustomerPaymentComponent } from './components/dashboard/customer/custom
     ConformRentComponent,
     CarDetailsComponent,
     AllCarsComponent,
-    DashboardComponent
+    DashboardComponent,
+    CustomerTripHistoryComponent
 
 
   ],

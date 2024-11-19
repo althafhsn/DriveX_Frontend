@@ -1,0 +1,60 @@
+<div class="container-fluid py-3">
+    <div class="row g-3">
+      <!-- Left Panel - All Customers List -->
+      <div class="col-12 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">All Customers</h5>
+          </div>
+          <div class="card-body p-3">
+            <app-all-customers-list (customerSelected)="onCustomerSelected($event)"></app-all-customers-list>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Center Panel - Customer Details + Trip History & Payments -->
+      <div class="col-12 col-md-9">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Customer Details</h5>
+            <span class="badge bg-success" *ngIf="selectedCustomer?.status === 'Available'">Active</span>
+          </div>
+          <div class="card-body p-3">
+            <!-- Customer Details -->
+            <div class="mb-3">
+              <app-customer-details *ngIf="selectedCustomer" [customer]="selectedCustomer"></app-customer-details>
+              <p *ngIf="!selectedCustomer" class="text-muted text-center">Please select a customer from the list.</p>
+            </div>
+  
+            <!-- Trip History and Payments (Side by Side) -->
+            <div class="row g-3">
+              <!-- Customer Trip History -->
+              <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Trip History</h5>
+                  </div>
+                  <div class="card-body p-3">
+                    <app-customer-trip-history ></app-customer-trip-history>  <!--*ngIf="selectedCustomer" [customerId]="selectedCustomer?.id -->
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Customer Payments -->
+              <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Payments</h5>
+                  </div>
+                  <div class="card-body p-3">
+                    <app-customer-payment></app-customer-payment>  <!--*ngIf="selectedCustomer" [customerId]="selectedCustomer?.id"-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
