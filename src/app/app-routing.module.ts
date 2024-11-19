@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'LandingPage',component:LandingPageComponent},
-  {path:'ConformRent',component:ConformRentComponent},
+  {path:'ConfirmRent',component:ConformRentComponent},
   {path:'Explorecar',component:AllCarsComponent},
   { path : 'dashboard', component:DashboardComponent,
     children : [
