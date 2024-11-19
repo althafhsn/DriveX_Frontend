@@ -42,6 +42,8 @@ import { ProfileInfoComponent } from './components/dashboard/settings/profile-in
 import { TabsComponent } from './components/dashboard/settings/tabs/tabs.component';
 import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
+import { UpdateCustomerComponent } from './components/dashboard/settings/update-customer/update-customer.component';
+import { UpdateCarComponent } from './components/dashboard/settings/update-car/update-car.component';
 
 
 @NgModule({
@@ -81,7 +83,9 @@ import { PasswordUpdateComponent } from './components/dashboard/settings/passwor
     ProfileInfoComponent,
     TabsComponent,
     ProfileFormComponent,
-    PasswordUpdateComponent
+    PasswordUpdateComponent,
+    UpdateCustomerComponent,
+    UpdateCarComponent
 
 
   ],

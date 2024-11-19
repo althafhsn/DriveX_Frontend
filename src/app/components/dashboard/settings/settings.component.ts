@@ -17,12 +17,18 @@ throw new Error('Method not implemented.');
   tabs = [
     { id: 'profile-settings', label: 'Profile Settings' },
     { id: 'password-update', label: 'Change Password' },
-    { id: 'drivers-settings', label: 'Drivers Settings' },
+    { id: 'update-customer', label: 'Update Customer' },
+    { id: 'update-car', label: 'Update Car' },
     { id: 'payment-methods', label: 'Payment Methods' },
+    
   ];
 
   // Method to change tabs
   changeTab(tabId: string) {
     this.activeTab = tabId;
+  }
+  // Method to check if All Customers List should show
+  showAllCustomersList(): boolean {
+    return this.activeTab === 'update-customer';
   }
 }
