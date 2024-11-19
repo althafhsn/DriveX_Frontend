@@ -29,7 +29,7 @@ import { TodayStatsComponent } from './components/dashboard/admin-landing/today-
 import { CarAvailabilityComponent } from './components/dashboard/admin-landing/car-availability/car-availability.component';
 import { LiveCarStatusComponent } from './components/dashboard/admin-landing/live-car-status/live-car-status.component';
 import { EarningSummaryComponent } from './components/dashboard/admin-landing/earning-summary/earning-summary.component';
-import { NavBarComponent as AdminNavBar } from './components/dashboard/nav-bar/nav-bar.component';
+import { NavBarComponent as AdminNavbar } from './components/dashboard/nav-bar/nav-bar.component';
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
 import { CustomerComponent } from './components/dashboard/customer/customer.component';
 import { AllCustomersListComponent } from './components/dashboard/customer/all-customers-list/all-customers-list.component';
@@ -48,16 +48,15 @@ import { CustomerPaymentComponent } from './components/dashboard/customer/custom
     CarAvailabilityComponent,
     LiveCarStatusComponent,
     EarningSummaryComponent,
-    NavBarLanding,
     SideBarComponent,
     CustomerComponent,
     AllCustomersListComponent,
     CustomerDetailsComponent,
-    CustomerPaymentComponent
-    NavbarComponent,
+    CustomerPaymentComponent,
+    NavBarLanding,
     CardComponent,
     LandingPageComponent,
-    AdminNavBar,
+    AdminNavbar,
     SlideshowComponent,
     SearchCarComponent,
     BrandComponent,

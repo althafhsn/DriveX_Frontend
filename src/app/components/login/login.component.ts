@@ -5,7 +5,6 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { UserStoreService } from '../../services/user-store.service';
-import { FormsModule } from '@angular/forms';
 
 
 

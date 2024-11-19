@@ -26,10 +26,9 @@ const routes: Routes = [
    } //canActivate: [authGuard]
 ];
 
+  
+ @NgModule({
 
-
-
-@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
