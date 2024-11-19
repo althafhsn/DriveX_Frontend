@@ -1,0 +1,128 @@
+<div class="container-fluid py-3">
+    <h5 class="text-center">Update Car Details</h5>
+    <form (ngSubmit)="onSubmit()" class="p-3">
+      <!-- Brand -->
+      <div class="mb-3">
+        <label for="brand" class="form-label">Brand</label>
+        <input
+          type="text"
+          id="brand"
+          [(ngModel)]="car.brand"
+          name="brand"
+          class="form-control"
+          placeholder="Enter car brand"
+          required
+        />
+      </div>
+  
+      <!-- Model -->
+      <div class="mb-3">
+        <label for="model" class="form-label">Model</label>
+        <input
+          type="text"
+          id="model"
+          [(ngModel)]="car.model"
+          name="model"
+          class="form-control"
+          placeholder="Enter car model"
+          required
+        />
+      </div>
+  
+      <!-- Year -->
+      <div class="mb-3">
+        <label for="year" class="form-label">Year</label>
+        <input
+          type="number"
+          id="year"
+          [(ngModel)]="car.year"
+          name="year"
+          class="form-control"
+          placeholder="Enter manufacturing year"
+          required
+        />
+      </div>
+  
+      <!-- Mileage -->
+      <div class="mb-3">
+        <label for="mileage" class="form-label">Mileage (km)</label>
+        <input
+          type="number"
+          id="mileage"
+          [(ngModel)]="car.mileage"
+          name="mileage"
+          class="form-control"
+          placeholder="Enter mileage"
+          required
+        />
+      </div>
+  
+      <!-- Fuel Type -->
+      <div class="mb-3">
+        <label for="fuelType" class="form-label">Fuel Type</label>
+        <select
+          id="fuelType"
+          [(ngModel)]="car.fuelType"
+          name="fuelType"
+          class="form-select"
+          required
+        >
+          <option value="" disabled>Select fuel type</option>
+          <option value="Petrol">Petrol</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Electric">Electric</option>
+          <option value="Hybrid">Hybrid</option>
+        </select>
+      </div>
+  
+      <!-- Gear Type -->
+      <div class="mb-3">
+        <label for="gearType" class="form-label">Gear Type</label>
+        <select
+          id="gearType"
+          [(ngModel)]="car.gearType"
+          name="gearType"
+          class="form-select"
+          required
+        >
+          <option value="" disabled>Select gear type</option>
+          <option value="Manual">Manual</option>
+          <option value="Automatic">Automatic</option>
+        </select>
+      </div>
+  
+      <!-- Daily Price -->
+      <div class="mb-3">
+        <label for="dailyPrice" class="form-label">Daily Price ($)</label>
+        <input
+          type="number"
+          id="dailyPrice"
+          [(ngModel)]="car.dailyPrice"
+          name="dailyPrice"
+          class="form-control"
+          placeholder="Enter daily rental price"
+          required
+        />
+      </div>
+  
+      <!-- Hourly Price -->
+      <div class="mb-3">
+        <label for="hourlyPrice" class="form-label">Hourly Price ($)</label>
+        <input
+          type="number"
+          id="hourlyPrice"
+          [(ngModel)]="car.hourlyPrice"
+          name="hourlyPrice"
+          class="form-control"
+          placeholder="Enter hourly rental price"
+          required
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary">Update Car</button>
+      </div>
+    </form>
+  </div>
+  
