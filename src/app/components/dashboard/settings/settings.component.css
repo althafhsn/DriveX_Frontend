@@ -1,0 +1,10 @@
+.nav-tabs {
+    .nav-link {
+      cursor: pointer;
+      &.active {
+        background-color: #007bff;
+        color: white;
+      }
+    }
+  }
+  

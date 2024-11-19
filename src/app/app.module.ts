@@ -37,6 +37,11 @@ import { CustomerDetailsComponent } from './components/dashboard/customer/custom
 import { CustomerPaymentComponent } from './components/dashboard/customer/customer-payment/customer-payment.component';
 import { CustomerTripHistoryComponent } from './components/dashboard/customer/customer-trip-history/customer-trip-history.component';
 import { BookingComponent } from './components/dashboard/booking/booking.component';
+import { SettingsComponent } from './components/dashboard/settings/settings.component';
+import { ProfileInfoComponent } from './components/dashboard/settings/profile-info/profile-info.component';
+import { TabsComponent } from './components/dashboard/settings/tabs/tabs.component';
+import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
+import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 
 
 @NgModule({
@@ -71,7 +76,12 @@ import { BookingComponent } from './components/dashboard/booking/booking.compone
     AllCarsComponent,
     DashboardComponent,
     CustomerTripHistoryComponent,
-    BookingComponent
+    BookingComponent,
+    SettingsComponent,
+    ProfileInfoComponent,
+    TabsComponent,
+    ProfileFormComponent,
+    PasswordUpdateComponent
 
 
   ],
