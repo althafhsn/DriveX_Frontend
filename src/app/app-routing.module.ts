@@ -23,9 +23,9 @@ const routes: Routes = [
   {path: 'LandingPage',component:LandingPageComponent},
   {path:'ConfirmRent',component:ConformRentComponent},
   {path:'Explorecar',component:AllCarsComponent},
-  { path : 'dashboard', component:DashboardComponent,
+  { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard],
     children : [
-      { path: '', redirectTo: './admin-landing', pathMatch: 'full' },
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
       {path: 'main',component:AdminLandingComponent},
       { path: 'customers', component: CustomerComponent },
       { path: 'bookings', component: BookingComponent },

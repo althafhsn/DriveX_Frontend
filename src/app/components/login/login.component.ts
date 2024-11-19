@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
   eyeIcon: string = "fa-eye-slash";
 
   public resetPaswordEmail!: string;
-  public isValidEmail!:boolean;
+  public isValidEmail!: boolean;
 
   loginForm!: FormGroup;
+
+  public role: string = ''
 
   constructor(
     private fb: FormBuilder,
@@ -38,7 +40,19 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.userStore.getRoleFromStore()
+    .subscribe({
+      next:(value)=>{
+        const roleInToken = this.auth.getRoleFromToken();
+        this.role = value || roleInToken
+      },
+      error: (err) => {
+        console.error("Failed to fetch role from store:", err);
+      }
+    })
   }
+
 
 
   hideShowPassword(): void {
@@ -61,7 +75,13 @@ export class LoginComponent implements OnInit {
             this.userStore.setFullName(tokenPayload.unique_name);
             this.userStore.setRoleFromStore(tokenPayload.role);
             this.toast.success("SUCCESS", "Login was Successed", 5000);
-            this.router.navigate(['/dashboard']);
+
+            if(this.role==="Admin" || this.role === "Manager"){
+              this.router.navigate(['/dashboard']);
+            }else{
+              this.router.navigate(['./LandingPage']);
+            }
+            
           },
           error: (err) => {
             this.toast.danger("ERROR", "Login was Failed", 5000)
@@ -74,18 +94,18 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  checkValidEmail(event:string){
+  checkValidEmail(event: string) {
     const value = event;
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/
     this.isValidEmail = pattern.test(value);
     return this.isValidEmail;
   }
 
-  confirmToSend(){
-    if(this.checkValidEmail(this.resetPaswordEmail)){
+  confirmToSend() {
+    if (this.checkValidEmail(this.resetPaswordEmail)) {
       console.log(this.resetPaswordEmail);
-      this.resetPaswordEmail ='';
-      const buttonRef = document.getElementById('closeBtn' )
+      this.resetPaswordEmail = '';
+      const buttonRef = document.getElementById('closeBtn')
       buttonRef?.click();
     }
   }
