@@ -1,0 +1,13 @@
+.earning-summary {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  
+    h5 {
+      font-weight: bold;
+    }
+  
+    canvas {
+      max-height: 300px;
+    }
+  }
+  

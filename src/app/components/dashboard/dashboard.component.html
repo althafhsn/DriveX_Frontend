@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
+<!-- <nav class="navbar navbar-light bg-light justify-content-between">
     <a class="navbar-brand">Navbar</a>
     <div class="">
         <h4>
@@ -16,4 +16,20 @@
         dwqohqgwuifgiuqwhioqwjdkqvhfqw
         qiodiqwguifqwiuohf
     </div>
-</ng-container>
+</ng-container> -->
+
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar Column -->
+      <div class="col-md-2 p-0">
+        <app-side-bar></app-side-bar>
+      </div>
+  
+      <!-- Main Content Column -->
+  <div class="col-md-10">
+    <router-outlet></router-outlet> 
+  </div>
+    </div>
+  </div>
+  
+

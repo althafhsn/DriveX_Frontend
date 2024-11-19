@@ -4,9 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
-import { NavbarComponent } from './components/Customer/landing-page/navbar/navbar.component';
+import { NavbarComponent as NavBarLanding } from './components/Customer/landing-page/navbar/navbar.component';
 import { SlideshowComponent } from './components/Customer/landing-page/slideshow/slideshow.component';
 import { SearchCarComponent } from './components/Customer/landing-page/search-car/search-car.component';
 import { BrandComponent } from './components/Customer/landing-page/brand/brand.component';
@@ -23,6 +24,17 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { FormsModule } from '@angular/forms';
+import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
+import { TodayStatsComponent } from './components/dashboard/admin-landing/today-stats/today-stats.component';
+import { CarAvailabilityComponent } from './components/dashboard/admin-landing/car-availability/car-availability.component';
+import { LiveCarStatusComponent } from './components/dashboard/admin-landing/live-car-status/live-car-status.component';
+import { EarningSummaryComponent } from './components/dashboard/admin-landing/earning-summary/earning-summary.component';
+import { NavBarComponent as AdminNavBar } from './components/dashboard/nav-bar/nav-bar.component';
+import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
+import { CustomerComponent } from './components/dashboard/customer/customer.component';
+import { AllCustomersListComponent } from './components/dashboard/customer/all-customers-list/all-customers-list.component';
+import { CustomerDetailsComponent } from './components/dashboard/customer/customer-details/customer-details.component';
+import { CustomerPaymentComponent } from './components/dashboard/customer/customer-payment/customer-payment.component';
 
 
 @NgModule({
@@ -30,10 +42,22 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    DashboardComponent,
+    AdminLandingComponent,
+    TodayStatsComponent,
+    CarAvailabilityComponent,
+    LiveCarStatusComponent,
+    EarningSummaryComponent,
+    NavBarLanding,
+    SideBarComponent,
+    CustomerComponent,
+    AllCustomersListComponent,
+    CustomerDetailsComponent,
+    CustomerPaymentComponent
     NavbarComponent,
     CardComponent,
     LandingPageComponent,
-    NavbarComponent,
+    AdminNavBar,
     SlideshowComponent,
     SearchCarComponent,
     BrandComponent,
@@ -46,6 +70,7 @@ import { FormsModule } from '@angular/forms';
     AllCarsComponent,
     DashboardComponent
 
+
   ],
   imports: [
     BrowserModule,
@@ -54,7 +79,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     NgToastModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [
     {

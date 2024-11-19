@@ -1,0 +1,62 @@
+/* Sidebar Base Styles */
+.sidebar {
+    background-color: #1d1d1d; /* Dark background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+  }
+  
+  .sidebar-logo h2 {
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #ccc; /* Default text color */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .sidebar a i {
+    margin-right: 10px; /* Space between icon and text */
+  }
+  
+  /* Hover and Active Styles */
+  .sidebar a:hover {
+    background-color: #007bff; /* Blue background on hover */
+    color: #fff; /* White text on hover */
+  }
+  
+  .sidebar a.active {
+    background-color: #007bff; /* Blue background for active item */
+    color: #fff;
+  }
+  
+  /* Report Section Heading */
+  .report-heading {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    color: #aaa; /* Choose a color visible against the dark sidebar background */
+  }
+  
+  
+  /* Logout Button Styling */
+  .logout {
+    margin-top: auto;
+    background-color: #333;
+    color: #ccc;
+  }
+  
+  .logout:hover {
+    background-color: #d9534f; /* Red background on hover */
+    color: #fff;
+  }
+  

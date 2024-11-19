@@ -1,0 +1,18 @@
+.car-availability {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  
+    h5 {
+      font-weight: bold;
+    }
+  
+    form {
+      display: flex;
+      gap: 10px;
+    }
+  
+    .form-control {
+      border-radius: 5px;
+    }
+  }
+  

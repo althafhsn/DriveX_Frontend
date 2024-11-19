@@ -8,6 +8,7 @@ import { ConformRentComponent } from './components/Customer/conform-rent/conform
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'LandingPage',pathMatch:'full'},
@@ -17,9 +18,13 @@ const routes: Routes = [
   {path: 'LandingPage',component:LandingPageComponent},
   {path:'ConformRent',component:ConformRentComponent},
   {path:'Explorecar',component:AllCarsComponent},
-  { path: 'register', component: RegisterComponent,  },
-  { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard]}
-]
+  { path : 'dashboard', component:DashboardComponent,
+    children : [
+      { path: '', redirectTo: './admin-landing', pathMatch: 'full' },
+      {path: '',component:AdminLandingComponent}
+    ]
+   } //canActivate: [authGuard]
+];
 
 
 
