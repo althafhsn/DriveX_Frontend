@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import validateForm from '../../helpers/validateForm';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,11 @@ export class RegisterComponent implements OnInit {
 
   signUpForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -25,6 +31,7 @@ export class RegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       nicOrPassport: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      role: [2, Validators.required],
       password: ['', [Validators.required, this.passwordStrengthValidator, Validators.minLength(8)]], // Use the custom validator
       confirmPassword: ['', Validators.required]
     }, {
@@ -45,12 +52,44 @@ export class RegisterComponent implements OnInit {
     if (this.signUpForm.valid) {
       console.log(this.signUpForm.value);
       // Send the obj to the database
+      const { firstName, lastName, nicOrPassport, email, role, password } = this.signUpForm.value;
+      const signUpData = {
+        firstName,
+        lastName,
+        email,
+        nic: nicOrPassport,
+        role,
+        password
+      };
+
+      this.auth.signup(signUpData)
+        .subscribe({
+          next: (res => {
+
+            this.signUpForm.reset({
+              firstName: '',
+              lastName: '',
+              nicOrPassport: '',
+              email: '',
+              role: 0,
+              password: '',
+              confirmPassword: ''
+            });
+
+
+            this.router.navigate(['login']);
+          }),
+          error: (err => {
+            alert(err?.error.message)
+          })
+        })
     } else {
       validateForm.validateAllFormFields(this.signUpForm);
       alert('Form is invalid');
     }
   }
 
+  
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
@@ -73,7 +112,7 @@ export class RegisterComponent implements OnInit {
     }
     if (!hasNumber) {
       errors['noNumber'] = true;
-    }if(!isValidLen){
+    } if (!isValidLen) {
       errors['minLength'] = true;
     }
 
