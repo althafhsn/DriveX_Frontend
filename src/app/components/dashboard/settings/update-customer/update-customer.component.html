@@ -1,0 +1,80 @@
+<div class="container-fluid py-3">
+    <h5 class="text-center">Update Customer Details</h5>
+    <form (ngSubmit)="onSubmit()" class="p-3">
+      <!-- First Name -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="customer.firstName"
+          name="firstName"
+          class="form-control"
+          placeholder="Enter first name"
+          required
+        />
+      </div>
+  
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="customer.lastName"
+          name="lastName"
+          class="form-control"
+          placeholder="Enter last name"
+          required
+        />
+      </div>
+  
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="customer.email"
+          name="email"
+          class="form-control"
+          placeholder="Enter email"
+          required
+        />
+      </div>
+  
+      <!-- Phone -->
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          id="phone"
+          [(ngModel)]="customer.phone"
+          name="phone"
+          class="form-control"
+          placeholder="Enter phone number"
+          required
+        />
+      </div>
+  
+      <!-- Address -->
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea
+          id="address"
+          [(ngModel)]="customer.address"
+          name="address"
+          class="form-control"
+          rows="3"
+          placeholder="Enter address"
+          required
+        ></textarea>
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary">Update Customer</button>
+      </div>
+    </form>
+  </div>
+  

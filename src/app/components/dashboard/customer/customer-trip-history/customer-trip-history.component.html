@@ -1,0 +1,37 @@
+<div class="table-responsive">
+    <table class="table table-borderless align-middle">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Trip Details</th>
+          <th scope="col" class="text-center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of tripHistory; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <span class="fw-bold">{{ trip.origin }}</span> - 
+            <span class="text-muted">{{ trip.destination }}</span>
+          </td>
+          <td class="text-center">
+            <span 
+              class="badge"
+              [ngClass]="{
+                'bg-success': trip.status === 'Completed',
+                'bg-danger': trip.status === 'Cancelled',
+                'bg-warning': trip.status === 'Pending'
+              }"
+            >
+              {{ trip.status }}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="!tripHistory.length">
+          <td colspan="3" class="text-center text-muted">No trip history available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+

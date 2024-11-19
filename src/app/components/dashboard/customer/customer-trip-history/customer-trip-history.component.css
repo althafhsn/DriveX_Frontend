@@ -1,0 +1,11 @@
+.table {
+    font-size: 0.9rem;
+  }
+  .table th {
+    color: #6c757d;
+  }
+  .badge {
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    padding: 0.4em 0.6em;
+  }
