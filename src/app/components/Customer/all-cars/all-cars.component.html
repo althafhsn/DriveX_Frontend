@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+<br>
+
+<h1 class="  text-center" style=" font-family:Lucida Sans;">cars-listing-search</h1>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left Sidebar - Search Filters -->
+            <div class="col-md-3">
+                <div class="p-3 border rounded bg-light">
+                    <h5>What Are You Looking For</h5>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <h6>Location</h6>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option>Select Location</option>
+                            <option>Location 1</option>
+                            <option>Location 2</option>
+                        </select>
+                    </div>
+                    <h6>Car Category</h6>
+                    <div class="mb-3">
+                        <select class="form-select">
+                            <option>Select Category</option>
+                            <option>SUV</option>
+                            <option>Sedan</option>
+                            <option>Truck</option>
+                        </select>
+                    </div>
+                    <h6>Car Type</h6>
+                    <div>
+                        <select class="form-select">
+                            <option>Select Type</option>
+                            <option>Manual</option>
+                            <option>Automatic</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-dark mt-3">Rent Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side - Car Grid View -->
+            <div class="col-md-9">
+                <div class="card  shadow-sm">
+                    <div class="row g-0">
+                        <div class="container py-5">
+                            
+                            <div class="container">
+                                <div class="row g-4">
+                                  <div class="col-md-4" *ngFor="let card of paginatedCards">
+                                    <div class="card">
+                                      <div class="position-relative">
+                                        <img [src]="card.image" class="card-img-top" alt="Car Image">
+                                        <div class="price-tag">{{ card.price }}</div>
+                                      </div>
+                                      <div class="card-body">
+                                        <div class="icon">
+                                          <i class="fa-solid fa-star text-warning" *ngFor="let _ of [1,2,3,4,5]" style="font-size:12px;"></i>
+                                        </div>
+                                        <h5 class="card-title">{{ card.title }}</h5>
+                                        <p class="card-text">{{ card.description }}</p>
+                                        <hr>
+                                        <div class="feature">
+                                          <span class="icon"><i class="fa-solid fa-chair" style="font-size:20px;"></i></span> 
+                                          Seat Capacity: {{ card.seatCapacity }} People
+                                        </div>
+                                        <div class="feature">
+                                          <span class="icon"><i class="fa-solid fa-door-open" style="font-size:20px;"></i></span>
+                                          Total Doors: {{ card.doors }} Doors
+                                        </div>
+                                        <div class="feature">
+                                          <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
+                                          Fuel Tank: {{ card.fuel }} Liters
+                                        </div>
+                                        <div>
+                                          <button type="button" class="btn btn-outline-warning" style="width:100%;">Rent Now</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                                <!-- Pagination Controls -->
+                                <div class="pagination-controls mt-3 d-flex justify-content-center">
+                                  <button class="btn btn-outline-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+                                  <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+                                  <button class="btn btn-outline-secondary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+                                </div>
+                              </div>   
+
+
+                        </div>
+
+
+                        <!-- <app-card></app-card> -->
+                        <!-- <div class="col-md-5">
+                            <img src="https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-11.jpg" class="img-fluid rounded-start" alt="Toyota Camry">
+                        </div> -->
+                        <!-- <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">Toyota Camry SE 400</h5>
+                                <p class="card-text text-muted">Category: Toyota</p>
+                                <h3 class="text-danger">$100 <small class="text-muted">/ Day Starting From</small></h3>
+                                
+                              
+                                <div class="d-flex flex-wrap mt-3">
+                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-gear"></i> Manual</span>
+                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-fuel-pump"></i> Diesel</span>
+                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-calendar"></i> 2022</span>
+                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-speedometer2"></i> 14 KM</span>
+                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-person-fill"></i> 5 Persons</span>
+                                </div>
+    
+                                <p class="text-muted mt-3"><i class="bi bi-geo-alt-fill"></i> Big Ben</p>
+                                <button class="btn btn-dark">Rent Now</button>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+      
+
+<app-footer></app-footer>

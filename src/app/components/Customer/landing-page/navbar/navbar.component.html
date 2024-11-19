@@ -19,25 +19,25 @@
             <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rentals</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Option 1</a></li>
-              <li><a class="dropdown-item" href="#">Option 2</a></li>
-            </ul>
+            <a class="nav-link  text-white" routerLink="/AllCar"role="button" data-bs-toggle="dropdown" aria-expanded="false">Explore Car</a>
+           
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Option 1</a></li>
               <li><a class="dropdown-item" href="#">Option 2</a></li>
             </ul>
-          </li>
-          <li class="nav-item dropdown">
+          </li> -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Option 1</a></li>
               <li><a class="dropdown-item" href="#">Option 2</a></li>
             </ul>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">About Us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Contact Us</a>
@@ -47,11 +47,11 @@
 
       <!-- Login and Register buttons -->
       <div class="d-flex">
-        <a href="#" class="btn me-2 btn-outline-warning ">
-          <i class="bi bi-person "></i> Login
+        <a routerLink="/login" class="btn me-2 btn-outline-warning ">
+          Login           
         </a>
-        <a href="#" class="btn btn-outline-warning"> 
-          <i class="bi bi-lock"></i> Register
+        <a routerLink="/register" class="btn btn-outline-warning"> 
+         Register 
         </a>
       </div>
     </div>

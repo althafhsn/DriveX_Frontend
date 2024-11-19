@@ -1,7 +1,8 @@
 .animate-top {
     position: relative;
     animation: slideFromTop 2s ease-out forwards;
-  background-color: #1f0259;      color: aliceblue;
+    background-color: #1f0259;      
+    color: aliceblue;
     padding-bottom: 12px;
     border-radius: 10px;
   }
