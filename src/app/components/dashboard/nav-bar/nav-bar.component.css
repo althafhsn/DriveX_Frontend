@@ -1,0 +1,16 @@
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-control {
+    border-radius: 20px;
+  }
+  
+  .bi-bell {
+    font-size: 1.5rem;
+  }
+  
+  .rounded-circle {
+    width: 30px;
+    height: 30px;
+  }
