@@ -10,6 +10,7 @@ import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
 import { CustomerComponent } from './components/dashboard/customer/customer.component';
+import { BookingComponent } from './components/dashboard/booking/booking.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'LandingPage',pathMatch:'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: '', redirectTo: './admin-landing', pathMatch: 'full' },
       {path: 'main',component:AdminLandingComponent},
       { path: 'customers', component: CustomerComponent },
+      { path: 'bookings', component: BookingComponent },
     ]
    } //canActivate: [authGuard]
 ];
