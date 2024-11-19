@@ -1,0 +1,35 @@
+.gallery-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    /* background-color: #e0d6f4; */
+    margin-top: 150px;
+
+  }
+
+  /* Animation for seamless scroll effect */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Image track styling */
+  .image-track {
+    display: inline-flex;
+    animation: scroll 20s linear infinite;
+  }
+
+
+  /* Image styling */
+  .image-track img {
+    width: 350px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 12px;
+    box-shadow: 0 15px 8px #1f0259; 
+  }

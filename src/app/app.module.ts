@@ -5,9 +5,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CommonModule } from '@angular/common';
-
-
 import { ReactiveFormsModule } from '@angular/forms';
+import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
+import { NavbarComponent as NavBarLanding } from './components/Customer/landing-page/navbar/navbar.component';
+import { SlideshowComponent } from './components/Customer/landing-page/slideshow/slideshow.component';
+import { SearchCarComponent } from './components/Customer/landing-page/search-car/search-car.component';
+import { BrandComponent } from './components/Customer/landing-page/brand/brand.component';
+import { CardComponent } from './components/Customer/landing-page/card/card.component';
+import { TypeComponent } from './components/Customer/landing-page/type/type.component';
+import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
+import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
+import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
+import { CarDetailsComponent } from './components/Customer/conform-rent/car-details/car-details.component';
+import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { RouterModule } from '@angular/router';
@@ -19,7 +29,7 @@ import { TodayStatsComponent } from './components/dashboard/admin-landing/today-
 import { CarAvailabilityComponent } from './components/dashboard/admin-landing/car-availability/car-availability.component';
 import { LiveCarStatusComponent } from './components/dashboard/admin-landing/live-car-status/live-car-status.component';
 import { EarningSummaryComponent } from './components/dashboard/admin-landing/earning-summary/earning-summary.component';
-import { NavBarComponent } from './components/dashboard/nav-bar/nav-bar.component';
+import { NavBarComponent as AdminNavbar } from './components/dashboard/nav-bar/nav-bar.component';
 import { SideBarComponent } from './components/dashboard/side-bar/side-bar.component';
 import { CustomerComponent } from './components/dashboard/customer/customer.component';
 import { AllCustomersListComponent } from './components/dashboard/customer/all-customers-list/all-customers-list.component';
@@ -38,12 +48,26 @@ import { CustomerPaymentComponent } from './components/dashboard/customer/custom
     CarAvailabilityComponent,
     LiveCarStatusComponent,
     EarningSummaryComponent,
-    NavBarComponent,
     SideBarComponent,
     CustomerComponent,
     AllCustomersListComponent,
     CustomerDetailsComponent,
-    CustomerPaymentComponent
+    CustomerPaymentComponent,
+    NavBarLanding,
+    CardComponent,
+    LandingPageComponent,
+    AdminNavbar,
+    SlideshowComponent,
+    SearchCarComponent,
+    BrandComponent,
+    CardComponent,
+    TypeComponent,
+    ScrollComponent,
+    FooterComponent,
+    ConformRentComponent,
+    CarDetailsComponent,
+    AllCarsComponent,
+    DashboardComponent
 
 
   ],
@@ -60,7 +84,7 @@ import { CustomerPaymentComponent } from './components/dashboard/customer/custom
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor, // Register the functional interceptor
+      useClass: TokenInterceptor, 
       multi: true
     }
   ],

@@ -1,0 +1,45 @@
+
+ 
+    .hero-section {
+      /* background: url('./backgroung1.jpg') no-repeat center center; */
+      background-size: cover;
+      padding: 100px 0;
+      
+    }
+
+    .hero-text {
+      /* background-color: rgba(255, 255, 255, 0.8); */
+      padding: 20px;
+      border-radius: 10px;
+      height: auto;
+    }
+
+    .car {
+      animation: moveRightToLeft 1s ease-in-out forwards;
+      max-width: 100%;
+      height: auto;
+    }
+
+    @keyframes moveRightToLeft {
+      0% {
+        transform: translateX(100px);
+      }
+
+      100% {
+        transform: translateX(-100px);
+      }
+    }
+
+    .labelBanner {
+      animation: movebottemtotop 3s ease-in-out forwards;
+    }
+
+    @keyframes movebottemtotop {
+      0% {
+        transform: translateY(100px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }

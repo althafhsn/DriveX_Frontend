@@ -1,0 +1,73 @@
+<!-- <div class="container my-4 animate-top">
+    <form class="row g-2 align-items-center">
+      
+      <div class="col-md-4">
+        <label for="pickupDate" class="form-label fw-bold">Pickup Date</label>
+        <input type="date" class="form-control" id="pickupDate">
+      </div>
+
+      <div class="col-md-4">
+        <label for="returnDate" class="form-label fw-bold">Return Date</label>
+        <input type="date" class="form-control" id="returnDate">
+      </div>
+
+      <div class="col-md-4 d-flex align-items-end" style="margin-top: 3%;">
+        <button type="submit" class="btn btn-outline-warning w-100">
+           <a routerLink="/search" style="text-decoration: none;">Search</a>
+          
+        </button>
+      </div>
+    </form>
+  </div> -->
+  
+
+
+  <div class="container my-4 animate-top">
+    <form [formGroup]="dateForm" (ngSubmit)="onSubmit()" class="row g-2 align-items-center">
+  
+      <!-- Pickup Date -->
+      <div class="col-md-4">
+        <label for="pickupDate" class="form-label fw-bold">Pickup Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="pickupDate"
+          formControlName="pickupDate"
+          [ngClass]="{ 'is-invalid': pickupDate?.invalid && (pickupDate?.touched || pickupDate?.dirty) }"
+        />
+        <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['pastDate']">
+          Pickup date cannot be in the past.
+        </div>
+        <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['required']">
+          Pickup date is required.
+        </div>
+      </div>
+  
+      <!-- Return Date -->
+      <div class="col-md-4">
+        <label for="returnDate" class="form-label fw-bold">Return Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="returnDate"
+          formControlName="returnDate"
+          [ngClass]="{ 'is-invalid': returnDate?.invalid && (returnDate?.touched || returnDate?.dirty) }"
+        />
+        <div class="invalid-feedback" *ngIf="returnDate?.errors?.['required']">
+          Return date is required.
+        </div>
+        <div class="invalid-feedback" *ngIf="dateForm.errors?.['invalidReturnDate']">
+          Return date must be after the pickup date.
+        </div>
+      </div>
+  
+      <!-- Search Button -->
+      <div class="col-md-4 d-flex align-items-end" style="margin-top: 3%;">
+        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="dateForm.invalid" >
+          <a routerLink="/Explorecar" style="text-decoration: none;">Search</a>
+        </button>
+      </div>
+  
+    </form>
+  </div>
+  

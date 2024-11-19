@@ -1,0 +1,87 @@
+.footer {
+    background-color: #1f0259;      color: #fff;
+   padding: 40px 0;
+ }
+
+ .footer-logo {
+   font-size: 28px;
+   font-weight: bold;
+   color: #ff4949;
+   margin-bottom: 20px;
+ }
+
+ .footer .footer-link {
+   color: #ddd;
+   text-decoration: none;
+   font-size: 14px;
+   display: block;
+   margin-bottom: 10px;
+ }
+
+ .footer .footer-link:hover {
+   color: #ff4949;
+ }
+
+ .footer .footer-title {
+   font-weight: bold;
+   font-size: 18px;
+   margin-bottom: 20px;
+   color: #fff;
+ }
+
+ .footer .subscribe-form input[type="email"] {
+   border: none;
+   border-radius: 30px;
+   padding: 12px 20px;
+   outline: none;
+   margin-right: 10px;
+   width: 100%;
+ }
+
+ .footer .subscribe-form button {
+   border-radius: 30px;
+   background-color: #ff4949;
+   color: #ffffff;
+   border: none;
+   padding: 12px 20px;
+   cursor: pointer;
+   width: 100%;
+ }
+
+ .footer .subscribe-form button:hover {
+   background-color: #e04040;
+ }
+
+ .footer .social-icons a {
+   color: #fff;
+   font-size: 22px;
+   margin-right: 20px;
+   transition: color 0.3s;
+ }
+
+ .footer .social-icons a:hover {
+   color: #ff4949;
+ }
+
+ .footer-bottom {
+   border-top: 1px solid #444;
+   padding-top: 20px;
+   font-size: 14px;
+   text-align: center;
+   color: #bbb;
+ }
+
+ @media (max-width: 767px) {
+   .footer .footer-logo {
+     text-align: center;
+   }
+
+   .footer .subscribe-form button {
+     width: 100%;
+     margin-top: 10px;
+   }
+
+   .footer .footer-link {
+     font-size: 16px;
+   }
+ }
