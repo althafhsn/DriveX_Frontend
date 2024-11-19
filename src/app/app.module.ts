@@ -25,6 +25,7 @@ import { FooterComponent } from './components/Customer/landing-page/footer/foote
 import { Card2Component } from './components/Customer/search/card2/card2.component';
 import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
 import { CarDetailsComponent } from './components/Customer/conform-rent/car-details/car-details.component';
+import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { CarDetailsComponent } from './components/Customer/conform-rent/car-deta
     FooterComponent,
     Card2Component,
     ConformRentComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    AllCarsComponent
 
     
   ],
