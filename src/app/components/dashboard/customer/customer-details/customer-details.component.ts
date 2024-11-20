@@ -22,4 +22,10 @@ export class CustomerDetailsComponent implements OnInit {
       console.log('Customer ID:', this.customerId);
     });
   }
+  isEditable = false;
+  saveCustomerDetails() {
+    // Save logic here, like sending the updated data to a server.
+    console.log('Customer details saved:', this.customer);
+  }
+  
 }

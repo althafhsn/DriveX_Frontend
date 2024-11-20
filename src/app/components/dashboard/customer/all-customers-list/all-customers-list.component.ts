@@ -53,4 +53,13 @@ export class AllCustomersListComponent implements OnInit {
   selectCustomer(customer: Customer): void {
     this.customerSelected.emit(customer);
   }
+  showAddCustomerForm: boolean = false;
+
+  // Method to handle adding a new customer
+  addNewCustomer(customer: Customer) {
+    this.customers.push(customer);  // Add the new customer to the list
+    this.showAddCustomerForm = false;  // Hide the add customer form after submission
+  }
+
+  
 }

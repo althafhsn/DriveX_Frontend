@@ -51,6 +51,7 @@ import { UpdateCarComponent } from './components/dashboard/settings/update-car/u
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
+import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { StatisticsComponent } from './components/dashboard/revenue/statics/stat
   
     GraphComponent,
     StatisticsComponent,
+    AddCustomerComponent,
     
 
 
