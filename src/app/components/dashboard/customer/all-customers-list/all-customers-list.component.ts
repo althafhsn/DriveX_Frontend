@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output,Input} from '@angular/core';
 import { Customer } from '../../../../models/customer.model';
 import { NgModule } from '@angular/core';
 
@@ -10,12 +10,12 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./all-customers-list.component.css']
 })
 export class AllCustomersListComponent implements OnInit {
-  // List of customers
+  @Input() 
   customers: Customer[] = [
     {
       id: 'GF491T4D',
       name: 'Alex Norman',
-      status: 'Available', 
+      status: 'Available',
       avatarUrl: 'https://via.placeholder.com/50',
       email: 'alex@example.com',
       phone: '+123456789',
@@ -36,30 +36,20 @@ export class AllCustomersListComponent implements OnInit {
       accidentHistory: 0,
       passengerCapacity: 4
     }
-    // Add more customers...
   ];
- 
 
-  // Emit an event when a customer is selected
   @Output() customerSelected = new EventEmitter<Customer>();
+  @Output() addCustomer = new EventEmitter<void>();
 
   constructor() {}
 
-  ngOnInit(): void {
-    // Additional initialization logic can go here
-  }
+  ngOnInit(): void {}
 
-  // Method to select a customer and emit the event
   selectCustomer(customer: Customer): void {
     this.customerSelected.emit(customer);
   }
-  showAddCustomerForm: boolean = false;
 
-  // Method to handle adding a new customer
-  addNewCustomer(customer: Customer) {
-    this.customers.push(customer);  // Add the new customer to the list
-    this.showAddCustomerForm = false;  // Hide the add customer form after submission
+  onAddCustomerClick(): void {
+    this.addCustomer.emit(); // Notify the parent to show the Add Customer form
   }
-
-  
 }
