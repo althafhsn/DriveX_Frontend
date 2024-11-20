@@ -24,6 +24,10 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { FormsModule } from '@angular/forms';
+
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
+
 import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
 import { TodayStatsComponent } from './components/dashboard/admin-landing/today-stats/today-stats.component';
 import { CarAvailabilityComponent } from './components/dashboard/admin-landing/car-availability/car-availability.component';
@@ -77,6 +81,9 @@ import { UpdateCarComponent } from './components/dashboard/settings/update-car/u
     CarDetailsComponent,
     AllCarsComponent,
     DashboardComponent,
+    ContactComponent,
+    AboutComponent
+
     CustomerTripHistoryComponent,
     BookingComponent,
     SettingsComponent,
@@ -86,6 +93,7 @@ import { UpdateCarComponent } from './components/dashboard/settings/update-car/u
     PasswordUpdateComponent,
     UpdateCustomerComponent,
     UpdateCarComponent
+
 
 
   ],

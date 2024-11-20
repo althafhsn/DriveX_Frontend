@@ -5,6 +5,12 @@
 
     <div class="container-fluid">
         <div class="row">
+          <div>
+            <h2>Selected Dates</h2>
+            <p>Pickup Date: {{ pickupDate }}</p>
+            <p>Return Date: {{ returnDate }}</p>
+            <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
+          </div>
             <!-- Left Sidebar - Search Filters -->
             <div class="col-md-3">
                 <div class="p-3 border rounded bg-light">
@@ -96,29 +102,7 @@
                         </div>
 
 
-                        <!-- <app-card></app-card> -->
-                        <!-- <div class="col-md-5">
-                            <img src="https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-11.jpg" class="img-fluid rounded-start" alt="Toyota Camry">
-                        </div> -->
-                        <!-- <div class="col-md-7">
-                            <div class="card-body">
-                                <h5 class="card-title">Toyota Camry SE 400</h5>
-                                <p class="card-text text-muted">Category: Toyota</p>
-                                <h3 class="text-danger">$100 <small class="text-muted">/ Day Starting From</small></h3>
-                                
-                              
-                                <div class="d-flex flex-wrap mt-3">
-                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-gear"></i> Manual</span>
-                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-fuel-pump"></i> Diesel</span>
-                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-calendar"></i> 2022</span>
-                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-speedometer2"></i> 14 KM</span>
-                                    <span class="badge bg-light text-dark me-2 mb-2"><i class="bi bi-person-fill"></i> 5 Persons</span>
-                                </div>
-    
-                                <p class="text-muted mt-3"><i class="bi bi-geo-alt-fill"></i> Big Ben</p>
-                                <button class="btn btn-dark">Rent Now</button>
-                            </div>
-                        </div> -->
+                       
                     </div>
                 </div>
             </div>

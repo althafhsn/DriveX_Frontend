@@ -92,6 +92,7 @@
                                     class="text-danger">*Confirm password is required</small>
                             </div>
 
+                            <!-- Password Mismatch Error Message -->
                             <small
                                 *ngIf="signUpForm.hasError('passwordMismatch') && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['password'].dirty)"
                                 class="text-danger">*Passwords do not match!</small>
