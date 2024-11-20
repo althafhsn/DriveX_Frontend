@@ -15,23 +15,23 @@
     }
 
     .car {
-      animation: moveRightToLeft 1s ease-in-out forwards;
+      animation: moveRightToLeft 1.5s ease-in-out forwards;
       max-width: 100%;
       height: auto;
     }
 
     @keyframes moveRightToLeft {
       0% {
-        transform: translateX(100px);
+        transform: translateX(300px);
       }
 
       100% {
-        transform: translateX(-100px);
+        transform: translateX(-10px);
       }
     }
 
-    .labelBanner {
-      animation: movebottemtotop 3s ease-in-out forwards;
+    /* .labelBanner {
+      animation: movebottemtotop 2s ease-in-out forwards;
     }
 
     @keyframes movebottemtotop {
@@ -40,6 +40,6 @@
       }
 
       100% {
-        transform: translateY(0);
+        transform: translateY(20);
       }
-    }
+    } */

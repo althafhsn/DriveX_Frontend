@@ -23,6 +23,8 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { FormsModule } from '@angular/forms';
+import { ContactComponent } from './components/contact/contact.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { FormsModule } from '@angular/forms';
     ConformRentComponent,
     CarDetailsComponent,
     AllCarsComponent,
-    DashboardComponent
+    DashboardComponent,
+    ContactComponent,
+    AboutComponent
 
   ],
   imports: [

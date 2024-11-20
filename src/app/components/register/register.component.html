@@ -1,4 +1,4 @@
-<!-- <div class="outer">
+<div class="outer">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-5">
@@ -92,6 +92,7 @@
                                     class="text-danger">*Confirm password is required</small>
                             </div>
 
+                            <!-- Password Mismatch Error Message -->
                             <small
                                 *ngIf="signUpForm.hasError('passwordMismatch') && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['password'].dirty)"
                                 class="text-danger">*Passwords do not match!</small>
@@ -119,4 +120,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

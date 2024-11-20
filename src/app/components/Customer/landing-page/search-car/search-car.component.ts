@@ -1,56 +1,63 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-car',
   templateUrl: './search-car.component.html',
   styleUrl: './search-car.component.css'
 })
-export class SearchCarComponent {
-  dateForm: FormGroup;
+export class SearchCarComponent implements OnInit{
+  dateForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.dateForm = this.fb.group({
-      pickupDate: ['', [Validators.required, this.futureOrTodayValidator]],
-      returnDate: ['', [Validators.required]]
-    }, { validators: this.returnAfterPickupValidator });
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  ngOnInit(): void {
+    this.dateForm = this.fb.group(
+      {
+        pickupDate: [
+          '',
+          [Validators.required, this.pastDateValidator]
+        ],
+        returnDate: ['', [Validators.required]]
+      },
+      { validators: this.dateRangeValidator }
+    );
   }
 
-  // Custom validator to check if the date is today or in the future
-  futureOrTodayValidator(control: any) {
-    const selectedDate = new Date(control.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Reset to start of the day
-    return selectedDate >= today ? null : { pastDate: true };
-  }
-
-  // Validator to ensure returnDate is after pickupDate
-  returnAfterPickupValidator(group: FormGroup) {
-    const pickupDate = group.get('pickupDate')?.value;
-    const returnDate = group.get('returnDate')?.value;
-
-    if (pickupDate && returnDate) {
-      return new Date(returnDate) > new Date(pickupDate)
-        ? null
-        : { invalidReturnDate: true };
-    }
-    return null;
-  }
-
-  // Getters for form controls
-  get pickupDate() {
+  // Accessor for form controls
+  get pickupDate(): AbstractControl | null {
     return this.dateForm.get('pickupDate');
   }
 
-  get returnDate() {
+  get returnDate(): AbstractControl | null {
     return this.dateForm.get('returnDate');
   }
 
-  onSubmit() {
+  // Submit logic
+  onSubmit(): void {
     if (this.dateForm.valid) {
-      alert('Dates are valid!');
-    } else {
-      alert('Please correct the errors before submitting.');
+      const { pickupDate, returnDate } = this.dateForm.value;
+      localStorage.setItem('pickupDate', pickupDate);
+      localStorage.setItem('returnDate', returnDate);
+      this.router.navigate(['/Explorecar']);
     }
+  }
+
+  // Validator: Ensure pickup date is not in the past
+  private pastDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    return selectedDate < today ? { pastDate: true } : null;
+  }
+
+  // Validator: Ensure return date is after pickup date
+  private dateRangeValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const pickup = new Date(group.get('pickupDate')?.value);
+    const returnDate = new Date(group.get('returnDate')?.value);
+
+    return pickup && returnDate && returnDate <= pickup
+      ? { invalidReturnDate: true }
+      : null;
   }
 }
