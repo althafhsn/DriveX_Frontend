@@ -48,6 +48,10 @@ import { ProfileFormComponent } from './components/dashboard/settings/profile-fo
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { UpdateCustomerComponent } from './components/dashboard/settings/update-customer/update-customer.component';
 import { UpdateCarComponent } from './components/dashboard/settings/update-car/update-car.component';
+import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
+import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
+import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
+import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
 
 
 @NgModule({
@@ -91,7 +95,13 @@ import { UpdateCarComponent } from './components/dashboard/settings/update-car/u
     ProfileFormComponent,
     PasswordUpdateComponent,
     UpdateCustomerComponent,
-    UpdateCarComponent
+    UpdateCarComponent,
+    RevenueComponent,
+  
+    GraphComponent,
+    StatisticsComponent,
+    AddCustomerComponent,
+    
 
 
 
