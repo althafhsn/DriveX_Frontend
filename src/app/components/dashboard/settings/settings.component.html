@@ -1,0 +1,107 @@
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col-md-12">
+            <app-nav-bar></app-nav-bar>
+            </div>
+      <!-- Left Sidebar -->
+      <div class="col-12 col-md-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <!-- Show All Customers List only for Update Customer Tab -->
+            <app-all-customers-list *ngIf="showAllCustomersList()"></app-all-customers-list>
+  
+            <!-- Default Left Panel Content for Other Tabs -->
+            <ng-container *ngIf="!showAllCustomersList()">
+              <!-- Profile Picture -->
+              <div class="text-center mb-3">
+                <img
+                  src="images.png"
+                  alt="Profile"
+                  class="rounded-circle"
+                />
+              </div>
+              <h5 class="text-center">Mason Wilson</h5>
+              <p class="text-muted text-center">Admin</p>
+  
+              <!-- Notifications -->
+              <h6 class="mt-4">Notifications</h6>
+              <div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="newBookings"
+                    checked
+                  />
+                  <label class="form-check-label" for="newBookings">New Bookings</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="cancellation"
+                    checked
+                  />
+                  <label class="form-check-label" for="cancellation">Cancellation</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="duePayment"
+                  />
+                  <label class="form-check-label" for="duePayment">Due Payment</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="maintenance"
+                    checked
+                  />
+                  <label class="form-check-label" for="maintenance">Maintenance</label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Main Content -->
+      <div class="col-12 col-md-9">
+        <div class="card shadow-sm">
+          <div class="card-header bg-dark text-white d-flex">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs card-header-tabs">
+              <li
+                *ngFor="let tab of tabs"
+                class="nav-item"
+                (click)="changeTab(tab.id)"
+              >
+                <button
+                  class="nav-link"
+                  [ngClass]="{ active: activeTab === tab.id }"
+                >
+                  {{ tab.label }}
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <!-- Dynamic Tab Content -->
+            <ng-container [ngSwitch]="activeTab">
+              <app-profile-form *ngSwitchCase="'profile-settings'"></app-profile-form>
+              <app-password-update *ngSwitchCase="'password-update'"></app-password-update>
+              
+              <p *ngSwitchCase="'payment-methods'">Payment Methods Component Coming Soon!</p>
+              <app-update-customer *ngSwitchCase="'update-customer'"></app-update-customer>
+              <app-update-car *ngSwitchCase="'update-car'"></app-update-car>
+
+              <p *ngSwitchDefault>Select a tab to view content.</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

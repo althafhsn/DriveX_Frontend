@@ -1,0 +1,45 @@
+<div class="today-stats p-3">
+
+    <!-- Date Display -->
+    <div class="date-display">
+      <h5>Today's Statistics</h5>
+      <p>{{ currentDate | date: 'fullDate' }}, {{ currentTime }}</p>
+    </div>
+  
+      <!-- Income Section -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Income</h5>
+          <h3>$9460.00 <small class="text-danger">↓ 1.5%</small></h3>
+          <p class="text-muted">Compared to $9940 yesterday</p>
+          <p class="text-muted">Last week income $25658.00</p>
+        </div>
+      </div>
+    
+      <!-- Expenses Section -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Expenses</h5>
+          <h3>$5660.00 <small class="text-success">↑ 2.5%</small></h3>
+          <p class="text-muted">Compared to $5240 yesterday</p>
+          <p class="text-muted">Last week expenses $22658.00</p>
+        </div>
+      </div>
+    
+      <!-- Hire vs Cancel Section -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hire vs Cancel</h5>
+          <div class="d-flex justify-content-center align-items-center">
+            <canvas id="hireCancelChart" width="100" height="100"></canvas>
+          </div>
+          <ul class="mt-3 list-unstyled">
+            <li>Total Hired: 54% <span class="text-success">●</span></li>
+            <li>Total Canceled: 20% <span class="text-danger">●</span></li>
+            <li>Total Pending: 26% <span class="text-warning">●</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  

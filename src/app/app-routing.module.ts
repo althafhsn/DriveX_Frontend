@@ -10,6 +10,13 @@ import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
+import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
+import { CustomerComponent } from './components/dashboard/customer/customer.component';
+import { BookingComponent } from './components/dashboard/booking/booking.component';
+import { SettingsComponent } from './components/dashboard/settings/settings.component';
+import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
+import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
+
 
 const routes: Routes = [
   {path:'',redirectTo:'LandingPage',pathMatch:'full'},
@@ -17,18 +24,32 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {path: 'LandingPage',component:LandingPageComponent},
-  {path:'ConformRent',component:ConformRentComponent},
+  {path:'ConfirmRent',component:ConformRentComponent},
   {path:'Explorecar',component:AllCarsComponent},
-  { path: 'register', component: RegisterComponent},
   {path:'Contact',component:ContactComponent},
   {path:'About',component:AboutComponent},
-  { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard]}
-]
+  { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard],
+    children : [
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
+      {path: 'main',component:AdminLandingComponent},
+      { path: 'customers', component: CustomerComponent },
+      { path: 'bookings', component: BookingComponent },
+      {path: 'settings', component: SettingsComponent,
+        children: [
+          { path: 'profile-settings', component: ProfileFormComponent },
+          { path: 'password-update', component: PasswordUpdateComponent },
+          // Add other routes
+        ]
+      }
+        
+    ]
+   } //canActivate: [authGuard]
+];
 
 
+  
+ @NgModule({
 
-
-@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

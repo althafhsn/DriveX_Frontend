@@ -1,0 +1,29 @@
+<div class="live-car-status p-3 bg-white rounded shadow-sm">
+    <h5 class="mb-3">Live Car Status</h5>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Car No.</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Trip Status</th>
+          <th scope="col">Earning</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let car of carStatusList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ car.carNumber }}</td>
+          <td>{{ car.driver }}</td>
+          <td>
+            <span [ngClass]="getStatusClass(car.status)">{{ car.status }}</span>
+          </td>
+          <td>${{ car.earning.toFixed(2) }}</td>
+          <td><button class="btn btn-sm btn-outline-primary">Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+

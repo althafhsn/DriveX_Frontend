@@ -1,0 +1,133 @@
+.all-customers-container {
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Inner padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  }
+  
+  .all-customers-container .header {
+    border-bottom: 1px solid #eaeaea; /* Light grey divider line */
+    padding-bottom: 10px; /* Space below the title */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .all-customers-container .header h3 {
+    font-weight: 600;
+    color: #333333; /* Dark grey title text */
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .all-customers-container .header button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px; /* Icon size */
+    color: #999999; /* Light grey button color */
+    cursor: pointer;
+  }
+  
+  .all-customers-container .header button:hover {
+    color: #666666; /* Darker grey on hover */
+  }
+  
+  .all-customers-container .customers-list {
+    margin-top: 15px;
+  }
+  
+  .all-customers-container .customers-list .customer-item {
+    display: flex;
+    align-items: center; /* Vertically align content */
+    justify-content: space-between; /* Space between avatar/info and status */
+    padding: 10px 0; /* Spacing between items */
+    border-bottom: 1px solid #eaeaea; /* Divider between customers */
+  }
+  
+  .all-customers-container .customers-list .customer-item:last-child {
+    border-bottom: none; /* No divider for the last item */
+  }
+  
+  .all-customers-container .customers-list .customer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Ensure image fits without distortion */
+  }
+  
+  .all-customers-container .customers-list .customer-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px; /* Space between avatar and text */
+  }
+  
+  .all-customers-container .customers-list .customer-info .customer-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333; /* Dark grey name text */
+    margin: 0; /* No extra margin */
+  }
+  
+  .all-customers-container .customers-list .customer-info .customer-id {
+    font-size: 14px;
+    color: #888888; /* Lighter grey for ID text */
+    margin-top: 3px; /* Slight spacing below name */
+  }
+  
+  .all-customers-container .customers-list .badge {
+    font-size: 14px; /* Badge text size */
+    padding: 5px 10px; /* Inner padding for the badge */
+    border-radius: 20px; /* Rounded pill shape */
+    text-align: center; /* Center align badge text */
+    text-transform: capitalize;
+  }
+  
+  .all-customers-container .customers-list .badge.badge-success {
+    background-color: #28a745; /* Green background for "Available" */
+    color: #ffffff; /* White text */
+  }
+  
+  .all-customers-container .customers-list .badge.badge-danger {
+    background-color: #dc3545; /* Red background for "Unavailable" */
+    color: #ffffff; /* White text */
+  }
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  .add-customer-btn {
+    background-color: #007bff; /* Primary blue */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Slightly rounded corners */
+    padding: 10px 20px; /* Button padding */
+    font-size: 16px; /* Font size */
+    font-weight: 500; /* Medium weight */
+    cursor: pointer; /* Pointer cursor */
+    transition: all 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .add-customer-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: #e9ecef; /* Light gray text */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  }
+  
+  .add-customer-btn:active {
+    background-color: #004085; /* Even darker blue on click */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Slightly reduced shadow */
+    transform: translateY(2px); /* Slightly pressed effect */
+  }
+  
+  .add-customer-btn:disabled {
+    background-color: #6c757d; /* Gray for disabled state */
+    color: #ced4da; /* Light gray text for disabled state */
+    cursor: not-allowed; /* Disabled cursor */
+    opacity: 0.7; /* Slight transparency for disabled */
+  }
+  

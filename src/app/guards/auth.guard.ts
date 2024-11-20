@@ -35,7 +35,7 @@ export const authGuard: CanActivateFn = (
             "You do not have permission to access this page.",
             5000
           );
-          router.navigate(['./register']);
+          router.navigate(['.././LandingPage']);
           return false;
         }
       }),
