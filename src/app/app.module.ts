@@ -82,8 +82,7 @@ import { UpdateCarComponent } from './components/dashboard/settings/update-car/u
     AllCarsComponent,
     DashboardComponent,
     ContactComponent,
-    AboutComponent
-
+    AboutComponent,
     CustomerTripHistoryComponent,
     BookingComponent,
     SettingsComponent,
