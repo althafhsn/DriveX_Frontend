@@ -7,10 +7,16 @@
         <div class="row">
           <div>
             <h2>Selected Dates</h2>
-            <p>Pickup Date: {{ pickupDate }}</p>
-            <p>Return Date: {{ returnDate }}</p>
+            <label for="pickupDate">Pickup Date:</label>
+            <input type="date" id="pickupDate" [(ngModel)]="pickupDate" (change)="calculateDateDifference()" />
+          <br>
+            <label for="returnDate">Return Date:</label>
+            <input type="date" id="returnDate" [(ngModel)]="returnDate" (change)="calculateDateDifference()" />
+          
+            <button (click)="updateDates()">Save Dates</button>
             <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
           </div>
+          
             <!-- Left Sidebar - Search Filters -->
             <div class="col-md-3">
                 <div class="p-3 border rounded bg-light">

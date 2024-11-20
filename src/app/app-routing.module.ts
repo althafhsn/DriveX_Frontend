@@ -16,6 +16,7 @@ import { BookingComponent } from './components/dashboard/booking/booking.compone
 import { SettingsComponent } from './components/dashboard/settings/settings.component';
 import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'Explorecar',component:AllCarsComponent},
   {path:'Contact',component:ContactComponent},
   {path:'About',component:AboutComponent},
+  {path:'Profile',component:ProfileComponent},
   { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard],
     children : [
       { path: '', redirectTo: 'main', pathMatch: 'full' },
