@@ -13,7 +13,10 @@ export class AllCustomersListComponent implements OnInit {
   customers: Customer[] = [];
   errorMessage: string | null = null;
 
-  constructor(private dashBoardListCustomer: DashboardCustomerService) { }
+  constructor(
+    
+    private dashBoardListCustomer: DashboardCustomerService
+  ) { }
 
   ngOnInit(): void {
     this.fetchAllCustomers();
