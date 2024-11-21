@@ -12,12 +12,9 @@ export class AddCustomerComponent {
   // Initialize the new customer object based on the model
   newCustomer: Customer = {
     id: '', // will be generated when adding
-    name: '',
-    avatarUrl: '',
-    tripsCompleted: 0,
-    totalTraveled: 0,
-    accidentHistory: 0,
-    passengerCapacity: 0,
+    firstName: '',
+    lastName:'',
+    image: '',
     phone: '',
     email: '',
     status: 'Available' // Default status
@@ -35,16 +32,13 @@ export class AddCustomerComponent {
 
     // Reset the form
     this.newCustomer = {
-      id: '',
-      name: '',
-      avatarUrl: '',
-      tripsCompleted: 0,
-      totalTraveled: 0,
-      accidentHistory: 0,
-      passengerCapacity: 0,
+      id: '', // will be generated when adding
+      firstName: '',
+      lastName:'',
+      image: '',
       phone: '',
       email: '',
-      status: 'Available'
+      status: 'Available' // Default status
     };
   }
 

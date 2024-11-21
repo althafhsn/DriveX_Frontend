@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
-import { Customer, DashboardCustomerService } from '../../../../services/dashboard-customer.service';
-
+import {DashboardCustomerService } from '../../../../services/dashboard-customer.service';
+import { Customer } from '../../../../models/customer.model';
 
 
 @Component({
@@ -10,7 +10,9 @@ import { Customer, DashboardCustomerService } from '../../../../services/dashboa
   styleUrls: ['./all-customers-list.component.css']
 })
 export class AllCustomersListComponent implements OnInit {
-  customers: Customer[] = [];
+  @Input() customers: Customer[] = [];
+  @Output() addCustomer = new EventEmitter<void>(); // Output property for add action
+  @Output() customerSelected = new EventEmitter<Customer>(); // Emit Customer object
   errorMessage: string | null = null;
 
   constructor(
@@ -36,4 +38,10 @@ export class AllCustomersListComponent implements OnInit {
 
       )
   }
+  
+
+onAddCustomerClick(cu): void {
+  this.addCustomer.emit(Customer); // Notify parent to display add customer form
+}
+
 }
