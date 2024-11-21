@@ -7,7 +7,8 @@
         <i class="fas fa-ellipsis-h"></i>
       </button>
       <!-- Add Customer Button -->
-      <button class="btn btn-primary btn-sm" (click)="onAddCustomerClick()">Add Customer</button>
+      <button class="btn btn-primary btn-sm" >Add Customer</button>
+      <!-- (click)="onAddCustomerClick()" -->
     </div>
   </div>
 
@@ -18,25 +19,26 @@
       *ngFor="let customer of customers"
       class="customer-item d-flex align-items-center justify-content-between py-2 px-3 rounded mb-2"
       style="transition: background-color 0.3s;"
-      (click)="selectCustomer(customer)"
+      
     >
+    <!-- (click)="selectCustomer(customer)" -->
       <!-- Customer Avatar and Info -->
       <div class="d-flex align-items-center">
         <img
-          [src]="customer.avatarUrl"
+          [src]="customer.image"
           alt="Avatar"
           class="rounded-circle"
           style="width: 45px; height: 45px; object-fit: cover;"
         />
         <div class="ms-3">
-          <div class="fw-bold">{{ customer.name }}</div>
-          <div class="text-muted small">ID: {{ customer.id }}</div>
+          <div class="fw-bold">{{ customer.firstName}} {{customer.lastName}}</div>
+          <div class="text-muted small d-none">ID: {{ customer.id }}</div>
         </div>
       </div>
 
       <!-- Status Badge -->
       <div>
-        <span
+        <!-- <span
           class="badge"
           [ngClass]="{
             'bg-success text-white': customer.status === 'Available',
@@ -44,7 +46,7 @@
           }"
         >
           {{ customer.status }}
-        </span>
+        </span> -->
       </div>
     </div>
   </div>
