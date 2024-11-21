@@ -16,19 +16,36 @@ export class AllCarsComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
+
+
   constructor() {
     // Generate dummy card data
-    this.cards = Array.from({ length: 30 }, (_, i) => ({
-      id: i + 1,
-      title: `BMW Series ${i + 1}`,
-      image: `https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-${12 + (i % 3)}.jpg`,
-      price: `$${50 + i}/Day`,
-      description: `Description for BMW Series ${i + 1}.`,
-      seatCapacity: 4,
-      doors: 4,
-      fuel: 450
-    }));
-  }
+    this.cards = Array.from({ length: 30 }, (_, i) => {
+        const seatCount = 4 + i; // Calculate seatCount
+        const Fuel = seatCount % 2 === 0 ? "Automatic" : "Manual"; // Determine fuel type based on seatCount
+       const Geartype = seatCount % 3  === 0 ? "Automatic" : "Manual";
+        return {
+            id: i + 1,
+            title: `BMW Series ${i + 1}`,
+            image: `https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-${12 + (i % 3)}.jpg`,
+            price: `$${50 + i}/Day`,
+            description: `Description for BMW Series ${i + 1}.`,
+            seatCount: seatCount,
+            doors: 4,
+            fuel: Fuel ,// Assign the fuel type
+            Gear:Geartype
+        };
+    });
+}
+
+filterCriteria = {
+  brand: '',
+  description: '',
+  seatCount: '',
+  fuel: '',
+  gear: ''
+};
+
 
   // Lifecycle hook to retrieve selected dates
   ngOnInit(): void {

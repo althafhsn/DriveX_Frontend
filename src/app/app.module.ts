@@ -49,6 +49,13 @@ import { PasswordUpdateComponent } from './components/dashboard/settings/passwor
 import { UpdateCustomerComponent } from './components/dashboard/settings/update-customer/update-customer.component';
 import { UpdateCarComponent } from './components/dashboard/settings/update-car/update-car.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SettingComponent } from './components/profile/setting/setting.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
+import { ProfileSettingComponent } from './components/profile/setting/profile-setting/profile-setting.component';
+import { ChangePasswordComponent } from './components/profile/setting/change-password/change-password.component';
+import { PaymentComponent } from './components/profile/setting/payment/payment.component';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -93,7 +100,14 @@ import { ProfileComponent } from './components/profile/profile.component';
     PasswordUpdateComponent,
     UpdateCustomerComponent,
     UpdateCarComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingComponent,
+    HistoryComponent,
+    ProfileNavbarComponent,
+    ProfileSettingComponent,
+    ChangePasswordComponent,
+    PaymentComponent,
+    FilterPipe
 
 
 

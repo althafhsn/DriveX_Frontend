@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { ApiService } from '../../../../services/api.service';
 import { UserStoreService } from '../../../../services/user-store.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +11,23 @@ import { UserStoreService } from '../../../../services/user-store.service';
 })
 export class NavbarComponent {
   public users: any = [];
+  activeLink: string = '';
 
   public fullName: string = "";
   public role: string = "";
-  constructor(
-    private authService: AuthService,
-    private store: UserStoreService
-  ) { }
+
+  constructor(private authService: AuthService,private store: UserStoreService,private router: Router)
+  { 
+    // Automatically set activeLink based on the current route on page load or navigation
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.setActiveLink(this.router.url.split('/')[1]);
+      }
+    });
+  }
+  setActiveLink(link: string): void {
+    this.activeLink = link;
+  }
 
   ngOnInit() {
   
@@ -47,3 +58,7 @@ export class NavbarComponent {
 
 
 }
+
+
+
+

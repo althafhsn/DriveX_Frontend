@@ -5,53 +5,73 @@
 
     <div class="container-fluid">
         <div class="row">
-          <div>
-            <h2>Selected Dates</h2>
-            <label for="pickupDate">Pickup Date:</label>
-            <input type="date" id="pickupDate" [(ngModel)]="pickupDate" (change)="calculateDateDifference()" />
-          <br>
-            <label for="returnDate">Return Date:</label>
-            <input type="date" id="returnDate" [(ngModel)]="returnDate" (change)="calculateDateDifference()" />
           
-            <button (click)="updateDates()">Save Dates</button>
-            <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
-          </div>
           
             <!-- Left Sidebar - Search Filters -->
-            <div class="col-md-3">
+            <div class="col-md-3 ">
                 <div class="p-3 border rounded bg-light">
-                    <h5>What Are You Looking For</h5>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Search...">
-                    </div>
-                    <h6>Location</h6>
-                    <div class="mb-3">
-                        <select class="form-select">
-                            <option>Select Location</option>
-                            <option>Location 1</option>
-                            <option>Location 2</option>
-                        </select>
-                    </div>
-                    <h6>Car Category</h6>
-                    <div class="mb-3">
-                        <select class="form-select">
-                            <option>Select Category</option>
-                            <option>SUV</option>
-                            <option>Sedan</option>
-                            <option>Truck</option>
-                        </select>
-                    </div>
-                    <h6>Car Type</h6>
-                    <div>
-                        <select class="form-select">
-                            <option>Select Type</option>
-                            <option>Manual</option>
-                            <option>Automatic</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button class="btn btn-dark mt-3">Rent Now</button>
-                    </div>
+
+                  <div>
+                    <h5 class="text-center">Change Dates</h5><hr>
+                    <label for="pickupDate">Pickup Date:</label>
+                    <input type="date" class="form-control" id="pickupDate" [(ngModel)]="pickupDate" (change)="calculateDateDifference()" />
+                 
+                    <label for="returnDate" class="mt-2">Return Date:</label>
+                    <input type="date" class="form-control" id="returnDate" [(ngModel)]="returnDate" (change)="calculateDateDifference()" />
+                  <div class="d-flex justify-content-center">
+                    <button (click)="updateDates()" class="btn btn-secondary  mt-3 mb-4 ">Save Dates</button>
+    
+                    <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
+                  </div>
+                </div>
+                  <hr>
+                    <h5 class="text-center">What Are You Looking For</h5>
+                    <hr>
+          
+
+                    <h6>Brand</h6>
+<div class="mb-3">
+  <select class="form-select" [(ngModel)]="filterCriteria.brand">
+    <option value="">Select brand</option>
+    <option *ngFor="let card of cards" [value]="card.title">{{ card.title }}</option>
+  </select>
+</div>
+
+<h6>Description</h6>
+<div class="mb-3">
+  <select class="form-select" [(ngModel)]="filterCriteria.description">
+    <option value="">Select description</option>
+    <option *ngFor="let card of cards" [value]="card.description">{{ card.description }}</option>
+  </select>
+</div>
+
+<h6>Seat Count</h6>
+<div class="mb-3">
+  <select class="form-select" [(ngModel)]="filterCriteria.seatCount">
+    <option value="">Select seat count</option>
+    <option *ngFor="let count of [4, 5, 6, 7, 8, 2]" [value]="count">{{ count }} People</option>
+  </select>
+</div>
+
+<h6>Fuel Type</h6>
+<div class="mb-3">
+  <select class="form-select" [(ngModel)]="filterCriteria.fuel">
+    <option value="">Select fuel type</option>
+    <option value="Manual">Manual</option>
+    <option value="Automatic">Automatic</option>
+  </select>
+</div>
+
+<h6>Gear Type</h6>
+<div class="mb-3">
+  <select class="form-select" [(ngModel)]="filterCriteria.gear">
+    <option value="">Select gear type</option>
+    <option value="Manual">Manual</option>
+    <option value="Automatic">Automatic</option>
+  </select>
+</div>
+
+                  
                 </div>
             </div>
 
@@ -63,7 +83,7 @@
                             
                             <div class="container">
                                 <div class="row g-4">
-                                  <div class="col-md-4" *ngFor="let card of paginatedCards">
+                                  <div class="col-md-4" *ngFor="let card of paginatedCards | filter: filterCriteria">
                                     <div class="card">
                                       <div class="position-relative">
                                         <img [src]="card.image" class="card-img-top" alt="Car Image">
@@ -78,7 +98,7 @@
                                         <hr>
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-chair" style="font-size:20px;"></i></span> 
-                                          Seat Capacity: {{ card.seatCapacity }} People
+                                          SeatCount: {{ card.seatCount }} People
                                         </div>
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-door-open" style="font-size:20px;"></i></span>
@@ -88,8 +108,15 @@
                                           <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
                                           Fuel Tank: {{ card.fuel }} Liters
                                         </div>
+
+                                        <div class="feature">
+                                          <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
+                                          Geartype: {{ card.Gear }}  
+                                        </div>
                                         <div>
-                                          <button type="button" class="btn btn-outline-warning" style="width:100%;">Rent Now</button>
+                                          <button type="button" class="btn btn-outline-warning" style="width:100%;">
+                                          <a routerLink="/ConfirmRent" style="text-decoration: none;"> Rent Now</a>
+                                        </button>
                                         </div>
                                       </div>
                                     </div>

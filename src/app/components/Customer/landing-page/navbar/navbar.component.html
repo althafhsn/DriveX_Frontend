@@ -1,11 +1,9 @@
-
-
-<nav class="navbar navbar-expand-lg" style=" background-color:  #0c013b;    margin-top: 0px;">
-    <div class="container">
-      <!-- Logo and Brand Name -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
-          <img src="logo5.png" alt="Logo" width="300px" height="60px">
-      </a>
+<nav class="navbar navbar-expand-lg mt-0">
+  <div class="container">
+    <!-- Logo and Brand Name -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo5.png" alt="Logo" width="300px" height="60px">
+    </a>
 
 
     <!-- Toggle button for mobile view -->
@@ -15,32 +13,49 @@
     </button>
 
     <!-- Navbar links -->
-    <div class="collapse navbar-collapse " id="navbarNav" style="margin-right: 25%;">
+    <div class="collapse navbar-collapse " id="navbarNav">
       <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link  text-white" routerLink="/Explorecar" role="button" aria-expanded="false">Explore Car</a>
-
-        </li>
-
-       
-
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">About Us</a>
+          <a
+            class="nav-link text-white"
+            routerLink="/LandingPage"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Contact Us</a>
+          <a
+            class="nav-link text-white"
+            routerLink="/Explorecar"
+            routerLinkActive="active-link"
+            >Explore Car</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-white"
+            routerLink="/About"
+            routerLinkActive="active-link"
+            >About Us</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-white"
+            routerLink="/Contact"
+            routerLinkActive="active-link"
+            >Contact Us</a
+          >
         </li>
         <ng-container *ngIf="role ==='Admin'">
           <li class="nav-item ">
             <a class="nav-link  text-white" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
-
           </li>
         </ng-container>
       </ul>
     </div>
+
 
     <!-- Login and Register buttons -->
     <div class="d-flex">
@@ -54,11 +69,11 @@
   </div>
 
   <div class="d-flex me-5">
-     
-    <a routerLink="/Profile" >
-      <img src="P1.jpg" class="rounded-circle" alt="Cinque Terre" width="60" height="60"> 
+
+    <a routerLink="/Profile">
+      <img src="P1.jpg" class="rounded-circle" alt="Cinque Terre" width="60" height="60">
 
     </a>
   </div>
-  
+
 </nav>
