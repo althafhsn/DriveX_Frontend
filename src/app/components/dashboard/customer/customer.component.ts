@@ -13,31 +13,7 @@ export class CustomerComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
   customers: Customer[] = [
-    {
-      id: 'GF491T4D',
-      name: 'Alex Norman',
-      status: 'Available', 
-      avatarUrl: 'https://via.placeholder.com/50',
-      email: 'alex@example.com',
-      phone: '+123456789',
-      tripsCompleted: 15,
-      totalTraveled: 300,
-      accidentHistory: 1,
-      passengerCapacity: 4
-    },
-    {
-      id: 'GF491T4E',
-      name: 'Ethan Miller',
-      status: 'Unavailable',
-      avatarUrl: 'https://via.placeholder.com/50',
-      email: 'ethan@example.com',
-      phone: '+987654321',
-      tripsCompleted: 20,
-      totalTraveled: 500,
-      accidentHistory: 0,
-      passengerCapacity: 4
-    }
-    // Add more customers...
+  
   ];
 
   filteredCustomers: Customer[] = [...this.customers];
@@ -49,7 +25,7 @@ export class CustomerComponent implements OnInit {
       const lowerCaseQuery = query.toLowerCase();
       this.filteredCustomers = this.customers.filter(
         (customer) =>
-          customer.name.toLowerCase().includes(lowerCaseQuery) ||
+          customer.firstName.toLowerCase().includes(lowerCaseQuery) ||
           customer.id.toLowerCase().includes(lowerCaseQuery)
       );
     }
@@ -76,7 +52,7 @@ export class CustomerComponent implements OnInit {
   }
   onSearchQueryChange(query: string): void {
     this.filteredCustomers = this.customers.filter(customer =>
-      customer.name.toLowerCase().includes(query.toLowerCase()) ||
+      customer.firstName.toLowerCase().includes(query.toLowerCase()) ||
       customer.id.toLowerCase().includes(query.toLowerCase())
     );
   }
