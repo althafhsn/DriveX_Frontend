@@ -17,6 +17,7 @@ import { SettingsComponent } from './components/dashboard/settings/settings.comp
 import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
 
 
 const routes: Routes = [
@@ -29,8 +30,10 @@ const routes: Routes = [
   {path:'Explorecar',component:AllCarsComponent},
   {path:'Contact',component:ContactComponent},
   {path:'About',component:AboutComponent},
+
   {path:'Profile',component:ProfileComponent},
-  { path : 'dashboard', component:DashboardComponent, canActivate: [authGuard],
+
+  { path : 'dashboard', component:DashboardComponent, 
     children : [
       { path: '', redirectTo: 'main', pathMatch: 'full' },
       {path: 'main',component:AdminLandingComponent},
@@ -42,7 +45,8 @@ const routes: Routes = [
           { path: 'password-update', component: PasswordUpdateComponent },
           // Add other routes
         ]
-      }
+      },
+      {path:'revenue', component:RevenueComponent}
         
     ]
    } //canActivate: [authGuard]

@@ -1,45 +1,68 @@
-<div class="card shadow-sm rounded p-4">
+<div class="card shadow-sm rounded p-4 position-relative">
+  <!-- Edit Button positioned at the top-right -->
+  <button class="btn btn-outline-primary position-absolute top-0 end-0 m-2" 
+          (click)="isEditable = !isEditable"
+          style="font-size: 1 rem;">
+    {{ isEditable ? 'Save' : 'Edit' }}
+  </button>
 
-    <div class="d-flex align-items-center mb-4">
-      <img 
-        [src]="customer.avatarUrl" 
-        alt="Customer Avatar" 
-        class="rounded-circle border" 
-        style="width: 80px; height: 80px; object-fit: cover;"
-      />
-      <div class="ms-3">
-        <h4 class="fw-bold mb-1">{{ customer.name }}</h4>
-        <p class="text-muted mb-0">ID: {{ customer.id }}</p>
-      </div>
-    </div>
-  
-    <div class="row text-center border-top pt-3">
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">{{ customer.tripsCompleted }}</h5>
-        <p class="small text-muted">Trips Completed</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">{{ customer.totalTraveled }} KM</h5>
-        <p class="small text-muted">Total Traveled</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">{{ customer.accidentHistory }}</h5>
-        <p class="small text-muted">Accident History</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">{{ customer.passengerCapacity }}</h5>
-        <p class="small text-muted">Passenger Capacity</p>
-      </div>
-    </div>
-  
-  
-    <div class="border-top pt-3">
-      <p class="mb-2">
-        <i class="fas fa-phone-alt text-primary me-2"></i>{{ customer.phone }}
-      </p>
-      <p>
-        <i class="fas fa-envelope text-primary me-2"></i>{{ customer.email }}
-      </p>
+  <div class="d-flex align-items-center mb-4">
+    <img
+      [src]="customer.avatarUrl"
+      alt="Customer Avatar"
+      class="rounded-circle border"
+      style="width: 80px; height: 80px; object-fit: cover;"
+    />
+    <div class="ms-3">
+      <h4 class="fw-bold mb-1">
+        <span *ngIf="!isEditable">{{ customer.name }}</span>
+        <input *ngIf="isEditable" [(ngModel)]="customer.name" class="form-control" />
+      </h4>
+      <p class="text-muted mb-0">ID: {{ customer.id }}</p>
     </div>
   </div>
-  
+
+  <div class="row text-center border-top pt-3">
+    <div class="col-6 col-md-3 mb-3">
+      <h5 class="fw-bold">
+        <span *ngIf="!isEditable">{{ customer.tripsCompleted }}</span>
+        <input *ngIf="isEditable" [(ngModel)]="customer.tripsCompleted" class="form-control" />
+      </h5>
+      <p class="small text-muted">Trips Completed</p>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <h5 class="fw-bold">
+        <span *ngIf="!isEditable">{{ customer.totalTraveled }} KM</span>
+        <input *ngIf="isEditable" [(ngModel)]="customer.totalTraveled" class="form-control" />
+      </h5>
+      <p class="small text-muted">Total Traveled</p>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <h5 class="fw-bold">
+        <span *ngIf="!isEditable">{{ customer.accidentHistory }}</span>
+        <input *ngIf="isEditable" [(ngModel)]="customer.accidentHistory" class="form-control" />
+      </h5>
+      <p class="small text-muted">Accident History</p>
+    </div>
+    <div class="col-6 col-md-3 mb-3">
+      <h5 class="fw-bold">
+        <span *ngIf="!isEditable">{{ customer.passengerCapacity }}</span>
+        <input *ngIf="isEditable" [(ngModel)]="customer.passengerCapacity" class="form-control" />
+      </h5>
+      <p class="small text-muted">Passenger Capacity</p>
+    </div>
+  </div>
+
+  <div class="border-top pt-3">
+    <p class="mb-2">
+      <i class="fas fa-phone-alt text-primary me-2"></i>
+      <span *ngIf="!isEditable">{{ customer.phone }}</span>
+      <input *ngIf="isEditable" [(ngModel)]="customer.phone" class="form-control" />
+    </p>
+    <p>
+      <i class="fas fa-envelope text-primary me-2"></i>
+      <span *ngIf="!isEditable">{{ customer.email }}</span>
+      <input *ngIf="isEditable" [(ngModel)]="customer.email" class="form-control" />
+    </p>
+  </div>
+</div>

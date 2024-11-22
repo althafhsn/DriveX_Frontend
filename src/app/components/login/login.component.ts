@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { UserStoreService } from '../../services/user-store.service';
+import { ResetPasswordService } from '../../services/reset-password.service';
 
 
 
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private toast: NgToastService,
-    private userStore: UserStoreService
+    private userStore: UserStoreService,
+    private resetService: ResetPasswordService
 
   ) { }
 
@@ -42,15 +44,15 @@ export class LoginComponent implements OnInit {
     });
 
     this.userStore.getRoleFromStore()
-    .subscribe({
-      next:(value)=>{
-        const roleInToken = this.auth.getRoleFromToken();
-        this.role = value || roleInToken
-      },
-      error: (err) => {
-        console.error("Failed to fetch role from store:", err);
-      }
-    })
+      .subscribe({
+        next: (value) => {
+          const roleInToken = this.auth.getRoleFromToken();
+          this.role = value || roleInToken
+        },
+        error: (err) => {
+          console.error("Failed to fetch role from store:", err);
+        }
+      })
   }
 
 
@@ -76,12 +78,12 @@ export class LoginComponent implements OnInit {
             this.userStore.setRoleFromStore(tokenPayload.role);
             this.toast.success("SUCCESS", "Login was Successed", 5000);
 
-            if(this.role==="Admin" || this.role === "Manager"){
+            if (this.role === "Admin" || this.role === "Manager") {
               this.router.navigate(['/dashboard']);
-            }else{
+            } else {
               this.router.navigate(['./LandingPage']);
             }
-            
+
           },
           error: (err) => {
             this.toast.danger("ERROR", "Login was Failed", 5000)
@@ -102,11 +104,45 @@ export class LoginComponent implements OnInit {
   }
 
   confirmToSend() {
+    // Check if the email is valid
     if (this.checkValidEmail(this.resetPaswordEmail)) {
-      console.log(this.resetPaswordEmail);
-      this.resetPaswordEmail = '';
-      const buttonRef = document.getElementById('closeBtn')
-      buttonRef?.click();
+      const encodedEmail = encodeURIComponent(this.resetPaswordEmail); // Encode the email
+  
+      // Log the email for debugging purposes
+      console.log('Sending reset link to:', encodedEmail);
+  
+      // Call the service to send the reset password link
+      this.resetService.sendResetPasswordLink(this.resetPaswordEmail).subscribe({
+        next: (res) => {
+          // Show success message
+          this.toast.success(
+            "SUCCESS", "Reset Password Mail Sent Successfully", 5000
+          );
+          
+          // Clear the email input field
+          this.resetPaswordEmail = '';
+  
+          // Close the modal or perform any other UI action
+          const buttonRef = document.getElementById('closeBtn');
+          buttonRef?.click();
+        },
+        error: (err) => {
+          // Handle errors
+          if (err.status === 400) {
+            this.toast.danger("Error", "Invalid email format!", 5000);
+          } else if (err.status === 404) {
+            this.toast.danger("Error", "Email not found!", 5000);
+          } else {
+            this.toast.danger(
+              "Error", "Something went wrong. Please try again later.", 5000
+            );
+          }
+        }
+      });
+    } else {
+      // If the email is not valid, show an error
+      this.toast.danger("Error", "Please enter a valid email address.", 5000);
     }
   }
+  
 }

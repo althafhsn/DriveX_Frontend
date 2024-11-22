@@ -1,0 +1,26 @@
+<div class="add-customer-form bg-white rounded shadow-sm p-4">
+    <h4 class="mb-4">Add New Customer</h4>
+    <form (ngSubmit)="addCustomer()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Customer Name</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="newCustomer.name" name="name" required />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Customer Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="newCustomer.email" name="email" required />
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Customer Phone</label>
+        <input type="text" id="phone" class="form-control" [(ngModel)]="newCustomer.phone" name="phone" required />
+      </div>
+      <div class="mb-3">
+        <label for="status" class="form-label">Customer Status</label>
+        <select id="status" class="form-control" [(ngModel)]="newCustomer.status" name="status" required>
+          <option value="Available">Available</option>
+          <option value="Unavailable">Unavailable</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Customer</button>
+    </form>
+  </div>
+  

@@ -56,6 +56,11 @@ import { ProfileSettingComponent } from './components/profile/setting/profile-se
 import { ChangePasswordComponent } from './components/profile/setting/change-password/change-password.component';
 import { PaymentComponent } from './components/profile/setting/payment/payment.component';
 import { FilterPipe } from './filter.pipe';
+import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
+import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
+import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
+import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
+
 
 
 @NgModule({
@@ -100,6 +105,7 @@ import { FilterPipe } from './filter.pipe';
     PasswordUpdateComponent,
     UpdateCustomerComponent,
     UpdateCarComponent,
+
     ProfileComponent,
     SettingComponent,
     HistoryComponent,
@@ -108,6 +114,13 @@ import { FilterPipe } from './filter.pipe';
     ChangePasswordComponent,
     PaymentComponent,
     FilterPipe
+
+    RevenueComponent,
+  
+    GraphComponent,
+    StatisticsComponent,
+    AddCustomerComponent,
+
 
 
 
