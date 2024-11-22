@@ -114,9 +114,7 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     ChangePasswordComponent,
     PaymentComponent,
     FilterPipe,
-
     RevenueComponent,
-  
     GraphComponent,
     StatisticsComponent,
     AddCustomerComponent,
