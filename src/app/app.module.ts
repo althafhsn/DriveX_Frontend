@@ -113,7 +113,7 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     ProfileSettingComponent,
     ChangePasswordComponent,
     PaymentComponent,
-    FilterPipe
+    FilterPipe,
 
     RevenueComponent,
   
