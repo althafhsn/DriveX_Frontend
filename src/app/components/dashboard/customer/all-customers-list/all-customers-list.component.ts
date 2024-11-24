@@ -47,6 +47,6 @@ onCustomerClick(customer: Customer): void {
 
 
 onAddCustomerClick(): void {
-// Notify parent to display add customer form
-} //  this.addCustomer.emit(Customer); 
+  this.addCustomer.emit(); // Notify the parent component to display Add Customer form
+}
 }

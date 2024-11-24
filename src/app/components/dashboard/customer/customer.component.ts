@@ -8,10 +8,11 @@ import { DashboardCustomerService } from '../../../services/dashboard-customer.s
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-addNewCustomer($event: Customer) {
-throw new Error('Method not implemented.');
-}
-isAddCustomer: any;
+  addNewCustomer(newCustomer: Customer): void {
+    this.customers.push(newCustomer); // Add the new customer to the list
+    this.isAddCustomer = false; // Switch back to the default view
+  }
+isAddCustomer: boolean = false; 
 onSearchQueryChange($event: string) {
 throw new Error('Method not implemented.');
 }
@@ -32,6 +33,11 @@ throw new Error('Method not implemented.');
   }
 
   handleCustomerSelection(customer: Customer): void {
-    this.selectedCustomer = customer;
+    this.isAddCustomer = true;
+    this.selectedCustomer = null;
+  }
+  toggleAddCustomer(): void {
+    this.isAddCustomer = true;
+    this.selectedCustomer = null; // Clear selected customer to avoid conflicts
   }
 }
