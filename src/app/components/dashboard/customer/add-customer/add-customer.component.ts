@@ -16,7 +16,12 @@ export class AddCustomerComponent {
     lastName:'',
     image: '',
     phone: '',
-    Email: '',
+    email: '',
+    Licence : '',
+    NIC : '',
+    addresses:[], // Update later if address details are defined
+  phoneNumbers:[] ,
+  notes:'',  
     status: 'Available' // Default status
   };
 
@@ -25,7 +30,7 @@ export class AddCustomerComponent {
   // Method to handle adding the new customer
   addCustomer() {
     // Generate a unique ID for the customer (this can be handled differently, e.g., by backend service)
-    this.newCustomer.id = this.generateUniqueId();
+    
 
     // Emit the newly created customer to the parent component
     this.customerAdded.emit(this.newCustomer);
@@ -33,17 +38,20 @@ export class AddCustomerComponent {
     // Reset the form
     this.newCustomer = {
       id: '', // will be generated when adding
-      firstName: '',
-      lastName:'',
-      image: '',
-      phone: '',
-      Email: '',
-      status: 'Available' // Default status
+    firstName: '',
+    lastName:'',
+    image: '',
+    phone: '',
+    email: '',
+    Licence : '',
+    NIC : '',
+    addresses:[], // Update later if address details are defined
+  phoneNumbers:[] ,
+  notes:'',  
+    status: 'Available' // Default status
     };
   }
 
   // Simple method to generate a unique ID for the customer (this can be improved for production)
-  private generateUniqueId(): string {
-    return 'cust-' + Math.random().toString(36).substr(2, 9);  // Random ID generation (for example purpose)
-  }
+ 
 }
