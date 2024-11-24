@@ -1,68 +1,49 @@
-
-
-<nav class="navbar navbar-expand-lg" style=" background-color: #1f0259; margin-top: 0px;">
-    <div class="container">
-      <!-- Logo and Brand Name -->
-      <a class="navbar-brand d-flex align-items-center" href="#">
-          <img src="logo5.png" alt="Logo" width="300px" height="60px" style="margin-top: 0px;" >
-      </a>
-
+<nav class="navbar navbar-expand-lg" style="background-color: #1f0259; margin-top: 0px;">
+  <div class="container">
+    <!-- Logo and Brand Name -->
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo5.png" alt="Logo" width="300px" height="60px" style="margin-top: 0px;">
+    </a>
 
     <!-- Toggle button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" 
+      aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse " id="navbarNav" style="margin-right: 25%;">
-      <ul class="navbar-nav ms-auto ">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link  text-white" routerLink="/Explorecar" role="button" aria-expanded="false">Explore Car</a>
-
-        </li>
-
-        <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Option 1</a></li>
-              <li><a class="dropdown-item" href="#">Option 2</a></li>
-            </ul>
-          </li> -->
-        <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Option 1</a></li>
-              <li><a class="dropdown-item" href="#">Option 2</a></li>
-            </ul>
-          </li> -->
-
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">Contact Us</a>
-        </li>
-        <ng-container *ngIf="role ==='Admin'">
-          <li class="nav-item ">
-            <a class="nav-link  text-white" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
-
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="#" >Home</a>
           </li>
-        </ng-container>
-      </ul>
-    </div>
-
-    <!-- Login and Register buttons -->
-    <div class="d-flex">
-      <a routerLink="/login" class="btn me-2 btn-outline-warning ">
-        Login
-      </a>
-      <a routerLink="/register" class="btn btn-outline-warning">
-        Register
-      </a>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/Explorecar" role="button" aria-expanded="false">Explore Car</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Contact Us</a>
+          </li>
+          <ng-container *ngIf="role === 'Admin'">
+            <li class="nav-item">
+              <a class="nav-link text-white" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
+            </li>
+          </ng-container>
+        </ul>
+        <!-- Login button inside the offcanvas -->
+        <div class="d-flex mt-3">
+          <a routerLink="/login" class="btn btn-outline-warning w-100">
+            Login
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
