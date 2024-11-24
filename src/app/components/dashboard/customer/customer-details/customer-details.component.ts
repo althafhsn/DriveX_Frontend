@@ -18,14 +18,14 @@ export class CustomerDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.customerId = params.get('id'); // Fetch 'id' from the URL
+      this.customerId = params.get('id');
       // TODO: Fetch customer details using this.customerId if not passed via Input
       console.log('Customer ID:', this.customerId);
     });
   }
   isEditable = false;
   saveCustomerDetails() {
-    // Save logic here, like sending the updated data to a server.
+    
     console.log('Customer details saved:', this.customer);
   }
   

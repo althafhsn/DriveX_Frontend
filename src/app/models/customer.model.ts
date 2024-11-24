@@ -5,5 +5,5 @@ export interface Customer {
     image: string;        
     phone: string;             
     Email: string;             
-    status: 'Available' | 'Unavailable';
+   status: 'Available' | 'Unavailable';
   }
