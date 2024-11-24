@@ -1,3 +1,4 @@
+<div *ngIf="customer">
 <div class="card shadow-sm rounded p-4 position-relative">
   <!-- Edit Button positioned at the top-right -->
   <button class="btn btn-outline-primary position-absolute top-0 end-0 m-2" 
@@ -61,8 +62,8 @@
     </p>
     <p>
       <i class="fas fa-envelope text-primary me-2"></i>
-      <span *ngIf="!isEditable">{{ customer.email }}</span>
-      <input *ngIf="isEditable" [(ngModel)]="customer.email" class="form-control" />
+      <span *ngIf="!isEditable">{{ customer.Email }}</span>
+      <input *ngIf="isEditable" [(ngModel)]="customer.Email" class="form-control" />
     </p>
   </div>
 </div>

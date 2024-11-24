@@ -16,7 +16,7 @@ export class AddCustomerComponent {
     lastName:'',
     image: '',
     phone: '',
-    email: '',
+    Email: '',
     status: 'Available' // Default status
   };
 
@@ -37,7 +37,7 @@ export class AddCustomerComponent {
       lastName:'',
       image: '',
       phone: '',
-      email: '',
+      Email: '',
       status: 'Available' // Default status
     };
   }

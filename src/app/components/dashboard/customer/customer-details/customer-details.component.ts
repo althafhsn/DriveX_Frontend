@@ -10,7 +10,8 @@ import { Customer } from '../../../../models/customer.model';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit {
-  @Input() customer!: Customer; // Input to receive customer data
+  @Input() customer: Customer | null = null;
+
   customerId: string | null = null;
 
   constructor(private route: ActivatedRoute) {}
