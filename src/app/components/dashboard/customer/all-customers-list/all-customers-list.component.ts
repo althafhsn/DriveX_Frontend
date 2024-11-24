@@ -40,8 +40,7 @@ export class AllCustomersListComponent implements OnInit {
   }
   
 
-onAddCustomerClick(cu:Customer): void {
-  // this.addCustomer.emit(cu); // Notify parent to display add customer form
-}
 
-}
+onAddCustomerClick(): void {
+// Notify parent to display add customer form
+} //  this.addCustomer.emit(Customer); 
