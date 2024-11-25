@@ -121,9 +121,10 @@
                                 id="pickupDate"
                                 name="pickupDate"
                                 [(ngModel)]="pickupDate"
-                                (change)="calculateDateDifference()"
+                                (change)="validateDates()"
                               />
-                      
+                              <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
+                            
                               <label for="returnDate" class="mt-2">Return Date:</label>
                               <input
                                 type="date"
@@ -131,24 +132,37 @@
                                 id="returnDate"
                                 name="returnDate"
                                 [(ngModel)]="returnDate"
-                                (change)="calculateDateDifference()"
+                                (change)="validateDates()"
                               />
-                      
+                              <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
+                            
                               <div class="d-flex justify-content-between mt-3">
-                                <button class="btn btn-primary" (click)="saveDates()">Save Dates</button>
+                                <button
+                                  class="btn btn-primary"
+                                  [disabled]="pickupDateError || returnDateError"
+                                  (click)="saveDates()"
+                                >
+                                  Save Dates
+                                </button>
                               </div>
-                      
+                            
                               <p *ngIf="dateDifference !== null" class="mt-3">
                                 <strong>Duration:</strong> {{ dateDifference }} day(s)
                               </p>
                             </div>
-                      
+                            
                             <!-- Display Saved Dates -->
                             <div *ngIf="lastUpdatedDate" class="mt-4">
                               <h5>Last Updated Date</h5>
                               <p>{{ lastUpdatedDate }}</p>
                             </div>
-                      
+                            
+
+ 
+  
+
+ 
+
                             <!-- Submit Button -->
                             <button type="submit" class="btn btn-primary w-100">Book Now</button>
                           </div>

@@ -13,4 +13,5 @@ export class TabsComponent {
   selectTab(tab: string): void {
     this.selectedTab = tab;
     this.tabSelected.emit(tab);
-  }}
+  }
+}

@@ -60,6 +60,9 @@ import { RevenueComponent } from './components/dashboard/revenue/revenue.compone
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
+import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
+import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
+import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
 
 
 
@@ -118,6 +121,9 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     GraphComponent,
     StatisticsComponent,
     AddCustomerComponent,
+    ProfileSetComponent,
+    PasswordChangeComponent,
+    ViewPaymentComponent,
 
 
 

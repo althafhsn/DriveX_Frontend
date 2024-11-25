@@ -11,19 +11,44 @@
             <div class="col-md-3 ">
                 <div class="p-3 border rounded bg-light">
 
-                  <div>
-                    <h5 class="text-center">Change Dates</h5><hr>
-                    <label for="pickupDate">Pickup Date:</label>
-                    <input type="date" class="form-control" id="pickupDate" [(ngModel)]="pickupDate" (change)="calculateDateDifference()" />
-                 
-                    <label for="returnDate" class="mt-2">Return Date:</label>
-                    <input type="date" class="form-control" id="returnDate" [(ngModel)]="returnDate" (change)="calculateDateDifference()" />
+                
+                   
+
+                <div>
+                  <h5 class="text-center">Change Dates</h5>
+                  <hr>
+                  <label for="pickupDate">Pickup Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="pickupDate"
+                    [(ngModel)]="pickupDate"
+                    (change)="validateDates()"
+                  />
+                  <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
+                
+                  <label for="returnDate" class="mt-2">Return Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="returnDate"
+                    [(ngModel)]="returnDate"
+                    (change)="validateDates()"
+                  />
+                  <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
+                
                   <div class="d-flex justify-content-center">
-                    <button (click)="updateDates()" class="btn btn-secondary  mt-3 mb-4 ">Save Dates</button>
-    
+                    <button
+                      (click)="updateDates()"
+                      class="btn btn-secondary mt-3 mb-4"
+                      [disabled]="pickupDateError || returnDateError"
+                    >
+                      Save Dates
+                    </button>
                     <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
                   </div>
                 </div>
+                
                   <hr>
                     <h5 class="text-center">What Are You Looking For</h5>
                     <hr>
@@ -114,10 +139,17 @@
                                           Geartype: {{ card.Gear }}  
                                         </div>
                                         <div>
-                                          <button type="button" class="btn btn-outline-warning" style="width:100%;">
-                                          <a routerLink="/ConfirmRent" style="text-decoration: none;"> Rent Now</a>
-                                        </button>
+                                          <button
+                                            type="button"
+                                            class="btn btn-outline-warning"
+                                            style="width: 100%;"
+                                            [disabled]="pickupDateError || returnDateError"
+                                            [routerLink]="pickupDateError || returnDateError ? null : '/ConfirmRent'"
+                                          >
+                                            Rent Now
+                                          </button>
                                         </div>
+                                        
                                       </div>
                                     </div>
                                   </div>
