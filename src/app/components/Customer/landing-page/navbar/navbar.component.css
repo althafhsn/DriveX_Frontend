@@ -1,0 +1,12 @@
+.navbar {
+    background-color: #0c013b;
+}
+
+.collapse{
+    margin-right: 25%;
+} 
+.nav-link.active-link {
+    background-color: rgb(242, 242, 245);
+    /* color: #7d08ea; Optional for better visibility */
+    border-radius: 5px; /* Optional for rounded corners */
+  }

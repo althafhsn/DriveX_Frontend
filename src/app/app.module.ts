@@ -48,6 +48,14 @@ import { ProfileFormComponent } from './components/dashboard/settings/profile-fo
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { UpdateCustomerComponent } from './components/dashboard/settings/update-customer/update-customer.component';
 import { UpdateCarComponent } from './components/dashboard/settings/update-car/update-car.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SettingComponent } from './components/profile/setting/setting.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
+import { ProfileSettingComponent } from './components/profile/setting/profile-setting/profile-setting.component';
+import { ChangePasswordComponent } from './components/profile/setting/change-password/change-password.component';
+import { PaymentComponent } from './components/profile/setting/payment/payment.component';
+import { FilterPipe } from './filter.pipe';
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
@@ -58,6 +66,7 @@ import { CarRevenueDetailsComponent } from './components/dashboard/cars/car-reve
 import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-history/car-trip-history.component';
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 
 @NgModule({
@@ -102,6 +111,14 @@ import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.com
     PasswordUpdateComponent,
     UpdateCustomerComponent,
     UpdateCarComponent,
+    ProfileComponent,
+    SettingComponent,
+    HistoryComponent,
+    ProfileNavbarComponent,
+    ProfileSettingComponent,
+    ChangePasswordComponent,
+    PaymentComponent,
+    FilterPipe,
     RevenueComponent,
     GraphComponent,
     StatisticsComponent,
@@ -111,11 +128,8 @@ import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.com
     CarRevenueDetailsComponent,
     CarTripHistoryComponent,
     Dashcardetails,
-    AddCarComponent
-    
-
-
-
+    AddCarComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,
