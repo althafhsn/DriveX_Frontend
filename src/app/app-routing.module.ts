@@ -17,6 +17,7 @@ import { SettingsComponent } from './components/dashboard/settings/settings.comp
 import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
+import { CarsComponent } from './components/dashboard/cars/cars.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
       {path: 'main',component:AdminLandingComponent},
       { path: 'customers', component: CustomerComponent },
       { path: 'bookings', component: BookingComponent },
+      {path:'cars', component:CarsComponent},
       {path: 'settings', component: SettingsComponent,
         children: [
           { path: 'profile-settings', component: ProfileFormComponent },
