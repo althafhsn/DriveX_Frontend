@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResetPassword } from '../models/reset-password-model';
+import { ResetPassword, ResetPasswordMail } from '../models/reset-password-model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class ResetPasswordService {
     private http : HttpClient
   ) { }
 
-  sendResetPasswordLink(email : string){
-    return this.http.post<any>(`${this.baseUrl}sent-reset-email/${email}`,{})
+  sendResetPasswordLink(emailObj: ResetPasswordMail): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.baseUrl}send-reset-email`, emailObj, { headers });
   }
   resetPassword(resetPasswordObj:ResetPassword){
     return this.http.post<any>(`${this.baseUrl}reset-password`, resetPasswordObj)
