@@ -10,21 +10,22 @@ import { Customer } from '../../../../models/customer.model';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit {
-  @Input() customer!: Customer; // Input to receive customer data
+  @Input() customer: Customer | null = null;
+
   customerId: string | null = null;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.customerId = params.get('id'); // Fetch 'id' from the URL
+      this.customerId = params.get('id');
       // TODO: Fetch customer details using this.customerId if not passed via Input
       console.log('Customer ID:', this.customerId);
     });
   }
   isEditable = false;
   saveCustomerDetails() {
-    // Save logic here, like sending the updated data to a server.
+    
     console.log('Customer details saved:', this.customer);
   }
   

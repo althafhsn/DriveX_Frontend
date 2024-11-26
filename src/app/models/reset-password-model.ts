@@ -4,3 +4,7 @@ export class ResetPassword{
     public newPassword! : string;
     public confirmPassword!:string;
 }
+
+export class ResetPasswordMail{
+    public email!: string;
+}
