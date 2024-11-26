@@ -1,3 +1,4 @@
+<div *ngIf="customer">
 <div class="card shadow-sm rounded p-4 position-relative">
   <!-- Edit Button positioned at the top-right -->
   <button class="btn btn-outline-primary position-absolute top-0 end-0 m-2" 
@@ -25,39 +26,39 @@
   <div class="row text-center border-top pt-3">
     <div class="col-6 col-md-3 mb-3">
       <h5 class="fw-bold">
-        <span *ngIf="!isEditable"></span>
+        <span *ngIf="!isEditable">{{ customer.NIC}}</span>
         <input *ngIf="isEditable" class="form-control" />
       </h5>
-      <p class="small text-muted">Trips Completed</p>
+      <p class="small text-muted">NIC</p>
     </div>
     <div class="col-6 col-md-3 mb-3">
       <h5 class="fw-bold">
-        <span *ngIf="!isEditable">KM</span>
+        <span *ngIf="!isEditable">{{customer.Licence}}</span>
         <input *ngIf="isEditable" class="form-control" />
       </h5>
-      <p class="small text-muted">Total Traveled</p>
+      <p class="small text-muted">Licence</p>
     </div>
     <div class="col-6 col-md-3 mb-3">
       <h5 class="fw-bold">
-        <span *ngIf="!isEditable"></span>
+        <span *ngIf="!isEditable">{{customer.addresses}}</span>
         <input *ngIf="isEditable" class="form-control" />
       </h5>
-      <p class="small text-muted">Accident History</p>
+      <p class="small text-muted">Addresses</p>
     </div>
     <div class="col-6 col-md-3 mb-3">
       <h5 class="fw-bold">
-        <span *ngIf="!isEditable"></span>
+        <span *ngIf="!isEditable">{{customer.notes}}</span>
         <input *ngIf="isEditable"  class="form-control" />
       </h5>
-      <p class="small text-muted">Passenger Capacity</p>
+      <p class="small text-muted">Notes</p>
     </div>
   </div>
 
   <div class="border-top pt-3">
     <p class="mb-2">
       <i class="fas fa-phone-alt text-primary me-2"></i>
-      <span *ngIf="!isEditable">{{ customer.phone }}</span>
-      <input *ngIf="isEditable" [(ngModel)]="customer.phone" class="form-control" />
+      <span *ngIf="!isEditable">{{ customer.phoneNumbers }}</span>
+      <input *ngIf="isEditable" [(ngModel)]="customer.phoneNumbers" class="form-control" />
     </p>
     <p>
       <i class="fas fa-envelope text-primary me-2"></i>
