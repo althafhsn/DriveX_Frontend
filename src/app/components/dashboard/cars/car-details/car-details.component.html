@@ -1,0 +1,43 @@
+<!-- <div *ngIf="car; else noCar">
+  <h2>Car Details</h2>
+  <p><strong>Registration:</strong> {{ car.regNo }}</p>
+  <p><strong>Brand:</strong> {{ car.brandid }}</p>
+  <p><strong>Model:</strong> {{ car.modelid }}</p>
+  <p><strong>Fuel Type:</strong> {{ car.fueltype }}</p>
+  <p><strong>Status:</strong> {{ car.status }}</p>
+  <img [src]="car.imageurl" alt="Car Image" />
+</div> -->
+
+<div *ngIf="car; else noCar">
+  <h2>Car Details</h2>
+  <p><strong>Registration:{{car.regNo}}</strong></p>
+  <p><strong>Brand:{{car.brandName}}</strong></p>
+  <p><strong>Model:{{car.modelName}}</strong></p>
+  <p><strong>SeatCount:{{car.seatCount}}</strong></p>
+  <p><strong>PricePerDay:{{car.pricePerDay}}</strong></p>
+  <p><strong>GearType:{{car.gearType}}</strong></p>
+  <p><strong>Mileage:{{car.mileage}}</strong></p>
+  <p><strong>Fuel Type:{{car.fuelType}}</strong></p>
+  <p><strong>Status:{{car.status}}</strong></p>
+  <div *ngFor="let image of car.images">
+    <img [src]="image?.imagePath" alt="Car Image" />
+  </div>
+  
+</div>
+
+<ng-template #noCar>
+  <p>No car selected.</p>
+</ng-template>
+
+<div *ngIf="customer; else noCustomer">
+  <h2>Customer Details</h2>
+  <p><strong>Name:</strong> {{ customer.name }}</p>
+  <p><strong>Email:</strong> {{ customer.email }}</p>
+  <p><strong>Phone:</strong> {{ customer.phone }}</p>
+  <p><strong>Status:</strong> {{ customer.status }}</p>
+  <img [src]="customer.avatarUrl" alt="Customer Avatar" />
+</div>
+
+<ng-template #noCustomer>
+  <p>No customer associated with the selected car.</p>
+</ng-template>

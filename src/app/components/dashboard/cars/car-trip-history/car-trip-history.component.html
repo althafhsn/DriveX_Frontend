@@ -1,0 +1,25 @@
+<div class="trip-history-container" *ngIf="car">
+    <h3>Trip History for {{ car.brandId }} {{ car.modelId }}</h3>
+  
+    <table class="trip-history-table">
+      <thead>
+        <tr>
+          <th>Trip ID</th>
+          <th>Date</th>
+          <th>Destination</th>
+          <th>Duration</th>
+          <th>Earnings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of tripHistory">
+          <td>{{ trip.tripId }}</td>
+          <td>{{ trip.date }}</td>
+          <td>{{ trip.destination }}</td>
+          <td>{{ trip.duration }}</td>
+          <td>{{ trip.earnings | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
