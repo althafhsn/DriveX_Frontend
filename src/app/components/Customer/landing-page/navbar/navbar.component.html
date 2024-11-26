@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-lg mt-0">
   <div class="container">
     <!-- Logo and Brand Name -->
@@ -5,68 +6,48 @@
       <img src="logo5.png" alt="Logo" width="300px" height="60px">
     </a>
 
-
     <!-- Toggle button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" 
+      aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse " id="navbarNav">
-      <ul class="navbar-nav ms-auto ">
-        <li class="nav-item">
-          <a
-            class="nav-link text-white"
-            routerLink="/LandingPage"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-white"
-            routerLink="/Explorecar"
-            routerLinkActive="active-link"
-            >Explore Car</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-white"
-            routerLink="/About"
-            routerLinkActive="active-link"
-            >About Us</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-white"
-            routerLink="/Contact"
-            routerLinkActive="active-link"
-            >Contact Us</a
-          >
-        </li>
-        <ng-container *ngIf="role ==='Admin'">
-          <li class="nav-item ">
-            <a class="nav-link  text-white" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="#" >Home</a>
           </li>
-        </ng-container>
-      </ul>
-    </div>
-
-
-    <!-- Login and Register buttons -->
-    <div class="d-flex">
-      <a routerLink="/login" class="btn me-2 btn-outline-warning ">
-        Login
-      </a>
-      <!-- <a routerLink="/register" class="btn btn-outline-warning">
-        Register
-      </a> -->
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/Explorecar" role="button" aria-expanded="false">Explore Car</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Contact Us</a>
+          </li>
+          <ng-container *ngIf="role === 'Admin'">
+            <li class="nav-item">
+              <a class="nav-link text-white" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
+            </li>
+          </ng-container>
+        </ul>
+        <!-- Login button inside the offcanvas -->
+        <div class="d-flex mt-3">
+          <a routerLink="/login" class="btn btn-outline-warning w-100">
+            Login
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+</nav>
 
   <div class="d-flex me-5">
 
@@ -77,3 +58,4 @@
   </div>
 
 </nav>
+
