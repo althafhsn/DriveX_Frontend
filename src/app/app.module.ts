@@ -70,6 +70,10 @@ import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-hi
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { AllBookingListComponent } from './components/dashboard/booking/all-booking-list/all-booking-list.component';
+import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
+import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
+import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
 
 
 @NgModule({
@@ -136,6 +140,10 @@ import { ResetComponent } from './components/reset/reset.component';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    AllBookingListComponent,
+    BookingDetailsComponent,
+    BookingCarDetailsComponent,
+    BookingCustomerDetailsComponent,
   ],
   imports: [
     BrowserModule,
