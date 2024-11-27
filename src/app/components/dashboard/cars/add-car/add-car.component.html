@@ -1,73 +1,111 @@
 <div class="container">
   <h5 class="text-center mb-4">Add New Car</h5>
   <form (ngSubmit)="onSubmit()" #carForm="ngForm" class="needs-validation">
+    <!-- Multiple Images Upload -->
+    <div class="mb-3">
+      <label for="images">Upload Images (Max: 4):</label>
+    
+      <!-- Image boxes, each one clickable, organized into two rows -->
+      <div class="image-upload-container">
+        <!-- Loop through the selectedImages array and display images or empty boxes -->
+        <div *ngFor="let image of selectedImages; let i = index" class="image-box">
+          <img *ngIf="image" [src]="image" alt="Uploaded Image" class="uploaded-image" />
+          <input
+            *ngIf="!image"
+            type="file"
+            id="imageInput{{ i }}"
+            class="d-none"
+            (change)="onFileSelect($event, i)"
+            accept="image/*"
+          />
+          <div class="overlay" (click)="triggerFileInput(i)"></div>
+        </div>
+    
+        <!-- Placeholder boxes for remaining spaces up to 4 images -->
+        <div *ngFor="let i of remainingIndices()" class="image-box">
+          <input
+            type="file"
+            id="imageInput{{ i }}"
+            class="d-none"
+            (change)="onFileSelect($event, i)"
+            accept="image/*"
+          />
+          <div class="overlay" (click)="triggerFileInput(i)"></div>
+        </div>
+      </div>
+    </div>
+    
+
     <!-- Brand Dropdown -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="brand">Select Brand:</label>
-      <select
-        id="brand"
-        class="form-select"
-        [(ngModel)]="newCar.brandId"
-        (change)="onBrandChange($event)"
-        name="brand"
-        required
-      >
-        <option value="" disabled>Select a Brand</option>
-        <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
-      </select>
-      <button type="button" class="btn btn-outline-primary" (click)="toggleAddBrand()">+</button>
-    </div>
-
-    <div *ngIf="showAddBrand" class="mt-2">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter new brand"
-        [(ngModel)]="newBrandName"
-        name="newBrandName"
-      />
-      <button type="button" class="btn btn-success mt-2" (click)="addBrand()">Add Brand</button>
-    </div>
-
-    <!-- Model Dropdown -->
-    <div class="mb-3">
-      <label for="model">Select Model:</label>
-      <select
-        id="model"
-        class="form-select"
-        [(ngModel)]="newCar.modelId"
-        name="model"
-        required
-        [disabled]="!models.length"
-      >
-        <option value="" disabled *ngIf="!models.length">No Models Available</option>
-        <option *ngFor="let model of models" [value]="model.id">{{ model.name }}</option>
-      </select>
-      <button type="button" class="btn btn-outline-primary" (click)="toggleAddModel()">+</button>
-    </div>
-
-    <!-- Add Model Input -->
-    <div *ngIf="showAddModel" class="mt-2">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enter new model"
-        [(ngModel)]="newModelName"
-        name="newModelName"
-      />
-      <div class="mt-2">
-        <button type="button" class="btn btn-success" (click)="addModel()">Add Model</button>
-        <button type="button" class="btn btn-secondary ms-2" (click)="toggleAddModel()">Cancel</button>
+      <div class="d-flex align-items-center">
+        <select
+          id="brand"
+          class="form-select form-control-sm me-2"
+          [(ngModel)]="newCar.brandId"
+          (change)="onBrandChange($event)"
+          name="brand"
+          required
+        >
+          <option value="" disabled>Select a Brand</option>
+          <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+        </select>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleAddBrand()">+</button>
+      </div>
+      <div *ngIf="showAddBrand" class="mt-2">
+        <div class="d-flex align-items-center">
+          <input
+            type="text"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter new brand"
+            [(ngModel)]="newBrandName"
+            name="newBrandName"
+          />
+          <button type="button" class="btn btn-success btn-sm" (click)="addBrand()">Add</button>
+        </div>
       </div>
     </div>
 
-    <!-- Registration Number -->
-    <div class="mb-3">
+    <!-- Model Dropdown -->
+    <div class="mb-2">
+      <label for="model">Select Model:</label>
+      <div class="d-flex align-items-center">
+        <select
+          id="model"
+          class="form-select form-control-sm me-2"
+          [(ngModel)]="newCar.modelId"
+          name="model"
+          required
+          [disabled]="!models.length"
+        >
+          <option value="" disabled *ngIf="!models.length">Select a Models</option>
+          <option *ngFor="let model of models" [value]="model.id">{{ model.name }}</option>
+        </select>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleAddModel()">+</button>
+      </div>
+      <div *ngIf="showAddModel" class="mt-2">
+        <div class="d-flex align-items-center">
+          <input
+            type="text"
+            class="form-control form-control-sm me-2"
+            placeholder="Enter new model"
+            [(ngModel)]="newModelName"
+            name="newModelName"
+          />
+          <button type="button" class="btn btn-success btn-sm me-2" (click)="addModel()">Add</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="toggleAddModel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remaining Fields -->
+    <div class="mb-2">
       <label for="regNo">Registration Number:</label>
       <input
         type="text"
         id="regNo"
-        class="form-control"
+        class="form-control form-control-sm"
         placeholder="Enter Registration Number"
         [(ngModel)]="newCar.regNo"
         name="regNo"
@@ -75,13 +113,12 @@
       />
     </div>
 
-    <!-- Price Per Day -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="pricePerDay">Price Per Day:</label>
       <input
         type="number"
         id="pricePerDay"
-        class="form-control"
+        class="form-control form-control-sm"
         placeholder="Enter Price Per Day"
         [(ngModel)]="newCar.pricePerDay"
         name="pricePerDay"
@@ -89,12 +126,11 @@
       />
     </div>
 
-    <!-- Gear Type -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="gearType">Gear Type:</label>
       <select
         id="gearType"
-        class="form-select"
+        class="form-select form-control-sm"
         [(ngModel)]="newCar.gearType"
         name="gearType"
         required
@@ -105,12 +141,11 @@
       </select>
     </div>
 
-    <!-- Fuel Type -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="fuelType">Fuel Type:</label>
       <select
         id="fuelType"
-        class="form-select"
+        class="form-select form-control-sm"
         [(ngModel)]="newCar.fuelType"
         name="fuelType"
         required
@@ -121,13 +156,12 @@
       </select>
     </div>
 
-    <!-- Mileage -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="mileage">Mileage (km):</label>
       <input
         type="text"
         id="mileage"
-        class="form-control"
+        class="form-control form-control-sm"
         placeholder="Enter Mileage"
         [(ngModel)]="newCar.mileage"
         name="mileage"
@@ -135,52 +169,26 @@
       />
     </div>
 
-    <!-- Seat Count -->
-    <div class="mb-3">
+    <div class="mb-2">
       <label for="seatCount">Seat Count:</label>
       <input
         type="number"
         id="seatCount"
-        class="form-control"
+        class="form-control form-control-sm"
         placeholder="Enter Seat Count"
         [(ngModel)]="newCar.seatCount"
         name="seatCount"
         required
       />
     </div>
-
-    <!-- Multiple Images Upload -->
-    <div class="mb-3">
-      <label for="images">Upload Images (Max: 4):</label>
-      <input
-        type="file"
-        id="images"
-        class="form-control"
-        (change)="onFileSelect($event)"
-        multiple
-        accept="image/*"
-      />
-      <div class="mt-2">
-        <div *ngFor="let image of selectedImages; let i = index" class="mb-2">
-          <img [src]="image" alt="Car Image" class="img-thumbnail" style="width: 150px; height: 100px;" />
-          <button
-            type="button"
-            class="btn btn-sm btn-danger ms-2"
-            (click)="removeImage(i)"
-          >
-            Remove
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Submit Button -->
+    <div class="d-flex justify-content-center">
     <button
-      type="submit"
-      class="btn btn-primary w-100"
-      [disabled]="!carForm.form.valid"
-    >
-      Add Car
-    </button>
+    type="submit"
+    class="btn btn-primary btn-sm w-50 "
+    [disabled]="!carForm.form.valid"
+  >
+    Add Car
+  </button>
+    </div>
   </form>
 </div>
