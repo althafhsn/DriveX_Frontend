@@ -1,0 +1,18 @@
+<div *ngIf="booking">
+    <p><strong>Image:</strong>{{booking.image}}</p>
+    <p><strong>First Name:</strong> {{ booking.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ booking.lastName }}</p>
+    <p><strong>NIC:</strong> {{ booking.nic }}</p>
+    <p><strong>Email:</strong> {{ booking.email }}</p>
+    <p><strong>Phone Numbers:</strong>
+      <span *ngFor="let phone of booking.phoneNumbers; let last = last">
+        {{ phone.mobile1 }}<span *ngIf="!last">, </span>
+      </span>
+    </p>
+    <p><strong>Addresses:</strong>
+      <span *ngFor="let address of booking.addresses; let last = last">
+        {{ address.street1 }},{{ address.street2 }}, {{ address.city }},{{ address.zipCode }},{{ address.country }}<span *ngIf="!last">, </span>
+      </span>
+    </p>
+  </div>
+  

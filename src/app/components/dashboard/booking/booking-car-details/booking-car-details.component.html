@@ -1,0 +1,25 @@
+<div *ngIf="booking">
+    <p><strong>Car Brand:</strong> {{ booking.brandName }}</p>
+    <p><strong>Car Model:</strong> {{ booking.modelName }}</p>
+    <p><strong>Registration Number:</strong> {{ booking.regNo }}</p>
+    <p><strong>Price Per Day:</strong> ${{ booking.pricePerDay }}</p>
+    <p><strong>Gear Type:</strong> {{ booking.gearType }}</p>
+    <p><strong>Fuel Type:</strong> {{ booking.fuelType }}</p>
+    <p><strong>Mileage:</strong> {{ booking.mileage }}</p>
+    <p><strong>Seat Count:</strong> {{ booking.seatCount }}</p>
+  
+    <!-- Car Images -->
+    <div class="mt-3">
+      <h6>Images:</h6>
+      <div class="d-flex flex-wrap">
+        <img
+          *ngFor="let img of booking.images"
+          [src]="img?.imagePath"
+          alt="Car Image"
+          class="me-2 mb-2"
+          style="width: 100px; height: 100px; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </div>
+  
