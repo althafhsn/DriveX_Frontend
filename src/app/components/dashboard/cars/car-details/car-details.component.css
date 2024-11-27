@@ -1,22 +1,102 @@
-.car-details-container {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-  }
-  
-  .car-info {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .car-image {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-  }
-  
-  .car-specs p {
-    margin: 5px 0;
-  }
-  
+/* Styling for the product main image */
+.product-main-img {
+
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+/* Thumbnail image style */
+.thumbnail-img {
+
+  width: 50px;
+  height: 75px;
+  cursor: pointer;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  margin-right:0px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Thumbnail hover effect */
+.thumbnail-img:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+/* Optional: If you want to improve the layout or make it responsive */
+.carousel-inner img {
+  max-height: 400px; /* You can adjust this to fit your design */
+  border-radius: 30px;
+ max-width: 300px;
+}
+/* Styling for the product main image */
+.product-main-img {
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin-bottom: 20px;
+
+}
+
+/* Thumbnail image style */
+.thumbnail-img {
+  width: 80px;
+  height: 75px;
+  cursor: pointer;
+  object-fit: cover;
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Thumbnail hover effect */
+.thumbnail-img:hover {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+/* Optional: If you want to improve the layout or make it responsive */
+.carousel-inner img {
+  max-height: 300px; /* You can adjust this to fit your design */
+  width: 150px;
+}
+/* Carousel image styling */
+.carousel-inner img {
+  object-fit: cover; /* Ensures the image fills the space proportionally */
+  height: 300px; /* Set a fixed height for the carousel */
+
+}
+
+/* Thumbnail container styling */
+.thumbnail-container {
+  margin-right: 0px; /* Space between thumbnails */
+}
+
+.thumbnail-img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.thumbnail-img:hover {
+  border-color: #007bff; /* Blue border on hover */
+}
+
+/* Car details section styling */
+
+
+.car-brand-model .btn {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.car-brand-model .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.car-brand-model .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
