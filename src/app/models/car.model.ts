@@ -1,8 +1,8 @@
 export interface Car {
-    id: string;  // The 'id' is a string based on your example
-    brandId: string;  // Corrected to 'brandId' (case-sensitive)
+    id: string;  
+    brandId: string; 
     brandName: string;
-    modelId: string;  // Corrected to 'modelId' (case-sensitive)
+    modelId: string;  
     modelName: string;
     regNo: string;
     pricePerDay: number;
@@ -10,13 +10,31 @@ export interface Car {
     fuelType: string;
     mileage: string;
     seatCount: string;
-    images: Image[];  // This should remain as an array of Image objects
-    status: 'Available' | 'Unavailable';  // Status should be either Available or Unavailable
-    customerId?: string;  // Optional field
+    images: Image[];  
+    status: 'Available' | 'Unavailable';  
+    customerId?: string;  
   }
   
   export interface Image {
-    id: string;  // The 'id' of the image
-    imagePath: string;  // The 'imagePath' for the image file (relative path or URL)
+    id: string; 
+    imagePath: string;  
   }
   
+  export interface Customer {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    nic: string;
+    phoneNumbers: PhoneNumber[];
+  }
+ 
+  export interface PhoneNumber {
+    id: string;
+    mobile1: string;
+  }
+   export interface CarCustomerResponse {
+    car: Car;
+    customer?: Customer; 
+    message: string;
+  }

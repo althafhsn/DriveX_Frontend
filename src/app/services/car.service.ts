@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car} from '../models/car.model';
+import { Car } from '../models/car.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +15,8 @@ export class CarService {
   getCars(): Observable<Car[]> {
     return this.http.get<Car[]>(`${this.baseUrl}GetAllCars`);
   }
+
+  getCarDetailsWithCustomer(carId: string): Observable<{ car: Car, customer?: any }> {
+    return this.http.get<{ car: Car, customer?: any }>(`${this.baseUrl}${carId}`);
+  }
 }
-
-// export class BrandService {
-//   private apiUrl = 'https://api.example.com/brands'; // Replace with your API endpoint
-
-//   constructor(private http: HttpClient) {}
-
-//   getBrandById(id: string): Observable<{ id: string; name: string }> {
-//     return this.http.get<{ id: string; name: string }>(`${this.apiUrl}/${id}`);
-//   }
-// }
