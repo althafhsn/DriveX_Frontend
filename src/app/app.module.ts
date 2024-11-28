@@ -70,6 +70,8 @@ import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-hi
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
+import { RentedCarFilterPipe } from './pipes/rented-car-filter.pipe';
 
 
 @NgModule({
@@ -136,6 +138,10 @@ import { ResetComponent } from './components/reset/reset.component';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    RentedCarListComponent,
+    RentedCarFilterPipe,
+    
+    
   ],
   imports: [
     BrowserModule,

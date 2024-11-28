@@ -21,6 +21,7 @@ import { ProfileNavbarComponent } from './components/profile/profile-navbar/prof
 import { HistoryComponent } from './components/profile/history/history.component';
 import { CarsComponent } from './components/dashboard/cars/cars.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
 
 
 
@@ -48,6 +49,7 @@ const routes: Routes = [
       { path: 'customers', component: CustomerComponent },
       { path: 'bookings', component: BookingComponent },
       {path: 'settings', component: SettingsComponent},
+      {path:'rented-car-list',component:RentedCarListComponent},
 
       {path:'cars', component:CarsComponent},
       {path: 'settings', component: SettingsComponent,
