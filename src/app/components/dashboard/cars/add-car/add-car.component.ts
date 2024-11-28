@@ -261,9 +261,7 @@ export class AddCarComponent {
       fuelType: '',
       mileage: '',
       seatCount: '',
-      images: [
-        
-      ],
+      images: [],
       status: 'Available',
     };
     this.models = [];

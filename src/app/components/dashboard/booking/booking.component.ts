@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Booking } from '../../../models/booking.model';
-import { BookingService } from '../../../services/booking.service';
 
 @Component({
   selector: 'app-booking',

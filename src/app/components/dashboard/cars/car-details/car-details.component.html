@@ -76,3 +76,11 @@
   <p>No car selected.</p>
 </ng-template>
 
+
+  <div *ngIf="customer">
+          <h3>Customer Details</h3>
+          <p>Name: {{ customer.firstName }} {{ customer.lastName }}</p>
+          <p>Phone: {{ customer.phoneNumbers }}</p>
+          <p>Email: {{ customer.email }}</p>
+        </div>
+
