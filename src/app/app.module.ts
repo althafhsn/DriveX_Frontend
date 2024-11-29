@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './components/app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -15,7 +15,6 @@ import { CardComponent } from './components/Customer/landing-page/card/card.comp
 import { TypeComponent } from './components/Customer/landing-page/type/type.component';
 import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
 import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
-import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
 import { CarDetailsComponent as LandingCarDetails } from './components/Customer/conform-rent/car-details/car-details.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -70,6 +69,8 @@ import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-hi
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { ExlporeCarComponent } from './components/exlpore-car/exlpore-car.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 
 @NgModule({
@@ -99,7 +100,6 @@ import { ResetComponent } from './components/reset/reset.component';
     TypeComponent,
     ScrollComponent,
     FooterComponent,
-    ConformRentComponent,
     LandingCarDetails,
     AllCarsComponent,
     DashboardComponent,
@@ -136,6 +136,9 @@ import { ResetComponent } from './components/reset/reset.component';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    ExlporeCarComponent,
+    LandingComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Customer } from '../../../../models/customer.model';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-profile-set',
   templateUrl: './profile-set.component.html',
   styleUrl: './profile-set.component.css'
 })
-export class ProfileSetComponent {
+export class ProfileSetComponent  implements OnInit{
+  customers:Customer[] = [];
+
   imageSrc: string | ArrayBuffer | null = null;
+
+  constructor(private apiservice:ApiService){}
+
+  ngOnInit(): void {
+    // Fetch data on component initialization
+    this.apiservice.getAllUser().subscribe({
+      next: (data) => {
+        this.customers = data; // Assuming the API returns an array of Customer
+      },
+      error: (error) => {
+        console.error('Error fetching data:', error);
+      }
+    });
+  }
 
   // Handle file selection
   onFileSelect(event: any): void {
@@ -41,19 +59,19 @@ export class ProfileSetComponent {
     reader.readAsDataURL(file);
   }
   
-  profileData2 = {
-    firstName: '',
-    lastName: '',
-    NIC:'',
-    Licence: '' 
-  };
+  // profileData2 = {
+  //   firstName: '',
+  //   lastName: '',
+  //   NIC:'',
+  //   Licence: '' 
+  // };
 
 
 
   
   onSubmit() {
     // Perform profile update logic here
-    console.log('Profile updated successfully!', this.profileData2);
+    // console.log('Profile updated successfully!', this.profileData2);
   }
 
   

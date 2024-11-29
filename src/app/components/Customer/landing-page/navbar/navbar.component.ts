@@ -14,14 +14,20 @@ export class NavbarComponent {
   activeLink: string = '';
 
   public fullName: string = "";
-  public role: string = "";
+  // public role: string = "";
+
+  public token: string | null = null;
+  public role: string | null = null;
+
 
   constructor(private authService: AuthService,private store: UserStoreService,private router: Router)
   { 
     // Automatically set activeLink based on the current route on page load or navigation
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        // Set the active link to the current route (e.g., 'home' from '/home')
         this.setActiveLink(this.router.url.split('/')[1]);
+    
       }
     });
   }
@@ -48,6 +54,16 @@ export class NavbarComponent {
       next: (val) => {
         const roleInToken = this.authService.getRoleFromToken();
         this.role = val || roleInToken;
+      },
+      error: (err) => {
+        console.error("Failed to fetch role from store:", err);
+      }
+    });
+
+    this.token = this.authService.getToken();
+    this.store.getRoleFromStore().subscribe({
+      next: (val) => {
+        this.role = val || this.authService.getRoleFromToken();
       },
       error: (err) => {
         console.error("Failed to fetch role from store:", err);

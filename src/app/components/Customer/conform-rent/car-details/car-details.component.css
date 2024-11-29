@@ -1,0 +1,11 @@
+.carousel-inner img {
+    width: 400px;
+    height: 400px; /* Uniform image height */
+    object-fit: cover;
+    border-radius:10px; /* Rounded corners */
+  }
+  
+  .carousel {
+    margin-bottom: 20px; /* Space below carousel */
+  }
+  

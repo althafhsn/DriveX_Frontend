@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
-import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
+import { CarDetailsComponent as CustomerCarDetailsComponent } from './components/Customer/conform-rent/car-details/car-details.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -29,16 +29,16 @@ const routes: Routes = [
   
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'LandingPage',component:LandingPageComponent},
-  {path:'ConfirmRent',component:ConformRentComponent},
-  {path:'Explorecar',component:AllCarsComponent},
-  {path:'Contact',component:ContactComponent},
-  {path:'About',component:AboutComponent},
-  {path : 'reset',component:ResetComponent},
-  {path:'Profile',component:ProfileComponent},
-  {path:'Profile-setting',component:ProfileSetComponent},
-  {path:'Profile-Nav',component:ProfileNavbarComponent},
-  {path:'History',component:HistoryComponent},
+  {path: 'landingPage',component:LandingPageComponent},
+  {path:'confirmRent',component:CustomerCarDetailsComponent},
+  {path:'explorecar',component:AllCarsComponent},
+  {path:'contact',component:ContactComponent},
+  {path:'about',component:AboutComponent},
+  {path :'reset',component:ResetComponent},
+  {path:'profile',component:ProfileComponent},
+  {path:'profile-setting',component:ProfileSetComponent},
+  {path:'profile-Nav',component:ProfileNavbarComponent},
+  {path:'history',component:HistoryComponent},
   
 
   { path : 'dashboard', component:DashboardComponent, 

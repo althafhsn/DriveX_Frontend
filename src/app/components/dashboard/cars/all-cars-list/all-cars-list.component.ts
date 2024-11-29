@@ -10,8 +10,8 @@ export class AllCarsListComponent {
   @Input() cars: Car[] = []; // Array to store cars fetched from API
   @Output() selectedCar = new EventEmitter<Car>(); // Emit the selected car object
 
-  selectedCarId: string | null = null; // Track the selected car ID
-  errorMessage: string | null = null;
+  selectedCarId!: string  // Track the selected car ID
+  errorMessage!: string
 
   constructor(private carService: CarService) {}
 

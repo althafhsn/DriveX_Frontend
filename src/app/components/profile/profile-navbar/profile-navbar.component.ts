@@ -17,7 +17,7 @@ export class ProfileNavbarComponent {
     tabs = [
       { id: 'profile-settings', label: 'Profile Settings'},
       { id: 'password-update', label: 'Change Password' },
-      { id: 'payment-methods', label: 'Payment Methods' },
+      // { id: 'payment-methods', label: 'Contact Details' },
       
     ];
   
