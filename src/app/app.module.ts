@@ -60,6 +60,7 @@ import { RevenueComponent } from './components/dashboard/revenue/revenue.compone
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
+import { CustomerDetailWithCarComponent } from './components/dashboard/customer/customer-detail-with-car/customer-detail-with-car.component';
 import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
 import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
 import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
@@ -70,6 +71,11 @@ import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-hi
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { AllBookingListComponent } from './components/dashboard/booking/all-booking-list/all-booking-list.component';
+import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
+import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
+import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
+
 
 
 @NgModule({
@@ -126,6 +132,7 @@ import { ResetComponent } from './components/reset/reset.component';
     GraphComponent,
     StatisticsComponent,
     AddCustomerComponent,
+    CustomerDetailWithCarComponent,
     ProfileSetComponent,
     PasswordChangeComponent,
     ViewPaymentComponent,
@@ -136,6 +143,11 @@ import { ResetComponent } from './components/reset/reset.component';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    AllBookingListComponent,
+    BookingDetailsComponent,
+    BookingCarDetailsComponent,
+    BookingCustomerDetailsComponent,
+
   ],
   imports: [
     BrowserModule,

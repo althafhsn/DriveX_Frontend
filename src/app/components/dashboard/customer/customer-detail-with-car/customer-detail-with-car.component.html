@@ -1,4 +1,4 @@
-<div *ngIf="customer">
+<div *ngIf="customerResponse">
   <div class="card shadow-sm rounded p-4 position-relative">
     <!-- Edit/Save Button -->
     <button
@@ -11,29 +11,29 @@
     <!-- Customer Basic Info -->
     <div class="d-flex align-items-center mb-4">
       <img
-        [src]="customer.image || 'default-avatar.png'"
+        [src]="customerResponse.customer.image || 'default-avatar.png'"
         alt="Customer Avatar"
         class="rounded-circle border"
         style="width: 80px; height: 80px; object-fit: cover;"
       />
       <div class="ms-3">
         <h4 class="fw-bold mb-1">
-          <span *ngIf="!isEditable">{{ customer.firstName }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.firstName }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.firstName"
+            [(ngModel)]="customerResponse.customer.firstName"
             class="form-control"
           />
         </h4>
         <h4 class="fw-bold mb-1">
-          <span *ngIf="!isEditable">{{ customer.lastName }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.lastName }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.lastName"
+            [(ngModel)]="customerResponse.customer.lastName"
             class="form-control"
           />
         </h4>
-        <p class="text-muted mb-0">ID: {{ customer.id }}</p>
+        <p class="text-muted mb-0">ID: {{ customerResponse.customer.id }}</p>
       </div>
     </div>
 
@@ -41,10 +41,10 @@
     <div class="row text-center border-top pt-3">
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].houseNo }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].houseNo }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].houseNo"
+            [(ngModel)]="customerResponse.customer.addresses[0].houseNo"
             class="form-control"
             placeholder="House No"
           />
@@ -53,10 +53,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].street1 }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].street1 }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].street1"
+            [(ngModel)]="customerResponse.customer.addresses[0].street1"
             class="form-control"
             placeholder="Street 1"
           />
@@ -65,10 +65,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].street2 }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].street2 }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].street2"
+            [(ngModel)]="customerResponse.customer.addresses[0].street2"
             class="form-control"
             placeholder="Street 2"
           />
@@ -77,10 +77,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].city }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].city }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].city"
+            [(ngModel)]="customerResponse.customer.addresses[0].city"
             class="form-control"
             placeholder="City"
           />
@@ -89,10 +89,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].zipCode }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].zipCode }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].zipCode"
+            [(ngModel)]="customerResponse.customer.addresses[0].zipCode"
             class="form-control"
             placeholder="Zip Code"
           />
@@ -101,10 +101,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.addresses[0].country }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].country }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.addresses[0].country"
+            [(ngModel)]="customerResponse.customer.addresses[0].country"
             class="form-control"
             placeholder="Country"
           />
@@ -117,10 +117,10 @@
     <div class="row text-center border-top pt-3">
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.nic }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.nic }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.nic"
+            [(ngModel)]="customerResponse.customer.nic"
             class="form-control"
           />
         </h5>
@@ -128,10 +128,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.licence }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.licence }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.licence"
+            [(ngModel)]="customerResponse.customer.licence"
             class="form-control"
           />
         </h5>
@@ -139,10 +139,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.status }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.status }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.status"
+            [(ngModel)]="customerResponse.customer.status"
             class="form-control"
           />
         </h5>
@@ -150,10 +150,10 @@
       </div>
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customer.notes }}</span>
+          <span *ngIf="!isEditable">{{ customerResponse.customer.notes }}</span>
           <input
             *ngIf="isEditable"
-            [(ngModel)]="customer.notes"
+            [(ngModel)]="customerResponse.customer.notes"
             class="form-control"
           />
         </h5>
@@ -165,23 +165,49 @@
     <div class="border-top pt-3">
       <p class="mb-2">
         <i class="fas fa-phone-alt text-primary me-2"></i>
-        <span *ngIf="!isEditable">{{ customer.phoneNumbers[0].mobile1 }}</span>
+        <span *ngIf="!isEditable">{{ customerResponse.customer.phoneNumbers[0].mobile1 }}</span>
         <input
           *ngIf="isEditable"
-          [(ngModel)]="customer.phoneNumbers[0].mobile1"
+          [(ngModel)]="customerResponse.customer.phoneNumbers[0].mobile1"
           class="form-control"
         />
       </p>
       <p>
         <i class="fas fa-envelope text-primary me-2"></i>
-        <span *ngIf="!isEditable">{{ customer.email }}</span>
+        <span *ngIf="!isEditable">{{ customerResponse.customer.email }}</span>
         <input
           *ngIf="isEditable"
-          [(ngModel)]="customer.email"
+          [(ngModel)]="customerResponse.customer.email"
           class="form-control"
         />
       </p>
     </div>
+
+    <!-- Rented Cars Section -->
+    <div class="border-top pt-4 mt-4">
+      <h4 class="fw-bold">Rented Cars</h4>
+      <div *ngIf="customerResponse.rentedCars && customerResponse.rentedCars.length > 0; else noCars">
+        <div
+          *ngFor="let car of customerResponse.rentedCars"
+          class="card mb-3 shadow-sm rounded d-flex flex-row align-items-center"
+        >
+          <!-- <img
+            [src]="car.image || 'default-car.png'"
+            alt="Car Image"
+            class="rounded-start"
+            style="width: 100px; height: 80px; object-fit: cover;"
+          /> -->
+          <div class="p-3">
+            <h5 class="mb-1">{{ car.brandName }} {{ car.modelName }}</h5>
+            <p class="small text-muted mb-0">Reg No: {{ car.regNo }}</p>
+            <!-- <p class="small text-muted mb-0">Rent Start: {{ car.rentStartDate }}</p>
+            <p class="small text-muted">Rent End: {{ car.rentEndDate }}</p> -->
+          </div>
+        </div>
+      </div>
+      <ng-template #noCars>
+        <p class="text-muted">No rented cars available for this customer.</p>
+      </ng-template>
+    </div>
   </div>
 </div>
-

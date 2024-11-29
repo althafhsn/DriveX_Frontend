@@ -1,30 +1,77 @@
-<div class="add-customer-form bg-white rounded shadow-sm p-4">
-    <h4 class="mb-4">Add New Customer</h4>
-    <form (ngSubmit)="addCustomer()">
-      <div class="mb-3">
-        <label for="name" class="form-label">Customer Name</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="newCustomer.firstName" name="name" required />
-      </div>
-      <div class="mb-3">
-        <label for="name" class="form-label">Customer Name</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="newCustomer.lastName" name="name" required />
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Customer Email</label>
-        <input type="email" id="email" class="form-control" [(ngModel)]="newCustomer.email" name="email" required />
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Customer Phone</label>
-        <input type="text" id="phone" class="form-control" [(ngModel)]="newCustomer.phone" name="phone" required />
-      </div>
-      <div class="mb-3">
-        <label for="status" class="form-label">Customer Status</label>
-        <select id="status" class="form-control" [(ngModel)]="newCustomer.status" name="status" required>
-          <option value="Available">Available</option>
-          <option value="Unavailable">Unavailable</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Customer</button>
-    </form>
-  </div>
-  
+<div class="container mt-4">
+  <h2>Add Customer</h2>
+  <form #customerForm="ngForm" (ngSubmit)="onAddCustomer()">
+    <!-- Customer Details -->
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name:</label>
+      <input type="text" id="firstName" [(ngModel)]="newCustomer.firstName" name="firstName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name:</label>
+      <input type="text" id="lastName" [(ngModel)]="newCustomer.lastName" name="lastName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" [(ngModel)]="newCustomer.email" name="email" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="nic" class="form-label">NIC:</label>
+      <input type="text" id="nic" [(ngModel)]="newCustomer.nic" name="nic" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="licence" class="form-label">Licence:</label>
+      <input type="text" id="licence" [(ngModel)]="newCustomer.licence" name="licence" class="form-control" />
+    </div>
+
+    <!-- Address Details -->
+    <h5>Address</h5>
+    <div class="mb-3">
+      <label for="houseNo" class="form-label">House No:</label>
+      <input type="text" id="houseNo" [(ngModel)]="newCustomer.addresses[0].houseNo" name="houseNo" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="street1" class="form-label">Street 1:</label>
+      <input type="text" id="street1" [(ngModel)]="newCustomer.addresses[0].street1" name="street1" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="street2" class="form-label">Street 2:</label>
+      <input type="text" id="street2" [(ngModel)]="newCustomer.addresses[0].street2" name="street2" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="city" class="form-label">City:</label>
+      <input type="text" id="city" [(ngModel)]="newCustomer.addresses[0].city" name="city" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="zipCode" class="form-label">Zip Code:</label>
+      <input type="number" id="zipCode" [(ngModel)]="newCustomer.addresses[0].zipCode" name="zipCode" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="country" class="form-label">Country:</label>
+      <input type="text" id="country" [(ngModel)]="newCustomer.addresses[0].country" name="country" class="form-control" />
+    </div>
+
+    <!-- Phone Numbers -->
+    <h5>Phone Numbers</h5>
+    <div class="mb-3">
+      <label for="mobile1" class="form-label">Mobile:</label>
+      <input type="text" id="mobile1" [(ngModel)]="newCustomer.phoneNumbers[0].mobile1" name="mobile1" class="form-control" />
+    </div>
+
+    <!-- Additional Details -->
+    <div class="mb-3">
+      <label for="notes" class="form-label">Notes:</label>
+      <textarea id="notes" [(ngModel)]="newCustomer.notes" name="notes" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Status:</label>
+      <input type="text" id="status" [(ngModel)]="newCustomer.status" name="status" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password:</label>
+      <input type="password" id="password" [(ngModel)]="newCustomer.password" name="password" class="form-control" />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Add Customer</button>
+  </form>
+</div>

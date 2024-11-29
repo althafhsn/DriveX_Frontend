@@ -16,6 +16,7 @@ export class AddCarComponent {
     modelId: '',
     modelName: '',
     regNo: '',
+    
     pricePerDay: 0,
     gearType: '',
     fuelType: '',
@@ -44,22 +45,22 @@ export class AddCarComponent {
   
   selectedImages: string[] = []; // This will store Base64 strings
 
-  onFileSelect(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const files = Array.from(input.files).slice(0, 4); // Limit to 4 files
+  // onFileSelect(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     const files = Array.from(input.files).slice(0, 4); // Limit to 4 files
   
-      this.selectedImages = []; // Clear previous images
+  //     this.selectedImages = []; // Clear previous images
   
-      files.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.selectedImages.push(e.target.result); // Base64 string
-        };
-        reader.readAsDataURL(file); // Convert file to Base64
-      });
-    }
-  }
+  //     files.forEach((file) => {
+  //       const reader = new FileReader();
+  //       reader.onload = (e: any) => {
+  //         this.selectedImages.push(e.target.result); // Base64 string
+  //       };
+  //       reader.readAsDataURL(file); // Convert file to Base64
+  //     });
+  //   }
+  // }
   
   removeImage(index: number): void {
     this.selectedImages.splice(index, 1); // Remove the image from the list
@@ -260,9 +261,7 @@ export class AddCarComponent {
       fuelType: '',
       mileage: '',
       seatCount: '',
-      images: [
-        
-      ],
+      images: [],
       status: 'Available',
     };
     this.models = [];
@@ -275,6 +274,29 @@ export class AddCarComponent {
         v = c === 'x' ? r : (r & 0x3) | 0x8;
       return v.toString(16);
     });
+  }
+  remainingIndices() {
+    return [0, 1, 2, 3].slice(this.selectedImages.length);
+  }
+
+  // Trigger the file input for a specific index
+  triggerFileInput(index: number) {
+    const fileInput = document.getElementById(`imageInput${index}`) as HTMLInputElement;
+    fileInput?.click();
+  }
+
+  // Handle file selection
+  onFileSelect(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (this.selectedImages.length < 4) {
+          this.selectedImages[index] = reader.result as string; // Store the selected image URL
+        }
+      };
+      reader.readAsDataURL(file); // Read the file as a Data URL
+    }
   }
   
 }
