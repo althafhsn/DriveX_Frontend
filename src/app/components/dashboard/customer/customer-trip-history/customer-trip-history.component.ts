@@ -1,49 +1,44 @@
-import { Component, Input, OnChanges  } from '@angular/core';
-interface Trip {
-  id: string;
-  origin: string;
-  destination: string;
-  status: string;
-}
+import { Component, Input, OnInit  } from '@angular/core';
+import { CustomerResponse } from '../../../../models/customer.model';
+import { Router,ActivatedRoute} from '@angular/router';
+import { DashboardCustomerService } from '../../../../services/dashboard-customer.service';
 @Component({
   selector: 'app-customer-trip-history',
   templateUrl: './customer-trip-history.component.html',
   styleUrl: './customer-trip-history.component.css'
 })
-export class CustomerTripHistoryComponent implements OnChanges {
-  @Input() customerId!: string; // Accepts the selected customer's ID
-  tripHistory: Trip[] = []; // List of trips for the selected customer
+export class CustomerTripHistoryComponent implements OnInit {
+  @Input() customerResponse!: CustomerResponse; // Correct type for customerResponse
+  rentedCars: any[] = []; // To store rented car details
+  customerId: string | null = null;
 
-  ngOnChanges(): void {
-    if (this.customerId) {
-      this.fetchTripHistory(this.customerId);
-    } else {
-      console.warn('No customer ID provided');
-      this.tripHistory = [];
-    }
-  }
-
-  fetchTripHistory(customerId: string): void {
-    // Simulate API response with mock data
-    this.tripHistory = [
-      {
-        id: '#5D869F5L2',
-        origin: 'San Diego',
-        destination: 'Dallas',
-        status: 'Completed'
-      },
-      {
-        id: '#8E969P5L4',
-        origin: 'Phoenix',
-        destination: 'San Jose',
-        status: 'Cancelled'
-      },
-      {
-        id: '#3H359K9L1',
-        origin: 'San Francisco',
-        destination: 'Austin',
-        status: 'Completed'
+  constructor(
+    private route: ActivatedRoute,
+    private customerService: DashboardCustomerService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    // Get customer ID from route params and fetch the customer details
+    this.route.paramMap.subscribe((params) => {
+      this.customerId = params.get('id');
+      if (this.customerId) {
+        this.getCustomerDetailsWithRentalInfo(this.customerId);
       }
-    ];
+    });
   }
+  getCustomerDetailsWithRentalInfo(id: string): void {
+    // Fetch customer details and rented car information from the API
+    this.customerService.getCustomerWithRentalInfo(id).subscribe(
+      (response) => {
+        this.customerResponse = response; // Direct assignment
+        this.rentedCars = response.rentedCars || [];
+        console.log('Rented Cars:', this.rentedCars);
+      },
+      (error) => {
+        console.error('Error fetching customer and rental info:', error);
+      }
+    );
+  }
+  
 }
+  
