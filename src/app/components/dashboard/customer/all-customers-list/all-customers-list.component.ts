@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
 import {DashboardCustomerService } from '../../../../services/dashboard-customer.service';
-import { Customer } from '../../../../models/customer.model';
+import { Customer, CustomerResponse} from '../../../../models/customer.model';
 
 
 @Component({
@@ -12,9 +12,10 @@ import { Customer } from '../../../../models/customer.model';
 export class AllCustomersListComponent implements OnInit {
   @Input() customers: Customer[] = [];
   @Output() addCustomer = new EventEmitter<void>(); // Output property for add action
-  @Output() customerSelected = new EventEmitter<Customer>(); // Emit Customer object
+  @Output() customerSelected = new EventEmitter<CustomerResponse>(); 
   errorMessage: string | null = null;
-
+  selectedCustomer: CustomerResponse | null = null;
+  rentedCars: any[] = []; // To store rented car details
   constructor(
     
     private dashBoardListCustomer: DashboardCustomerService
@@ -41,10 +42,31 @@ export class AllCustomersListComponent implements OnInit {
   
 
 
-onCustomerClick(customer: Customer): void {
-  this.customerSelected.emit(customer); // Emit the selected customer
-}
-
+  onCustomerClick(customer: Customer): void {
+    if (customer && customer.id) {
+      this.dashBoardListCustomer.getCustomerWithRentalInfo(customer.id)
+        .subscribe(
+          (response) => {
+            console.log('Customer details with rental info:', response);
+           
+            this.rentedCars = response.rentedCars || [];
+            console.log('Rented Cars:', response.rentedCars); 
+     
+            this.selectedCustomer = response; // Store the response
+            this.customerSelected.emit(response);
+            
+            
+          },
+          (error) => {
+            console.error('Error fetching customer with rental info:', error);
+            this.errorMessage = 'Failed to load customer details.';
+          }
+        );
+    }
+  }
+// selectCustomer(customer: CustomerResponse): void {
+//   this.customerSelected.emit(customer);
+// }
 
 onAddCustomerClick(): void {
   this.addCustomer.emit(); // Notify the parent component to display Add Customer form

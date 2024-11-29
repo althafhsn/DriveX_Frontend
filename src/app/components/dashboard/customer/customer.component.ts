@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../../models/customer.model';
+import { Customer,CustomerResponse } from '../../../models/customer.model';
 import { DashboardCustomerService } from '../../../services/dashboard-customer.service';
 
 @Component({
@@ -17,7 +17,7 @@ onSearchQueryChange($event: string) {
 throw new Error('Method not implemented.');
 }
   customers: Customer[] = [];
-  selectedCustomer: Customer | null = null;
+  selectedCustomer: CustomerResponse | null = null;
 
   constructor(private dashboardCustomerService: DashboardCustomerService) {}
 
@@ -32,9 +32,10 @@ throw new Error('Method not implemented.');
     );
   }
 
-  handleCustomerSelection(customer: Customer): void {
-    this.isAddCustomer = true;
-    this.selectedCustomer = null;
+  handleCustomerSelection(customer: CustomerResponse): void {
+    console.log('Customer selected:', customer); 
+    this.selectedCustomer = customer;
+    this.isAddCustomer = false; 
   }
   toggleAddCustomer(): void {
     this.isAddCustomer = true;

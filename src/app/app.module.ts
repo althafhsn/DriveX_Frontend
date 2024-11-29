@@ -60,6 +60,7 @@ import { RevenueComponent } from './components/dashboard/revenue/revenue.compone
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
+import { CustomerDetailWithCarComponent } from './components/dashboard/customer/customer-detail-with-car/customer-detail-with-car.component';
 
 
 
@@ -118,6 +119,7 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     GraphComponent,
     StatisticsComponent,
     AddCustomerComponent,
+    CustomerDetailWithCarComponent,
 
 
 
