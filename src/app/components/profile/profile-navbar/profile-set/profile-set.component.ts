@@ -59,13 +59,7 @@ export class ProfileSetComponent  implements OnInit{
     reader.readAsDataURL(file);
   }
   
-  // profileData2 = {
-  //   firstName: '',
-  //   lastName: '',
-  //   NIC:'',
-  //   Licence: '' 
-  // };
-
+   
 
 
   

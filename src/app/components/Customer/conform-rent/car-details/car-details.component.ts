@@ -13,6 +13,7 @@ export class CarDetailsComponent implements OnInit {
   @Input() card!: Car; // Ensure card is initialized properly
   pickupDate: string | null = '';
   returnDate: string | null = '';
+  isButtonDisabled: boolean = true; // Initially set to true
   dateDifference: number | null = null;
   lastUpdatedDate: string | null = '';
   pickupDateError: string | null = null;
@@ -25,9 +26,15 @@ export class CarDetailsComponent implements OnInit {
     this.pickupDate = localStorage.getItem('pickupDate');
     this.returnDate = localStorage.getItem('returnDate');
     this.lastUpdatedDate = localStorage.getItem('lastUpdatedDate');
+    this.checkFields(); // Check field states on component load
 
     this.validateDates();
   }
+  checkFields(): void {
+    // Check if both fields are filled
+    this.isButtonDisabled = !this.pickupDate || !this.returnDate;
+  }
+
 
   validateDates(): void {
     this.pickupDateError = null;
@@ -61,6 +68,16 @@ export class CarDetailsComponent implements OnInit {
   }
 
   saveDates(): void {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You must be logged in to book. Redirecting to login page...');
+      window.location.href = '/login'; // Redirect to login page
+      return;
+    }
+
+    
+
     if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
       localStorage.setItem('pickupDate', this.pickupDate);
       localStorage.setItem('returnDate', this.returnDate);
@@ -76,24 +93,6 @@ export class CarDetailsComponent implements OnInit {
     }
   }
 
-  // saveDates(): void {
-  //   if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
-  //     localStorage.setItem('pickupDate', this.pickupDate);
-  //     localStorage.setItem('returnDate', this.returnDate);
-  
-  //     // Store the last updated date
-  //     const now = new Date();
-  //     this.lastUpdatedDate = now.toLocaleString();
-  //     localStorage.setItem('lastUpdatedDate', this.lastUpdatedDate);
-  
-  //     this.toastrService.success('Dates have been saved successfully.', 'Success', {
-  //       timeOut: 3000,
-  //     });
-  //   } else {
-  //     this.toastrService.error('Please correct the errors before saving.', 'Error', {
-  //       timeOut: 3000,
-  //     });
-  //   }
-  // }
+ 
   
 }

@@ -71,29 +71,29 @@
 <!-- ithai DELETE saithidaathae -->
       <div class="col-6 col-md-3 mb-3">
           <label>NIC :-</label>
-             <!--  <input  class="form-control" [value]="customer.nic"/>-->
+              <input  class="form-control" [value]="customer.nic"/>
         </div> 
 
          <div class="col-6 col-md-3 mb-3">
           <label>Licence :-</label>
-          <!--  <input class="form-control" [value]="customer.licence"/>-->
+           <input class="form-control" [value]="customer.licence"/>
         </div>
-      </div> 
+ 
     
-      <div class="border-top pt-3">
+   
         
-           <input  type="text" class="form-control"  placeholder="Address"/>
-          <button type="button" class="btn btn-info mt-1">+</button>
+          <input  type="text" class="form-control"  placeholder="Address" [value]="customer.addresses"/>
+          <button type="button" class="btn btn-info  small mt-1">+</button>
         
 
            
-          <input type="tel"  class="form-control" placeholder="Phone Number"/>
+          <input type="tel"  class="form-control" placeholder="Phone Number" [value]="customer.phoneNumbers"/>
           <button type="button" class="btn btn-info mt-1">+</button>
 
       
       
           
-          <input type="email" class="form-control"  placeholder="E-mail"/>
+          <input type="email" class="form-control"  placeholder="E-mail" [value]="customer.email"/>
         
       </div>
 
@@ -103,9 +103,9 @@
        
       </button>
    
-    </div>
+ 
    
-
+    </div>
     </form>
     
     
