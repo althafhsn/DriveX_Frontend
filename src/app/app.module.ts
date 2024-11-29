@@ -15,7 +15,6 @@ import { CardComponent } from './components/Customer/landing-page/card/card.comp
 import { TypeComponent } from './components/Customer/landing-page/type/type.component';
 import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
 import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
-import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
 import { CarDetailsComponent as LandingCarDetails } from './components/Customer/conform-rent/car-details/car-details.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -105,7 +104,6 @@ import { BookingCustomerDetailsComponent } from './components/dashboard/booking/
     TypeComponent,
     ScrollComponent,
     FooterComponent,
-    ConformRentComponent,
     LandingCarDetails,
     AllCarsComponent,
     DashboardComponent,

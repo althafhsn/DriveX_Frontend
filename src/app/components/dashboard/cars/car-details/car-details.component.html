@@ -1,4 +1,4 @@
-<div class="row m-0" *ngIf="car !== null">
+<div class="row m-0" *ngIf="carResponse?.car !== null">
 
   <div class="row">
     <!-- Left side: Image carousel -->
@@ -6,7 +6,7 @@
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner">
           <!-- Carousel items -->
-          <div *ngFor="let image of car?.images; let i = index" class="carousel-item"
+          <div *ngFor="let image of carResponse?.car?.images; let i = index" class="carousel-item"
             [class.active]="i === 0 || image.imagePath === selectedImage">
             <img [src]="image.imagePath" class="d-block w-100" alt="Car Image">
           </div>
@@ -14,7 +14,7 @@
 
         <!-- Thumbnails for image selection -->
         <div class="d-flex mb-3 mt-3">
-          <div *ngFor="let image of car?.images; let i = index" class="thumbnail-container">
+          <div *ngFor="let image of carResponse?.car?.images; let i = index" class="thumbnail-container">
             <img class="pointer object-fit-cover thumbnail-img" [src]="image.imagePath" alt="Car thumbnail" width="50"
               height="75" (click)="onImageClick(image)">
           </div>
@@ -25,29 +25,33 @@
     <!-- Right side: Car details (Brand, Model, Seat Count, Price, etc.) -->
     <div class="col-md-6 col-12">
       <div class="car-brand-model">
-        <h2>{{ car.brandName }} {{ car.modelName }}</h2>
-        <h4>{{ car.regNo }}</h4>
+        <h2>{{carResponse?.car?.brandName}} {{ carResponse?.car?.modelName }}</h2>
+        <h4>{{carResponse?.car?.regNo }}</h4>
         <br>
 
         <!-- Car details -->
         <div class="car-details row">
           <div class="col-4">
-            <p>Seat Count: <strong>{{ car.seatCount }}</strong></p>
+            <p>Seat Count: <strong>{{ carResponse?.car?.seatCount }}</strong></p>
           </div>
           <div class="col-4">
-            <p>Price Per Day: <strong>{{ car.pricePerDay | currency }}</strong></p>
+            <p>Price Per Day: <strong>{{ carResponse?.car?.pricePerDay | currency }}</strong></p>
           </div>
           <div class="col-4">
-            <p>Gear Type: <strong>{{ car.gearType }}</strong></p>
+            <p>Gear Type: <strong>{{ carResponse?.car?.gearType }}</strong></p>
           </div>
           <div class="col-4">
-            <p>Mileage: <strong>{{ car.mileage }} km</strong></p>
+            <p>Mileage: <strong>{{ carResponse?.car?.mileage }} km</strong></p>
           </div>
           <div class="col-4">
-            <p>Fuel Type: <strong>{{ car.fuelType }}</strong></p>
+            <p>Fuel Type: <strong>{{ carResponse?.car?.fuelType }}</strong></p>
           </div>
           <div class="col-4">
-            <p>Status: <strong>{{ car.status }}</strong></p>
+            <p>Year: <strong>{{ carResponse?.car?.year }}</strong></p>
+          </div>
+        </div>
+          <div class="col-4">
+            <p>Status: <strong>{{ carResponse?.car?.status }}</strong></p>
           </div>
         </div>
         <br>
@@ -70,17 +74,35 @@
     </div>
   </div>
 
-</div>
+
 
 <ng-template #noCar>
   <p>No car selected.</p>
 </ng-template>
 
 
-  <div *ngIf="customer">
-          <h3>Customer Details</h3>
-          <p>Name: {{ customer.firstName }} {{ customer.lastName }}</p>
-          <p>Phone: {{ customer.phoneNumbers }}</p>
-          <p>Email: {{ customer.email }}</p>
-        </div>
-
+<div class="border-top pt-4 mt-4">
+  <h4 class="fw-bold">Rented Cars</h4>
+  <div *ngIf="carResponse?.customers && carResponse?.customers!.length > 0; else noCustomer">
+    <div
+      *ngFor="let customer of carResponse?.customers"
+      class="card mb-3 shadow-sm rounded d-flex flex-row align-items-center"
+    >
+      <!-- <img
+        [src]="car.image || 'default-car.png'"
+        alt="Car Image"
+        class="rounded-start"
+        style="width: 100px; height: 80px; object-fit: cover;"
+      /> -->
+      <div class="p-3">
+        <h5 class="mb-1">{{ customer.firstName }} {{ customer.lastName }}</h5>
+        <p class="small text-muted mb-0">Reg No: {{ customer.email}}</p>
+        <!-- <p class="small text-muted mb-0">Rent Start: {{ car.rentStartDate }}</p>
+        <p class="small text-muted">Rent End: {{ car.rentEndDate }}</p> -->
+      </div>
+    </div>
+  </div>
+  <ng-template #noCustomer>
+    <p class="text-muted">No rented cars available for this customer.</p>
+  </ng-template>
+</div>

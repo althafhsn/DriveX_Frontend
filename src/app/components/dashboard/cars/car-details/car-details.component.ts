@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Car } from '../../../../models/car.model';
+import { Car, CarCustomerResponse } from '../../../../models/car.model';
 import { Customer } from '../../../../models/customer.model';
+import { ActivatedRoute } from '@angular/router';
+import { CarService } from '../../../../services/car.service';
 
 @Component({
   selector: 'app-car-details-dash',
@@ -8,19 +10,23 @@ import { Customer } from '../../../../models/customer.model';
   styleUrls: ['./car-details.component.css']
 })
 export class CarDetailsComponent {
-  @Input() car: Car | null = null;  // Input property for the selected car
+  @Input() carResponse: CarCustomerResponse | null = null;  // Input property for the selected car
   @Input() customer: Customer | null = null;  // Input property for the associated customer
  @Input() selectedImage: string | null = null;  // Property to track the selected image
 
-  constructor() {}
+
+  constructor(
+    private route : ActivatedRoute,
+    private carService : CarService,
+  ) {}
 
   ngOnInit(): void {
-    if (!this.car) {
+    if (!this.carResponse) {
       console.warn('No car details provided.');
     } else {
-      console.log('Selected car:', this.car);
+      console.log('Selected car:', this.carResponse);
       // Set the first image as the default selected image
-      this.selectedImage = this.car.images?.[0]?.imagePath || null;
+      this.selectedImage = this.carResponse.car.images[0].imagePath || null;
     }
 
     if (!this.customer) {

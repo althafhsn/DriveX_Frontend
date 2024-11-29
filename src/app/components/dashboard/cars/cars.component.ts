@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Car } from '../../../models/car.model';
+import { Car, CarCustomerResponse } from '../../../models/car.model';
 import { Customer } from '../../../models/customer.model';
 @Component({
   selector: 'app-cars',
@@ -8,40 +8,36 @@ import { Customer } from '../../../models/customer.model';
 })
 export class CarsComponent {
   cars: Car[] = [];
+  selectedCars !: CarCustomerResponse
 
   customers: Customer[] = [];
 
   filteredCars: Car[] = [];
-  selectedCar: Car | null = null; 
-  selectedCustomer: Customer | null = null; 
-  isAddCar: boolean = false; 
+  selectedCar: Car | null = null;
+  selectedCustomer: Customer | null = null;
+  isAddCar: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.filteredCars = [...this.cars];
     this.selectedCar = null; // Ensure no car is selected initially
   }
-  
+
 
   /**
    * Handle car selection from the list and bind associated customer
    */
-  onCarSelected(car: Car): void {
-    this.selectedCar = car;
-    console.log('Selected Car:', this.selectedCar);
-  
-    // Ensure selectedCustomer is updated when a car is selected
-    this.selectedCustomer = this.customers.find(c => c.id === car.customerId) || null;
-    console.log('Selected Customer:', this.selectedCustomer);
-    this.isAddCar = false;
+  onCarSelected(car: CarCustomerResponse): void {
+    this.selectedCars = car
+    this.isAddCar = false
   }
   /**
    * Show the Add Car form
    */
   showAddCar = false;
 
- 
+
 
   closeAddCar() {
     this.showAddCar = false; // Hide the AddCarComponent
@@ -51,7 +47,7 @@ export class CarsComponent {
     this.isAddCar = true; // Show the Add Customer form
     this.selectedCar = null; // Clear selected customer details
   }
-  
+
   addNewCar(car: Car) {
     // Logic for adding a new customer (e.g., push to customer list, make an API call)
     console.log('New customer added:', car);

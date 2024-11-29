@@ -7,12 +7,13 @@ export interface Car {
     regNo: string;
     pricePerDay: number;
     gearType: string;
+    year:number;
     fuelType: string;
     mileage: string;
     seatCount: string;
     images: Image[];  
     status: 'Available' | 'Unavailable';  
-    customerId?: string;  
+      
   }
   
   export interface Image {
@@ -35,6 +36,6 @@ export interface Car {
   }
    export interface CarCustomerResponse {
     car: Car;
-    customer?: Customer; 
+    customers?: Customer[] | null
     message: string;
   }

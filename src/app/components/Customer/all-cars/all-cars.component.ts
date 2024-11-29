@@ -155,7 +155,7 @@ import { Car } from '../../../models/car.model';
 import { CarService } from '../../../services/car.service';
 
 @Component({
-  selector: 'app-all-cars',
+  selector: 'app-all-cars-customer',
   templateUrl: './all-cars.component.html',
   styleUrls: ['./all-cars.component.css']
 })
