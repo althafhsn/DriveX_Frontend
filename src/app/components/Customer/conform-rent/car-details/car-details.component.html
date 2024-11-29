@@ -47,12 +47,12 @@
           <form #bookingForm="ngForm">
             <label for="pickupDate">Pickup Date:</label>
             <input type="date" class="form-control" id="pickupDate" name="pickupDate" [(ngModel)]="pickupDate"
-              (change)="validateDates()" />
+              (change)="validateDates()"    (input)="checkFields()" />
             <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
 
             <label for="returnDate" class="mt-2">Return Date:</label>
             <input type="date" class="form-control" id="returnDate" name="returnDate" [(ngModel)]="returnDate"
-              (change)="validateDates()" />
+              (change)="validateDates()"   (input)="checkFields()"  />
             <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
 
             <!-- <div class="d-flex justify-content-between mt-3">
@@ -65,7 +65,9 @@
               <strong>Duration:</strong> {{ dateDifference }} day(s)
             </p>
 
-            <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="pickupDateError || returnDateError" (click)="saveDates()">Book Now</button>
+            <button type="submit" 
+            class="btn btn-primary w-100 mt-4"
+             [disabled]="pickupDateError || returnDateError" (click)="saveDates()" [disabled]="isButtonDisabled" >Book Now</button>
           </form>
         </div>
       </div>
