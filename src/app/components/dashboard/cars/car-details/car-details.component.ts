@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Car } from '../../../../models/car.model';
+import { Car, CarCustomerResponse } from '../../../../models/car.model';
 import { Customer } from '../../../../models/customer.model';
+import { CarService } from '../../../../services/car.service';
 
 @Component({
   selector: 'app-car-details-dash',
@@ -11,8 +12,11 @@ export class CarDetailsComponent {
   @Input() car: Car | null = null;  // Input property for the selected car
   @Input() customer: Customer | null = null;  // Input property for the associated customer
  @Input() selectedImage: string | null = null;  // Property to track the selected image
-
-  constructor() {}
+@Input() carCustomerResponse!: CarCustomerResponse;
+@Input() selectedCar
+associatedCustomer: any = null;
+carId :string | null = null;
+  constructor(carService:CarService) {}
 
   ngOnInit(): void {
     if (!this.car) {

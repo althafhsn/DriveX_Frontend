@@ -20,7 +20,7 @@ export interface Car {
     imagePath: string;  
   }
   
-  export interface Customer {
+  export interface AssociatedCustomer {
     id: string;
     firstName: string;
     lastName: string;
@@ -35,6 +35,6 @@ export interface Car {
   }
    export interface CarCustomerResponse {
     car: Car;
-    customer?: Customer; 
+    customer?: AssociatedCustomer; 
     message: string;
   }
