@@ -76,6 +76,8 @@ export class CarDetailsComponent implements OnInit {
       return;
     }
 
+    
+
     if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
       localStorage.setItem('pickupDate', this.pickupDate);
       localStorage.setItem('returnDate', this.returnDate);
@@ -91,24 +93,6 @@ export class CarDetailsComponent implements OnInit {
     }
   }
 
-  // saveDates(): void {
-  //   if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
-  //     localStorage.setItem('pickupDate', this.pickupDate);
-  //     localStorage.setItem('returnDate', this.returnDate);
-  
-  //     // Store the last updated date
-  //     const now = new Date();
-  //     this.lastUpdatedDate = now.toLocaleString();
-  //     localStorage.setItem('lastUpdatedDate', this.lastUpdatedDate);
-  
-  //     this.toastrService.success('Dates have been saved successfully.', 'Success', {
-  //       timeOut: 3000,
-  //     });
-  //   } else {
-  //     this.toastrService.error('Please correct the errors before saving.', 'Error', {
-  //       timeOut: 3000,
-  //     });
-  //   }
-  // }
+ 
   
 }

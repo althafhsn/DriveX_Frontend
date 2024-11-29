@@ -65,7 +65,9 @@
               <strong>Duration:</strong> {{ dateDifference }} day(s)
             </p>
 
-            <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="pickupDateError || returnDateError" (click)="saveDates()" [disabled]="isButtonDisabled" >Book Now</button>
+            <button type="submit" 
+            class="btn btn-primary w-100 mt-4"
+             [disabled]="pickupDateError || returnDateError" (click)="saveDates()" [disabled]="isButtonDisabled" >Book Now</button>
           </form>
         </div>
       </div>
