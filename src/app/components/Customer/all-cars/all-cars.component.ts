@@ -10,6 +10,12 @@ export class AllCarsComponent implements OnInit {
   pickupDate: string | null = '';
   returnDate: string | null = '';
   dateDifference: number | null = null;
+  getBrandByLocalStorage = localStorage.getItem("selectedCarBrand")
+
+
+  // Validation error messages
+  pickupDateError: string | null = null;
+  returnDateError: string | null = null;
 
   // Properties for car cards and pagination
   cards: any[] = [];
@@ -26,7 +32,7 @@ export class AllCarsComponent implements OnInit {
        const Geartype = seatCount % 3  === 0 ? "Automatic" : "Manual";
         return {
             id: i + 1,
-            title: `BMW Series ${i + 1}`,
+            title: `BMW ${i + 1}`,
             image: `https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-${12 + (i % 3)}.jpg`,
             price: `$${50 + i}/Day`,
             description: `Description for BMW Series ${i + 1}.`,
@@ -38,8 +44,11 @@ export class AllCarsComponent implements OnInit {
     });
 }
 
+
+
+
 filterCriteria = {
-  brand: '',
+  brand: this.getBrandByLocalStorage,
   description: '',
   seatCount: '',
   fuel: '',
@@ -51,7 +60,42 @@ filterCriteria = {
   ngOnInit(): void {
     this.pickupDate = localStorage.getItem('pickupDate');
     this.returnDate = localStorage.getItem('returnDate');
+    this.validateDates();
   }
+
+  validateDates(): void {
+    this.pickupDateError = null;
+    this.returnDateError = null;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to midnight
+
+    const pickup = this.pickupDate ? new Date(this.pickupDate) : null;
+    const returnD = this.returnDate ? new Date(this.returnDate) : null;
+
+    // Validate Pickup Date
+    if (pickup) {
+      if (pickup < today) {
+        this.pickupDateError = 'Pickup date cannot be in the past.';
+      }
+    }
+
+    // Validate Return Date
+    if (returnD) {
+      if (pickup && returnD <= pickup) {
+        this.returnDateError = 'Return date must be after the pickup date.';
+      }
+    }
+
+    // Calculate date difference if both dates are valid
+    if (pickup && returnD && !this.pickupDateError && !this.returnDateError) {
+      const timeDiff = returnD.getTime() - pickup.getTime();
+      this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    } else {
+      this.dateDifference = null; // Reset if invalid
+    }
+  }
+
     // Calculate the difference in days if both dates are available
     calculateDateDifference(): void {
       if (this.pickupDate && this.returnDate) {

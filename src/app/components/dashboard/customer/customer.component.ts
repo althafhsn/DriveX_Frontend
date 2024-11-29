@@ -1,61 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../../models/customer.model';
+import { Customer,CustomerResponse } from '../../../models/customer.model';
+import { DashboardCustomerService } from '../../../services/dashboard-customer.service';
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrl: './customer.component.css'
+  styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  selectedCustomer: Customer | null = null; 
-  isAddCustomer: boolean = false; 
-  
-
-  constructor() {}
-  ngOnInit(): void {}
-  customers: Customer[] = [
-  
-  ];
-
-  filteredCustomers: Customer[] = [...this.customers];
-
-  filterCustomers(query: string): void {
-    if (!query) {
-      this.filteredCustomers = [...this.customers]; // Reset list if search is empty
-    } else {
-      const lowerCaseQuery = query.toLowerCase();
-      this.filteredCustomers = this.customers.filter(
-        (customer) =>
-          customer.firstName.toLowerCase().includes(lowerCaseQuery) ||
-          customer.id.toLowerCase().includes(lowerCaseQuery)
-      );
-    }
+  addNewCustomer(newCustomer: Customer): void {
+    this.customers.push(newCustomer); // Add the new customer to the list
+    this.isAddCustomer = false; // Switch back to the default view
   }
-  // Event triggered when a customer is selected from the list
-  onCustomerSelected(customer: Customer): void {
-    this.selectedCustomer = customer;
-    this.isAddCustomer = false;
-  }
-  // Method to toggle the form visibility to add a new customer
-  showAddCustomerForm(): void {
-    this.isAddCustomer = true; // Show the Add Customer form
-    this.selectedCustomer = null; // Clear selected customer details
+isAddCustomer: boolean = false; 
+onSearchQueryChange($event: string) {
+throw new Error('Method not implemented.');
+}
+  customers: Customer[] = [];
+  selectedCustomer: CustomerResponse | null = null;
+
+  constructor(private dashboardCustomerService: DashboardCustomerService) {}
+
+  ngOnInit(): void {
+    this.fetchCustomers();
   }
 
-
-  // Method to handle the new customer data (when added)
-  addNewCustomer(customer: Customer) {
-    // Logic for adding a new customer (e.g., push to customer list, make an API call)
-    console.log('New customer added:', customer);
-    this.isAddCustomer = false; // Hide the form after adding the customer
-    this.customers.push(customer);  // Add the new customer to the list
-
-  }
-  onSearchQueryChange(query: string): void {
-    this.filteredCustomers = this.customers.filter(customer =>
-      customer.firstName.toLowerCase().includes(query.toLowerCase()) ||
-      customer.id.toLowerCase().includes(query.toLowerCase())
+  fetchCustomers(): void {
+    this.dashboardCustomerService.DashboardAllCustomers().subscribe(
+      (data: Customer[]) => (this.customers = data),
+      (error) => console.error('Error fetching customers:', error)
     );
   }
-  
- 
+
+  handleCustomerSelection(customer: CustomerResponse): void {
+    console.log('Customer selected:', customer); 
+    this.selectedCustomer = customer;
+    this.isAddCustomer = false; 
+  }
+  toggleAddCustomer(): void {
+    this.isAddCustomer = true;
+    this.selectedCustomer = null; // Clear selected customer to avoid conflicts
+  }
 }

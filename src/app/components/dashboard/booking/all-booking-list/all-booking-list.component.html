@@ -1,0 +1,16 @@
+<div class="list-group">
+    <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let booking of bookings"
+    [class.active]="booking.id === selectedBookingId" (click)="selectBooking(booking)" role="button">
+        <!-- Booking Details -->
+        <div>
+            <div class="fw-bold">Start Date: {{ booking.requestDate | date: 'mediumDate' }}</div>
+            <div class="text-muted small">Duration: {{ booking.duration }} days</div>
+        </div>
+
+        <!-- Total Price -->
+        <div>
+            <span class="text-success fw-bold">Total: ${{ booking.totalPrice }}</span>
+        </div>
+
+    </div>
+</div>

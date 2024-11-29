@@ -11,10 +11,12 @@
           <h5 class="mb-0">All Customers</h5>
         </div>
         <div class="card-body p-3">
-          <app-all-customers-list  [customers]="filteredCustomers"
-          (customerSelected)="onCustomerSelected($event)" 
-          (addCustomer)="showAddCustomerForm()"></app-all-customers-list>
-        
+          <app-all-customers-list
+          [customers]="customers"
+          (customerSelected)="handleCustomerSelection($event)"
+          (addCustomer)="toggleAddCustomer()">
+        </app-all-customers-list>
+       
 
 
         </div>
@@ -26,12 +28,13 @@
       <div class="card h-100 shadow-sm">
         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Customer Details</h5>
-          <span class="badge bg-success" *ngIf="selectedCustomer?.status === 'Available'">Active</span>
+          <!-- <span class="badge bg-success" *ngIf="selectedCustomer?.status === 'Available'">Active</span> -->
         </div>
         <div class="card-body p-3">
           <!-- Conditionally display customer details or add customer form -->
           <div class="mb-3">
-            <app-customer-details *ngIf="!isAddCustomer && selectedCustomer" [customer]="selectedCustomer"></app-customer-details>
+            <!-- <app-customer-details *ngIf="!isAddCustomer && selectedCustomer" [customer]="selectedCustomer"></app-customer-details> -->
+             <app-customer-detail-with-car *ngIf="!isAddCustomer && selectedCustomer" [customerResponse]="selectedCustomer"></app-customer-detail-with-car>
             <app-add-customer *ngIf="isAddCustomer" (customerAdded)="addNewCustomer($event)"></app-add-customer>
             <p *ngIf="!selectedCustomer && !isAddCustomer" class="text-muted text-center">Please select a customer from the list.</p>
           </div>

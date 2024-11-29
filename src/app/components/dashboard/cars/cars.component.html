@@ -1,0 +1,68 @@
+<div class="container-fluid py-3">
+    <div class="row g-3">
+      <div class="col-md-12">
+        <app-nav-bar (searchChanged)="onSearchQueryChange($event)"></app-nav-bar>
+      </div>
+  
+      <!-- Left Panel - All Cars List -->
+      <div class="col-12 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">All Cars</h5>
+          </div>
+          <div class="card-body p-3">
+            <!-- <app-all-cars-list-dash [cars]="cars"></app-all-cars-list-dash> -->
+            <app-all-cars-list-dash [cars]="cars" (selectedCar)="onCarSelected($event)"
+            (showAddCar)="showAddCarForm()"></app-all-cars-list-dash>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Center Panel - Car Details or Add Car -->
+      <div class="col-12 col-md-9">
+        <div class="card h-100 shadow-sm">
+          <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Car Information</h5>
+            <span class="badge"  [ngClass]="{'bg-success': selectedCar?.status === 'Available', 'bg-danger': selectedCar?.status === 'Unavailable'}">
+              {{ selectedCar?.status }}
+            </span>
+          </div>
+          <div class="card-body p-3">
+            <!-- Conditionally display car details or add car form -->
+            <div class="mb-3">
+                <app-car-details-dash *ngIf="selectedCar" [car]="selectedCar" [customer]="selectedCustomer"></app-car-details-dash>
+                <app-add-car *ngIf="isAddCar" (carAdded)="addNewCar($event)"></app-add-car>
+                <p *ngIf="!selectedCar && !isAddCar" class="text-muted text-center">Please select a car from the list.</p>
+              
+            </div>
+  
+            <!-- Car Live Location and Trip History (Side by Side) -->
+            <div class="row g-3">
+              <!-- Car Live Location -->
+              <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Car Live Location</h5>
+                  </div>
+                  <div class="card-body p-3">
+                    <app-car-revenue-details *ngIf="selectedCar" [car]="selectedCar"></app-car-revenue-details>                  </div>
+                </div>
+              </div>
+  
+              <!-- Trip History -->
+              <div class="col-12 col-md-6">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Trip History</h5>
+                  </div>
+                  <div class="card-body p-3">
+                    <app-car-trip-history *ngIf="selectedCar" [car]="selectedCar"></app-car-trip-history>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

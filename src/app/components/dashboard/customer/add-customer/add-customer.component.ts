@@ -1,5 +1,6 @@
 import { Component,Output,EventEmitter } from '@angular/core';
 import { Customer } from '../../../../models/customer.model';
+import { DashboardCustomerService } from '../../../../services/dashboard-customer.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -7,43 +8,42 @@ import { Customer } from '../../../../models/customer.model';
   styleUrl: './add-customer.component.css'
 })
 export class AddCustomerComponent {
-  @Output() customerAdded: EventEmitter<Customer> = new EventEmitter();  // Output event to notify parent component
 
-  // Initialize the new customer object based on the model
-  newCustomer: Customer = {
-    id: '', // will be generated when adding
-    firstName: '',
-    lastName:'',
-    image: '',
-    phone: '',
-    email: '',
-    status: 'Available' // Default status
-  };
+  @Output() customerAdded = new EventEmitter<Customer>();
+ // Customer object bound to the form
+ newCustomer: Customer = {
+  id:'',
+   firstName: '',
+   lastName: '',
+   image: '',
+   nic: '',
+   licence: '',
+   email: '',
+   addresses: [
+     { houseNo: '', street1: '', street2: '', city: '', zipCode: 0, country: '' }
+   ],
+   phoneNumbers: [{ mobile1: '' }],
+   notes: '',
+   status: '',
+   password: '',
+ 
+  
+ };
 
-  constructor() { }
+constructor(private customerService: DashboardCustomerService) {}
 
-  // Method to handle adding the new customer
-  addCustomer() {
-    // Generate a unique ID for the customer (this can be handled differently, e.g., by backend service)
-    this.newCustomer.id = this.generateUniqueId();
-
-    // Emit the newly created customer to the parent component
-    this.customerAdded.emit(this.newCustomer);
-
-    // Reset the form
-    this.newCustomer = {
-      id: '', // will be generated when adding
-      firstName: '',
-      lastName:'',
-      image: '',
-      phone: '',
-      email: '',
-      status: 'Available' // Default status
-    };
-  }
-
-  // Simple method to generate a unique ID for the customer (this can be improved for production)
-  private generateUniqueId(): string {
-    return 'cust-' + Math.random().toString(36).substr(2, 9);  // Random ID generation (for example purpose)
-  }
+// Method to handle form submission
+onAddCustomer() {
+  this.customerService.addCustomer(this.newCustomer).subscribe({
+    next: (response) => {
+      alert('Customer added successfully!');
+      console.log(response);
+    },
+    error: (err) => {
+      alert('Failed to add customer!');
+      console.error(err);
+    }
+  });
+}
+ 
 }

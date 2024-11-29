@@ -16,7 +16,7 @@ import { TypeComponent } from './components/Customer/landing-page/type/type.comp
 import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
 import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
 import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
-import { CarDetailsComponent } from './components/Customer/conform-rent/car-details/car-details.component';
+import { CarDetailsComponent as LandingCarDetails } from './components/Customer/conform-rent/car-details/car-details.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
@@ -60,6 +60,21 @@ import { RevenueComponent } from './components/dashboard/revenue/revenue.compone
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
+import { CustomerDetailWithCarComponent } from './components/dashboard/customer/customer-detail-with-car/customer-detail-with-car.component';
+import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
+import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
+import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
+import { CarsComponent } from './components/dashboard/cars/cars.component';
+import { AllCarsListComponent  } from './components/dashboard/cars/all-cars-list/all-cars-list.component';
+import { CarRevenueDetailsComponent } from './components/dashboard/cars/car-revenue-details/car-revenue-details.component';
+import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-history/car-trip-history.component';
+import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
+import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
+import { ResetComponent } from './components/reset/reset.component';
+import { AllBookingListComponent } from './components/dashboard/booking/all-booking-list/all-booking-list.component';
+import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
+import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
+import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
 
 
 
@@ -91,7 +106,7 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     ScrollComponent,
     FooterComponent,
     ConformRentComponent,
-    CarDetailsComponent,
+    LandingCarDetails,
     AllCarsComponent,
     DashboardComponent,
     ContactComponent,
@@ -105,7 +120,6 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     PasswordUpdateComponent,
     UpdateCustomerComponent,
     UpdateCarComponent,
-
     ProfileComponent,
     SettingComponent,
     HistoryComponent,
@@ -118,9 +132,21 @@ import { AddCustomerComponent } from './components/dashboard/customer/add-custom
     GraphComponent,
     StatisticsComponent,
     AddCustomerComponent,
-
-
-
+    CustomerDetailWithCarComponent,
+    ProfileSetComponent,
+    PasswordChangeComponent,
+    ViewPaymentComponent,
+    CarsComponent,
+    AllCarsListComponent,
+    CarRevenueDetailsComponent,
+    CarTripHistoryComponent,
+    Dashcardetails,
+    AddCarComponent,
+    ResetComponent,
+    AllBookingListComponent,
+    BookingDetailsComponent,
+    BookingCarDetailsComponent,
+    BookingCustomerDetailsComponent,
 
   ],
   imports: [

@@ -1,0 +1,16 @@
+.revenue-details-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .revenue-details-container h3 {
+    margin-bottom: 15px;
+  }
+  
+  .revenue-stats p {
+    margin: 8px 0;
+    font-size: 16px;
+  }
+  
