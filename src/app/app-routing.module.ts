@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
 import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
-import { authGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
@@ -18,6 +16,12 @@ import { ProfileFormComponent } from './components/dashboard/settings/profile-fo
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
+import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
+import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { CarsComponent } from './components/dashboard/cars/cars.component';
+import { ResetComponent } from './components/reset/reset.component';
+
 
 
 const routes: Routes = [
@@ -30,8 +34,12 @@ const routes: Routes = [
   {path:'Explorecar',component:AllCarsComponent},
   {path:'Contact',component:ContactComponent},
   {path:'About',component:AboutComponent},
-
+  {path : 'reset',component:ResetComponent},
   {path:'Profile',component:ProfileComponent},
+  {path:'Profile-setting',component:ProfileSetComponent},
+  {path:'Profile-Nav',component:ProfileNavbarComponent},
+  {path:'History',component:HistoryComponent},
+  
 
   { path : 'dashboard', component:DashboardComponent, 
     children : [
@@ -39,6 +47,9 @@ const routes: Routes = [
       {path: 'main',component:AdminLandingComponent},
       { path: 'customers', component: CustomerComponent },
       { path: 'bookings', component: BookingComponent },
+      {path: 'settings', component: SettingsComponent},
+
+      {path:'cars', component:CarsComponent},
       {path: 'settings', component: SettingsComponent,
         children: [
           { path: 'profile-settings', component: ProfileFormComponent },

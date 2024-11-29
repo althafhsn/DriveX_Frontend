@@ -1,13 +1,15 @@
-.outer{
+.outer {
     height: 100vh;
- 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 #forget{
     min-width: 100px;
     margin-left: auto;
     text-decoration: none;
     cursor: pointer;
+    color: #007bff;
 }
 a:hover{
 text-decoration: none;
@@ -22,7 +24,12 @@ text-decoration: none;
 .btn{
     margin-top: 20px;
     border-radius: 15px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease-in-out;
 
+}
+.btn:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
 }
 
 .panel{
@@ -30,6 +37,7 @@ text-decoration: none;
     box-shadow: 20px 20px 80px rgb(218,218,218);
     border-radius: 12px;
     margin-top:100px;
+    background-color: #fff;
 }
 
 
@@ -41,6 +49,7 @@ text-decoration: none;
     cursor: pointer;
     border:1px solid #ddd;
     color: #4343ff;
+    transition: border 0.3s ease-in-out;
 
 }
 
@@ -55,6 +64,8 @@ input[type='password']{
     outline: none;
     box-shadow: none;
     width: 100%;
+    width: 100%;
+    padding: 8px; 
 
 }
 
@@ -85,6 +96,53 @@ position: relative;
     left:33%;
     background-color: #fff;
     padding:0 10px;
+}
+.fa {
+    color: black;
+}
+
+/* Modal content styling */
+.modal-content {
+    background-color: #333; /* Dark grey or black background */
+    color: white; /* Ensure text is visible against the dark background */
+}
+
+/* Modal dialog styling */
+.modal-dialog {
+    max-width: 400px; /* Increased width for better modal appearance */
+    margin: 30px auto;
+}
+
+/* Modal header styling */
+.modal-header {
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Modal body styling */
+.modal-body {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px; /* Increased font size for readability */
+}
+
+/* Modal footer styling */
+.modal-footer {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Social media icons container */
+.social-icons a {
+    color: #495057;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: #1a1b1b;
 }
 
 

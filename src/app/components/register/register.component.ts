@@ -50,8 +50,6 @@ export class RegisterComponent implements OnInit {
 
   onSignUp() {
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-      // Send the obj to the database
       const { firstName, lastName, nicOrPassport, email, role, password } = this.signUpForm.value;
       const signUpData = {
         firstName,

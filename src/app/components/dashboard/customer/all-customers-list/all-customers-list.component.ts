@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
+
 import {DashboardCustomerService } from '../../../../services/dashboard-customer.service';
 import { Customer, CustomerResponse} from '../../../../models/customer.model';
 
@@ -7,13 +8,14 @@ import { Customer, CustomerResponse} from '../../../../models/customer.model';
 @Component({
   selector: 'app-all-customers-list',
   templateUrl: './all-customers-list.component.html',
-  styleUrls: ['./all-customers-list.component.css']
+  styleUrls: ['./all-customers-list.component.css'],
 })
 export class AllCustomersListComponent implements OnInit {
   @Input() customers: Customer[] = [];
   @Output() addCustomer = new EventEmitter<void>(); // Output property for add action
   @Output() customerSelected = new EventEmitter<CustomerResponse>(); 
   errorMessage: string | null = null;
+
   selectedCustomer: CustomerResponse | null = null;
   rentedCars: any[] = []; // To store rented car details
   constructor(
@@ -21,25 +23,22 @@ export class AllCustomersListComponent implements OnInit {
     private dashBoardListCustomer: DashboardCustomerService
   ) { }
 
+
   ngOnInit(): void {
     this.fetchAllCustomers();
   }
 
   fetchAllCustomers(): void {
-    this.dashBoardListCustomer.DashboardAllCustomers()
-      .subscribe(
-        (data: Customer[]) => {
-          this.customers = data;
-
-        },
-        (error) => {
-          console.error('Error fetching customers:', error);
-          this.errorMessage = 'Failed to load customer data.';
-        }
-
-      )
+    this.dashBoardListCustomer.DashboardAllCustomers().subscribe(
+      (data: Customer[]) => {
+        this.customers = data;
+      },
+      (error) => {
+        console.error('Error fetching customers:', error);
+        this.errorMessage = 'Failed to load customer data.';
+      }
+    );
   }
-  
 
 
   onCustomerClick(customer: Customer): void {
@@ -72,3 +71,5 @@ onAddCustomerClick(): void {
   this.addCustomer.emit(); // Notify the parent component to display Add Customer form
 }
 }
+
+
