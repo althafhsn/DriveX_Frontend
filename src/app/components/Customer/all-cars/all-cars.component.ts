@@ -1,4 +1,158 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { Car } from '../../../models/car.model'; // Ensure Car model is correctly imported
+// import { CarService } from '../../../services/car.service'; // Ensure CarService is correctly imported
+
+// @Component({
+//   selector: 'app-all-cars',
+//   templateUrl: './all-cars.component.html',
+//   styleUrls: ['./all-cars.component.css']
+// })
+
+// export class AllCarsComponent implements OnInit {
+//   @Input() cars: Car[] = []; // Cars fetched from the API
+//   @Output() selectedCar = new EventEmitter<Car>();// Properties for selected dates
+//   pickupDate: string | null = localStorage.getItem('pickupDate') || '';
+//   returnDate: string | null = localStorage.getItem('returnDate') || '';
+//   dateDifference: number | null = null;
+//   selectedCarID!: string
+//   // Validation error messages
+//   pickupDateError: string | null = null;
+//   returnDateError: string | null = null;
+//   errorMessage: string | null = null;
+
+//   // Pagination properties
+//   currentPage: number = 1;
+//   itemsPerPage: number = 6;
+
+//   constructor(private carService: CarService) { }
+
+
+//   ngOnInit(): void {
+//     this.validateDates(); // Validate dates on initialization
+//     this.calculateDateDifference(); // Calculate date difference
+//     this.fetchCars(); // Fetch cars from the API
+//  
+//   /**
+//    * Fetch all cars from the API
+//    */
+//   fetchCars(): void {
+//     this.carService.getCars().subscribe(
+//       (data: Car[]) => {
+//         console.log('Fetched cars:', data);
+//         this.cars = data;
+//       },
+//       (error) => {
+//         console.error('Error fetching car data:', error);
+//         this.errorMessage = 'Failed to load car data. Please try again later.';
+//       }
+//     );
+//   }
+
+//   selectCar(card: Car): void {
+//     this.selectedCar.emit(card);
+//     this.selectedCarID = card.id;
+//   }
+//   validateDates(): void {
+//     this.pickupDateError = null;
+//     this.returnDateError = null;
+
+//     const today = new Date();
+//     today.setHours(0, 0, 0, 0); // Normalize to midnight
+
+//     const pickup = this.pickupDate ? new Date(this.pickupDate) : null;
+//     const returnD = this.returnDate ? new Date(this.returnDate) : null;
+
+//     if (pickup) {
+//       if (pickup < today) {
+//         this.pickupDateError = 'Pickup date cannot be in the past.';
+//       }
+//     }
+
+//     if (returnD) {
+//       if (pickup && returnD <= pickup) {
+//         this.returnDateError = 'Return date must be after the pickup date.';
+//       }
+//     }
+
+//     if (pickup && returnD && !this.pickupDateError && !this.returnDateError) {
+//       const timeDiff = returnD.getTime() - pickup.getTime();
+//       this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Difference in days
+//     } else {
+//       this.dateDifference = null; // Reset if invalid
+//     }
+//   }
+
+//   /**
+//    * Calculate the difference in days between pickup and return dates
+//    */
+//   calculateDateDifference(): void {
+//     if (this.pickupDate && this.returnDate) {
+//       const pickup = new Date(this.pickupDate);
+//       const returnD = new Date(this.returnDate);
+
+//       if (returnD > pickup) {
+//         const timeDiff = returnD.getTime() - pickup.getTime();
+//         this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Difference in days
+//       } else {
+//         this.dateDifference = null;
+//         alert('Return date must be after the pickup date.');
+//       }
+//     }
+//   }
+
+//   /**
+//    * Update dates and save to localStorage
+//    */
+//   updateDates(): void {
+//     if (this.pickupDate && this.returnDate) {
+//       localStorage.setItem('pickupDate', this.pickupDate);
+//       localStorage.setItem('returnDate', this.returnDate);
+//       this.calculateDateDifference();
+//       alert('Dates have been updated in localStorage.');
+//     } else {
+//       alert('Please select valid dates.');
+//     }
+//   }
+
+//   /**
+//    * Paginated cards for display
+//    */
+//   get paginatedCars(): Car[] {
+//     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+//     return this.cars.slice(startIndex, startIndex + this.itemsPerPage);
+//   }
+
+//   /**
+//    * Total pages for pagination
+//    */
+//   totalPages(): number {
+//     return Math.ceil(this.cars.length / this.itemsPerPage);
+//   }
+
+//   /**
+//    * Navigate to the next page
+//    */
+//   nextPage(): void {
+//     if (this.currentPage < this.totalPages()) {
+//       this.currentPage++;
+//     }
+//   }
+
+//   /**
+//    * Navigate to the previous page
+//    */
+//   prevPage(): void {
+//     if (this.currentPage > 1) {
+//       this.currentPage--;
+//     }
+//   }
+// }
+
+
+ 
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Car } from '../../../models/car.model';
+import { CarService } from '../../../services/car.service';
 
 @Component({
   selector: 'app-all-cars',
@@ -6,61 +160,60 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-cars.component.css']
 })
 export class AllCarsComponent implements OnInit {
-  // Properties for selected dates
-  pickupDate: string | null = '';
-  returnDate: string | null = '';
+  @Input() cars: Car[] = [];
+  @Output() selectedCar = new EventEmitter<Car>();
+  
+  pickupDate: string | null = localStorage.getItem('pickupDate') || '';
+  returnDate: string | null = localStorage.getItem('returnDate') || '';
+  getBrandByLocalStorage = localStorage.getItem("selectedCarBrand");
   dateDifference: number | null = null;
-  getBrandByLocalStorage = localStorage.getItem("selectedCarBrand")
-
-
-  // Validation error messages
+  selectedCarID!: string;
   pickupDateError: string | null = null;
   returnDateError: string | null = null;
-
-  // Properties for car cards and pagination
-  cards: any[] = [];
+  errorMessage: string | null = null;
+  
+  // Pagination
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
+  // Filter properties
+  selectedFilters: any = {
+    brand:this.getBrandByLocalStorage,
+    model: '',
+    seatCount: '',
+    fuelType: '',
+    gearType: ''
+  };
 
-
-  constructor() {
-    // Generate dummy card data
-    this.cards = Array.from({ length: 30 }, (_, i) => {
-        const seatCount = 4 + i; // Calculate seatCount
-        const Fuel = seatCount % 2 === 0 ? "Automatic" : "Manual"; // Determine fuel type based on seatCount
-       const Geartype = seatCount % 3  === 0 ? "Automatic" : "Manual";
-        return {
-            id: i + 1,
-            title: `BMW ${i + 1}`,
-            image: `https://july.finestwp.com/newwp/carola/wp-content/uploads/2024/10/featured-car-${12 + (i % 3)}.jpg`,
-            price: `$${50 + i}/Day`,
-            description: `Description for BMW Series ${i + 1}.`,
-            seatCount: seatCount,
-            doors: 4,
-            fuel: Fuel ,// Assign the fuel type
-            Gear:Geartype
-        };
-    });
-}
-
-
-
-
-filterCriteria = {
-  brand: this.getBrandByLocalStorage,
-  description: '',
-  seatCount: '',
-  fuel: '',
-  gear: ''
-};
-
-
-  // Lifecycle hook to retrieve selected dates
+  constructor(private carService: CarService) { }
+ 
   ngOnInit(): void {
-    this.pickupDate = localStorage.getItem('pickupDate');
-    this.returnDate = localStorage.getItem('returnDate');
     this.validateDates();
+    this.calculateDateDifference();
+    this.fetchCars();
+  }
+
+  fetchCars(): void {
+    this.carService.getCars().subscribe(
+      (data: Car[]) => {
+        this.cars = data;
+      },
+      (error) => {
+        console.error('Error fetching car data:', error);
+        this.errorMessage = 'Failed to load car data. Please try again later.';
+      }
+    );
+  }
+
+
+
+
+
+
+
+  selectCar(card: Car): void {
+    this.selectedCar.emit(card);
+    this.selectedCarID = card.id;
   }
 
   validateDates(): void {
@@ -68,86 +221,76 @@ filterCriteria = {
     this.returnDateError = null;
 
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize to midnight
+    today.setHours(0, 0, 0, 0);
 
     const pickup = this.pickupDate ? new Date(this.pickupDate) : null;
     const returnD = this.returnDate ? new Date(this.returnDate) : null;
 
-    // Validate Pickup Date
-    if (pickup) {
-      if (pickup < today) {
-        this.pickupDateError = 'Pickup date cannot be in the past.';
-      }
+    if (pickup && pickup < today) {
+      this.pickupDateError = 'Pickup date cannot be in the past.';
     }
 
-    // Validate Return Date
-    if (returnD) {
-      if (pickup && returnD <= pickup) {
-        this.returnDateError = 'Return date must be after the pickup date.';
-      }
+    if (returnD && pickup && returnD <= pickup) {
+      this.returnDateError = 'Return date must be after the pickup date.';
     }
 
-    // Calculate date difference if both dates are valid
     if (pickup && returnD && !this.pickupDateError && !this.returnDateError) {
       const timeDiff = returnD.getTime() - pickup.getTime();
       this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
     } else {
-      this.dateDifference = null; // Reset if invalid
+      this.dateDifference = null;
     }
   }
 
-    // Calculate the difference in days if both dates are available
-    calculateDateDifference(): void {
-      if (this.pickupDate && this.returnDate) {
-        const pickup = new Date(this.pickupDate);
-        const returnD = new Date(this.returnDate);
-        
-        // Ensure that the return date is after the pickup date
-        if (returnD > pickup) {
-          const timeDiff = returnD.getTime() - pickup.getTime();
-          this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24)); // Difference in days
-        } else {
-          this.dateDifference = null; // Reset if invalid range
-          alert('Return date must be after the pickup date.');
-        }}}
+  calculateDateDifference(): void {
+    if (this.pickupDate && this.returnDate) {
+      const pickup = new Date(this.pickupDate);
+      const returnD = new Date(this.returnDate);
 
-        updateDates(): void {
-          if (this.pickupDate && this.returnDate) {
-            // Save updated dates to localStorage
-            localStorage.setItem('pickupDate', this.pickupDate);
-            localStorage.setItem('returnDate', this.returnDate);
-      
-            // Recalculate date difference after update
-            this.calculateDateDifference();
-      
-            alert('Dates have been updated in localStorage.');
-          } else {
-            alert('Please select valid dates.');
-          }}
+      if (returnD > pickup) {
+        const timeDiff = returnD.getTime() - pickup.getTime();
+        this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      } else {
+        this.dateDifference = null;
+        alert('Return date must be after the pickup date.');
+      }
+    }
+  }
 
-  
-  // Get paginated cards
-  get paginatedCards(): any[] {
+  updateDates(): void {
+    if (this.pickupDate && this.returnDate) {
+      localStorage.setItem('pickupDate', this.pickupDate);
+      localStorage.setItem('returnDate', this.returnDate);
+      this.calculateDateDifference();
+      alert('Dates have been updated in localStorage.');
+    } else {
+      alert('Please select valid dates.');
+    }
+  }
+
+  get paginatedCars(): Car[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.cards.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.cars.slice(startIndex, startIndex + this.itemsPerPage);
   }
 
-  // Calculate total pages
   totalPages(): number {
-    return Math.ceil(this.cards.length / this.itemsPerPage);
+    return Math.ceil(this.cars.length / this.itemsPerPage);
   }
 
-  // Navigate to the next page
   nextPage(): void {
     if (this.currentPage < this.totalPages()) {
       this.currentPage++;
     }
   }
 
-  // Navigate to the previous page
   prevPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
+  }
+
+  // Filter change handlers
+  onFilterChange(): void {
+    this.currentPage = 1; // Reset to first page when filters change
   }
 }

@@ -1,19 +1,17 @@
-
-<nav class="navbar navbar-expand-lg mt-0">
+<nav class="navbar navbar-expand-lg fixed-top mt-0  mb-5">
   <div class="container">
     <!-- Logo and Brand Name -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="logo5.png" alt="Logo" width="300px" height="60px">
-    </a>
+    <img src="logo5.png" alt="Logo" width="200px" height="60px">
 
     <!-- Toggle button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" 
+    <button class="navbar-toggler bg-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
       aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Offcanvas Menu -->
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end text-bg-dark   flex-column justify-content-center  d-flex align-items-center"
+      tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -21,16 +19,17 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page" href="#" >Home</a>
+            <a class="nav-link active text-white" routerLink="/" 
+            routerLinkActive="text-warning"  aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/Explorecar" role="button" aria-expanded="false">Explore Car</a>
+            <a class="nav-link text-white" routerLink="./explorecar" routerLinkActive="text-warning"  role="button" aria-expanded="false">Explore Car</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">About Us</a>
+            <a class="nav-link text-white" routerLinkActive="text-warning"  routerLink="./about">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">Contact Us</a>
+            <a class="nav-link text-white" routerLinkActive="text-warning"  routerLink="./contact">Contact Us</a>
           </li>
           <ng-container *ngIf="role === 'Admin'">
             <li class="nav-item">
@@ -39,23 +38,25 @@
           </ng-container>
         </ul>
         <!-- Login button inside the offcanvas -->
-        <div class="d-flex mt-3">
-          <a routerLink="/login" class="btn btn-outline-warning w-100">
-            Login
-          </a>
-        </div>
+
       </div>
+
     </div>
+    
+    <div class="d-flex mt-3 me-4" *ngIf="!token || !role">
+      <!-- Show the Login button if the token or role is not present -->
+      <a routerLink="/login" class="btn btn-outline-warning w-100">
+        Login
+      </a>
+    </div>
+    
+    <div class="d-flex me-5" *ngIf="token && role">
+      <!-- Show the profile image only if both token and role are present -->
+      <a routerLink="./profile">
+        <img src="IMAGE/person.jpg" class="rounded-circle" alt="Profile Picture" width="40" height="40">
+      </a>
+    </div>
+    
   </div>
+
 </nav>
-
-  <div class="d-flex me-5">
-
-    <a routerLink="/Profile">
-            <img src="IMAGE/person.jpg" class="rounded-circle" alt="Cinque Terre" width="60" height="60">
-
-    </a>
-  </div>
-
-
-

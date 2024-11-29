@@ -1,0 +1,10 @@
+<div>
+  <!-- Show the car list when showCarList is true -->
+  <app-all-cars *ngIf="showCarList" [cars]="cars" (selectedCar)="onCarSelected($event)"></app-all-cars>
+  
+  <!-- Show the selected car's details when showCarList is false -->
+  <app-car-details *ngIf="!showCarList" [card]="selectedCar"></app-car-details>
+
+  <!-- Optionally, add a back button to return to the car list -->
+  <button *ngIf="!showCarList" (click)="backToCarList()" class="btn btn-secondary">Back to Car List</button>
+</div>

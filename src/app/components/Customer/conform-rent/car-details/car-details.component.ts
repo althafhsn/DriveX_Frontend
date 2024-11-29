@@ -1,17 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Car } from '../../../../models/car.model';
+import { CarService } from '../../../../services/car.service';
+// import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-car-details',
   templateUrl: './car-details.component.html',
-  styleUrls: ['./car-details.component.css']
+  styleUrls: ['./car-details.component.css'],
 })
 export class CarDetailsComponent implements OnInit {
+  @Input() cars: Car[] = [];
+  @Input() card!: Car; // Ensure card is initialized properly
   pickupDate: string | null = '';
   returnDate: string | null = '';
   dateDifference: number | null = null;
   lastUpdatedDate: string | null = '';
   pickupDateError: string | null = null;
   returnDateError: string | null = null;
+
+  constructor(private carService: CarService , toastrService: CarService) {}
 
   ngOnInit(): void {
     // Load dates from localStorage
@@ -26,11 +33,9 @@ export class CarDetailsComponent implements OnInit {
     this.pickupDateError = null;
     this.returnDateError = null;
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Normalize to midnight
-
-    const pickup = this.pickupDate ? new Date(this.pickupDate) : null;
-    const returnD = this.returnDate ? new Date(this.returnDate) : null;
+    const today = new Date().setHours(0, 0, 0, 0); // Today's date at midnight
+    const pickup = this.pickupDate ? new Date(this.pickupDate).setHours(0, 0, 0, 0) : null;
+    const returnD = this.returnDate ? new Date(this.returnDate).setHours(0, 0, 0, 0) : null;
 
     // Validate Pickup Date
     if (pickup && pickup < today) {
@@ -48,7 +53,7 @@ export class CarDetailsComponent implements OnInit {
 
     // Calculate date difference if valid
     if (pickup && returnD && !this.pickupDateError && !this.returnDateError) {
-      const timeDiff = returnD.getTime() - pickup.getTime();
+      const timeDiff = returnD - pickup;
       this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
     } else {
       this.dateDifference = null;
@@ -70,4 +75,25 @@ export class CarDetailsComponent implements OnInit {
       alert('Please correct the errors before saving.');
     }
   }
+
+  // saveDates(): void {
+  //   if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
+  //     localStorage.setItem('pickupDate', this.pickupDate);
+  //     localStorage.setItem('returnDate', this.returnDate);
+  
+  //     // Store the last updated date
+  //     const now = new Date();
+  //     this.lastUpdatedDate = now.toLocaleString();
+  //     localStorage.setItem('lastUpdatedDate', this.lastUpdatedDate);
+  
+  //     this.toastrService.success('Dates have been saved successfully.', 'Success', {
+  //       timeOut: 3000,
+  //     });
+  //   } else {
+  //     this.toastrService.error('Please correct the errors before saving.', 'Error', {
+  //       timeOut: 3000,
+  //     });
+  //   }
+  // }
+  
 }

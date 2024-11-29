@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrl: './view-payment.component.css'
 })
 export class ViewPaymentComponent {
+  contactdata = {
+    address:'',
+    address2:'',
+    phoneNumber1: '',
+    phoneNumber2: '',
+    Email: '',
+  };
 
+  onSubmit() {
+   
+  }
 }

@@ -21,6 +21,43 @@
           <div class="fw-bold">{{ car.brandName }} {{car.modelName}}</div>
           <div class="text-muted small">{{ car.regNo }}</div>
         </div>
+        <div class="card-body p-3">
+          <!-- Cars List -->
+          <div class="list-group">
+            <div
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let car of cars" [class.active]="car.id === selectedCarId" (click)="selectCar(car)"role="button">
+              <!-- Car Image -->
+              <img
+              *ngIf="car.images && car.images.length > 0"
+              [src]="car.images[0].imagePath"  
+              alt="Car Image"
+              class="rounded-circle"
+              style="width: 45px; height: 45px; object-fit: cover;"/>
+            
+            
+              
+                <div class="ms-3">
+                  <div class="fw-bold">{{ car.brandName }} {{car.modelName}}</div>
+                  <div class="text-muted small">{{ car.regNo }}</div>
+                </div>
+              
+                <!-- <strong>{{ car.brandName }}{{car.modelName}}</strong> -->
+                <div>
+                <!-- <strong>{{ car.regNo }}</strong> -->
+                  <span
+                    class="badge"
+                    [ngClass]="{
+                      'bg-success': car.status === 'Available',
+                      'bg-danger': car.status === 'Unavailable'
+                    }">
+                    {{ car.status }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
       
         <!-- <strong>{{ car.brandName }}{{car.modelName}}</strong> -->
         <div>
@@ -33,6 +70,7 @@
             }">
             {{ car.status }}
           </span>
+
         </div>
       </div>
     </div>
