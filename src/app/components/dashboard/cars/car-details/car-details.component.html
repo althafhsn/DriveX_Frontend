@@ -33,7 +33,7 @@
           <div class="col-4">
             <label>Seat Count:</label>
             <span *ngIf="!isEditable">{{ carResponse.car.seatCount }}</span>
-            <input *ngIf="isEditable" type="number" [(ngModel)]="carResponse.car.seatCount" class="form-control">
+            <input *ngIf="isEditable" type="text" [(ngModel)]="carResponse.car.seatCount" class="form-control">
           </div>
           <div class="col-4">
             <label>Price Per Day:</label>

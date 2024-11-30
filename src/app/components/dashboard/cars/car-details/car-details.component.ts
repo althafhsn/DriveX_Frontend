@@ -36,6 +36,13 @@ carId!:string;
     } else {
       console.log('Associated customer:', this.customer);
     }
+
+    if (this.carResponse) {
+      this.carId = this.carResponse.car.id; // Assuming `carResponse` contains `car.id`
+      console.log('Car ID:', this.carId); 
+    } else {
+      console.warn('No car details provided.');
+    }
   }
 
   // Method to handle image click
@@ -63,6 +70,8 @@ carId!:string;
         }
       );
     }
+
+   
   }
 
   deleteCar(): void {
@@ -74,7 +83,7 @@ carId!:string;
           // You may want to remove the car from a list in the UI or update your local state
         },
         (error) => {
-          alert('The car is associated in rental request table!');
+          alert('Failed to delete car!');
         }
       );
     }

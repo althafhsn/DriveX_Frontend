@@ -45,3 +45,20 @@ export interface CarCustomerResponse {
   customer?: Customer[] | null; // Changed to match your JSON response
   message: string;
 }
+
+export interface UpdateCar{
+  id: string;
+  brandId: string;
+  brandName: string;
+  modelId: string;
+  modelName: string;
+  regNo: string;
+  pricePerDay: number;
+  gearType: string;
+  year: number;
+  fuelType: string;
+  mileage: string;
+  seatCount: string;
+  images: Image[];
+  status: 'Available' | 'Unavailable';
+}
