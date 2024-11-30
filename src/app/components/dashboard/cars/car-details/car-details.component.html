@@ -91,30 +91,19 @@
   </div>
 </div>
 
+<ng-template #noCar>
+  <p>No car selected.</p>
+</ng-template>
 
+<<<<<<< HEAD
 
-<!-- <div class="border-top pt-4 mt-4">
-  <h4 class="fw-bold">Rented Cars</h4>
-  <div *ngIf="carResponse?.customer && carResponse?.customer!.length > 0; else noCustomer">
-    <div *ngFor="let cus of carResponse.customer" class="card mb-3 shadow-sm rounded d-flex flex-row align-items-center">
-      <div class="p-3">
-        <h5 class="mb-1">{{ cus.firstName }} {{ cus.lastName }}</h5>
-        <p class="small text-muted mb-0">Email: {{ cus.email }}</p>
-        <p class="small text-muted mb-0">Phone Numbers:</p>
-        <ul class="small text-muted mb-0">
-          <li *ngFor="let phone of cus.phoneNumbers">
-            {{ phone.mobile1 }}
-          </li>
-        </ul>
-        <p class="small text-muted mb-0">Start Date: {{ carResponse.car.startDate| date: 'yyyy-MM-dd' }}</p>
-        <p class="small text-muted mb-0">End Date: {{ carResponse.car.endDate | date: 'yyyy-MM-dd' }}</p>
-        <p class="small text-muted mb-0">Duration: {{ carResponse.car.duration }} days</p>
-        <p class="small text-muted mb-0">Rental Status: {{ carResponse.car.rentalRequestStatus }}</p>
-      </div>
-    </div>
-  </div>
-  <ng-template #noCustomer>
-    <p class="text-muted">No rented cars available for this customer.</p>
-  </ng-template>
-</div> -->
+=======
+>>>>>>> e605655987a1e109406898323305d7b7c5ce04b1
+
+  <div *ngIf="customer">
+          <h3>Customer Details</h3>
+          <p>Name: {{ customer.firstName }} {{ customer.lastName }}</p>
+          <p>Phone: {{ customer.phoneNumbers }}</p>
+          <p>Email: {{ customer.email }}</p>
+        </div>
 
