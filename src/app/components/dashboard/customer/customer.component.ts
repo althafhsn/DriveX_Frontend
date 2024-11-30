@@ -17,7 +17,7 @@ onSearchQueryChange($event: string) {
 throw new Error('Method not implemented.');
 }
   customers: Customer[] = [];
-  selectedCustomer: CustomerResponse | null = null;
+  selectedCustomer!: CustomerResponse;
 
   constructor(private dashboardCustomerService: DashboardCustomerService) {}
 
@@ -38,6 +38,6 @@ throw new Error('Method not implemented.');
   }
   toggleAddCustomer(): void {
     this.isAddCustomer = true;
-    this.selectedCustomer = null; // Clear selected customer to avoid conflicts
+   
   }
 }

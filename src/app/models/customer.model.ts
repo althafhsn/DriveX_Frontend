@@ -12,6 +12,9 @@ export interface RentedCar {
   seatCount: string;
   images: any[]; // Define specific properties if available
   status: string;
+  startDate: string; // Use `Date` if you want to work with JavaScript Date objects
+  endDate: string;   // Use `Date` if you want to work with JavaScript Date objects
+  duration: number;
 }
 
 export interface Address {
