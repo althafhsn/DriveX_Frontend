@@ -42,7 +42,7 @@ export class AllCarsListComponent {
     if (car && car.id) {
       this.carService.getCarDetailsWithCustomer(car.id).subscribe(
         (response) => {
-          this.associateCustomer = response.customers || []
+          this.associateCustomer = response.customer || []
           this.selectedCar = response;
           this.carSelected.emit(response)
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Car, CarCustomerResponse } from '../../../models/car.model';
 import { Customer } from '../../../models/customer.model';
 @Component({
@@ -7,6 +7,8 @@ import { Customer } from '../../../models/customer.model';
   styleUrl: './cars.component.css'
 })
 export class CarsComponent {
+  carResponse: CarCustomerResponse | null = null;
+
   cars: Car[] = [];
   selectedCars !: CarCustomerResponse
 

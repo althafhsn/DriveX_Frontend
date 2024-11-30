@@ -24,6 +24,12 @@ export class AddCarComponent {
     seatCount: '',
     images: [],
     status: 'Available',
+    startDate:'',
+    endDate:'',
+    duration:0,
+    rentalRequestStatus:'',
+    ongoingRevenue:0,
+    totalRevenue:0,
   };
 
   
@@ -266,6 +272,12 @@ export class AddCarComponent {
       seatCount: '',
       images: [],
       status: 'Available',
+      startDate:'',
+      endDate:'',
+      duration:0,
+      rentalRequestStatus:'',
+      ongoingRevenue:0,
+      totalRevenue:0,
     };
     this.models = [];
     this.selectedImages = []; // Clear selected images

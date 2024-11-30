@@ -1,25 +1,38 @@
-<div class="trip-history-container" *ngIf="car">
-    <h3>Trip History for {{ car.brandId }} {{ car.modelId }}</h3>
-  
-    <table class="trip-history-table">
+<div *ngIf="carResponse.customer && carResponse.customer.length > 0; else noCustomer">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Trip ID</th>
-          <th>Date</th>
-          <th>Destination</th>
+          <!-- <th>Name</th>
+          <th>Email</th> -->
+          <th>NIC</th>
+          <th>Phone Numbers</th>
+          <th>Start Date</th>
+          <!-- <th>End Date</th> -->
           <th>Duration</th>
-          <th>Earnings</th>
+          <th>Rental Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trip of tripHistory">
-          <td>{{ trip.tripId }}</td>
-          <td>{{ trip.date }}</td>
-          <td>{{ trip.destination }}</td>
-          <td>{{ trip.duration }}</td>
-          <td>{{ trip.earnings | currency }}</td>
+        <tr *ngFor="let cus of carResponse.customer">
+          <!-- <td>{{ cus.firstName }} {{ cus.lastName }}</td> -->
+          <td>{{ cus.nic }}</td>
+          <td>
+            <ul class="small text-muted mb-0">
+              <li *ngFor="let phone of cus.phoneNumbers">
+                {{ phone.mobile1 }}
+              </li>
+            </ul>
+          </td>
+          <td>{{ carResponse.car.startDate | date: 'yyyy-MM-dd' }}</td>
+          <!-- <td>{{ carResponse.car.endDate | date: 'yyyy-MM-dd' }}</td> -->
+          <td>{{ carResponse.car.duration }} days</td>
+          <td>{{ carResponse.car.rentalRequestStatus }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+</div>
+<ng-template #noCustomer>
+  <p class="text-muted">No rented cars available for this customer.</p>
+</ng-template>
