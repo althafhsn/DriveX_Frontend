@@ -76,18 +76,15 @@ export class LoginComponent implements OnInit {
             const tokenPayload = this.auth.decodeToken();
             this.userStore.setFullName(tokenPayload.unique_name);
             this.userStore.setRoleFromStore(tokenPayload.role);
-            this.toast.success("SUCCESS", "Login was Successed", 5000);
-
-            if (this.role === "Admin" || this.role === "Manager") {
-              this.router.navigate(['/dashboard']);
-            } else {
-              this.router.navigate(['./LandingPage']);
+            this.toast.success("SUCCESS", "Login has Successed", 5000);
+            this.router.navigate(['/'])
+            window.history.pushState(null, '', window.location.href);
+            window.onpopstate = function () {
+            window.history.pushState(null, '', window.location.href);
             }
-
           },
           error: (err) => {
-            this.toast.danger("ERROR", "Login was Failed", 5000)
-
+            this.toast.danger("ERROR", "Login has Failed", 5000)
           }
         });
     } else {

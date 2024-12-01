@@ -1,196 +1,76 @@
-<!-- Main Content -->
-<div class="container my-4">
-    <div class="row">
-        <!-- Left Section - Car Details -->
-        <div class="col-lg-8">
-            <!-- Car Title and Location -->
-            <div class="mb-3">
-                <h2>Acura Sport Version</h2>
-                <p class="text-muted"><i class="bi bi-geo-alt"></i> Location: Tower Bridge | Views: 652</p>
-            </div>
+<div class="container my-4 mt-5">
+  <div class="row" *ngIf="card">
+    <!-- Left Section - Car Details -->
+    <div class="col-lg-8">
+      <!-- Car Title -->
+      <div class="mb-3">
+        <h2>{{ card.brandName }} {{ card.modelName }}</h2>
+      </div>
 
-            <!-- Car Image Carousel -->
-            <div id="carCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-03.jpg" class="d-block w-100" alt="Car Image 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-02.jpg" class="d-block w-100" alt="Car Image 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-05.jpg" class="d-block w-100" alt="Car Image 2">
-                    </div>
-                    <div class="carousel-item">
-                    <img src="https://dreamsrent-wp.dreamstechnologies.com/wp-content/uploads/2024/01/gallery-06.jpg">
-                    </div>
-                    <!-- Add more images as needed -->
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <!-- Specifications -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Specifications</h5>
-                    <div class="row">
-                        <div class="col-6"><strong>Gear Type:</strong> Manual</div>
-                        <div class="col-6"><strong>Mileage:</strong> 14 KM</div>
-                        <div class="col-6"><strong>Fuel:</strong> Diesel</div>
-                        <div class="col-6"><strong>Model:</strong> 2022</div>
-                        <div class="col-6"><strong>Seating Capacity:</strong> 5 Persons</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Car Features -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Car Features</h5>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">Multi-zone A/C</li>
-                        <li class="list-inline-item">Heated front seats</li>
-                        <li class="list-inline-item">Android Auto</li>
-                        <!-- Add more features as needed -->
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Description -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Description</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem ut velit malesuada consequat.</p>
-                </div>
-            </div>
+      <!-- Car Image Carousel -->
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let image of card.images; let i = index" class="carousel-item" [class.active]="i === 0">
+            <img [src]="image.imagePath" class="d-block w-100" [alt]="'Car Image ' + (i + 1)">
+          </div>
         </div>
-
-        <!-- Right Sidebar - Pricing and Booking Form -->
-        <div class="col-lg-4">
-            <!-- Pricing Details -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Pricing Details</h5>
-                    <p>$10 <small class="text-muted">per hour</small></p>
-                </div>
-            </div>
-
-            <!-- Booking Form -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Booking Form</h5>
-                  
-                    <form #bookingForm="ngForm">
-                        <div class="card mb-4">
-                          <div class="card-body">
-                            <h5>Booking Form</h5>
-                      
-                            <!-- Rental Type -->
-                            <div class="mb-3">
-                              <label for="rentalType" class="form-label">Rental Type</label>
-                              <select class="form-select" id="rentalType" name="rentalType" ngModel>
-                                <option value="hour">Per Hour</option>
-                                <option value="day">Per Day</option>
-                              </select>
-                            </div>
-                      
-                            <!-- Pickup Location -->
-                            <div class="mb-3">
-                              <label for="pickupLocation" class="form-label">Pickup Location</label>
-                              <select class="form-select" id="pickupLocation" name="pickupLocation" ngModel>
-                                <option>Select Location</option>
-                                <!-- Add options -->
-                              </select>
-                            </div>
-                      
-                            <!-- Manage Dates -->
-                            <h3 class="text-center">Manage Dates</h3>
-                            <hr />
-                            <div>
-                              <label for="pickupDate">Pickup Date:</label>
-                              <input
-                                type="date"
-                                class="form-control"
-                                id="pickupDate"
-                                name="pickupDate"
-                                [(ngModel)]="pickupDate"
-                                (change)="validateDates()"
-                              />
-                              <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
-                            
-                              <label for="returnDate" class="mt-2">Return Date:</label>
-                              <input
-                                type="date"
-                                class="form-control"
-                                id="returnDate"
-                                name="returnDate"
-                                [(ngModel)]="returnDate"
-                                (change)="validateDates()"
-                              />
-                              <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
-                            
-                              <div class="d-flex justify-content-between mt-3">
-                                <button
-                                  class="btn btn-primary"
-                                  [disabled]="pickupDateError || returnDateError"
-                                  (click)="saveDates()"
-                                >
-                                  Save Dates
-                                </button>
-                              </div>
-                            
-                              <p *ngIf="dateDifference !== null" class="mt-3">
-                                <strong>Duration:</strong> {{ dateDifference }} day(s)
-                              </p>
-                            </div>
-                            
-                            <!-- Display Saved Dates -->
-                            <div *ngIf="lastUpdatedDate" class="mt-4">
-                              <h5>Last Updated Date</h5>
-                              <p>{{ lastUpdatedDate }}</p>
-                            </div>
-                            
-
- 
-  
-
- 
-
-                            <!-- Submit Button -->
-                            <button type="submit" class="btn btn-primary w-100">Book Now</button>
-                          </div>
-                        </div>
-                      </form>
-                      
-
-                 
-                      
-                </div>
-            </div>
-
-            <!-- Extra Services -->
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5>Extra Services</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="babySeat">
-                        <label class="form-check-label" for="babySeat">Baby Seat - $10</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="bumperGuard">
-                        <label class="form-check-label" for="bumperGuard">Bumper Guard - $10</label>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
+
+    <!-- Right Sidebar -->
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- Specifications -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6"><strong>Gear Type:</strong> {{ card.gearType }}</div>
+                <div class="col-6"><strong>Mileage:</strong> {{ card.mileage }} KM</div>
+                <div class="col-6"><strong>Fuel:</strong> {{ card.fuelType }}</div>
+                <div class="col-6"><strong>Model:</strong>  card.year </div>
+                <div class="col-6"><strong>Seating Capacity:</strong> {{ card.seatCount }}</div>
+                <div class="col-6"><strong>Per Day:</strong> {{ card.pricePerDay }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <form #bookingForm="ngForm">
+            <label for="pickupDate">Pickup Date:</label>
+            <input type="date" class="form-control" id="pickupDate" name="pickupDate" [(ngModel)]="pickupDate"
+              (change)="validateDates()"    (input)="checkFields()" />
+            <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
+
+            <label for="returnDate" class="mt-2">Return Date:</label>
+            <input type="date" class="form-control" id="returnDate" name="returnDate" [(ngModel)]="returnDate"
+              (change)="validateDates()"   (input)="checkFields()"  />
+            <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
+
+            <!-- <div class="d-flex justify-content-between mt-3">
+              <button class="btn btn-primary" [disabled]="pickupDateError || returnDateError" (click)="saveDates()">
+                Save Dates
+              </button>
+            </div> -->
+
+            <p *ngIf="dateDifference !== null" class="mt-3">
+              <strong>Duration:</strong> {{ dateDifference }} day(s)
+            </p>
+
+            <button type="submit" 
+            class="btn btn-primary w-100 mt-4"
+             [disabled]="pickupDateError || returnDateError" (click)="saveDates()" [disabled]="isButtonDisabled" >Book Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

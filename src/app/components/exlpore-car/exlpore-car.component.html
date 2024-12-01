@@ -1,0 +1,9 @@
+<div>
+<app-all-cars-customer *ngIf="showCarList" [cars]="cars" (selectedCar)="onCarSelected($event)"></app-all-cars-customer>
+  
+
+  <app-car-details *ngIf="!showCarList" [card]="selectedCar"></app-car-details>
+
+
+  <button *ngIf="!showCarList" (click)="backToCarList()" class="btn btn-secondary">Back to Car List</button>
+</div>  
