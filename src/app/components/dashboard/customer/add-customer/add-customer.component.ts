@@ -26,6 +26,8 @@ export class AddCustomerComponent {
    notes: '',
    status: '',
    password: '',
+   ongoingRevenue:0,
+   totalRevenue:0,
  
   
  };
@@ -37,7 +39,7 @@ onAddCustomer() {
   this.customerService.addCustomer(this.newCustomer).subscribe({
     next: (response) => {
       alert('Customer added successfully!');
-      console.log(response);
+      window.location.reload();
     },
     error: (err) => {
       alert('Failed to add customer!');
@@ -45,5 +47,19 @@ onAddCustomer() {
     }
   });
 }
- 
+addAddress() {
+  this.newCustomer.addresses.push({ houseNo: '', street1: '', street2: '', city: '', zipCode: 0, country: '' });
+}
+
+removeAddress(index: number) {
+  this.newCustomer.addresses.splice(index, 1);
+}
+
+addPhoneNumber() {
+  this.newCustomer.phoneNumbers.push({ mobile1: '' });
+}
+
+removePhoneNumber(index: number) {
+  this.newCustomer.phoneNumbers.splice(index, 1);
+}
 }

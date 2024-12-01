@@ -75,6 +75,7 @@ import { AllBookingListComponent } from './components/dashboard/booking/all-book
 import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
 import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
 import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
+import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 
 
 
@@ -147,6 +148,7 @@ import { BookingCustomerDetailsComponent } from './components/dashboard/booking/
     BookingDetailsComponent,
     BookingCarDetailsComponent,
     BookingCustomerDetailsComponent,
+    CustomerFilterPipe,
 
   ],
   imports: [
