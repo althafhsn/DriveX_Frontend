@@ -1,25 +1,53 @@
 <div *ngIf="booking">
-    <p><strong>Car Brand:</strong> {{ booking.brandName }}</p>
-    <p><strong>Car Model:</strong> {{ booking.modelName }}</p>
-    <p><strong>Registration Number:</strong> {{ booking.regNo }}</p>
-    <p><strong>Price Per Day:</strong> LKR.{{ booking.pricePerDay }}</p>
-    <p><strong>Gear Type:</strong> {{ booking.gearType }}</p>
-    <p><strong>Fuel Type:</strong> {{ booking.fuelType }}</p>
-    <p><strong>Mileage:</strong> {{ booking.mileage }}</p>
-    <p><strong>Seat Count:</strong> {{ booking.seatCount }}</p>
-  
-    <!-- Car Images -->
-    <div class="mt-3">
-      <h6>Images:</h6>
-      <div class="d-flex flex-wrap">
-        <img
-          *ngFor="let img of booking.images"
-          [src]="img?.imagePath"
-          alt="Car Image"
-          class="me-2 mb-2"
-          style="width: 100px; height: 100px; object-fit: cover;"
-        />
+ <div class="mt-3">
+    <h6>Images:</h6>
+    <!-- Car Thumbnail and Details Section -->
+    <div class="row mt-3">
+      <!-- Car Image (Thumbnail for small view) -->
+      <div class="col-md-4">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Loop through the images for carousel items -->
+            <div *ngFor="let img of booking.images; let i = index" class="carousel-item" [ngClass]="{'active': i === 0}">
+              <img *ngIf="img?.imagePath" [src]="img?.imagePath" alt="Car Image" class="d-block w-100 car-image" />
+            </div>
+          </div>
+
+          <!-- Carousel controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev"
+            aria-label="Previous slide">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next"
+            aria-label="Next slide">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Car Details (Right side) -->
+      <div class="col-md-8">
+        <div class="row">
+          <!-- First Column of Car Details -->
+          <div class="col-md-6">
+            <p>Car Brand:<strong> {{ booking.brandName }}</strong></p>
+            <p>Car Model:<strong> {{ booking.modelName }}</strong></p>
+            <p>Registration Number:<strong> {{ booking.regNo }}</strong></p>
+            <p>Price Per Day:<strong> ${{ booking.pricePerDay }}</strong></p>
+          </div>
+
+          <!-- Second Column of Car Details -->
+          <div class="col-md-6">
+            
+            <p>Gear Type:<strong> {{ booking.gearType }}</strong></p>
+            <p>Fuel Type:<strong> {{ booking.fuelType }}</strong></p>
+            <p>Mileage:<strong> {{ booking.mileage }} km</strong></p>
+            <p>Seat Count:<strong> {{ booking.seatCount }} seats</strong></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
+</div>

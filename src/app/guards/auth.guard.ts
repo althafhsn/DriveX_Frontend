@@ -15,7 +15,8 @@ export const authGuard: CanActivateFn = (
   const toast = inject(NgToastService);
   const userStore = inject(UserStoreService);
 
-  if (auth.isLogedIn()) {
+  if (auth.isLogedIn()){
+
     // Attempt to retrieve the role
     return userStore.getRoleFromStore().pipe(
       map((role: string | undefined) => {
@@ -51,4 +52,3 @@ export const authGuard: CanActivateFn = (
     return of(false);
   }
 };
-
