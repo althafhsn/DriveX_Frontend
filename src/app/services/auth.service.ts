@@ -27,6 +27,10 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUserUrl}authenticate`, loginobj)
   }
 
+  changePassword(passwordObj:any){
+    return this.http.post<any>(`${this.baseUserUrl}change-password`, passwordObj)
+  }
+
   signout() {
     localStorage.clear();
     this.router.navigate(['login']);

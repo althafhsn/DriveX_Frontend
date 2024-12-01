@@ -50,3 +50,10 @@ export interface CustomerResponse {
   rentedCars: RentedCar[] | null;
   message: string;
 }
+
+export class UpdatePassword {
+  public id!: string;
+  public oldPassword!: string;
+  public newPassword!: string;
+  public confirmPassword!: string;
+}
