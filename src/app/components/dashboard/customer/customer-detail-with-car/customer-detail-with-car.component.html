@@ -3,7 +3,7 @@
     <!-- Edit/Save Button -->
     <button
       class="btn btn-outline-primary position-absolute top-0 end-0 m-2"
-      (click)="toggleEdit()"
+     
     >
       {{ isEditable ? 'Save' : 'Edit' }}
     </button>
@@ -183,31 +183,6 @@
       </p>
     </div>
 
-    <!-- Rented Cars Section -->
-    <div class="border-top pt-4 mt-4">
-      <h4 class="fw-bold">Rented Cars</h4>
-      <div *ngIf="customerResponse.rentedCars && customerResponse.rentedCars.length > 0; else noCars">
-        <div
-          *ngFor="let car of customerResponse.rentedCars"
-          class="card mb-3 shadow-sm rounded d-flex flex-row align-items-center"
-        >
-          <!-- <img
-            [src]="car.image || 'default-car.png'"
-            alt="Car Image"
-            class="rounded-start"
-            style="width: 100px; height: 80px; object-fit: cover;"
-          /> -->
-          <div class="p-3">
-            <h5 class="mb-1">{{ car.brandName }} {{ car.modelName }}</h5>
-            <p class="small text-muted mb-0">Reg No: {{ car.regNo }}</p>
-            <!-- <p class="small text-muted mb-0">Rent Start: {{ car.rentStartDate }}</p>
-            <p class="small text-muted">Rent End: {{ car.rentEndDate }}</p> -->
-          </div>
-        </div>
-      </div>
-      <ng-template #noCars>
-        <p class="text-muted">No rented cars available for this customer.</p>
-      </ng-template>
-    </div>
+  
   </div>
 </div>

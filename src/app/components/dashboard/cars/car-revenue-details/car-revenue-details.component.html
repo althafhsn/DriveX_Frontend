@@ -1,9 +1,21 @@
-<div class="revenue-details-container" *ngIf="car">
-    <h3>Revenue Details for {{ car.brandId }} {{ car.modelId }}</h3>
-    <div class="revenue-stats">
-      <p><strong>Total Earnings:</strong> {{ revenueDetails.totalEarnings | currency }}</p>
-      <p><strong>Total Days Rented:</strong> {{ revenueDetails.totalDaysRented }} days</p>
-      <p><strong>Number of Rentals:</strong> {{ revenueDetails.numberOfRentals }}</p>
-    </div>
+<div *ngIf="carResponse?.car; else noCar">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Total Revenue</th>
+          <th>Ongoing Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ carResponse.car.totalRevenue | currency :'LKR ' }}</td>
+          <td>{{ carResponse.car.ongoingRevenue | currency :'LKR ' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
+</div>
+<ng-template #noCar>
+  <p class="text-muted">No revenue data available.</p>
+</ng-template>
