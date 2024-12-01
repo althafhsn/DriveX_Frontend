@@ -1,7 +1,7 @@
 <div class="container-fluid py-3">
   <div class="row g-3">
     <div class="col-md-12">
-      <app-nav-bar (searchChanged)="onSearchQueryChange($event)"></app-nav-bar>
+      <app-nav-bar [(searchText)]="searchText"></app-nav-bar>
     </div>
 
     <!-- Left Panel - All Customers List -->
@@ -14,7 +14,9 @@
           <app-all-customers-list
           [customers]="customers"
           (customerSelected)="handleCustomerSelection($event)"
-          (addCustomer)="toggleAddCustomer()">
+          (addCustomer)="toggleAddCustomer()"
+          [searchText]="searchText">
+          
         </app-all-customers-list>
        
 
@@ -34,7 +36,7 @@
           <!-- Conditionally display customer details or add customer form -->
           <div class="mb-3">
             <!-- <app-customer-details *ngIf="!isAddCustomer && selectedCustomer" [customer]="selectedCustomer"></app-customer-details> -->
-             <app-customer-detail-with-car *ngIf="!isAddCustomer && selectedCustomer" [customerResponse]="selectedCustomer"></app-customer-detail-with-car>
+             <app-customer-detail-with-car *ngIf="!isAddCustomer && selectedCustomer" [customerResponse]="selectedCustomer" [searchText]="searchText"></app-customer-detail-with-car>
             <app-add-customer *ngIf="isAddCustomer" (customerAdded)="addNewCustomer($event)"></app-add-customer>
             <p *ngIf="!selectedCustomer && !isAddCustomer" class="text-muted text-center">Please select a customer from the list.</p>
           </div>
@@ -60,7 +62,7 @@
                   <h5 class="mb-0">Payments</h5>
                 </div>
                 <div class="card-body p-3">
-                  <app-customer-payment></app-customer-payment>
+                  <app-customer-payment [customerResponse]="selectedCustomer"></app-customer-payment>
                 </div>
               </div>
             </div>

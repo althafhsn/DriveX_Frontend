@@ -15,6 +15,7 @@ export interface RentedCar {
   startDate: string; // Use `Date` if you want to work with JavaScript Date objects
   endDate: string;   // Use `Date` if you want to work with JavaScript Date objects
   duration: number;
+
 }
 
 export interface Address {
@@ -43,6 +44,8 @@ export interface Customer {
   notes?: string;
   status: string;
   password?: string;
+  ongoingRevenue:number;
+  totalRevenue:number;
 }
 
 export interface CustomerResponse {

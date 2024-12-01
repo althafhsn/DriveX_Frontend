@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 
-
+import { SearchService } from '../../../../services/search.service';
 import {DashboardCustomerService } from '../../../../services/dashboard-customer.service';
 import { Customer, CustomerResponse} from '../../../../models/customer.model';
 
@@ -15,17 +15,21 @@ export class AllCustomersListComponent implements OnInit {
   @Output() addCustomer = new EventEmitter<void>(); // Output property for add action
   @Output() customerSelected = new EventEmitter<CustomerResponse>(); 
   errorMessage: string | null = null;
-
+  @Input() searchText: string = '';
   selectedCustomer: CustomerResponse | null = null;
   rentedCars: any[] = []; // To store rented car details
   constructor(
     
-    private dashBoardListCustomer: DashboardCustomerService
+    private dashBoardListCustomer: DashboardCustomerService,
+    private searchService: SearchService
   ) { }
 
 
   ngOnInit(): void {
     this.fetchAllCustomers();
+    this.searchService.searchText$.subscribe(
+      (text) => (this.searchText = text)
+    );
   }
 
   fetchAllCustomers(): void {
