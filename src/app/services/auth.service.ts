@@ -29,7 +29,11 @@ export class AuthService {
 
   signout() {
     localStorage.clear();
-    this.router.navigate(['login'])
+    this.router.navigate(['login']);
+    window.history.pushState(null, '', window.location.href); // Clear the back history
+    window.onpopstate = function () {
+      window.history.pushState(null, '', window.location.href); // Block going back
+    };
   }
 
   storeToken(tokenValue: string) {
