@@ -37,7 +37,7 @@
           </div>
           <div class="col-4">
             <label>Price Per Day:</label>
-            <span *ngIf="!isEditable">{{ carResponse.car.pricePerDay | currency }}</span>
+            <span *ngIf="!isEditable">{{ carResponse.car.pricePerDay | currency:'LKR ' }}</span>
             <input *ngIf="isEditable" type="number" [(ngModel)]="carResponse.car.pricePerDay" class="form-control">
           </div>
           <div class="col-4">

@@ -313,5 +313,7 @@ export class AddCarComponent {
       reader.readAsDataURL(file); // Read the file as a Data URL
     }
   }
+
+  
   
 }

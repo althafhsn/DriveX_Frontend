@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Car, CarCustomerResponse } from '../../../models/car.model';
 import { Customer } from '../../../models/customer.model';
 @Component({
@@ -8,6 +8,8 @@ import { Customer } from '../../../models/customer.model';
 })
 export class CarsComponent {
   carResponse: CarCustomerResponse | null = null;
+  @Output() showAddCar = new EventEmitter<void>();
+
 
   cars: Car[] = [];
   selectedCars !: CarCustomerResponse
@@ -37,12 +39,16 @@ export class CarsComponent {
   /**
    * Show the Add Car form
    */
-  showAddCar = false;
+  
 
-
+  openAddCar(): void {
+    this.showAddCarForm();
+    this.showAddCar.emit(); // Display the AddCarComponent
+   
+  }
 
   closeAddCar() {
-    this.showAddCar = false; // Hide the AddCarComponent
+    this.isAddCar = false; // Hide the AddCarComponent
   }
 
   showAddCarForm(): void {

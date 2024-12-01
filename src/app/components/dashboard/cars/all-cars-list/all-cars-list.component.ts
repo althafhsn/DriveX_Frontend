@@ -10,7 +10,6 @@ import { CarService } from '../../../../services/car.service';
 export class AllCarsListComponent {
   @Input() cars: Car[] = []; // Array to store cars fetched from API
   @Output() carSelected = new EventEmitter<CarCustomerResponse>();
-  @Output() showAddCar = new EventEmitter<void>();
 
   selectedCar!: CarCustomerResponse
   associateCustomer!: any[]
@@ -56,8 +55,6 @@ export class AllCarsListComponent {
   }
 
 
-  openAddCar(): void {
-    this.showAddCar.emit(); // Display the AddCarComponent
-  }
+ 
 
 }
