@@ -22,6 +22,7 @@ import { ProfileFormComponent } from "./components/dashboard/settings/profile-fo
 import { PasswordUpdateComponent } from "./components/dashboard/settings/password-update/password-update.component";
 import { RevenueComponent } from "./components/dashboard/revenue/revenue.component";
 import { NgModule } from "@angular/core";
+import { RentedCarListComponent } from "./components/dashboard/rented-car-list/rented-car-list.component";
 
 
 
@@ -63,10 +64,12 @@ const routes: Routes = [
         children: [
           { path: 'profile-settings', component: ProfileFormComponent },
           { path: 'password-update', component: PasswordUpdateComponent },
+          
           // Add other routes
         ]
       },
-      { path: 'revenue', component: RevenueComponent }
+      { path: 'revenue', component: RevenueComponent },
+      {path:'rented', component:RentedCarListComponent}
 
     ]
   } //canActivate: [authGuard]
