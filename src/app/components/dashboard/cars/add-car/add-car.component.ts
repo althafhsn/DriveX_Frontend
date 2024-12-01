@@ -16,14 +16,20 @@ export class AddCarComponent {
     modelId: '',
     modelName: '',
     regNo: '',
-    
     pricePerDay: 0,
     gearType: '',
+    year:0,
     fuelType: '',
     mileage: '',
     seatCount: '',
     images: [],
     status: 'Available',
+    startDate:'',
+    endDate:'',
+    duration:0,
+    rentalRequestStatus:'',
+    ongoingRevenue:0,
+    totalRevenue:0,
   };
 
   
@@ -198,6 +204,7 @@ export class AddCarComponent {
       regNo: this.newCar.regNo.trim(),
       pricePerDay: this.newCar.pricePerDay,
       gearType: this.newCar.gearType.trim(),
+      year:String(this.newCar.year).trim(),
       fuelType: this.newCar.fuelType.trim(),
       mileage: this.newCar.mileage.trim(),
       seatCount: String(this.newCar.seatCount).trim(),
@@ -238,6 +245,7 @@ export class AddCarComponent {
       !!this.newCar.regNo &&
       this.newCar.pricePerDay > 0 &&
       !!this.newCar.gearType &&
+      !!this.newCar.year &&
       !!this.newCar.fuelType &&
       !!this.newCar.mileage &&
       !!this.newCar.seatCount &&
@@ -258,11 +266,18 @@ export class AddCarComponent {
       regNo: '',
       pricePerDay: 0,
       gearType: '',
+      year:0,
       fuelType: '',
       mileage: '',
       seatCount: '',
       images: [],
       status: 'Available',
+      startDate:'',
+      endDate:'',
+      duration:0,
+      rentalRequestStatus:'',
+      ongoingRevenue:0,
+      totalRevenue:0,
     };
     this.models = [];
     this.selectedImages = []; // Clear selected images
@@ -298,5 +313,7 @@ export class AddCarComponent {
       reader.readAsDataURL(file); // Read the file as a Data URL
     }
   }
+
+  
   
 }

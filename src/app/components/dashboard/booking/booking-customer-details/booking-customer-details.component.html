@@ -1,18 +1,56 @@
 <div *ngIf="booking">
-    <p><strong>Image:</strong>{{booking.image}}</p>
-    <p><strong>First Name:</strong> {{ booking.firstName }}</p>
-    <p><strong>Last Name:</strong> {{ booking.lastName }}</p>
-    <p><strong>NIC:</strong> {{ booking.nic }}</p>
-    <p><strong>Email:</strong> {{ booking.email }}</p>
-    <p><strong>Phone Numbers:</strong>
-      <span *ngFor="let phone of booking.phoneNumbers; let last = last">
-        {{ phone.mobile1 }}<span *ngIf="!last">, </span>
-      </span>
-    </p>
-    <p><strong>Addresses:</strong>
-      <span *ngFor="let address of booking.addresses; let last = last">
-        {{ address.street1 }},{{ address.street2 }}, {{ address.city }},{{ address.zipCode }},{{ address.country }}<span *ngIf="!last">, </span>
-      </span>
-    </p>
+
+  <!-- Car Thumbnail and Details Section -->
+  <div class="row mt-3">
+    <!-- Car Image (Thumbnail for small view) -->
+    <div class="col-md-4">
+      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Loop through the images for carousel items -->
+          <p><strong>Image:</strong>{{booking.image}}</p>
+        </div>
+
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev"
+          aria-label="Previous slide">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next"
+          aria-label="Next slide">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Car Details (Right side) -->
+    <div class="col-md-8">
+      <div class="row">
+        <!-- First Column of Car Details -->
+        <div class="col-md-6">
+          <p><strong>First Name:</strong> {{ booking.firstName }}</p>
+          <p><strong>Last Name:</strong> {{ booking.lastName }}</p>
+          <p><strong>NIC:</strong> {{ booking.nic }}</p>
+        </div>
+
+        <!-- Second Column of Car Details -->
+        <div class="col-md-6">
+
+          <p><strong>Email:</strong> {{ booking.email }}</p>
+          <p><strong>Phone Numbers:</strong>
+            <span *ngFor="let phone of booking.phoneNumbers; let last = last">
+              {{ phone.mobile1 }}<span *ngIf="!last">, </span>
+            </span>
+          </p>
+          <p><strong>Addresses:</strong>
+            <span *ngFor="let address of booking.addresses; let last = last">
+              {{ address.street1 }},{{ address.street2 }}, {{ address.city }},{{ address.zipCode }},{{ address.country
+              }}<span *ngIf="!last">, </span>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</div>

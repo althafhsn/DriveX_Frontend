@@ -1,65 +1,32 @@
-import { Component,Input } from '@angular/core';
-import { Car } from '../../../../models/car.model';
+import { Component,Input, OnInit } from '@angular/core';
+import { Car, CarCustomerResponse, Customer } from '../../../../models/car.model';
+import { ActivatedRoute } from '@angular/router';
+import { CarService } from '../../../../services/car.service';
 
 @Component({
   selector: 'app-car-trip-history',
   templateUrl: './car-trip-history.component.html',
   styleUrl: './car-trip-history.component.css'
 })
-export class CarTripHistoryComponent {
-  @Input() car: Car | null = null;
+export class CarTripHistoryComponent implements OnInit{
+  @Input() carResponse!: CarCustomerResponse; // Add @Input()
 
-  // Example trip history data (these should be dynamically retrieved from your backend or state)
-  tripHistory = [
-    {
-      tripId: 'TRIP001',
-      date: '2024-11-01',
-      destination: 'City A',
-      duration: '5 hours',
-      earnings: 250,
-    },
-    {
-      tripId: 'TRIP002',
-      date: '2024-11-05',
-      destination: 'City B',
-      duration: '3 hours',
-      earnings: 150,
-    },
-    {
-      tripId: 'TRIP003',
-      date: '2024-11-10',
-      destination: 'City C',
-      duration: '7 hours',
-      earnings: 350,
-    },
-  ];
-
-  constructor() {}
+  constructor(
+    private carService: CarService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // Load trip history for the specific car
-    if (this.car) {
-      this.loadCarTripHistory();
+    const carId = this.route.snapshot.paramMap.get('carId');
+    if (carId) {
+      this.carService.getCarDetailsWithCustomer(carId).subscribe(
+        (response: CarCustomerResponse) => {
+          this.carResponse = response;
+        },
+        (error) => {
+          console.error('Error fetching car details', error);
+        }
+      );
     }
-  }
-
-  loadCarTripHistory(): void {
-    // Mock trip history data for demonstration purposes (replace with actual data retrieval)
-    this.tripHistory = [
-      {
-        tripId: 'TRIP001',
-        date: '2024-11-01',
-        destination: 'City A',
-        duration: '5 hours',
-        earnings: (this.car?.pricePerDay || 0) * 2,// Example calculation
-      },
-      {
-        tripId: 'TRIP002',
-        date: '2024-11-05',
-        destination: 'City B',
-        duration: '3 hours',
-        earnings: (this.car?.pricePerDay || 0) * 3, // Example calculation
-      },
-    ];
   }
 }

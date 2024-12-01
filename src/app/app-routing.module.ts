@@ -1,3 +1,5 @@
+
+import { RentedCarListComponent } from "./components/dashboard/rented-car-list/rented-car-list.component";
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -58,14 +60,19 @@ const routes: Routes = [
         component: SettingsComponent,
         children: [
           { path: 'profile-settings', component: ProfileFormComponent },
-          { path: 'password-update', component: PasswordUpdateComponent }
+          { path: 'password-update', component: PasswordUpdateComponent },
+          
+          // Add other routes
         ]
       },
+      { path: 'revenue', component: RevenueComponent },
+      {path:'rented', component:RentedCarListComponent},
       { path: 'cars', component: CarsComponent },
-      { path: 'revenue', component: RevenueComponent }
+
+
     ], canActivate: [authGuard]
-  }
-]; //canActivate: [authGuard]
+  } //canActivate: [authGuard]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
