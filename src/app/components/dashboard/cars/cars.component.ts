@@ -63,7 +63,7 @@ export class CarsComponent {
   /**
    * Handle search query changes to filter cars
    */
-  onSearchQueryChange(query: string): void {
+  onSearchQueryChange(query: any): void {
     this.filteredCars = this.cars.filter((car) =>
       car.regNo.toLowerCase().includes(query.toLowerCase()) ||
       car.brandId.toLowerCase().includes(query.toLowerCase()) ||
