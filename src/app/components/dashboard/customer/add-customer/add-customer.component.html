@@ -24,38 +24,41 @@
     </div>
 
     <!-- Address Details -->
-    <h5>Address</h5>
-    <div class="mb-3">
-      <label for="houseNo" class="form-label">House No:</label>
-      <input type="text" id="houseNo" [(ngModel)]="newCustomer.addresses[0].houseNo" name="houseNo" class="form-control" />
+    <h5>Addresses</h5>
+    <div *ngFor="let address of newCustomer.addresses; let i = index" class="mb-3">
+      <label for="houseNo-{{ i }}" class="form-label">House No:</label>
+      <input type="text" id="houseNo-{{ i }}" [(ngModel)]="address.houseNo" name="houseNo-{{ i }}" class="form-control" />
+
+      <label for="street1-{{ i }}" class="form-label">Street 1:</label>
+      <input type="text" id="street1-{{ i }}" [(ngModel)]="address.street1" name="street1-{{ i }}" class="form-control" />
+
+      <label for="street2-{{ i }}" class="form-label">Street 2:</label>
+      <input type="text" id="street2-{{ i }}" [(ngModel)]="address.street2" name="street2-{{ i }}" class="form-control" />
+
+      <label for="city-{{ i }}" class="form-label">City:</label>
+      <input type="text" id="city-{{ i }}" [(ngModel)]="address.city" name="city-{{ i }}" class="form-control" />
+
+      <label for="zipCode-{{ i }}" class="form-label">Zip Code:</label>
+      <input type="number" id="zipCode-{{ i }}" [(ngModel)]="address.zipCode" name="zipCode-{{ i }}" class="form-control" />
+
+      <label for="country-{{ i }}" class="form-label">Country:</label>
+      <input type="text" id="country-{{ i }}" [(ngModel)]="address.country" name="country-{{ i }}" class="form-control" />
+
+      <!-- Remove Address Button -->
+      <button *ngIf="newCustomer.addresses.length > 1" (click)="removeAddress(i)" type="button" class="btn btn-danger mt-2">Remove Address</button>
     </div>
-    <div class="mb-3">
-      <label for="street1" class="form-label">Street 1:</label>
-      <input type="text" id="street1" [(ngModel)]="newCustomer.addresses[0].street1" name="street1" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="street2" class="form-label">Street 2:</label>
-      <input type="text" id="street2" [(ngModel)]="newCustomer.addresses[0].street2" name="street2" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="city" class="form-label">City:</label>
-      <input type="text" id="city" [(ngModel)]="newCustomer.addresses[0].city" name="city" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="zipCode" class="form-label">Zip Code:</label>
-      <input type="number" id="zipCode" [(ngModel)]="newCustomer.addresses[0].zipCode" name="zipCode" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label for="country" class="form-label">Country:</label>
-      <input type="text" id="country" [(ngModel)]="newCustomer.addresses[0].country" name="country" class="form-control" />
-    </div>
+    <button *ngIf="newCustomer.addresses.length < 2" (click)="addAddress()" type="button" class="btn btn-secondary mt-2">+ Add Address</button>
 
     <!-- Phone Numbers -->
     <h5>Phone Numbers</h5>
-    <div class="mb-3">
-      <label for="mobile1" class="form-label">Mobile:</label>
-      <input type="text" id="mobile1" [(ngModel)]="newCustomer.phoneNumbers[0].mobile1" name="mobile1" class="form-control" />
+    <div *ngFor="let phone of newCustomer.phoneNumbers; let i = index" class="mb-3">
+      <label for="mobile1-{{ i }}" class="form-label">Mobile:</label>
+      <input type="text" id="mobile1-{{ i }}" [(ngModel)]="phone.mobile1" name="mobile1-{{ i }}" class="form-control" />
+
+      <!-- Remove Phone Number Button -->
+      <button *ngIf="newCustomer.phoneNumbers.length > 1" (click)="removePhoneNumber(i)" type="button" class="btn btn-danger mt-2">Remove Phone</button>
     </div>
+    <button *ngIf="newCustomer.phoneNumbers.length < 2" (click)="addPhoneNumber()" type="button" class="btn btn-secondary mt-2">+ Add Phone</button>
 
     <!-- Additional Details -->
     <div class="mb-3">

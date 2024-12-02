@@ -15,6 +15,7 @@ export interface RentedCar {
   startDate: string; 
   endDate: string;   
   duration: number;
+
 }
 
 export interface Address {
@@ -43,6 +44,8 @@ export interface Customer {
   notes?: string;
   status: string;
   password?: string;
+  ongoingRevenue:number;
+  totalRevenue:number;
 }
 
 export interface CustomerResponse {

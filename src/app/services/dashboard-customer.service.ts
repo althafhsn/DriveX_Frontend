@@ -39,6 +39,9 @@ export class DashboardCustomerService {
     const url = `${this.baseUrl}/GetCustomerWithRentalInfo/${customerId}`;
     return this.http.get<CustomerResponse>(url);
   }
-
+  deleteCustomerById(customerId: string): Observable<void> {
+    const url = `${this.baseUrl}/deleteCustomer/${customerId}`;
+    return this.http.delete<void>(url);
+  }
   
 }
