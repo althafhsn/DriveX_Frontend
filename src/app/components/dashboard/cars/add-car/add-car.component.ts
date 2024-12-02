@@ -225,7 +225,7 @@ export class AddCarComponent {
       (response) => {
         console.log('Car added successfully:', response);
         alert('Car added successfully!');
-        this.resetForm();
+        window.location.reload();
       },
       (error) => {
         console.error('Error adding car:', error);

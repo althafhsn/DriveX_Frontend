@@ -31,25 +31,24 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Use index 'i' to display row number -->
-                <tr *ngFor="let rented of rented | rentalFilter:query; let i = index">
-                    <td>{{ i + 1 }}</td> <!-- Row number starts from 1 -->
-                    <td>{{ rented.customerNIC }}</td>
-                    <td>{{ rented.carRegNo }}</td>
-                    <td>{{ formatDate(rented.RequestDate) }}</td>
-                    <td>{{ formatDate(rented.StartDate) }}</td>
-                    <td>{{ formatDate(rented.EndDate) }}</td>
-                    <td>{{ rented.Totalprice | currency }}</td>
-                    <td>
-                        <button class="btn btn-outline-primary btn-sm">Return</button>
-                    </td>
+                <tr *ngFor="let rented of filteredRented | rentalFilter:query; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ rented.nic }}</td>
+                  <td>{{ rented.regNo }}</td>
+                  <td>{{ formatDate(rented.requestDate) }}</td>
+                  <td>{{ formatDate(rented.startDate) }}</td>
+                  <td>{{ formatDate(rented.endDate) }}</td>
+                  <td>{{ rented.ongoingRevenue | currency: 'LKR ' }}</td>
+                  <td>
+                    <button class="btn btn-outline-primary btn-sm" (click)="returnBooking(rented.id)">Return</button>
+                  </td>
                 </tr>
-            </tbody>
+              </tbody>
         </table>
     </div>
 
     <!-- If no data is found -->
-    <div *ngIf="rented?.length === 0" class="text-center text-muted mt-3">
+    <div *ngIf="booking?.length === 0" class="text-center text-muted mt-3">
         <p>No rental history found matching the search criteria.</p>
     </div>
-</div>
+</div> 

@@ -26,5 +26,12 @@ export class BookingService {
   
     return this.http.put(url, { action }, { headers });
   }
+  performingStatus(bookingId:string,status: 'returned' | 'rented'): Observable<any> {
+   const url = `${this.baseUrl}${bookingId}/status`;
+   const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+   });
+   return this.http.put(url, { status }, { headers });
+  }
   
 }

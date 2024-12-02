@@ -28,6 +28,8 @@ export interface Booking {
     mileage: string;
     seatCount: string;
     images: Image[];
+    ongoingRevenue:number;
+    totalRevenue:number;
   }
   
   export interface Image {
