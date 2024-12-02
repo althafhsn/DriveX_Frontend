@@ -1,37 +1,30 @@
-
+import { RouterModule, Routes } from "@angular/router";
+import { LoginComponent } from "./components/login/login.component";
+import { blockLoginRegisterGuard } from "./guards/block-login-register-guard.guard";
+import { RegisterComponent } from "./components/register/register.component";
+import { ResetComponent } from "./components/reset/reset.component";
+import { LandingComponent } from "./components/landing/landing.component";
+import { LandingPageComponent } from "./components/Customer/landing-page/landing-page.component";
+import { ExlporeCarComponent } from "./components/exlpore-car/exlpore-car.component";
+import { ContactComponent } from "./components/contact/contact.component";
+import { AboutComponent } from "./components/about/about.component";
+import { ProfileComponent } from "./components/profile/profile.component";
+import { ProfileSetComponent } from "./components/profile/profile-navbar/profile-set/profile-set.component";
+import { HistoryComponent } from "./components/profile/history/history.component";
+import { SearchCarComponent } from "./components/Customer/landing-page/search-car/search-car.component";
+import { ProfileNavbarComponent } from "./components/profile/profile-navbar/profile-navbar.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { AdminLandingComponent } from "./components/dashboard/admin-landing/admin-landing.component";
+import { CustomerComponent } from "./components/dashboard/customer/customer.component";
+import { BookingComponent } from "./components/dashboard/booking/booking.component";
 import { RentedCarListComponent } from "./components/dashboard/rented-car-list/rented-car-list.component";
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ResetComponent } from './components/reset/reset.component';
-import { LandingComponent } from './components/landing/landing.component';
-import { LandingPageComponent } from './components/Customer/landing-page/landing-page.component';
-import { ExlporeCarComponent } from './components/exlpore-car/exlpore-car.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
-import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
-import { HistoryComponent } from './components/profile/history/history.component';
-import { SearchCarComponent } from './components/Customer/landing-page/search-car/search-car.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
-import { CustomerComponent } from './components/dashboard/customer/customer.component';
-import { BookingComponent } from './components/dashboard/booking/booking.component';
-import { SettingsComponent } from './components/dashboard/settings/settings.component';
-import { CarsComponent } from './components/dashboard/cars/cars.component';
-import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
-import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
-import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
-import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
-import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
-import { HistoryComponent } from './components/profile/history/history.component';
-import { CarsComponent } from './components/dashboard/cars/cars.component';
-import { ResetComponent } from './components/reset/reset.component';
-import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
-import { authGuard } from './guards/auth.guard';
-import { blockLoginRegisterGuard } from './guards/block-login-register-guard.guard';
+import { CarsComponent } from "./components/dashboard/cars/cars.component";
+import { SettingsComponent } from "./components/dashboard/settings/settings.component";
+import { ProfileFormComponent } from "./components/dashboard/settings/profile-form/profile-form.component";
+import { PasswordUpdateComponent } from "./components/dashboard/settings/password-update/password-update.component";
+import { RevenueComponent } from "./components/dashboard/revenue/revenue.component";
+import { authGuard } from "./guards/auth.guard";
+import { NgModule } from "@angular/core";
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -73,9 +66,7 @@ const routes: Routes = [
           // Add other routes
         ]
       },
-      { path: 'revenue', component: RevenueComponent },
-      {path:'rented', component:RentedCarListComponent},
-      { path: 'cars', component: CarsComponent },
+      { path: 'revenue', component: RevenueComponent }
 
 
     ], canActivate: [authGuard]
