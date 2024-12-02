@@ -10,10 +10,10 @@ export interface RentedCar {
   fuelType: string;
   mileage: string;
   seatCount: string;
-  images: any[]; // Define specific properties if available
+  images: any[]; 
   status: string;
-  startDate: string; // Use `Date` if you want to work with JavaScript Date objects
-  endDate: string;   // Use `Date` if you want to work with JavaScript Date objects
+  startDate: string; 
+  endDate: string;   
   duration: number;
 
 }

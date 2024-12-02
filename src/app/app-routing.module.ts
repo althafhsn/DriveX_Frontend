@@ -24,6 +24,12 @@ import { CarsComponent } from './components/dashboard/cars/cars.component';
 import { ProfileFormComponent } from './components/dashboard/settings/profile-form/profile-form.component';
 import { PasswordUpdateComponent } from './components/dashboard/settings/password-update/password-update.component';
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
+import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
+import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
+import { HistoryComponent } from './components/profile/history/history.component';
+import { CarsComponent } from './components/dashboard/cars/cars.component';
+import { ResetComponent } from './components/reset/reset.component';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
 import { authGuard } from './guards/auth.guard';
 import { blockLoginRegisterGuard } from './guards/block-login-register-guard.guard';
 
@@ -55,6 +61,8 @@ const routes: Routes = [
       { path: 'main', component: AdminLandingComponent },
       { path: 'customers', component: CustomerComponent },
       { path: 'bookings', component: BookingComponent },
+      {path:'rented-car-list',component:RentedCarListComponent},
+      {path:'cars', component:CarsComponent},
       {
         path: 'settings',
         component: SettingsComponent,
