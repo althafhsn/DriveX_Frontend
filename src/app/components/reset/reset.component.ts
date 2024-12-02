@@ -44,7 +44,7 @@ export class ResetComponent implements OnInit {
       this.emailToReset = params['email'];
       let uriToken = params['code']
       this.emailToken = uriToken.replace(/ /g, '+')
-      console.log(this.emailToReset, this.emailToken , uriToken);
+      
     });
   }
 

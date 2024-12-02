@@ -294,23 +294,22 @@ export class AddCarComponent {
     return [0, 1, 2, 3].slice(this.selectedImages.length);
   }
 
-  // Trigger the file input for a specific index
   triggerFileInput(index: number) {
     const fileInput = document.getElementById(`imageInput${index}`) as HTMLInputElement;
     fileInput?.click();
   }
 
-  // Handle file selection
+
   onFileSelect(event: any, index: number): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         if (this.selectedImages.length < 4) {
-          this.selectedImages[index] = reader.result as string; // Store the selected image URL
+          this.selectedImages[index] = reader.result as string; 
         }
       };
-      reader.readAsDataURL(file); // Read the file as a Data URL
+      reader.readAsDataURL(file); 
     }
   }
 

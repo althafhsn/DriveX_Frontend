@@ -15,6 +15,7 @@ export interface RentedCar {
   startDate: string; // Use `Date` if you want to work with JavaScript Date objects
   endDate: string;   // Use `Date` if you want to work with JavaScript Date objects
   duration: number;
+
 }
 
 export interface Address {
@@ -43,10 +44,19 @@ export interface Customer {
   notes?: string;
   status: string;
   password?: string;
+  ongoingRevenue:number;
+  totalRevenue:number;
 }
 
 export interface CustomerResponse {
   customer: Customer;
   rentedCars: RentedCar[] | null;
   message: string;
+}
+
+export class UpdatePassword {
+  public id!: string;
+  public oldPassword!: string;
+  public newPassword!: string;
+  public confirmPassword!: string;
 }

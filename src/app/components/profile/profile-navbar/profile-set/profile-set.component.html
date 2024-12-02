@@ -26,8 +26,8 @@
                 src="IMAGE/person.jpg"  
                 class="rounded-circle btn btn-upload"
                 alt="Upload Image"
-                width="160"
-                height="160"
+                width="120"
+                height="120"
               />
         
               <!-- Uploaded Image -->
@@ -58,54 +58,129 @@
         
               </div>
     
-      <div class="row border-top pt-3" *ngFor="let customer of customers">
-        <div class="col-6 col-md-3 mb-3">
-            <label>First Name :-</label>
-            <input  class="form-control"[value]="customer.firstName"  placeholder="firstName" />
-        </div>
-
-        <div class="col-6 col-md-3 mb-3">
-          <label>Last Name :-</label>
-          <input  class="form-control" [value]="customer.lastName" />
-        </div>
-<!-- ithai DELETE saithidaathae -->
-      <div class="col-6 col-md-3 mb-3">
-          <label>NIC :-</label>
-              <input  class="form-control" [value]="customer.nic"/>
-        </div> 
-
-         <div class="col-6 col-md-3 mb-3">
-          <label>Licence :-</label>
-           <input class="form-control" [value]="customer.licence"/>
-        </div>
- 
     
-   
-        
-          <input  type="text" class="form-control"  placeholder="Address" [value]="customer.addresses"/>
-          <button type="button" class="btn btn-info  small mt-1">+</button>
-        
 
-           
-          <input type="tel"  class="form-control" placeholder="Phone Number" [value]="customer.phoneNumbers"/>
-          <button type="button" class="btn btn-info mt-1">+</button>
+
 
       
+
+      <div class="row border-top pt-3">
+        <div class="col-12 mb-3">
+          <button class="btn btn-primary" (click)="toggleEditMode()" *ngIf="!isEditMode">
+            Edit
+          </button>
+          <button class="btn btn-success" (click)="updateCustomer()" *ngIf="isEditMode">
+            Save Changes
+          </button>
+          <button class="btn btn-secondary" (click)="toggleEditMode()" *ngIf="isEditMode">
+            Cancel
+          </button>
+        </div>
       
-          
-          <input type="email" class="form-control"  placeholder="E-mail" [value]="customer.email"/>
-        
+        <div class="col-6 col-md-3 mb-3">
+          <label>First Name:</label>
+          <input
+            class="form-control"
+            [value]="customer.firstName"
+            [readonly]="!isEditMode"
+            placeholder="First Name"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>Last Name:</label>
+          <input
+            class="form-control"
+            [value]="customer.lastName"
+            [readonly]="!isEditMode"
+            placeholder="Last Name"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>NIC:</label>
+          <input
+            class="form-control"
+            [value]="customer.nic"
+            [readonly]="!isEditMode"
+            placeholder="NIC"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>Licence:</label>
+          <input
+            class="form-control"
+            [value]="customer.licence"
+            [readonly]="!isEditMode"
+            placeholder="Licence"
+          />
+        </div>
+
+        <div class="col-6 col-md-3 mb-3">
+          <label>E-mail:</label>
+          <input
+            class="form-control"
+            [value]="customer.email"
+            [readonly]="!isEditMode"
+            placeholder="email"
+          />
+        </div>
+      
+      
+        <div class="row mt-3">
+          <div class="col-12">
+            <h4>Addresses</h4>
+            <div *ngFor="let address of customer.addresses; let i = index" class="border p-3 mb-3">
+              <label>House No:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="customer.addresses[i].houseNo"
+                [readonly]="!isEditMode"
+                placeholder="House No"
+              />
+              <!-- Other address fields with [readonly]="!isEditMode" -->
+              <button
+                class="btn btn-danger mt-2"
+                (click)="removeAddress(i)"
+                *ngIf="isEditMode"
+              >
+                Remove Address
+              </button>
+            </div>
+            <button class="btn btn-info" (click)="addAddress()" *ngIf="isEditMode">
+              + Add Address
+            </button>
+          </div>
+        </div>
+      
+        <!-- Phone Numbers Section -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <h4>Phone Numbers</h4>
+            <div *ngFor="let phoneNumber of customer.phoneNumbers; let j = index" class="border p-3 mb-3">
+              <label>Mobile:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="customer.phoneNumbers[j].mobile1"
+                [readonly]="!isEditMode"
+                placeholder="Mobile Number"
+              />
+              <button
+                class="btn btn-danger mt-2"
+                (click)="removePhoneNumber(j)"
+                *ngIf="isEditMode"
+              >
+                Remove Phone Number
+              </button>
+            </div>
+            <button class="btn btn-info" (click)="addPhoneNumber()" *ngIf="isEditMode">
+              + Add Phone Number
+            </button>
+          </div>
+        </div>
       </div>
-
-      <button class="btn btn-outline-primary  mt-3" 
-             
-              style="font-size: 1 rem;">
-       
-      </button>
-   
- 
-   
-    </div>
-    </form>
-    
-    
+      
+        
