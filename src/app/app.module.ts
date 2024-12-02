@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -15,7 +14,6 @@ import { CardComponent } from './components/Customer/landing-page/card/card.comp
 import { TypeComponent } from './components/Customer/landing-page/type/type.component';
 import { ScrollComponent } from './components/Customer/landing-page/scroll/scroll.component';
 import { FooterComponent } from './components/Customer/landing-page/footer/footer.component';
-import { ConformRentComponent } from './components/Customer/conform-rent/conform-rent.component';
 import { CarDetailsComponent as LandingCarDetails } from './components/Customer/conform-rent/car-details/car-details.component';
 import { AllCarsComponent } from './components/Customer/all-cars/all-cars.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -24,10 +22,8 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { FormsModule } from '@angular/forms';
-
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
-
 import { AdminLandingComponent } from './components/dashboard/admin-landing/admin-landing.component';
 import { TodayStatsComponent } from './components/dashboard/admin-landing/today-stats/today-stats.component';
 import { CarAvailabilityComponent } from './components/dashboard/admin-landing/car-availability/car-availability.component';
@@ -65,18 +61,26 @@ import { ProfileSetComponent } from './components/profile/profile-navbar/profile
 import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
 import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
 import { CarsComponent } from './components/dashboard/cars/cars.component';
-import { AllCarsListComponent  } from './components/dashboard/cars/all-cars-list/all-cars-list.component';
+import { AllCarsListComponent } from './components/dashboard/cars/all-cars-list/all-cars-list.component';
 import { CarRevenueDetailsComponent } from './components/dashboard/cars/car-revenue-details/car-revenue-details.component';
 import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-history/car-trip-history.component';
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
+import { RentedCarFilterPipe } from './pipes/rented-car-filter.pipe';
+import { ExlporeCarComponent } from './components/exlpore-car/exlpore-car.component';
+import { LandingComponent } from './components/landing/landing.component';
 import { AllBookingListComponent } from './components/dashboard/booking/all-booking-list/all-booking-list.component';
 import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
 import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
 import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
 import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
-
+import { AppRoutingModule } from './app-routing.module';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
+import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
+import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
+import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
 
 
 @NgModule({
@@ -106,7 +110,6 @@ import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
     TypeComponent,
     ScrollComponent,
     FooterComponent,
-    ConformRentComponent,
     LandingCarDetails,
     AllCarsComponent,
     DashboardComponent,
@@ -144,27 +147,35 @@ import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    RentedCarListComponent,
+    RentedCarFilterPipe,
+    ExlporeCarComponent,
+    LandingComponent,
     AllBookingListComponent,
     BookingDetailsComponent,
     BookingCarDetailsComponent,
     BookingCustomerDetailsComponent,
     CustomerFilterPipe,
+    RentedCarListComponent,
+    RentalHistoryComponent,
+    OngoingRentalHistoryComponent,
+    RentalFilterPipe,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     RouterModule,
     NgToastModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor, 
+      useClass: TokenInterceptor,
       multi: true
     }
   ],

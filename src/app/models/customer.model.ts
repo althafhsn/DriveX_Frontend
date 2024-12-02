@@ -10,10 +10,10 @@ export interface RentedCar {
   fuelType: string;
   mileage: string;
   seatCount: string;
-  images: any[]; // Define specific properties if available
+  images: any[]; 
   status: string;
-  startDate: string; // Use `Date` if you want to work with JavaScript Date objects
-  endDate: string;   // Use `Date` if you want to work with JavaScript Date objects
+  startDate: string; 
+  endDate: string;   
   duration: number;
 
 }
@@ -52,4 +52,11 @@ export interface CustomerResponse {
   customer: Customer;
   rentedCars: RentedCar[] | null;
   message: string;
+}
+
+export class UpdatePassword {
+  public id!: string;
+  public oldPassword!: string;
+  public newPassword!: string;
+  public confirmPassword!: string;
 }

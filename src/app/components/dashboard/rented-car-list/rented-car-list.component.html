@@ -1,0 +1,75 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="mt-3">Rented Car</h3>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Search Bar -->
+        <div class="input-group search-bar">
+          <input type="text" [(ngModel)]="searchQuery" placeholder="Search cars...">
+          <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+
+      <!-- Table to display rented cars -->
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>No.</th>
+            <th>Car Registration No.</th>
+            <th>Car Model & Brand</th>
+            <th>Full Name</th>
+            <th>Request Date</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+
+
+          <tr *ngFor="let rented of filteredRented | rentedCarFilter: searchQuery; let i = index">
+
+            <td>{{ i + 1 }}</td>
+            <td>{{ rented.carRegNo }}</td>
+            <td>{{ rented.carModel }} - {{ rented.carBrand }}</td>
+            <td>{{ rented.customerFullName }}</td>
+            <td>{{ rented.RequestDate }}</td>
+            <td>{{ rented.StartDate }}</td>
+            <td>{{ rented.EndDate }}</td>
+            <td>{{ rented.Totalprice }}</td>
+            <td>
+              <button class="btn btn-outline-primary btn-sm">Return</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 col-md-9" >
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white w-100">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs card-header-tabs w-100">
+                <li *ngFor="let tab of tabs" class="nav-item">
+                    <button class="nav-link" [ngClass]="{ active: activeTab === tab.id }" (click)="changeTab(tab.id)">
+                        {{ tab.label }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body ">
+            <!-- Dynamic Tab Content -->
+            <ng-container [ngSwitch]="activeTab">
+                <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'"></app-ongoing-rental-history>
+                <app-rental-history *ngSwitchCase="'rental-history'"></app-rental-history>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
