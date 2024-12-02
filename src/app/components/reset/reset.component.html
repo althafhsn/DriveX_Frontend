@@ -1,40 +1,66 @@
-<form class="form-signin needs-validation" novalidate oninput='confirmPassword.setCustomValidity(confirmPassword.value != newPassword.value ? true : false)'>
-    <div class="card shadow-sm">
-      <div class="card-body">
-  
-        <div class="form-group">
-          <label class="sr-only" for="oldPassword">Current Password</label>
-          <input class="form-control form-control-sm" id="oldPassword" name="password" placeholder="Current Password" required type="password" autocomplete="off" aria-describedby="inputGroupPrepend">
-          <div class="invalid-feedback">
-            Please enter current password.
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <div class="form-group">
-            <label class="sr-only" for="newPassword">New Password</label>
-            <div class="input-group">
-  
-              <input name="newPassword" type="password" autocomplete="off" class="form-control form-control-sm" id="newPassword" placeholder="New Password" aria-describedby="inputGroupPrepend" required>
-              <div class="invalid-feedback">
-                Please enter new password.
+<div class="outer">
+  <div class="container">
+    <section class="vh-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+          <div class="d-flex justify-content-center align-items-center p-4" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <div class="panel border bg-white">
+                    <div class="panel-heading text-center mb-3">
+                      <h3 class="pt-3 font-weight-bold">Reset Password</h3>
+                    </div>
+                    <form [formGroup]="resetPasswordForm" (ngSubmit)="onReset()" novalidate>
+                      <div class="form-group pt-3 row mx-1">
+                        <div class="input-field" [class.error]="form['password'].invalid && form['password'].touched">
+                          <span class="fa fa-lock p-2"></span>
+                          <input formControlName="password" [type]="typePassword" placeholder="New Password" />
+                          <span (click)="togglePasswordVisibility('password')"
+                            class="fa {{ eyeIconPassword }} px-2"></span>
+                        </div>
+                        <!-- Password Error Messages -->
+                        <small *ngIf="form['password'].dirty && form['password'].hasError('required')"
+                          class="text-danger">*Password is required</small>
+                        <small *ngIf="form['password'].dirty && form['password'].hasError('noUppercase')"
+                          class="text-danger">*Must contain at least one uppercase letter</small>
+                        <small *ngIf="form['password'].dirty && form['password'].hasError('noNumber')"
+                          class="text-danger">*Must contain at least one number</small>
+                        <small *ngIf="form['password'].dirty && form['password'].hasError('minlength')"
+                          class="text-danger">*Must be at least 8 characters</small>
+                      </div>
+
+                      <div class="form-group pt-3 row mx-1">
+                        <div class="input-field"
+                          [class.error]="form['confirmPassword'].invalid && form['confirmPassword'].touched">
+                          <span class="fa fa-lock p-2"></span>
+                          <input formControlName="confirmPassword" [type]="typeConfirmPassword"
+                            placeholder="Confirm Password" />
+                          <span (click)="togglePasswordVisibility('confirmPassword')"
+                            class="fa {{ eyeIconConfirmPassword }} px-2"></span>
+                        </div>
+                        <!-- Confirm Password Error Messages -->
+                        <small *ngIf="form['confirmPassword'].dirty && form['confirmPassword'].hasError('required')"
+                          class="text-danger">*Confirm Password is required</small>
+                        <small *ngIf="resetPasswordForm.hasError('passwordMismatch')" class="text-danger">*Passwords do
+                          not match</small>
+                      </div>
+
+                      <button type="submit" class="btn btn-primary btn-block"
+                        >Reset Password</button>
+
+
+
+                      <div class="text-center pt-4 text-muted">Remember your password? <a id="forget"
+                          routerLink="/login">Login</a></div>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="sr-only" for="confirmPassword">Confirm Password</label>
-          <div class="input-group">
-  
-            <input name="confirmPassword" type="password" autocomplete="off" class="form-control form-control-sm" id="confirmPassword" placeholder="Confirm Password" aria-describedby="inputGroupPrepend" required>
-            <div class="invalid-feedback">
-              Password not a match.
-            </div>
-          </div>
-        </div>
-  
-        <button id="submitBtn" class="btn btn-md btn-primary btn-block" type="submit">Update</button>
-  
       </div>
-    </div>
-  </form>
+    </section>
+  </div>
+</div>

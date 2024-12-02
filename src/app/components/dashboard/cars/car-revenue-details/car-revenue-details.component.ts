@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Car } from '../../../../models/car.model';
+import { Car, CarCustomerResponse } from '../../../../models/car.model';
+import { CarService } from '../../../../services/car.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car-revenue-details',
@@ -7,31 +9,24 @@ import { Car } from '../../../../models/car.model';
   styleUrl: './car-revenue-details.component.css'
 })
 export class CarRevenueDetailsComponent {
-  @Input() car: Car | null = null;
+  @Input() carResponse!: CarCustomerResponse; // Add @Input()
 
-  // Example revenue details (these should be dynamically retrieved from your backend or state)
-  revenueDetails = {
-    totalEarnings: 0,
-    totalDaysRented: 0,
-    numberOfRentals: 0,
-  };
-
-  constructor() {}
+  constructor(
+    private carService: CarService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // Load revenue details for the specific car
-    if (this.car) {
-      this.loadCarRevenueDetails();
+    const carId = this.route.snapshot.paramMap.get('carId');
+    if (carId) {
+      this.carService.getCarDetailsWithCustomer(carId).subscribe(
+        (response: CarCustomerResponse) => {
+          this.carResponse = response;
+        },
+        (error) => {
+          console.error('Error fetching car details', error);
+        }
+      );
     }
-  }
-
-  loadCarRevenueDetails(): void {
-    // Mock revenue data for demonstration purposes (replace with actual data retrieval)
-    this.revenueDetails = {
-      totalEarnings: (this.car?.pricePerDay || 0),
-
-      totalDaysRented: 10,
-      numberOfRentals: 15,
-    };
   }
 }

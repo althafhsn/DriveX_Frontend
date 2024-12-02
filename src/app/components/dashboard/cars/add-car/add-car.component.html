@@ -168,7 +168,18 @@
         required
       />
     </div>
-
+    <div class="mb-2">
+      <label for="seatCount">Year:</label>
+      <input
+        type="number"
+        id="year"
+        class="form-control form-control-sm"
+        placeholder="Enter Year"
+        [(ngModel)]="newCar.year"
+        name="year"
+        required
+      />
+    </div>
     <div class="mb-2">
       <label for="seatCount">Seat Count:</label>
       <input

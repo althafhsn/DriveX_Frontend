@@ -1,22 +1,64 @@
 export interface Car {
-    id: string;  // The 'id' is a string based on your example
-    brandId: string;  // Corrected to 'brandId' (case-sensitive)
-    brandName: string;
-    modelId: string;  // Corrected to 'modelId' (case-sensitive)
-    modelName: string;
-    regNo: string;
-    pricePerDay: number;
-    gearType: string;
-    fuelType: string;
-    mileage: string;
-    seatCount: string;
-    images: Image[];  // This should remain as an array of Image objects
-    status: 'Available' | 'Unavailable';  // Status should be either Available or Unavailable
-    customerId?: string;  // Optional field
-  }
-  
-  export interface Image {
-    id: string;  // The 'id' of the image
-    imagePath: string;  // The 'imagePath' for the image file (relative path or URL)
-  }
-  
+  id: string;
+  brandId: string;
+  brandName: string;
+  modelId: string;
+  modelName: string;
+  regNo: string;
+  pricePerDay: number;
+  gearType: string;
+  year: number;
+  fuelType: string;
+  mileage: string;
+  seatCount: string;
+  images: Image[];
+  status: 'Available' | 'Unavailable';
+  startDate:string;
+  endDate:string;
+  duration:number;
+  rentalRequestStatus:string;
+  ongoingRevenue:number;
+  totalRevenue:number;
+}
+
+export interface Image {
+  id: string;
+  imagePath: string;
+}
+
+export interface Customer {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  nic: string;
+  phoneNumbers: PhoneNumber[];
+}
+
+export interface PhoneNumber {
+  id: string;
+  mobile1: string;
+}
+
+export interface CarCustomerResponse {
+  car: Car;
+  customer?: Customer[] | null; // Changed to match your JSON response
+  message: string;
+}
+
+export interface UpdateCar{
+  id: string;
+  brandId: string;
+  brandName: string;
+  modelId: string;
+  modelName: string;
+  regNo: string;
+  pricePerDay: number;
+  gearType: string;
+  year: number;
+  fuelType: string;
+  mileage: string;
+  seatCount: string;
+  images: Image[];
+  status: 'Available' | 'Unavailable';
+}
