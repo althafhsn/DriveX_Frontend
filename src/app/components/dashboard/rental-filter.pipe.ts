@@ -14,7 +14,7 @@ export class RentalFilterPipe implements PipeTransform {
       this.formatDate(r.requestDate).toLowerCase().includes(lowercasedQuery) ||
       this.formatDate(r.startDate).toLowerCase().includes(lowercasedQuery) ||
       this.formatDate(r.endDate).toLowerCase().includes(lowercasedQuery) ||
-      r.ongoingRevenue.toString().toLowerCase().includes(lowercasedQuery)
+      r.totalPrice.toString().toLowerCase().includes(lowercasedQuery)
     );
   }
 

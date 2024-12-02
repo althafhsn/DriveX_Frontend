@@ -51,4 +51,17 @@ export interface Booking {
     id:string;
     mobile1: string;
   }
+
+  export interface Rentals{
+    id:string;
+    carId:string;
+    userId:string;
+    requestDate:string;
+    startDate:string;
+    endDate:string;
+    totalPrice:number;
+    status:string;
+    regNo:string;
+    nic:string;
+  }
   

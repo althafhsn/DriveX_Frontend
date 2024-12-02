@@ -31,14 +31,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let rented of filteredRented | rentalFilter:query; let i = index">
+                <tr *ngFor="let rented of rentals | rentalFilter:query; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ rented.nic }}</td>
                   <td>{{ rented.regNo }}</td>
                   <td>{{ formatDate(rented.requestDate) }}</td>
                   <td>{{ formatDate(rented.startDate) }}</td>
                   <td>{{ formatDate(rented.endDate) }}</td>
-                  <td>{{ rented.ongoingRevenue | currency: 'LKR ' }}</td>
+                  <td>{{ rented.totalPrice | currency: 'LKR ' }}</td>
                   <td>
                     <button class="btn btn-outline-primary btn-sm" (click)="returnBooking(rented.id)">Return</button>
                   </td>
@@ -48,7 +48,7 @@
     </div>
 
     <!-- If no data is found -->
-    <div *ngIf="booking?.length === 0" class="text-center text-muted mt-3">
+    <div *ngIf="rentals?.length === 0" class="text-center text-muted mt-3">
         <p>No rental history found matching the search criteria.</p>
     </div>
 </div> 

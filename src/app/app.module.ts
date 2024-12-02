@@ -77,7 +77,6 @@ import { BookingCarDetailsComponent } from './components/dashboard/booking/booki
 import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
 import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 import { AppRoutingModule } from './app-routing.module';
-import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
 import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
@@ -147,7 +146,6 @@ import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
-    RentedCarListComponent,
     RentedCarFilterPipe,
     ExlporeCarComponent,
     LandingComponent,

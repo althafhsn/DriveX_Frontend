@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Booking } from '../../../../models/booking.model';
+import { Booking, Rentals } from '../../../../models/booking.model';
 import { BookingService } from '../../../../services/booking.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -9,8 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './ongoing-rental-history.component.css'
 })
 export class OngoingRentalHistoryComponent {
-  @Input() booking: Booking[] = [];
-  filteredRented: Booking[] = [];
+  @Input() rentals:Rentals[] =[];
+  // filteredRented: Booking[] = [];
   query: string = ''; // Search query
   errorMessage: string | null = null;
 
@@ -21,12 +21,12 @@ export class OngoingRentalHistoryComponent {
   }
 
   loadBookings(): void {
-    this.bookingService.getBookings().subscribe(
-      (data: Booking[]) => {
-        this.booking = data;
+    this.bookingService.ongoingRentals().subscribe(
+      (data) => {
+        this.rentals = data;
         // Filter bookings with ongoingRevenue > 0
-        this.filteredRented = this.booking.filter(booking => booking.ongoingRevenue > 0);
-        console.log('Filtered ongoing bookings:', this.filteredRented);
+        // this.filteredRented = this.booking.filter(booking => booking.ongoingRevenue > 0 ) ;
+        // console.log('Filtered ongoing bookings:', this.filteredRented);
       },
       (error) => {
         console.error('Error fetching booking data:', error);
@@ -38,7 +38,7 @@ export class OngoingRentalHistoryComponent {
     this.bookingService.performingStatus(bookingId, 'returned').subscribe(
       () => {
         // Filter out the returned booking from the table
-        this.filteredRented = this.filteredRented.filter(booking => booking.id !== bookingId);
+        // this.filteredRented = this.filteredRented.filter(booking => booking.id !== bookingId );
         console.log(`Booking ${bookingId} marked as returned`);
       },
       (error: HttpErrorResponse) => {
@@ -46,7 +46,6 @@ export class OngoingRentalHistoryComponent {
         alert('Failed to update booking status. Please try again.');
       }
     );
-    window.location.reload();
   }
   // Format date method for displaying dates
   formatDate(date: string): string {

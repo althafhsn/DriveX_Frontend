@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Booking } from '../../../../models/booking.model';
+import { Booking, Rentals } from '../../../../models/booking.model';
 import { BookingService } from '../../../../services/booking.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { BookingService } from '../../../../services/booking.service';
   styleUrls: ['./rental-history.component.css']
 })
 export class RentalHistoryComponent {
-  @Input() booking: Booking[] = [];
-  filteredRented: Booking[] = [];
+  @Input() rentals: Rentals[] = [];
+  // filteredRented: Booking[] = [];
   query: string = ''; // Search query
   errorMessage: string | null = null;
 
@@ -20,12 +20,12 @@ export class RentalHistoryComponent {
   }
 
   loadBookings(): void {
-    this.bookingService.getBookings().subscribe(
-      (data: Booking[]) => {
-        this.booking = data;
+    this.bookingService.rentedHistory().subscribe(
+      (data) => {
+        this.rentals = data;
         // Filter bookings with ongoingRevenue > 0
-        this.filteredRented = this.booking.filter(booking => booking.totalRevenue > 0 && booking.status =='returned');
-        console.log('Filtered ongoing bookings:', this.filteredRented);
+        // this.filteredRented = this.booking.filter(booking => booking.totalRevenue > 0 && booking.status =='returned');
+        // console.log('Filtered ongoing bookings:', this.filteredRented);
       },
       (error) => {
         console.error('Error fetching booking data:', error);
