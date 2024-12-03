@@ -31,7 +31,8 @@ export class ProfileInfoComponent {
         this.errorMessage = 'Failed to load manager data.';
       }
     );
-  }onManagerClick(manager: Manager): void {
+  }
+  onManagerClick(manager: Manager): void {
     if (manager && manager.id) {
       this.managerService.getManagerById(manager.id).subscribe(
         (response) => {

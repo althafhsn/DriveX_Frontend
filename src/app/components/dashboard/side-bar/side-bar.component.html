@@ -105,7 +105,8 @@
       aria-labelledby="offcanvasSidebarLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasSidebarLabel">CAR RENT</h5>
+        <img src="logo4.png" alt="Logo" class="me-2" style="height: 40px;" />
+        <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Drive_X</h5>
         <button
           type="button"
           class="btn-close text-reset"
@@ -142,28 +143,26 @@
           s
         </a>
         <a class="d-flex align-items-center p-2" routerLink="./rented-car-list" routerLinkActive="active">
-          <i class="fas fa-exchange-alt me-2"></i>
+          <i class="fas fa-history me-2"></i>
           Rented History
         </a>
-        <a class="d-flex align-items-center p-2" routerLink="/car-report" routerLinkActive="active">
-          <i class="fas fa-chart-line me-2"></i>
-          Car Report
-        </a>
+       
         <a
-          class="d-flex align-items-center p-3 mt-auto logout"
-          routerLink="/logout"
-          (click)="logout()"
-        >
-          <i class="fas fa-sign-out-alt me-2"></i>
-          Logout
-        </a>
+        class="d-flex align-items-center p-3 mt-auto logout bg-danger text-white"
+        routerLink="/logout"
+        (click)="logout()"
+      >
+        <i class="fas fa-sign-out-alt me-2"></i>
+        Logout
+      </a>
       </div>
     </div>
   
     <!-- Sidebar for Desktop -->
     <div class="sidebar bg-dark text-white d-none d-md-block position-fixed vh-100">
       <div class="sidebar-logo p-3 text-center">
-        <h2>CAR RENT</h2>
+        <img src="logo4.png" alt="Logo" class="me-2" style="height: 40px;" />
+      
       </div>
       <a class="d-flex align-items-center p-2" routerLink="main" routerLinkActive="active">
         <i class="fas fa-tachometer-alt me-2"></i>
@@ -178,7 +177,7 @@
         Bookings
       </a>
       <a class="d-flex align-items-center p-2" routerLink="cars" routerLinkActive="active">
-        <i class="fas fa-bell me-2"></i>
+        <i class="fas fa-car me-2"></i>
         Cars
       </a>
       <a class="d-flex align-items-center p-2" routerLink="settings" routerLinkActive="active">
@@ -192,21 +191,19 @@
         Revenue
       </a>
       <a class="d-flex align-items-center p-2" routerLink="./rented-car-list" routerLinkActive="active">
-        <i class="fas fa-exchange-alt me-2"></i>
+        <i class="fas fa-history me-2"></i>
         Rented History
       </a>
-      <a class="d-flex align-items-center p-2" routerLink="/car-report" routerLinkActive="active">
-        <i class="fas fa-chart-line me-2"></i>
-        Car Report
-      </a>
-      <a
-        class="d-flex align-items-center p-3 mt-auto logout"
-        routerLink="/logout"
-        (click)="logout()"
-      >
-        <i class="fas fa-sign-out-alt me-2"></i>
-        Logout
-      </a>
+     <br>
+     <br>
+     <a
+     class="d-flex align-items-center p-3 mt-auto logout bg-danger text-white"
+     routerLink="/logout"
+     (click)="logout()"
+   >
+     <i class="fas fa-sign-out-alt me-2"></i>
+     Logout
+   </a>
     </div>
   </div>
   
