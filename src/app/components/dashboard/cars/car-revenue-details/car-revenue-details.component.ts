@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Car, CarCustomerResponse } from '../../../../models/car.model';
 import { CarService } from '../../../../services/car.service';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './car-revenue-details.component.html',
   styleUrl: './car-revenue-details.component.css'
 })
-export class CarRevenueDetailsComponent {
+export class CarRevenueDetailsComponent implements OnInit{
   @Input() carResponse!: CarCustomerResponse; // Add @Input()
 
   constructor(

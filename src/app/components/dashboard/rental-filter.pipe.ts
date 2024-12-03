@@ -9,12 +9,12 @@ export class RentalFilterPipe implements PipeTransform {
 
     const lowercasedQuery = query.toLowerCase();
     return rented.filter(r => 
-      r.customerNIC.toLowerCase().includes(lowercasedQuery) ||
-      r.carRegNo.toLowerCase().includes(lowercasedQuery) ||
-      this.formatDate(r.RequestDate).toLowerCase().includes(lowercasedQuery) ||
-      this.formatDate(r.StartDate).toLowerCase().includes(lowercasedQuery) ||
-      this.formatDate(r.EndDate).toLowerCase().includes(lowercasedQuery) ||
-      r.Totalprice.toString().toLowerCase().includes(lowercasedQuery)
+      r.nic.toLowerCase().includes(lowercasedQuery) ||
+      r.regNo.toLowerCase().includes(lowercasedQuery) ||
+      this.formatDate(r.requestDate).toLowerCase().includes(lowercasedQuery) ||
+      this.formatDate(r.startDate).toLowerCase().includes(lowercasedQuery) ||
+      this.formatDate(r.endDate).toLowerCase().includes(lowercasedQuery) ||
+      r.totalPrice.toString().toLowerCase().includes(lowercasedQuery)
     );
   }
 

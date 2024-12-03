@@ -16,7 +16,7 @@
   <!-- Customer List -->
   <div class="customers-list overflow-auto" style="max-height: 450px;">
     <!-- Loop through customers -->
-    <div *ngFor="let customer of customers" (click)="onCustomerClick(customer)">
+    <div *ngFor="let customer of customers  | customerFilter: searchText" (click)="onCustomerClick(customer)">
       <div class="d-flex align-items-center">
         <img
           [src]="customer.image"
