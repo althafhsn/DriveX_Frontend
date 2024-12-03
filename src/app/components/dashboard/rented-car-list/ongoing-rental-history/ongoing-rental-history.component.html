@@ -31,18 +31,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Use index 'i' to display row number -->
-                <tr *ngFor="let rented of rented | rentalFilter:query; let i = index">
-                    <td>{{ i + 1 }}</td> <!-- Row number starts from 1 -->
-                    <td>{{ rented.customerNIC }}</td>
-                    <td>{{ rented.carRegNo }}</td>
-                    <td>{{ formatDate(rented.RequestDate) }}</td>
-                    <td>{{ formatDate(rented.StartDate) }}</td>
-                    <td>{{ formatDate(rented.EndDate) }}</td>
-                    <td>{{ rented.Totalprice | currency }}</td>
-                    <td>
-                        <button class="btn btn-outline-success btn-sm">Return</button>
-                    </td>
                 <tr *ngFor="let rented of rentals | rentalFilter:query; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ rented.nic }}</td>
