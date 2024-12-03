@@ -1,42 +1,42 @@
-/* Overall Container */
+/* 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin:0 ;
+    padding:5px;
   }
   
-  /* Table Styling */
+
   table {
-    width: 100%;
-    margin-top:5px;
+    width:100%;
+    margin-top:20px;
     font-size: 0.9rem;
   }
   
   th, td {
     text-align: left;
-    padding: 12px;
+    padding:8px;
   }
   
-  /* Table Header Styling */
+
   thead th {
-    font-weight: 600;
-    text-transform: uppercase; /* Make table headers all caps */
-    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    font-weight:100;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
   }
   
-  /* Table Row Styling */
+ 
   tbody tr:nth-child(even) {
-    background-color: #f8f9fa; /* Light gray for even rows */
+    background-color: #f8f9fa; 
   }
   
   tbody tr:hover {
-    background-color: #e9ecef; /* Hover effect for rows */
+    background-color: #e9ecef; 
   }
   
-  /* Button Styling */
+
   .btn-sm {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    font-size: 0.600rem;
     border-radius: 0.375rem;
     background-color: #007bff;
     color: white;
@@ -45,14 +45,65 @@
   }
   
   .btn-sm:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
     transition: background-color 0.3s;
   }
   
-  /* "No data found" Message */
+
   .text-center.text-muted {
-    font-size: 1.1rem;
+    font-size: 0.1rem;
     color: #6c757d;
-    margin-top: 20px;
+    margin-top:10px;
   }
-  
+   */
+   /* Table Header Styling */
+thead th {
+  font-size: 16px;
+  text-align: center;
+  padding: 12px;
+  background-color: #343a40;
+  color: white;
+}
+
+/* Table Row Styling with Hover Effect */
+tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* Input Search Box Styling */
+.search-box .input-group {
+  width: 75%; /* Adjust search box width */
+}
+
+/* Responsive Search Box */
+@media (max-width: 768px) {
+  .search-box .input-group {
+      width: 90%; /* Make the search box wider on smaller screens */
+  }
+}
+
+/* Table Cell Styling */
+table td {
+  font-size: 14px;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Button Styling */
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: white;
+}
+
+/* No data found text */
+.text-center.text-muted {
+  font-size: 18px;
+  padding: 20px;
+  color: #6c757d;
+}

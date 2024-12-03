@@ -12,14 +12,15 @@ export class RentedCarListComponent {
    
   ];
   
-  activeTab: string = 'profile-settings'; // Default active tab
+  activeTab: string = ''; // Default active tab
 
   changeTab(tabId: string) {
     this.activeTab = tabId;
   }
+  query: string = '';
   
   // Method to check if All Customers List should show
   showAllCustomersList(): boolean {
-    return this.activeTab === 'update-customer';
+    return this.activeTab === 'rental-history';
   }
 }
