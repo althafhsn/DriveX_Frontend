@@ -81,6 +81,7 @@ import { RentalHistoryComponent } from './components/dashboard/rented-car-list/r
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
 
 
 @NgModule({
@@ -159,6 +160,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RentalHistoryComponent,
     OngoingRentalHistoryComponent,
     RentalFilterPipe,
+    AddManagerComponent,
 
   ],
   imports: [

@@ -47,4 +47,7 @@ export class ProfileInfoComponent {
       );
     }
   }
+  onAddManagerClick(): void {
+    this.addManager.emit(); // Notify the parent component to display Add Customer form
+  }
 }

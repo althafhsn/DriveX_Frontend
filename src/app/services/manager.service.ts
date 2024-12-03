@@ -18,5 +18,8 @@ export class ManagerService {
   getManagerById(id: string): Observable<Manager> {
     return this.http.get<Manager>(`${this.apiUrl}/manager/${id}`);
   }
+  addManager(manager: Manager): Observable<Manager> {
+    return this.http.post<Manager>(`${this.apiUrl}/add-manager-dashboard`, manager);
+  }
 }
 
