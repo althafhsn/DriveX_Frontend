@@ -26,6 +26,9 @@ import { PasswordUpdateComponent } from './components/dashboard/settings/passwor
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
 import { authGuard } from './guards/auth.guard';
 import { blockLoginRegisterGuard } from './guards/block-login-register-guard.guard';
+import { AllCarsComponent } from "./components/Customer/all-cars/all-cars.component";
+import { CarDetailsComponent } from "./components/Customer/conform-rent/car-details/car-details.component";
+import { checkUserLogedInGuard } from "./guards/check-user-loged-in.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
@@ -44,7 +47,10 @@ const routes: Routes = [
       { path: 'profile-setting', component: ProfileSetComponent },
       { path: 'profile-nav', component: ProfileNavbarComponent },
       { path: 'history', component: HistoryComponent },
-      { path: 'search', component: SearchCarComponent }
+      { path: 'search', component: SearchCarComponent },
+      // {path:'conformrent',component:CarDetailsComponent},
+      { path: 'conformrent/:id', component: CarDetailsComponent,canActivate:[checkUserLogedInGuard] },
+      
     ]
   },
   {
@@ -61,12 +67,12 @@ const routes: Routes = [
         children: [
           { path: 'profile-settings', component: ProfileFormComponent },
           { path: 'password-update', component: PasswordUpdateComponent },
-          
+
           // Add other routes
         ]
       },
       { path: 'revenue', component: RevenueComponent },
-      {path:'rented', component:RentedCarListComponent},
+      { path: 'rented', component: RentedCarListComponent },
       { path: 'cars', component: CarsComponent },
 
 

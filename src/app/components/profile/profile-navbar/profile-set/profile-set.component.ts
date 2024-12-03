@@ -12,8 +12,10 @@ export class ProfileSetComponent implements OnInit {
   customer!: Customer
   customerData!: CustomerResponse;
   isEditMode = false; // Toggle flag for edit mode
-  // address:Address
-
+  addresses!: Address[];
+isEditAddressMode: boolean = false;
+  isEditPhoneNumberMode: boolean = false;
+  
   addAddress(): void {
     this.customer.addresses.push({
       houseNo: '',
@@ -24,6 +26,7 @@ export class ProfileSetComponent implements OnInit {
       country: '',
     });
   }
+ 
 
   addPhoneNumber(): void {
     this.customer.phoneNumbers.push({
@@ -33,7 +36,7 @@ export class ProfileSetComponent implements OnInit {
 
   imageSrc: string | ArrayBuffer | null = null;
 
-  constructor(private apiservice: AuthService,private http: HttpClient) { }
+  constructor(private apiservice: AuthService,  private http: HttpClient) { }
 
   
 
@@ -51,19 +54,38 @@ export class ProfileSetComponent implements OnInit {
 
   }
 
-  updateCustomer(): void {
-   if(this.apiservice.getIdFromToken()){
-    this.apiservice.editUser(this.customer).subscribe(
-      (response)=>{
-        this.apiservice.editUser(this.customer);
-        console.log('Customer updated successfully');
-          this.toggleEditMode(); // Exit edit mode after saving
-      },
-      (error)=>{
-        console.error('error updating customer')
-      }
-    );
-   }
+  saveAddresses() {
+    const userId = this.apiservice.getIdFromToken();
+    if (userId && this.customer.addresses.length <= 2) {
+      this.apiservice.updateUserAddresses(userId).subscribe(
+        () => {
+          console.log('Addresses updated successfully');
+          this.toggleEditAddressMode();
+        },
+        (error) => console.error('Error updating addresses:', error)
+      );
+    }
+  }
+
+  savePhoneNumbers() {
+    const userId = this.apiservice.getIdFromToken();
+    if (userId && this.customer.phoneNumbers.length <= 2) {
+      this.apiservice.updateUserPhoneNumbers(userId).subscribe(
+        () => {
+          console.log('Phone numbers updated successfully');
+          this.toggleEditPhoneNumberMode();
+        },
+        (error) => console.error('Error updating phone numbers:', error)
+      );
+    }
+  }
+   
+  toggleEditAddressMode() {
+    this.isEditAddressMode = !this.isEditAddressMode;
+  }
+
+  toggleEditPhoneNumberMode() {
+    this.isEditPhoneNumberMode = !this.isEditPhoneNumberMode;
   }
   
   
