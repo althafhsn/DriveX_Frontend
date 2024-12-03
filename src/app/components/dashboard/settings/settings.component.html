@@ -15,8 +15,8 @@
           <app-profile-info
             [managers]="managers"
             (managerSelected)="handleManagerSelection($event)"
-           
-         >  <!-- (addManager)="toggleAddManager()"-->
+            (addManager)="toggleAddManager()"
+         > 
           </app-profile-info>
         </div>
       </div>
@@ -32,7 +32,7 @@
           <!-- Conditionally display manager details or add manager form -->
           <div class="mb-3">
             <app-profile-form *ngIf="!isAddManager && selectedManager" [manager]="selectedManager"></app-profile-form>
-            <!-- <app-add-manager *ngIf="isAddManager" (managerAdded)="addNewManager($event)"></app-add-manager> -->
+            <app-add-manager *ngIf="isAddManager" (managerAdded)="toggleAddManager()"></app-add-manager>
             <p *ngIf="!selectedManager && !isAddManager" class="text-muted text-center">Please select a manager from the list.</p>
           </div>
         </div>

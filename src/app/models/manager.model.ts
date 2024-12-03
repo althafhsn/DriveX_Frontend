@@ -9,6 +9,7 @@ export interface Manager {
     addresses: Address[];
     phoneNumbers: PhoneNumber[];
     notes: string;
+    password:string;
   }
   export interface Address {
     id: string;

@@ -1,0 +1,132 @@
+<div class="container mt-4">
+    <h2>Add Manager</h2>
+    <form #managerForm="ngForm" (ngSubmit)="onAddManager()">
+      <!-- Manager Details -->
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          [(ngModel)]="newManager.firstName"
+          name="firstName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name:</label>
+        <input
+          type="text"
+          id="lastName"
+          [(ngModel)]="newManager.lastName"
+          name="lastName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="newManager.email"
+          name="email"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="nic" class="form-label">NIC:</label>
+        <input
+          type="email"
+          id="nic"
+          [(ngModel)]="newManager.nic"
+          name="nic"
+          class="form-control"
+          required
+        />
+      </div>
+   <!-- Address Details -->
+   <h5>Addresses</h5>
+   <div *ngFor="let address of newManager.addresses; let i = index" class="mb-3">
+     <label for="houseNo-{{ i }}" class="form-label">House No:</label>
+     <input type="text" id="houseNo-{{ i }}" [(ngModel)]="address.houseNo" name="houseNo-{{ i }}" class="form-control" />
+
+     <label for="street1-{{ i }}" class="form-label">Street 1:</label>
+     <input type="text" id="street1-{{ i }}" [(ngModel)]="address.street1" name="street1-{{ i }}" class="form-control" />
+
+     <label for="street2-{{ i }}" class="form-label">Street 2:</label>
+     <input type="text" id="street2-{{ i }}" [(ngModel)]="address.street2" name="street2-{{ i }}" class="form-control" />
+
+     <label for="city-{{ i }}" class="form-label">City:</label>
+     <input type="text" id="city-{{ i }}" [(ngModel)]="address.city" name="city-{{ i }}" class="form-control" />
+
+     <label for="zipCode-{{ i }}" class="form-label">Zip Code:</label>
+     <input type="number" id="zipCode-{{ i }}" [(ngModel)]="address.zipCode" name="zipCode-{{ i }}" class="form-control" />
+
+     <label for="country-{{ i }}" class="form-label">Country:</label>
+     <input type="text" id="country-{{ i }}" [(ngModel)]="address.country" name="country-{{ i }}" class="form-control" />
+
+     <!-- Remove Address Button -->
+     <button *ngIf="newManager.addresses.length > 1" (click)="removeAddress(i)" type="button" class="btn btn-danger mt-2">Remove Address</button>
+   </div>
+   <button *ngIf="newManager.addresses.length < 2" (click)="addAddress()" type="button" class="btn btn-secondary mt-2">+ Add Address</button>
+
+      <!-- Phone Numbers -->
+      <h5>Phone Numbers</h5>
+      <div *ngFor="let phone of newManager.phoneNumbers; let i = index" class="mb-3">
+        <label for="mobile1-{{ i }}" class="form-label">Mobile:</label>
+        <input
+          type="text"
+          id="mobile1-{{ i }}"
+          [(ngModel)]="phone.mobile1"
+          name="mobile1-{{ i }}"
+          class="form-control"
+        />
+        <!-- Remove Phone Number Button -->
+        <button
+          *ngIf="newManager.phoneNumbers.length > 1"
+          (click)="removePhoneNumber(i)"
+          type="button"
+          class="btn btn-danger mt-2"
+        >
+          Remove Phone
+        </button>
+      </div>
+      <button
+        *ngIf="newManager.phoneNumbers.length < 2"
+        (click)="addPhoneNumber()"
+        type="button"
+        class="btn btn-secondary mt-2"
+      >
+        + Add Phone
+      </button>
+  
+      <!-- Additional Details -->
+      <div class="mb-3">
+        <label for="notes" class="form-label">Notes:</label>
+        <textarea
+          id="notes"
+          [(ngModel)]="newManager.notes"
+          name="notes"
+          class="form-control"
+        ></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="newManager.password"
+          name="password"
+          class="form-control"
+          required
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Add Manager</button>
+    </form>
+  </div>
+  
