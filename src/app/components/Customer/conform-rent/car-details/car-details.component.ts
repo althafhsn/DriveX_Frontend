@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Car } from '../../../../models/car.model';
+import { Car, newcar,rentalRequest } from '../../../../models/car.model';
 import { CarService } from '../../../../services/car.service';
+import { AuthService } from '../../../../services/auth.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
@@ -9,7 +13,8 @@ import { CarService } from '../../../../services/car.service';
   styleUrls: ['./car-details.component.css'],
 })
 export class CarDetailsComponent implements OnInit {
-  @Input() cars: Car[] = [];
+  @Input() car!:newcar;
+  // car!: any
   @Input() card!: Car; // Ensure card is initialized properly
   pickupDate: string | null = '';
   returnDate: string | null = '';
@@ -18,23 +23,88 @@ export class CarDetailsComponent implements OnInit {
   lastUpdatedDate: string | null = '';
   pickupDateError: string | null = null;
   returnDateError: string | null = null;
+  id!: string
+duration!:number;
+priceperDay!:number;
 
-  constructor(private carService: CarService , toastrService: CarService) {}
+
+
+  constructor(
+    private carService: CarService,
+    private toastrService: CarService,
+    private http: HttpClient,
+    private activateRout: ActivatedRoute,
+  private authService:AuthService) { }
 
   ngOnInit(): void {
     // Load dates from localStorage
     this.pickupDate = localStorage.getItem('pickupDate');
     this.returnDate = localStorage.getItem('returnDate');
     this.lastUpdatedDate = localStorage.getItem('lastUpdatedDate');
-    this.checkFields(); // Check field states on component load
-
+    this.checkFields();
+   console.log(this.authService.getIdFromToken());
+    console.log(this.carService.getCarById)
+    console.log('Pickup Date:', this.pickupDate);
+    console.log('Return Date:', this.returnDate);
     this.validateDates();
+
+
+
+    this.id = this.activateRout.snapshot.paramMap.get('id') || '';
+    this.carService.getCarById(this.id).subscribe((data) => {
+      console.log('Car details:',data);
+      if (data) {
+        this.car = data; // Assuming this is how you assign it
+        console.log('Car Brand ID:', data.brandId);
+      } else {
+        console.log('No car data found');
+      }
+    });
+
   }
   checkFields(): void {
-    // Check if both fields are filled
     this.isButtonDisabled = !this.pickupDate || !this.returnDate;
   }
+  bookNow(): void {
+    if (!this.pickupDate || !this.returnDate) {
+      alert('Please select pickup and return dates!');
+      return;
+    }
 
+    const userId = this.authService.getIdFromToken(); // Fetch userId from token
+    if (!userId) {
+      alert('Unable to fetch user details. Please login again.');
+      return;
+    }
+
+    const rentalRequest: rentalRequest = {
+      carId: this.car.id,
+      userId,
+      startDate: this.pickupDate,
+      endDate: this.returnDate,
+      action: 'Pending',
+      status: 'Request'
+    };
+
+    // Place the rental request
+    this.authService.placeRentalRequest(rentalRequest).subscribe({
+      next: (response) => {
+        console.log('Rental request placed successfully:', response);
+        alert('Booking successful!');
+      },
+      error: (error) => {
+        console.error('Error placing rental request:', error);
+        alert('Booking failed. Please try again.');
+      }
+    });
+  }
+
+// totalPrice(){
+//   this.duration = this.car.duration;
+//   this.priceperDay = this.car.pricePerDay;
+//   var totalPrice = this.duration * this.priceperDay;
+//   return totalPrice;
+// }
 
   validateDates(): void {
     this.pickupDateError = null;
@@ -76,7 +146,7 @@ export class CarDetailsComponent implements OnInit {
       return;
     }
 
-    
+
 
     if (this.pickupDate && this.returnDate && !this.pickupDateError && !this.returnDateError) {
       localStorage.setItem('pickupDate', this.pickupDate);
@@ -93,6 +163,6 @@ export class CarDetailsComponent implements OnInit {
     }
   }
 
- 
-  
+
+
 }

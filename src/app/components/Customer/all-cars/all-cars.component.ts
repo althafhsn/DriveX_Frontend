@@ -63,7 +63,6 @@ export class AllCarsComponent implements OnInit {
 
 
   selectCar(card: Car): void {
-    this.selectedCar.emit(card);
     this.selectedCarID = card.id;
   }
 
