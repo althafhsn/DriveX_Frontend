@@ -28,6 +28,8 @@ export interface Booking {
     mileage: string;
     seatCount: string;
     images: Image[];
+    ongoingRevenue:number;
+    totalRevenue:number;
   }
   
   export interface Image {
@@ -48,5 +50,18 @@ export interface Booking {
   export interface PhoneNumber{
     id:string;
     mobile1: string;
+  }
+
+  export interface Rentals{
+    id:string;
+    carId:string;
+    userId:string;
+    requestDate:string;
+    startDate:string;
+    endDate:string;
+    totalPrice:number;
+    status:string;
+    regNo:string;
+    nic:string;
   }
   

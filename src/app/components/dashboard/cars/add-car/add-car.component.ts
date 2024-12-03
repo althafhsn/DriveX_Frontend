@@ -16,17 +16,23 @@ export class AddCarComponent {
     modelId: '',
     modelName: '',
     regNo: '',
-    
     pricePerDay: 0,
     gearType: '',
+    year: 0,
     fuelType: '',
     mileage: '',
     seatCount: '',
     images: [],
     status: 'Available',
+    startDate: '',
+    endDate: '',
+    duration: 0,
+    rentalRequestStatus: '',
+    ongoingRevenue: 0,
+    totalRevenue: 0,
   };
 
-  
+
 
   brands: { id: string; name: string }[] = [];
   models: { id: string; name: string }[] = [];
@@ -36,36 +42,20 @@ export class AddCarComponent {
   newModelName = '';
   isLoading = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.fetchBrands();
-    
   }
-  
-  selectedImages: string[] = []; // This will store Base64 strings
 
-  // onFileSelect(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     const files = Array.from(input.files).slice(0, 4); // Limit to 4 files
-  
-  //     this.selectedImages = []; // Clear previous images
-  
-  //     files.forEach((file) => {
-  //       const reader = new FileReader();
-  //       reader.onload = (e: any) => {
-  //         this.selectedImages.push(e.target.result); // Base64 string
-  //       };
-  //       reader.readAsDataURL(file); // Convert file to Base64
-  //     });
-  //   }
-  // }
-  
+  selectedImages: string[] = [];
+
+
+
   removeImage(index: number): void {
     this.selectedImages.splice(index, 1); // Remove the image from the list
   }
-  
+
 
   /**
    * Fetch all brands
@@ -86,22 +76,20 @@ export class AddCarComponent {
       );
   }
 
-  /**
-   * Fetch models based on the selected brand ID
-   * @param brandid
-   */
   onBrandChange(event: any): void {
-    const selectedBrandId = (event.target as HTMLSelectElement).value; // Extract value
+    const selectedBrandId = (event.target as HTMLSelectElement)?.value || event;
     if (selectedBrandId) {
       this.http
         .get<{ id: string; name: string }[]>(`http://localhost:5147/api/Model/brand/${selectedBrandId}`)
-        .subscribe(
-          (data) => {
+        .subscribe({
+          next: (data) => {
             this.models = data;
+
           },
-          (error) => {
+          error: (error) => {
             console.error('Error fetching models:', error);
           }
+        }
         );
     } else {
       this.models = [];
@@ -133,7 +121,7 @@ export class AddCarComponent {
           this.fetchBrands();
           this.newBrandName = '';
           this.showAddBrand = false;
-          this.isLoading = false;
+          // this.isLoading = false;
         },
         (error) => {
           console.error('Error adding brand:', error);
@@ -162,7 +150,6 @@ export class AddCarComponent {
       return;
     }
 
-    this.isLoading = true;
     this.http
       .post('http://localhost:5147/api/Model/add-new-model', {
         name: this.newModelName,
@@ -170,10 +157,10 @@ export class AddCarComponent {
       })
       .subscribe(
         () => {
-          this.onBrandChange(this.newCar.brandId);
+          this.onBrandChange({target :{value : this.newCar.brandId}});
           this.newModelName = '';
           this.showAddModel = false;
-          this.isLoading = false;
+          // this.isLoading = false;
         },
         (error) => {
           console.error('Error adding model:', error);
@@ -190,7 +177,7 @@ export class AddCarComponent {
       alert('Please fill in all required fields correctly.');
       return;
     }
-  
+
     // Prepare the car data as a JSON object
     const carData = {
       brandId: this.newCar.brandId.trim(),
@@ -198,6 +185,7 @@ export class AddCarComponent {
       regNo: this.newCar.regNo.trim(),
       pricePerDay: this.newCar.pricePerDay,
       gearType: this.newCar.gearType.trim(),
+      year: String(this.newCar.year).trim(),
       fuelType: this.newCar.fuelType.trim(),
       mileage: this.newCar.mileage.trim(),
       seatCount: String(this.newCar.seatCount).trim(),
@@ -207,18 +195,18 @@ export class AddCarComponent {
       })),
       status: "Available",
     };
-    
+
     // Utility function to generate GUIDs
-   
-    
-  
+
+
+
     console.log('Payload being sent:', carData);
     // POST API call with JSON payload
     this.http.post('http://localhost:5147/api/Car', carData).subscribe(
       (response) => {
         console.log('Car added successfully:', response);
         alert('Car added successfully!');
-        this.resetForm();
+        window.location.reload();
       },
       (error) => {
         console.error('Error adding car:', error);
@@ -226,8 +214,8 @@ export class AddCarComponent {
       }
     );
   }
-  
-  
+
+
   /**
    * Validate form fields
    */
@@ -238,13 +226,14 @@ export class AddCarComponent {
       !!this.newCar.regNo &&
       this.newCar.pricePerDay > 0 &&
       !!this.newCar.gearType &&
+      !!this.newCar.year &&
       !!this.newCar.fuelType &&
       !!this.newCar.mileage &&
       !!this.newCar.seatCount &&
       this.selectedImages.length > 0 // Ensure at least one image is uploaded
     );
   }
-  
+
   /**
    * Reset form fields
    */
@@ -258,11 +247,18 @@ export class AddCarComponent {
       regNo: '',
       pricePerDay: 0,
       gearType: '',
+      year: 0,
       fuelType: '',
       mileage: '',
       seatCount: '',
       images: [],
       status: 'Available',
+      startDate: '',
+      endDate: '',
+      duration: 0,
+      rentalRequestStatus: '',
+      ongoingRevenue: 0,
+      totalRevenue: 0,
     };
     this.models = [];
     this.selectedImages = []; // Clear selected images
@@ -279,24 +275,25 @@ export class AddCarComponent {
     return [0, 1, 2, 3].slice(this.selectedImages.length);
   }
 
-  // Trigger the file input for a specific index
   triggerFileInput(index: number) {
     const fileInput = document.getElementById(`imageInput${index}`) as HTMLInputElement;
     fileInput?.click();
   }
 
-  // Handle file selection
+
   onFileSelect(event: any, index: number): void {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
         if (this.selectedImages.length < 4) {
-          this.selectedImages[index] = reader.result as string; // Store the selected image URL
+          this.selectedImages[index] = reader.result as string; 
         }
       };
-      reader.readAsDataURL(file); // Read the file as a Data URL
+      reader.readAsDataURL(file); 
     }
   }
-  
+
+
+
 }

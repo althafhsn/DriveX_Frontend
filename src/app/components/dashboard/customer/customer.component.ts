@@ -18,7 +18,7 @@ throw new Error('Method not implemented.');
 }
   customers: Customer[] = [];
   selectedCustomer!: CustomerResponse;
-
+  searchText: string = '';
   constructor(private dashboardCustomerService: DashboardCustomerService) {}
 
   ngOnInit(): void {
@@ -33,7 +33,6 @@ throw new Error('Method not implemented.');
   }
 
   handleCustomerSelection(customer: CustomerResponse): void {
-    console.log('Customer selected:', customer); 
     this.selectedCustomer = customer;
     this.isAddCustomer = false; 
   }

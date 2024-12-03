@@ -1,31 +1,89 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../../../../models/customer.model';
+import { Address, Customer,CustomerResponse } from '../../../../models/customer.model';
 import { ApiService } from '../../../../services/api.service';
-
+import { AuthService } from '../../../../services/auth.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-profile-set',
   templateUrl: './profile-set.component.html',
   styleUrl: './profile-set.component.css'
 })
-export class ProfileSetComponent  implements OnInit{
-  customers:Customer[] = [];
+export class ProfileSetComponent implements OnInit {
+  customer!: Customer
+  customerData!: CustomerResponse;
+  isEditMode = false; // Toggle flag for edit mode
+  // address:Address
+
+  addAddress(): void {
+    this.customer.addresses.push({
+      houseNo: '',
+      street1: '',
+      street2: null, // Optional field can be null
+      city: '',
+      zipCode: 0, // Initialize with a default number
+      country: '',
+    });
+  }
+
+  addPhoneNumber(): void {
+    this.customer.phoneNumbers.push({
+      mobile1: '', // Initialize with an empty string
+    });
+  }
 
   imageSrc: string | ArrayBuffer | null = null;
 
-  constructor(private apiservice:ApiService){}
+  constructor(private apiservice: AuthService,private http: HttpClient) { }
+
+  
 
   ngOnInit(): void {
+    console.log(this.apiservice.getIdFromToken())
     // Fetch data on component initialization
-    this.apiservice.getAllUser().subscribe({
+    this.apiservice.getUserInfo().subscribe({
       next: (data) => {
-        this.customers = data; // Assuming the API returns an array of Customer
+        this.customer = data; // Assuming the API returns an array of Customer
       },
       error: (error) => {
         console.error('Error fetching data:', error);
       }
     });
+
   }
 
+  updateCustomer(): void {
+   if(this.apiservice.getIdFromToken()){
+    this.apiservice.editUser(this.customer).subscribe(
+      (response)=>{
+        this.apiservice.editUser(this.customer);
+        console.log('Customer updated successfully');
+          this.toggleEditMode(); // Exit edit mode after saving
+      },
+      (error)=>{
+        console.error('error updating customer')
+      }
+    );
+   }
+  }
+  
+  
+  
+   toggleEditMode(): void {
+    this.isEditMode = !this.isEditMode;
+    if (!this.isEditMode) {
+      // If exiting edit mode, refresh the data
+      this.apiservice.getUserInfo().subscribe({
+        next: (data) => {
+          this.customer = data;
+        },
+        error: (error) => {
+          console.error('Error refreshing data:', error);
+        },
+      });
+
+    }
+  }
+  
   // Handle file selection
   onFileSelect(event: any): void {
     const file = event.target.files[0];
@@ -58,15 +116,20 @@ export class ProfileSetComponent  implements OnInit{
     };
     reader.readAsDataURL(file);
   }
-  
-   
 
-
+  removeAddress(index: number): void {
+    this.customer.addresses.splice(index, 1);
+  }
   
-  onSubmit() {
-    // Perform profile update logic here
-    // console.log('Profile updated successfully!', this.profileData2);
+  removePhoneNumber(index: number): void {
+    this.customer.phoneNumbers.splice(index, 1);
   }
 
-  
+
+
+  onSubmit() {
+   
+  }
+
+
 }

@@ -5,9 +5,7 @@
     <div class="mb-3">
       <label for="images">Upload Images (Max: 4):</label>
     
-      <!-- Image boxes, each one clickable, organized into two rows -->
       <div class="image-upload-container">
-        <!-- Loop through the selectedImages array and display images or empty boxes -->
         <div *ngFor="let image of selectedImages; let i = index" class="image-box">
           <img *ngIf="image" [src]="image" alt="Uploaded Image" class="uploaded-image" />
           <input
@@ -21,7 +19,6 @@
           <div class="overlay" (click)="triggerFileInput(i)"></div>
         </div>
     
-        <!-- Placeholder boxes for remaining spaces up to 4 images -->
         <div *ngFor="let i of remainingIndices()" class="image-box">
           <input
             type="file"
@@ -168,7 +165,18 @@
         required
       />
     </div>
-
+    <div class="mb-2">
+      <label for="seatCount">Year:</label>
+      <input
+        type="number"
+        id="year"
+        class="form-control form-control-sm"
+        placeholder="Enter Year"
+        [(ngModel)]="newCar.year"
+        name="year"
+        required
+      />
+    </div>
     <div class="mb-2">
       <label for="seatCount">Seat Count:</label>
       <input

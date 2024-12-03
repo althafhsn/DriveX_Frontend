@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
 
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-rented-car-list',
   templateUrl: './rented-car-list.component.html',
-  styleUrl: './rented-car-list.component.css'
+
+  styleUrls: ['./rented-car-list.component.css']
 })
 export class RentedCarListComponent {
   tabs = [
@@ -23,4 +24,5 @@ export class RentedCarListComponent {
   showAllCustomersList(): boolean {
     return this.activeTab === 'rental-history';
   }
+
 }
