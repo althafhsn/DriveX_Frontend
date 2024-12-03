@@ -21,6 +21,27 @@ export interface Car {
   totalRevenue:number;
 }
 
+export interface newcar{
+  id: string;
+  brandId:string;
+  brandName: string;
+  modelId:string;
+  modelName: string;
+  regNo: string;
+  pricePerDay: number;
+  gearType: string;
+  year: number;
+  fuelType: string;
+  mileage: string;
+  seatCount: string;
+  images: Image[];
+  startDate:string;
+  endDate:string;
+  duration:number;
+  totalPrice:number;
+}
+
+
 export interface Image {
   id: string;
   imagePath: string;
@@ -61,4 +82,12 @@ export interface UpdateCar{
   seatCount: string;
   images: Image[];
   status: 'Available' | 'Unavailable';
+}
+export interface rentalRequest{
+  carId:string,
+  userId:string,
+  startDate:string,
+  endDate:string,
+  action:string,
+  status:string
 }

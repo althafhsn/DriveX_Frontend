@@ -139,16 +139,19 @@
                                           Geartype: {{ card.gearType }}  
                                         </div>
                                         <div>
-                                          <button
+                                          <a [routerLink]="['/landing/conformrent', card.id]">
+                                            <button
                                             type="button"
                                             class="btn btn-outline-warning"
                                             style="width: 100%;"
                                             [disabled]="pickupDateError || returnDateError"
-                                            
+                                           
                                             [class.active]="card.id === selectedCarID" (click)="selectCar(card)"
                                           >
                                             Rent Now
                                           </button>
+                                          </a>
+                                         
                                         </div>
                                         
                                       </div>
