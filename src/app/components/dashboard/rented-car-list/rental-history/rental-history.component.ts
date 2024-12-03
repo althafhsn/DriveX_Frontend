@@ -40,5 +40,3 @@ export class RentalHistoryComponent {
     return new Date(date).toLocaleDateString('en-US', options);
   }
 }
-
-
