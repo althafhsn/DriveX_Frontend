@@ -41,13 +41,13 @@
             <p *ngIf="!selectedCustomer && !isAddCustomer" class="text-muted text-center">Please select a customer from the list.</p>
           </div>
 
-          <!-- Trip History and Payments (Side by Side) -->
-          <div class="row g-3">
+         
+          <div class="row g-3"*ngIf="!isAddCustomer && selectedCustomer">
             <!-- Customer Trip History -->
             <div class="col-12 col-md-6">
               <div class="card h-100 shadow-sm">
                 <div class="card-header bg-info text-white">
-                  <h5 class="mb-0">Trip History</h5>
+                  <h5 class="mb-0">Rented Cars</h5>
                 </div>
                 <div class="card-body p-3">
                   <app-customer-trip-history  [customerResponse]="selectedCustomer"></app-customer-trip-history>
@@ -55,11 +55,11 @@
               </div>
             </div>
 
-            <!-- Customer Payments -->
+          
             <div class="col-12 col-md-6">
               <div class="card h-100 shadow-sm">
                 <div class="card-header bg-info text-white">
-                  <h5 class="mb-0">Payments</h5>
+                  <h5 class="mb-0">Revenue Summary</h5>
                 </div>
                 <div class="card-body p-3">
                   <app-customer-payment [customerResponse]="selectedCustomer"></app-customer-payment>

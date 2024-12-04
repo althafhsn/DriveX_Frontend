@@ -13,15 +13,19 @@ export class RentedCarListComponent {
    
   ];
   
+
   activeTab: string = 'ongoing-rental-history'; // Default active tab
+
+
 
   changeTab(tabId: string) {
     this.activeTab = tabId;
   }
+  query: string = '';
   
   // Method to check if All Customers List should show
   showAllCustomersList(): boolean {
-    return this.activeTab === 'update-customer';
+    return this.activeTab === 'rental-history';
   }
 
 }

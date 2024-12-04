@@ -80,6 +80,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
 
 
 @NgModule({
@@ -158,6 +160,7 @@ import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
     RentalHistoryComponent,
     OngoingRentalHistoryComponent,
     RentalFilterPipe,
+    AddManagerComponent,
 
   ],
   imports: [
@@ -168,7 +171,8 @@ import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
     HttpClientModule,
     FormsModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

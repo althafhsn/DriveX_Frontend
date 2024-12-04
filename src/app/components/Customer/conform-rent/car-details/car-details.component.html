@@ -1,14 +1,11 @@
 <div class="container my-4 mt-5">
-  <div class="row" *ngIf="card">
-    <!-- Left Section - Car Details -->
-    <div class="col-lg-8">
-      <!-- Car Title -->
-      <div class="mb-3">
+  <!-- <div class="row" *ngIf="card">
+     <div class="col-lg-8">
+       <div class="mb-3">
         <h2>{{ card.brandName }} {{ card.modelName }}</h2>
       </div>
 
-      <!-- Car Image Carousel -->
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div *ngFor="let image of card.images; let i = index" class="carousel-item" [class.active]="i === 0">
             <img [src]="image.imagePath" class="d-block w-100" [alt]="'Car Image ' + (i + 1)">
@@ -25,12 +22,10 @@
       </div>
     </div>
 
-    <!-- Right Sidebar -->
-    <div class="col-lg-4">
+     <div class="col-lg-4">
       <div class="card mb-4">
         <div class="card-body">
-          <!-- Specifications -->
-          <div class="card mb-4">
+           <div class="card mb-4">
             <div class="card-body">
               <div class="row">
                 <div class="col-6"><strong>Gear Type:</strong> {{ card.gearType }}</div>
@@ -43,6 +38,69 @@
             </div>
           </div>
 
+ -->
+
+
+
+
+ <div class="row" *ngIf="car">
+  <!-- Left Section - Car Details -->
+  <div class="col-lg-8">
+    <div class="mb-3">
+      <h2>{{ car.brandName }} {{ car.modelName }}</h2>
+    </div>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let image of car.images; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img [src]="image.imagePath" class="d-block w-100" [alt]="'Car Image ' + (i + 1)">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Right Sidebar -->
+  <div class="col-lg-4">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6"><strong>Gear Type:</strong> {{ car.gearType }}</div>
+          <div class="col-6"><strong>Mileage:</strong> {{ car.mileage }} KM</div>
+          <div class="col-6"><strong>Fuel:</strong> {{ car.fuelType }}</div>
+          <div class="col-6"><strong>Year:</strong> {{ car.year }}</div>
+          <div class="col-6"><strong>Seating Capacity:</strong> {{ car.seatCount }}</div>
+          <div class="col-6"><strong>Per Day:</strong>{{car.pricePerDay}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
           <!-- Booking Form -->
           <form #bookingForm="ngForm">
             <label for="pickupDate">Pickup Date:</label>
@@ -63,14 +121,16 @@
 
             <p *ngIf="dateDifference !== null" class="mt-3">
               <strong>Duration:</strong> {{ dateDifference }} day(s)
+             
             </p>
 
             <button type="submit" 
             class="btn btn-primary w-100 mt-4"
-             [disabled]="pickupDateError || returnDateError" (click)="saveDates()" [disabled]="isButtonDisabled" >Book Now</button>
+             [disabled]="pickupDateError || returnDateError" (click)="bookNow()" [disabled]="isButtonDisabled" >Book Now</button>
           </form>
         </div>
-      </div>
+      <!-- </div>
     </div>
   </div>
-</div>
+</div> -->
+

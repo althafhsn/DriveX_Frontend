@@ -1,4 +1,3 @@
-/* Outer container to take full screen height */
 .outer {
     height: 100vh;
     display: flex;
@@ -6,27 +5,24 @@
     align-items: center;
 }
 
-/* Forget password link styling */
 #forget {
-    min-width: 100px;
+    min-width: 80px;
     margin-left: auto;
     text-decoration: none;
     cursor: pointer;
-    color: #007bff; /* Blue color for the text */
+    color: #007bff;
 }
 
 a:hover {
     text-decoration: none;
 }
 
-/* Form Inline label adjustments */
 .form-inline label {
     padding-left: 10px;
     margin: 0;
     cursor: pointer;
 }
 
-/* Button Styling */
 .btn {
     margin-top: 20px;
     border-radius: 15px;
@@ -35,63 +31,55 @@ a:hover {
 }
 
 .btn:hover {
-    background-color: #0056b3; /* Slightly darker blue on hover */
+    background-color: #0056b3;
 }
 
-/* Panel Styling */
 .panel {
-    min-height: 380px;
+    min-height: 300px;
     box-shadow: 20px 20px 80px rgb(218, 218, 218);
-    border-radius: 12px;
-    margin-top: 100px;
-    background-color: #fff; /* Ensure the panel has a white background */
+    border-radius: 20px;
+    margin-top: 80px;
+    background-color: #fff;
 }
 
-/* Input Field Styling */
 .input-field {
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
     border: 1px solid #ddd;
-    color: #4343ff;
     transition: border 0.3s ease-in-out;
 }
 
-/* Error input styling */
 .input-field.error {
     border: 1px solid red;
     color: red;
 }
 
-/* Input Styling */
 input[type='text'],
 input[type='password'] {
     border: none;
     outline: none;
     box-shadow: none;
-    width: 100%;
-    padding: 8px; /* Added padding for better text positioning */
+    width: 50%;
+    padding: 2px;
 }
 
-/* Eye icon button */
 .fa-eye-slash.btn {
     border: none;
     outline: none;
     box-shadow: none;
 }
 
-/* Image Styling for social icons */
 img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     object-fit: cover;
     border-radius: 50%;
     position: relative;
 }
 
-/* Border styling for social icons area */
 .bordert {
     border-top: 1px solid #aaa;
     position: relative;
@@ -106,46 +94,39 @@ img {
     padding: 0 10px;
 }
 
-/* Font Awesome icon color */
 .fa {
     color: black;
 }
 
-/* Modal content styling */
 .modal-content {
-    background-color:white; /* Dark grey or black background */
-    color:black; /* Ensure text is visible against the dark background */
+    background-color:white; 
+    color:black; 
 }
 
-/* Modal dialog styling */
 .modal-dialog {
-    max-width: 400px; /* Increased width for better modal appearance */
+    max-width: 300px; 
     margin: 30px auto;
 }
 
-/* Modal header styling */
 .modal-header {
-    background-color: #007bff; /* Primary blue color */
+    background-color: #007bff; 
     color: white;
     padding: 10px 20px;
     text-align: center;
     font-weight: bold;
 }
 
-/* Modal body styling */
 .modal-body {
     padding: 20px;
     text-align: center;
-    font-size: 20px; /* Increased font size for readability */
+    font-size: 20px; 
 }
 
-/* Modal footer styling */
 .modal-footer {
     text-align: center;
     padding: 10px;
 }
 
-/* Social media icons container */
 .social-icons a {
     color: #495057;
     transition: color 0.3s ease-in-out;
