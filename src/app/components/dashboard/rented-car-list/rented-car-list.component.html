@@ -1,0 +1,23 @@
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs card-header-tabs">
+                <li *ngFor="let tab of tabs" class="nav-item">
+                    <button class="nav-link" [ngClass]="{ active: activeTab === tab.id }" (click)="changeTab(tab.id)">
+                        {{ tab.label }}
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body ">
+            <ng-container [ngSwitch]="activeTab">
+
+            <!-- Dynamic Tab Content -->
+            <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'" ></app-ongoing-rental-history>
+
+                <app-rental-history *ngSwitchCase="'rental-history'"></app-rental-history>
+            </ng-container>
+        </div>
+    </div>
+

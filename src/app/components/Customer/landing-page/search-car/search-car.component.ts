@@ -40,7 +40,8 @@ export class SearchCarComponent implements OnInit{
       const { pickupDate, returnDate } = this.dateForm.value;
       localStorage.setItem('pickupDate', pickupDate);
       localStorage.setItem('returnDate', returnDate);
-      this.router.navigate(['/Explorecar']);
+      this.router.navigate(['/landing/explorecar']);
+
     }
   }
 

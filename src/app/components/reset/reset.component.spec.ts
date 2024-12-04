@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConformRentComponent } from './conform-rent.component';
+import { ResetComponent } from './reset.component';
 
-describe('ConformRentComponent', () => {
-  let component: ConformRentComponent;
-  let fixture: ComponentFixture<ConformRentComponent>;
+describe('ResetComponent', () => {
+  let component: ResetComponent;
+  let fixture: ComponentFixture<ResetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConformRentComponent]
+      declarations: [ResetComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ConformRentComponent);
+    fixture = TestBed.createComponent(ResetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

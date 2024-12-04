@@ -1,7 +1,4 @@
-<app-navbar></app-navbar>
-<br>
-
-<h1 class="  text-center" style=" font-family:Lucida Sans;">cars-listing-search</h1>
+ <h1 class="  text-center" style=" font-family:Lucida Sans;">cars-listing-search</h1>
 
     <div class="container-fluid">
         <div class="row">
@@ -11,19 +8,47 @@
             <div class="col-md-3 ">
                 <div class="p-3 border rounded bg-light">
 
-                  <div>
-                    <h5 class="text-center">Change Dates</h5><hr>
-                    <label for="pickupDate">Pickup Date:</label>
-                    <input type="date" class="form-control" id="pickupDate" [(ngModel)]="pickupDate" (change)="calculateDateDifference()" />
-                 
-                    <label for="returnDate" class="mt-2">Return Date:</label>
-                    <input type="date" class="form-control" id="returnDate" [(ngModel)]="returnDate" (change)="calculateDateDifference()" />
+                
+                   
+
+                <div>
+                  <h5 class="text-center">Change Dates</h5>
+                  <hr>
+                  <label for="pickupDate">Pickup Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="pickupDate"
+                    [(ngModel)]="pickupDate"
+                    (change)="validateDates()"
+                  />
+                  <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
+                
+                  <label for="returnDate" class="mt-2">Return Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="returnDate"
+                    [(ngModel)]="returnDate"
+                    (change)="validateDates()"
+                  />
+                  <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
+                <br>
+                <span *ngIf="dateDifference !== null" class="d-flex justify-content-center mb-1">Duration: {{ dateDifference }} day(s) </span>
+
                   <div class="d-flex justify-content-center">
-                    <button (click)="updateDates()" class="btn btn-secondary  mt-3 mb-4 ">Save Dates</button>
-    
-                    <p *ngIf="dateDifference !== null">Duration: {{ dateDifference }} day(s)</p>
+
+
+                    <button
+                      (click)="updateDates()"
+                      class="btn btn-secondary   mb-4"
+                      [disabled]="pickupDateError || returnDateError"
+                    >
+                      Save Dates
+                    </button>
                   </div>
                 </div>
+                
                   <hr>
                     <h5 class="text-center">What Are You Looking For</h5>
                     <hr>
@@ -31,23 +56,23 @@
 
                     <h6>Brand</h6>
 <div class="mb-3">
-  <select class="form-select" [(ngModel)]="filterCriteria.brand">
+  <select class="form-select" [(ngModel)]="selectedFilters.brand" (change)="onFilterChange()">
     <option value="">Select brand</option>
-    <option *ngFor="let card of cards" [value]="card.title">{{ card.title }}</option>
+    <option *ngFor="let card of cars" [value]="card.brandName">{{ card.brandName}}</option>
   </select>
 </div>
 
-<h6>Description</h6>
+<h6>Module</h6>
 <div class="mb-3">
-  <select class="form-select" [(ngModel)]="filterCriteria.description">
-    <option value="">Select description</option>
-    <option *ngFor="let card of cards" [value]="card.description">{{ card.description }}</option>
+  <select class="form-select"[(ngModel)]="selectedFilters.model" (change)="onFilterChange()">
+    <option value="">Select Model</option>
+    <option *ngFor="let card of cars" [value]="card.modelName">{{ card.modelName }}</option>
   </select>
 </div>
 
 <h6>Seat Count</h6>
 <div class="mb-3">
-  <select class="form-select" [(ngModel)]="filterCriteria.seatCount">
+  <select class="form-select" [(ngModel)]="selectedFilters.seatCount" (change)="onFilterChange()">
     <option value="">Select seat count</option>
     <option *ngFor="let count of [4, 5, 6, 7, 8, 2]" [value]="count">{{ count }} People</option>
   </select>
@@ -55,7 +80,7 @@
 
 <h6>Fuel Type</h6>
 <div class="mb-3">
-  <select class="form-select" [(ngModel)]="filterCriteria.fuel">
+  <select class="form-select" [(ngModel)]="selectedFilters.fuelType" (change)="onFilterChange()">
     <option value="">Select fuel type</option>
     <option value="Manual">Manual</option>
     <option value="Automatic">Automatic</option>
@@ -64,7 +89,7 @@
 
 <h6>Gear Type</h6>
 <div class="mb-3">
-  <select class="form-select" [(ngModel)]="filterCriteria.gear">
+  <select class="form-select" [(ngModel)]="selectedFilters.gearType" (change)="onFilterChange()">
     <option value="">Select gear type</option>
     <option value="Manual">Manual</option>
     <option value="Automatic">Automatic</option>
@@ -75,7 +100,7 @@
                 </div>
             </div>
 
-            <!-- Right Side - Car Grid View -->
+            <!-- Right Side - Car Grid View  -->
             <div class="col-md-9">
                 <div class="card  shadow-sm">
                     <div class="row g-0">
@@ -83,18 +108,18 @@
                             
                             <div class="container">
                                 <div class="row g-4">
-                                  <div class="col-md-4" *ngFor="let card of paginatedCards | filter: filterCriteria">
+                                  <div class="col-md-4" *ngFor="let card of paginatedCars | carFilter:selectedFilters" >
                                     <div class="card">
-                                      <div class="position-relative">
-                                        <img [src]="card.image" class="card-img-top" alt="Car Image">
-                                        <div class="price-tag">{{ card.price }}</div>
+                                      <div class="position-relative ;">
+                                        <img [src]="card.images[0].imagePath" class="card-img-top" alt="Car Image">
+                                        <div class="price-tag">{{ card.pricePerDay }}</div>
                                       </div>
                                       <div class="card-body">
                                         <div class="icon">
                                           <i class="fa-solid fa-star text-warning" *ngFor="let _ of [1,2,3,4,5]" style="font-size:12px;"></i>
                                         </div>
-                                        <h5 class="card-title">{{ card.title }}</h5>
-                                        <p class="card-text">{{ card.description }}</p>
+                    <h5 class="card-title">{{ card.brandName }} - {{ card.modelName }}</h5>
+                                        <!-- <p class="card-text">{{ card.description }}</p>  -->
                                         <hr>
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-chair" style="font-size:20px;"></i></span> 
@@ -102,34 +127,49 @@
                                         </div>
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-door-open" style="font-size:20px;"></i></span>
-                                          Total Doors: {{ card.doors }} Doors
+                                          Total Doors: {{ card.regNo }} Doors
                                         </div>
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                                          Fuel Tank: {{ card.fuel }} Liters
+                                          Fuel Tank: {{ card.fuelType }} Liters
                                         </div>
 
                                         <div class="feature">
                                           <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                                          Geartype: {{ card.Gear }}  
+                                          Geartype: {{ card.gearType }}  
                                         </div>
                                         <div>
-                                          <button type="button" class="btn btn-outline-warning" style="width:100%;">
-                                          <a routerLink="/ConfirmRent" style="text-decoration: none;"> Rent Now</a>
-                                        </button>
+                                          <a [routerLink]="['/landing/conformrent', card.id]">
+                                            <button
+                                            type="button"
+                                            class="btn btn-outline-warning"
+                                            style="width: 100%;"
+                                            [disabled]="pickupDateError || returnDateError"
+                                           
+                                            [class.active]="card.id === selectedCarID" (click)="selectCar(card)"
+                                          >
+                                            Rent Now
+                                          </button>
+                                          </a>
+                                         
                                         </div>
+                                        
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               
-                                <!-- Pagination Controls -->
-                                <div class="pagination-controls mt-3 d-flex justify-content-center">
+                                <!-- Pagination Controls-->  
+                                <div class="pagination-controls mt-5 d-flex justify-content-center">
                                   <button class="btn btn-outline-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
                                   <span>Page {{ currentPage }} of {{ totalPages() }}</span>
                                   <button class="btn btn-outline-secondary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
                                 </div>
                               </div>   
+
+
+
+                              
 
 
                         </div>
@@ -140,7 +180,99 @@
                 </div>
             </div>
         </div>
-    </div>    
-      
+    </div>     
 
-<app-footer></app-footer>
+
+
+
+    
+
+
+
+<!-- 
+    Left Sidebar - Search Filters
+<div class="col-md-3">
+ 
+   <div>
+    <h6>Brand</h6>
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="selectedFilters.brand" (change)="onFilterChange()">
+        <option value="">Select brand</option>
+        <option *ngFor="let car of cars" [value]="car.brandName">{{ car.brandName }}</option>
+      </select>
+    </div>
+
+    <h6>Description</h6>
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="selectedFilters.model" (change)="onFilterChange()">
+        <option value="">Select model</option>
+        <option *ngFor="let car of cars" [value]="car.modelName">{{ car.modelName }}</option>
+      </select>
+    </div>
+
+    <h6>Seat Count</h6>
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="selectedFilters.seatCount" (change)="onFilterChange()">
+        <option value="">Select seat count</option>
+        <option *ngFor="let count of [4, 5, 6, 7, 8, 2]" [value]="count">{{ count }} People</option>
+      </select>
+    </div>
+
+    <h6>Fuel Type</h6>
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="selectedFilters.fuelType" (change)="onFilterChange()">
+        <option value="">Select fuel type</option>
+        <option value="Manual">Manual</option>
+        <option value="Automatic">Automatic</option>
+      </select>
+    </div>
+
+    <h6>Gear Type</h6>
+    <div class="mb-3">
+      <select class="form-select" [(ngModel)]="selectedFilters.gearType" (change)="onFilterChange()">
+        <option value="">Select gear type</option>
+        <option value="Manual">Manual</option>
+        <option value="Automatic">Automatic</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+ <div class="col-md-9">
+  <div class="card shadow-sm">
+    <div class="row g-0">
+      <div class="container py-5">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-md-4" *ngFor="let card of paginatedCars | carFilter:selectedFilters">
+              <div class="card">
+                <div class="position-relative">
+                  <img [src]="card.images[0].imagePath" class="card-img-top" alt="Car Image">
+                  <div class="price-tag">{{ card.pricePerDay }}</div>
+                </div>
+                <div class="card-body">
+                  <div class="icon">
+                    <i class="fa-solid fa-star"></i>
+                    <h5 class="card-title">{{ card.brandName }} - {{ card.modelName }}</h5>
+                    <p class="card-text">
+                      <strong>Seats: </strong>{{ card.seatCount }}
+                      <br>
+                      <strong>Fuel Type: </strong>{{ card.fuelType }}
+                    </p>
+                    <button (click)="selectCar(card)" class="btn btn-primary">Select</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div class="d-flex justify-content-between py-3">
+          <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-secondary">Previous</button>
+          <span>Page {{ currentPage }} of {{ totalPages() }}</span>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages()" class="btn btn-secondary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

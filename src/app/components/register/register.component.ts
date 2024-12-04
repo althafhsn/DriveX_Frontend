@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
     }, {
       validators: this.passwordMatchValidator
     });
-
     // Subscribe to value changes for password and confirmPassword
     this.signUpForm.get('password')?.valueChanges.subscribe(() => {
       this.signUpForm.get('password')?.updateValueAndValidity();
@@ -50,14 +49,12 @@ export class RegisterComponent implements OnInit {
 
   onSignUp() {
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-      // Send the obj to the database
       const { firstName, lastName, nicOrPassport, email, role, password } = this.signUpForm.value;
       const signUpData = {
         firstName,
         lastName,
         email,
-        nic: nicOrPassport,
+        nic : nicOrPassport,
         role,
         password
       };

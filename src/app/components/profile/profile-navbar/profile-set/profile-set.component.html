@@ -1,0 +1,165 @@
+<div>
+    <h5 class="mb-3">Profile Settings</h5>
+   
+
+  <div>
+    <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
+    <div class="card shadow-sm rounded p-4 position-relative">
+      <!-- Edit Button positioned at the top-right -->
+      
+    
+      <div >
+
+
+        <div class="d-flex me-5">
+          <div
+            class="row justify-content-center"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event)"
+            (click)="fileInput.click()"
+            style="border: 2px; padding: 20px; cursor: pointer;"
+          >
+            <div class="col-md-8 text-center">
+              <!-- Default Image -->
+              <img
+                *ngIf="!imageSrc"
+                src="IMAGE/person.jpg"  
+                class="rounded-circle btn btn-upload"
+                alt="Upload Image"
+                width="120"
+                height="120"
+              />
+        
+              <!-- Uploaded Image -->
+              <img
+                *ngIf="imageSrc"
+                [src]="imageSrc"
+                alt="Uploaded Image"
+                class="rounded-circle btn btn-upload"
+                width="200"
+                height="200"
+              />
+        
+              <!-- Hidden File Input -->
+              <input type="file" #fileInput (change)="onFileSelect($event)" hidden />
+        
+            </div>
+          </div>
+        </div>
+        
+        
+        <svg style="display:none">
+          <defs>
+            <symbol id="icon-imageUpload" clip-rule="evenodd" viewBox="0 0 96 96">
+              <path d="M47 6a21 21 0 0 0-12.3 3.8c-2.7 2.1-4.4 5-4.7 7.1-5.8 1.2-10.3 5.6-10.3 10.6 0 6 5.8 11 13 11h12.6V22.7l-7.1 6.8c-.4.3-.9.5-1.4.5-1 0-2-.8-2-1.7 0-.4.3-.9.6-1.2l10.3-8.8c.3-.4.8-.6 1.3-.6.6 0 1 .2 1.4.6l10.2 8.8c.4.3.6.8.6 1.2 0 1-.9 1.7-2 1.7-.5 0-1-.2-1.3-.5l-7.2-6.8v15.6h14.4c6.1 0 11.2-4.1 11.2-9.4 0-5-4-8.8-9.5-9.4C63.8 11.8 56 5.8 47 6Zm-1.7 42.7V38.4h3.4v10.3c0 .8-.7 1.5-1.7 1.5s-1.7-.7-1.7-1.5Z M27 49c-4 0-7 2-7 6v29c0 3 3 6 6 6h42c3 0 6-3 6-6V55c0-4-3-6-7-6H28Zm41 3c1 0 3 1 3 3v19l-13-6a2 2 0 0 0-2 0L44 79l-10-5a2 2 0 0 0-2 0l-9 7V55c0-2 2-3 4-3h41Z M40 62c0 2-2 4-5 4s-5-2-5-4 2-4 5-4 5 2 5 4Z"/>
+            </symbol>
+          </defs>
+        </svg>
+        
+              </div>
+    
+    
+
+
+
+      
+
+      <div class="row border-top pt-3">
+        <div class="col-12 mb-3">
+          <button class="btn btn-primary" (click)="toggleEditMode()" *ngIf="!isEditMode">
+            Edit
+          </button>
+        
+          <button class="btn btn-secondary" (click)="toggleEditMode()" *ngIf="isEditMode">
+            Cancel
+          </button>
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>First Name:</label>
+          <input
+            class="form-control"
+            [value]="customer.firstName"
+            [readonly]="!isEditMode"
+            placeholder="First Name"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>Last Name:</label>
+          <input
+            class="form-control"
+            [value]="customer.lastName"
+            [readonly]="!isEditMode"
+            placeholder="Last Name"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>NIC:</label>
+          <input
+            class="form-control"
+            [value]="customer.nic"
+            [readonly]="!isEditMode"
+            placeholder="NIC"
+          />
+        </div>
+      
+        <div class="col-6 col-md-3 mb-3">
+          <label>Licence:</label>
+          <input
+            class="form-control"
+            [value]="customer.licence"
+            [readonly]="!isEditMode"
+            placeholder="Licence"
+          />
+        </div>
+
+        <div class="col-6 col-md-3 mb-3">
+          <label>E-mail:</label>
+          <input
+            class="form-control"
+            [value]="customer.email"
+            [readonly]="!isEditMode"
+            placeholder="email"
+          />
+        </div>
+      
+     <div>
+  <!-- Address Section -->
+  <div>
+    <h3>Addresses</h3>
+    <div *ngFor="let address of customer.addresses; index as i">
+      <div *ngIf="!isEditAddressMode">
+        <p>{{ address.houseNo }}, {{ address.street1 }}, {{ address.city }}, {{ address.zipCode }}</p>
+      </div>
+      <div *ngIf="isEditAddressMode">
+        <input [(ngModel)]="customer.addresses[i].houseNo" placeholder="House No" />
+        <input [(ngModel)]="customer.addresses[i].street1" placeholder="Street 1" />
+        <input [(ngModel)]="customer.addresses[i].city" placeholder="City" />
+        <input [(ngModel)]="customer.addresses[i].zipCode" placeholder="Zip Code" />
+      </div>
+    </div>
+    <button (click)="toggleEditAddressMode()">{{ isEditAddressMode ? 'Cancel' : 'Edit Addresses' }}</button>
+    <button *ngIf="isEditAddressMode" (click)="saveAddresses()">Save Addresses</button>
+  </div>
+
+  <!-- Phone Numbers Section -->
+  <div>
+    <h3>Phone Numbers</h3>
+    <div *ngFor="let phone of customer.phoneNumbers; index as i">
+      <div *ngIf="!isEditPhoneNumberMode">
+        <p>{{ phone.mobile1 }}</p>
+      </div>
+      <div *ngIf="isEditPhoneNumberMode">
+        <input [(ngModel)]="customer.phoneNumbers[i].mobile1" placeholder="Phone Number" />
+      </div>
+    </div>
+    <button (click)="toggleEditPhoneNumberMode()">{{ isEditPhoneNumberMode ? 'Cancel' : 'Edit Phone Numbers' }}</button>
+    <button *ngIf="isEditPhoneNumberMode" (click)="savePhoneNumbers()">Save Phone Numbers</button>
+  </div>
+</div>
+
+      </div>
+      
+        

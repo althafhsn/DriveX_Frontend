@@ -1,0 +1,21 @@
+<div *ngIf="carResponse?.car; else noCar">
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Total Revenue</th>
+          <th>Ongoing Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ carResponse.car.totalRevenue | currency :'LKR ' }}</td>
+          <td>{{ carResponse.car.ongoingRevenue | currency :'LKR ' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template #noCar>
+  <p class="text-muted">No revenue data available.</p>
+</ng-template>

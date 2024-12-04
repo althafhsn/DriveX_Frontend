@@ -1,6 +1,5 @@
-/* Sidebar Base Styles */
-.sidebar {
-    background-color: #1d1d1d; /* Dark background */
+/* .sidebar {
+    background-color: #1d1d1d; 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,36 +18,34 @@
     align-items: center;
     padding: 15px 20px;
     font-size: 16px;
-    color: #ccc; /* Default text color */
+    color: #ccc; 
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
   }
   
   .sidebar a i {
-    margin-right: 10px; /* Space between icon and text */
+    margin-right: 10px; 
   }
   
-  /* Hover and Active Styles */
+  
   .sidebar a:hover {
-    background-color: #007bff; /* Blue background on hover */
-    color: #fff; /* White text on hover */
-  }
-  
-  .sidebar a.active {
-    background-color: #007bff; /* Blue background for active item */
+    background-color: #007bff;
     color: #fff;
   }
   
-  /* Report Section Heading */
+  .sidebar a.active {
+    background-color: #007bff; 
+    color: #fff;
+  }
+
   .report-heading {
     font-size: 14px;
     text-transform: uppercase;
     padding-left: 20px;
-    color: #aaa; /* Choose a color visible against the dark sidebar background */
-  }
+    color: #aaa; }
   
   
-  /* Logout Button Styling */
+
   .logout {
     margin-top: auto;
     background-color: #333;
@@ -56,7 +53,21 @@
   }
   
   .logout:hover {
-    background-color: #d9534f; /* Red background on hover */
+    background-color: #d9534f;
     color: #fff;
   }
-  
+   */
+   .sidebar a {
+    /* display: flex; */
+    /* align-items: center; */
+    /* padding: 15px 20px; */
+    font-size: 20px;
+    color: #ccc; 
+    text-decoration: none;
+    /* transition: background-color 0.3s, color 0.3s; */
+  }
+  .sidebar a:hover{
+    background-color: aliceblue;
+    color: black;
+    border-radius: 12px;
+  }

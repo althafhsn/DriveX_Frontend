@@ -1,0 +1,49 @@
+.trip-history-container {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .trip-history-container h3 {
+    margin-bottom: 15px;
+  }
+  
+  .trip-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .trip-history-table th,
+  .trip-history-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .trip-history-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .trip-history-table td {
+    background-color: #fff;
+  }
+  
+  .trip-history-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .table th {
+    background-color: #f8f9fa;
+    color: #495057;
+  }
+  
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .table td ul {
+    padding-left: 20px;
+  }
+  
+  
