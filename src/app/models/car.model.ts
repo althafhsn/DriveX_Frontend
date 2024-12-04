@@ -62,3 +62,10 @@ export interface UpdateCar{
   images: Image[];
   status: 'Available' | 'Unavailable';
 }
+
+export interface Revenue{
+  totalOngoingRevenue:number;
+  totalRevenue:number;
+  totalCars:number;
+  totalCustomers:number;
+}

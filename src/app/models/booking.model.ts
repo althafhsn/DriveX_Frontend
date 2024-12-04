@@ -65,3 +65,13 @@ export interface Booking {
     nic:string;
   }
   
+  export interface RecentRentals{
+    id:string;
+    carId:string;
+    userId:string;
+    totalPrice:number;
+    status:string;
+    regNo:string;
+    firstName:string;
+    lastName:string;
+  }

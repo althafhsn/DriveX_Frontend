@@ -13,7 +13,7 @@ export class RentedCarListComponent {
    
   ];
   
-  activeTab: string = 'profile-settings'; // Default active tab
+  activeTab: string = 'ongoing-rental-history'; // Default active tab
 
   changeTab(tabId: string) {
     this.activeTab = tabId;

@@ -13,9 +13,11 @@
             </ul>
         </div>
         <div class="card-body ">
-            <!-- Dynamic Tab Content -->
             <ng-container [ngSwitch]="activeTab">
-                <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'"></app-ongoing-rental-history>
+
+            <!-- Dynamic Tab Content -->
+            <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'" ></app-ongoing-rental-history>
+
                 <app-rental-history *ngSwitchCase="'rental-history'"></app-rental-history>
             </ng-container>
         </div>
