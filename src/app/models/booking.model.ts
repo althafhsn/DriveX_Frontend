@@ -75,3 +75,16 @@ export interface Booking {
     firstName:string;
     lastName:string;
   }
+
+  export interface RentalHistory{
+    id:string;
+    carId:string;
+    userId:string;
+    regNo:string;
+    brandName:string;
+    modelName:string;
+    startDate:string;
+    endDate:string;
+    action:string;
+    status:string;
+  }

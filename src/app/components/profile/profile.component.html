@@ -2,37 +2,34 @@
     <div class="row">
 
         <!-- Left Sidebar - Search Filters -->
-       <!-- Left Sidebar - Search Filters -->
-<div class="col-md-3 mt-5">
-    <div class="p-3 border rounded "  style=" background-color: #0c013b;">
-        <div class="d-flex flex-column align-items-center justify-content-center">
+        <!-- Left Sidebar - Search Filters -->
+        <div class="col-md-3 mt-5">
+            <div class="p-3 border rounded " style=" background-color: #0c013b;">
+                <div class="d-flex flex-column align-items-center justify-content-center">
 
-                  <button (click)="changeView('settings')" 
-                  class="btn btn-outline-warning btn-block btn-lg mt-2 "
-                  [class.bg-warning]="true" 
-            [class.text-white]="true">
-                  
-                  
-                    Setting
-                  </button>
-         </div>
+                    <button (click)="changeView('settings')" class="btn btn-outline-warning btn-block btn-lg mt-2 "
+                        [class.bg-warning]="true" [class.text-white]="true">
 
-        <div class="d-flex flex-column align-items-center justify-content-center">
-            
-                  <button (click)="changeView('history')" class="btn btn-outline-warning btn-block btn-lg mt-2" 
-                    [class.bg-warning]="currentView === 'history'" 
-                    [class.text-white]="currentView ==='history'">
-                    History
-                  </button>
+
+                        Setting
+                    </button>
+                </div>
+
+                <div class="d-flex flex-column align-items-center justify-content-center">
+
+                    <button (click)="changeView('history')" class="btn btn-outline-warning btn-block btn-lg mt-2"
+                        [class.bg-warning]="currentView === 'history'" [class.text-white]="currentView ==='history'">
+                        History
+                    </button>
+                </div>
+
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <button (click)="logout()" class="btn btn-outline-warning btn-block btn-lg mt-2">
+                        Logout
+                    </button>
+                </div>
+            </div>
         </div>
-
-        <div class="d-flex flex-column align-items-center justify-content-center">
-             <button (click)="logout()" class="btn btn-outline-warning btn-block btn-lg mt-2">
-                      Logout
-                  </button>
-        </div>
-    </div>
-</div>
 
         <div class="col-md-9 mt-5">
             <div class="card  shadow-sm">
@@ -42,12 +39,9 @@
                             <app-profile-navbar *ngSwitchDefault="'settings'"></app-profile-navbar>
                             <app-history *ngSwitchCase="'history'"></app-history>
                             <!-- <p *ngSwitchDefault>Select an option from the menu</p> -->
-                          </ng-container>
-        
+                        </ng-container>
+
                     </div>
-
-
-
                 </div>
             </div>
         </div>

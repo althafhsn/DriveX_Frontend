@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Booking, RecentRentals, Rentals } from '../models/booking.model';
+import { Booking, RecentRentals, RentalHistory, Rentals } from '../models/booking.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -44,6 +44,10 @@ export class BookingService {
 
   recentRentals(): Observable<RecentRentals[]>{
     return this.http.get<RecentRentals[]>(`${this.baseUrl}recentRentalRequest`);
+  }
+
+  rentalHistory(userId:string):Observable<RentalHistory[]>{
+    return this.http.get<RentalHistory[]>(`${this.baseUrl}customer/${userId}`)
   }
   
 }
