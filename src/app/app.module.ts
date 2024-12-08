@@ -80,12 +80,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
+ 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
 
 
 @NgModule({
-  declarations: [
+   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
@@ -172,8 +176,9 @@ import { AddManagerComponent } from './components/dashboard/settings/add-manager
     FormsModule,
     CommonModule,
     AppRoutingModule,
-    BrowserAnimationsModule
-  ],
+    NoopAnimationsModule,
+     BrowserAnimationsModule
+   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

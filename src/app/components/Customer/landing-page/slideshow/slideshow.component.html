@@ -1,70 +1,27 @@
-<div id="heroCarousel" class="carousel slide hero-section"   data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <!-- Carousel Item 1 -->
-      <div class="carousel-item active">
-        <div class="container hero-text">
-          <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-              <h1 class="display-5 fw-bold mb-3">
-                Find Affordable Dream Cars for Rental
-              </h1>
-              <p class="mb-4">
-                Fulfill your automotive fantasies without breaking the bank.
-                Check our affordable car rentals for an opulent yet economical ride.
-              </p>
-              <a href="#" class=" btn btn-warning">Get in Touch</a>
-            </div>
-            <div class="col-md-6 text-center" >
-              <img src="./IMAGE/car.png" class="car" alt="Car Image">
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Carousel Item 2 -->
-      <div class="carousel-item">
-        <div class="container hero-text">
-          <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-              <h1 class="display-5 fw-bold mb-3">
-                Find Affordable Dream Cars for Rental
-              </h1>
-              <p class="mb-4">
-                Fulfill your automotive fantasies without breaking the bank.
-                Check our affordable car rentals for an opulent yet economical ride.
-              </p>
-               <a href="#" class="btn btn-warning"> 
-                <i class="bi bi-lock"></i> Get in Touch
-              </a>
-            </div>
-            <div class="col-md-6 text-center">
-              <img src="./IMAGE/car10.png " class="car" alt="Car Image">
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Carousel Item 3 -->
-      <div class="carousel-item">
-        <div class="container hero-text">
-          <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-              <h1 class="display-5 fw-bold mb-3">
-                Find Affordable Dream Cars for Rental
-              </h1>
-              <p class="mb-4">
-                Fulfill your automotive fantasies without breaking the bank.
-                Check our affordable car rentals for an opulent yet economical ride.
-              </p>
-              <a href="#" class="btn  btn-warning">Get in Touch</a>
-            </div>
-            <div class="col-md-6 text-center">
-              <img src="./IMAGE/car4.png" class="car" alt="Car Image">
+    <div id="heroCarousel" class="carousel slide hero-section" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div
+          *ngFor="let item of carouselItems; let i = index"
+          class="carousel-item"
+          [class.active]="i === 0"
+        >
+          <div class="container hero-text">
+            <div class="row align-items-center">
+              <div class="col-md-6 text-center text-md-start">
+                <h1 class="display-5 fw-bold mb-3">{{ item.title }}</h1>
+                <p class="mb-4">{{ item.description }}</p>
+              </div>
+              <div class="col-md-6 text-center">
+                <img [src]="item.imageUrl" class="car" [alt]="item.altText" />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
 
     <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -74,6 +31,5 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
-
+ 
   
