@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './search-car.component.html',
   styleUrl: './search-car.component.css'
 })
-export class SearchCarComponent implements OnInit{
+export class SearchCarComponent implements OnInit {
   dateForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) {}

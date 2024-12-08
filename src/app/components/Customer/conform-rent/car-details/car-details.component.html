@@ -104,12 +104,12 @@
           <!-- Booking Form -->
           <form #bookingForm="ngForm">
             <label for="pickupDate">Pickup Date:</label>
-            <input type="date" class="form-control" id="pickupDate" name="pickupDate" [(ngModel)]="pickupDate"
+            <input type="text" class="form-control" id="pickupDate"  placeholder="pickupDate" bsDatepicker name="pickupDate" [(ngModel)]="pickupDate"
               (change)="validateDates()"    (input)="checkFields()" />
             <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
 
             <label for="returnDate" class="mt-2">Return Date:</label>
-            <input type="date" class="form-control" id="returnDate" name="returnDate" [(ngModel)]="returnDate"
+            <input type="text" class="form-control"    bsDatepickerid="returnDate" placeholder="returnDate" name="returnDate" [(ngModel)]="returnDate"
               (change)="validateDates()"   (input)="checkFields()"  />
             <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
 
