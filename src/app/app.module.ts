@@ -78,9 +78,9 @@ import { RentedCarListComponent } from './components/dashboard/rented-car-list/r
 import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
-
-
-@NgModule({
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+ @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
@@ -164,7 +164,9 @@ import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
     HttpClientModule,
     FormsModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BsDatepickerModule.forRoot(),
+    NoopAnimationsModule
   ],
   providers: [
     {

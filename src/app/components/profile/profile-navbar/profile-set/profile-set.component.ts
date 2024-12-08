@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Address, Customer,CustomerResponse } from '../../../../models/customer.model';
+import { Address, Customer,CustomerResponse, PhoneNumber } from '../../../../models/customer.model';
 import { ApiService } from '../../../../services/api.service';
 import { AuthService } from '../../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,9 +13,23 @@ export class ProfileSetComponent implements OnInit {
   customerData!: CustomerResponse;
   isEditMode = false; // Toggle flag for edit mode
   addresses!: Address[];
-isEditAddressMode: boolean = false;
-  isEditPhoneNumberMode: boolean = false;
-  
+  phoneNumbers!:PhoneNumber[];
+  isProfileEditMode = false; // For general profile editing
+  // isEditable = false;
+  isEditModephone = false;
+  imageSrc: string | ArrayBuffer | null = null;
+
+  constructor(private apiservice: AuthService,  private http: HttpClient) { }
+ // Example customer object
+ 
+ Customer = {
+  firstName: '',
+  lastName: '',
+  nic: '',
+  licence: '',
+  email: ''
+};
+
   addAddress(): void {
     this.customer.addresses.push({
       houseNo: '',
@@ -24,21 +38,71 @@ isEditAddressMode: boolean = false;
       city: '',
       zipCode: 0, // Initialize with a default number
       country: '',
+      
+    });
+  }
+  addphonenumber():void{
+    this.customer.phoneNumbers.push({
+      mobile1:'',
     });
   }
  
-
-  addPhoneNumber(): void {
-    this.customer.phoneNumbers.push({
-      mobile1: '', // Initialize with an empty string
-    });
+ 
+  saveOrEditAddress(index: number): void {
+    if (this.isEditMode) {
+      // Save the address and make fields readonly
+      alert('Address saved successfully!');
+      console.log('Saved Address:', this.customer.addresses[index]);
+      this.isEditMode = false; // Disable edit mode
+    } else {
+      // Enable edit mode
+      this.isEditMode = true;
+    }
   }
 
-  imageSrc: string | ArrayBuffer | null = null;
+  saveOrEditmobile(index:number):void{
+    if(this.isEditModephone){
+      alert('phone number save successfully!')
+      console.log('Saved  Phone:', this.customer.phoneNumbers[index]);
+      this.isEditModephone = false; // Disable edit mode
 
-  constructor(private apiservice: AuthService,  private http: HttpClient) { }
+    }
+    else {
+      // Enable edit mode
+      this.isEditModephone = true;}
+  }
+   
 
   
+  
+
+
+   
+
+
+  enableProfileEditMode(): void {
+    this.isProfileEditMode = true;
+  }
+
+ 
+
+
+  // saveChanges() {
+  //   // Logic to save the changes (e.g., sending data to a server or updating local storage)
+  //   console.log('Changes saved:', this.customer);
+  //   this.isEditMode = false; // Disable edit mode after saving
+  // }
+  
+
+
+ 
+
+  
+  saveProfileChanges(): void {
+    console.log('Profile changes saved:', this.customer);
+    this.isProfileEditMode = false;
+  }
+
 
   ngOnInit(): void {
     console.log(this.apiservice.getIdFromToken())
@@ -54,57 +118,28 @@ isEditAddressMode: boolean = false;
 
   }
 
-  saveAddresses() {
-    const userId = this.apiservice.getIdFromToken();
-    if (userId && this.customer.addresses.length <= 2) {
-      this.apiservice.updateUserAddresses(userId).subscribe(
-        () => {
-          console.log('Addresses updated successfully');
-          this.toggleEditAddressMode();
-        },
-        (error) => console.error('Error updating addresses:', error)
-      );
-    }
+  // Method to save an address
+  saveAddress(index: number): void {
+    const address = this.customer.addresses[index];
+    alert('Address saved successfully!');
+    console.log('Saved Address:', address);
+    // Perform any additional save actions here, like updating a server or local storage.
   }
 
-  savePhoneNumbers() {
-    const userId = this.apiservice.getIdFromToken();
-    if (userId && this.customer.phoneNumbers.length <= 2) {
-      this.apiservice.updateUserPhoneNumbers(userId).subscribe(
-        () => {
-          console.log('Phone numbers updated successfully');
-          this.toggleEditPhoneNumberMode();
-        },
-        (error) => console.error('Error updating phone numbers:', error)
-      );
-    }
+  savephonenumber(index:number):void{
+    const phone = this.customer.phoneNumbers[index];
+    alert('Phonenumber saved successfully!');
+    console.log('Saved mobile:', phone);
   }
+  
+
    
-  toggleEditAddressMode() {
-    this.isEditAddressMode = !this.isEditAddressMode;
-  }
-
-  toggleEditPhoneNumberMode() {
-    this.isEditPhoneNumberMode = !this.isEditPhoneNumberMode;
-  }
+   
+    
   
+ 
   
-  
-   toggleEditMode(): void {
-    this.isEditMode = !this.isEditMode;
-    if (!this.isEditMode) {
-      // If exiting edit mode, refresh the data
-      this.apiservice.getUserInfo().subscribe({
-        next: (data) => {
-          this.customer = data;
-        },
-        error: (error) => {
-          console.error('Error refreshing data:', error);
-        },
-      });
-
-    }
-  }
+   
   
   // Handle file selection
   onFileSelect(event: any): void {
@@ -139,19 +174,15 @@ isEditAddressMode: boolean = false;
     reader.readAsDataURL(file);
   }
 
-  removeAddress(index: number): void {
-    this.customer.addresses.splice(index, 1);
-  }
   
-  removePhoneNumber(index: number): void {
-    this.customer.phoneNumbers.splice(index, 1);
-  }
-
 
 
   onSubmit() {
    
   }
 
+
+
+   
 
 }

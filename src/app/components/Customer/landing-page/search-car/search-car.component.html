@@ -1,4 +1,4 @@
-
+ 
   
 
 
@@ -9,15 +9,17 @@
       <div class="col-md-4">
         <label for="pickupDate" class="form-label fw-bold">Pickup Date</label>
         <input
-          type="date"
+          type="text"
           class="form-control"
           id="pickupDate"
+        
+            bsDatepicker
           formControlName="pickupDate"
           [ngClass]="{ 'is-invalid': pickupDate?.invalid && (pickupDate?.touched || pickupDate?.dirty) }"
         
         />
         <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['pastDate']">
-          Pickup date cannot be in the past.
+          Pickup date cannot be in the past or today.
         </div>
         <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['required']">
           Pickup date is required.
@@ -28,9 +30,11 @@
       <div class="col-md-4">
         <label for="returnDate" class="form-label fw-bold">Return Date</label>
         <input
-          type="date"
+          type="text"
           class="form-control"
           id="returnDate"
+            bsDatepicker
+          
           formControlName="returnDate"
           [ngClass]="{ 'is-invalid': returnDate?.invalid && (returnDate?.touched || returnDate?.dirty) }"
         />
@@ -44,11 +48,16 @@
   
       <!-- Search Button -->
       <div class="col-md-4 d-flex align-items-end" style="margin-top: 3%;">
-        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="dateForm.invalid" >
+        <button type="submit" class="btn btn-outline-orange w-100" [disabled]="dateForm.invalid" >
           <a style="text-decoration: none;">Search</a>
         </button>
       </div>
   
     </form>
   </div>
-  
+ 
+
+
+ 
+
+   

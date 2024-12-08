@@ -11,7 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class NavbarComponent {
   public users: any = [];
-  activeLink: string = '';
+  // activeLink: string = '';
 
   public fullName: string = "";
   // public role: string = "";
@@ -23,17 +23,17 @@ export class NavbarComponent {
   constructor(private authService: AuthService,private store: UserStoreService,private router: Router)
   { 
     // Automatically set activeLink based on the current route on page load or navigation
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Set the active link to the current route (e.g., 'home' from '/home')
-        this.setActiveLink(this.router.url.split('/')[1]);
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     // Set the active link to the current route (e.g., 'home' from '/home')
+    //     this.setActiveLink(this.router.url.split('/')[1]);
     
-      }
-    });
+    //   }
+    // });
   }
-  setActiveLink(link: string): void {
-    this.activeLink = link;
-  }
+  // setActiveLink(link: string): void {
+  //   this.activeLink = link;
+  // }
 
   ngOnInit() {
   

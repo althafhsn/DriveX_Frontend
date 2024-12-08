@@ -16,19 +16,23 @@
                   <hr>
                   <label for="pickupDate">Pickup Date:</label>
                   <input
-                    type="date"
+                    type="text"
                     class="form-control"
                     id="pickupDate"
+                    bsDatepicker
                     [(ngModel)]="pickupDate"
+                    placeholder="pickupDate"
                     (change)="validateDates()"
                   />
                   <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
                 
                   <label for="returnDate" class="mt-2">Return Date:</label>
                   <input
-                    type="date"
+                    type="text"
                     class="form-control"
                     id="returnDate"
+                    bsDatepicker
+                    placeholder="returnDate"
                     [(ngModel)]="returnDate"
                     (change)="validateDates()"
                   />

@@ -2,9 +2,9 @@
     <h5 class="mb-3">Profile Settings</h5>
    
 
-  <div>
+   
     <form (ngSubmit)="onSubmit()" #profileForm="ngForm">
-    <div class="card shadow-sm rounded p-4 position-relative">
+    <!-- <div class="card shadow-sm rounded p-4 position-relative"> -->
       <!-- Edit Button positioned at the top-right -->
       
     
@@ -64,102 +64,295 @@
 
       
 
-      <div class="row border-top pt-3">
-        <div class="col-12 mb-3">
-          <button class="btn btn-primary" (click)="toggleEditMode()" *ngIf="!isEditMode">
-            Edit
-          </button>
-        
-          <button class="btn btn-secondary" (click)="toggleEditMode()" *ngIf="isEditMode">
-            Cancel
-          </button>
-        </div>
       
-        <div class="col-6 col-md-3 mb-3">
-          <label>First Name:</label>
-          <input
-            class="form-control"
-            [value]="customer.firstName"
-            [readonly]="!isEditMode"
-            placeholder="First Name"
-          />
-        </div>
-      
-        <div class="col-6 col-md-3 mb-3">
-          <label>Last Name:</label>
-          <input
-            class="form-control"
-            [value]="customer.lastName"
-            [readonly]="!isEditMode"
-            placeholder="Last Name"
-          />
-        </div>
-      
-        <div class="col-6 col-md-3 mb-3">
-          <label>NIC:</label>
-          <input
-            class="form-control"
-            [value]="customer.nic"
-            [readonly]="!isEditMode"
-            placeholder="NIC"
-          />
-        </div>
-      
-        <div class="col-6 col-md-3 mb-3">
-          <label>Licence:</label>
-          <input
-            class="form-control"
-            [value]="customer.licence"
-            [readonly]="!isEditMode"
-            placeholder="Licence"
-          />
-        </div>
+ 
+<div>
+  <div class="col-6 col-md-3 mb-3">
+    <input
+    class="form-control"
+    [value]="customer.firstName"
+    [readonly]="!isProfileEditMode"
+    placeholder="First Name"
+  />
+</div>
 
-        <div class="col-6 col-md-3 mb-3">
-          <label>E-mail:</label>
-          <input
-            class="form-control"
-            [value]="customer.email"
-            [readonly]="!isEditMode"
-            placeholder="email"
-          />
-        </div>
-      
-     <div>
+<div class="col-6 col-md-3 mb-3">
+  <input
+    class="form-control"
+    [value]="customer.lastName"
+    [readonly]="!isProfileEditMode"
+    placeholder="Last Name"
+  />
+</div>
+
+<div class="col-6 col-md-3 mb-3">
+  <input
+    class="form-control"
+    [value]="customer.nic"
+    [disabled]="!!customer.nic"  
+    placeholder="NIC"
+  />
+</div>
+
+<div class="col-6 col-md-3 mb-3">
+  <input
+    class="form-control"
+    [value]="customer.licence"
+    [disabled]="!!customer.licence"  
+    placeholder="Licence"
+  />
+</div>
+
+<div class="col-6 col-md-3 mb-3">
+  <input
+    class="form-control"
+    [value]="customer.email"
+    [readonly]="!isProfileEditMode"
+    placeholder="Email"
+  />
+  
+</div>
+<!-- Edit and Save buttons -->
+<div class="col-12">
+  <button
+  *ngIf="!isProfileEditMode"
+  class="btn btn-primary"
+  (click)="enableProfileEditMode()"
+>
+  Edit
+</button>
+
+<button
+  *ngIf="isProfileEditMode"
+  class="btn btn-success"
+  (click)="saveProfileChanges()"
+>
+  Save
+</button>
+
+
+  <button
+  *ngIf="isProfileEditMode"
+  class="btn btn-success"
+  (click)="saveProfileChanges()"
+>
+  Save
+</button>
+  
+  </div>
+</div>
+
+   
+
+ 
+ 
+<div>
+  <div>
+    <div>  
+ 
+
+ 
+       
+
+
   <!-- Address Section -->
   <div>
     <h3>Addresses</h3>
     <div *ngFor="let address of customer.addresses; index as i">
-      <div *ngIf="!isEditAddressMode">
-        <p>{{ address.houseNo }}, {{ address.street1 }}, {{ address.city }}, {{ address.zipCode }}</p>
+      <div >
+        
+        <input
+            class="form-control mt-3"
+            [value]="address.houseNo"
+            placeholder="houseNo"
+          />
+          <input
+          class="form-control mt-3"
+          [value]="address.street1"
+          
+          placeholder="street1"
+        />
+
+        <input
+          class="form-control mt-3"
+          [value]="address.street2"
+          
+          placeholder="street1"
+        />
+
+        <input
+        class="form-control mt-3"
+        [value]="address.city"
+        
+        placeholder="city"
+      />
+
+      <input
+      class="form-control mt-3"
+      [value]="address.zipCode"
+     
+      placeholder="zipCode"
+    />
       </div>
-      <div *ngIf="isEditAddressMode">
-        <input [(ngModel)]="customer.addresses[i].houseNo" placeholder="House No" />
-        <input [(ngModel)]="customer.addresses[i].street1" placeholder="Street 1" />
-        <input [(ngModel)]="customer.addresses[i].city" placeholder="City" />
-        <input [(ngModel)]="customer.addresses[i].zipCode" placeholder="Zip Code" />
-      </div>
-    </div>
-    <button (click)="toggleEditAddressMode()">{{ isEditAddressMode ? 'Cancel' : 'Edit Addresses' }}</button>
-    <button *ngIf="isEditAddressMode" (click)="saveAddresses()">Save Addresses</button>
+
+      
+      <button
+      class="btn mt-3"
+      [class.btn-success]="isEditMode"
+      [class.btn-primary]="!isEditMode"
+      (click)="saveOrEditAddress(i)"
+    >
+      {{ isEditMode ? 'Save' : 'Edit' }}
+    </button>
+
+      <button
+      class="btn btn-success mt-3"
+      (click)="saveAddress(i)"
+    >
+      Save new addrees
+    </button>
+
+    
+    <!-- <button
+      class="btn btn-success mt-3"
+      (click)="saveAddress()"
+      *ngIf="isEditMode"
+    >
+      Save
+    </button> -->
+ 
+    
+    
+
+  <!-- Save Button -->
+  <!-- <button class="btn btn-success mt-3" (click)="saveAddresses()">Saveaddnew address</button> -->
+
+  <!-- <div class="col-12">
+    <button
+      *ngIf="!isEditMode"
+      class="btn btn-primary"
+      (click)="enableEditMode()"
+    >
+      Edit
+    </button>
+    
+    <button
+      *ngIf="isEditAddMode"
+      class="btn btn-success"
+      (click)="SaveChanges()"
+    >
+      Save
+    </button>
+  </div>
+   -->
+  
+</div>
+<button
+    class="btn btn-primary mt-3"
+    (click)="addAddress()"
+    [disabled]="customer.addresses.length >= 2"
+  >
+    Add Address
+  </button>
+    
   </div>
 
+
+
   <!-- Phone Numbers Section -->
-  <div>
+  <!-- <div>
     <h3>Phone Numbers</h3>
     <div *ngFor="let phone of customer.phoneNumbers; index as i">
-      <div *ngIf="!isEditPhoneNumberMode">
+      <div >
         <p>{{ phone.mobile1 }}</p>
       </div>
-      <div *ngIf="isEditPhoneNumberMode">
+      <input
+      class="form-control mt-3"
+      [value]="phone.mobile1"
+      placeholder=" mobile1"
+    />
+      <div  >
         <input [(ngModel)]="customer.phoneNumbers[i].mobile1" placeholder="Phone Number" />
       </div>
     </div>
-    <button (click)="toggleEditPhoneNumberMode()">{{ isEditPhoneNumberMode ? 'Cancel' : 'Edit Phone Numbers' }}</button>
-    <button *ngIf="isEditPhoneNumberMode" (click)="savePhoneNumbers()">Save Phone Numbers</button>
+    
   </div>
-</div>
+</div> -->
 
-      </div>
+
+
+<!-- <div>
+  <h3>Phone Numbers</h3>
+  <div *ngFor="let phone of customer.phoneNumbers; index as i">
+    <div>
+      Display phone number in an input field
+      <input
+        class="form-control mt-3"
+        [value]="phone.mobile1"
+        [readonly]="!phone.isEditable"
+        (input)="onInputChange($event, i)"
+        placeholder="Mobile Number"
+      />
+    </div>
+
+    <div class="mt-2">
+      <button
+        class="btn btn-primary"
+        *ngIf="!phone.isEditable"
+        (click)="editPhoneNumber(i)"
+      >
+        Edit
+      </button>
+      <button
+        class="btn btn-success"
+        *ngIf="phone.isEditable"
+        (click)="savePhoneNumber(i)"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <button class="btn btn-secondary" (click)="addPhoneNumber()">
+      Add Mobile Number
+    </button>
+  </div>
+</div> -->
+
+<div *ngFor="let Phone of customer.phoneNumbers; index as i">
+  <input
+  class="form-control mt-3"
+  [value]="Phone.mobile1"
+  placeholder="Mobile"
+/>
+
+
+<button
+      class="btn mt-3"
+      [class.btn-success]="isEditModephone"
+      [class.btn-primary]="!isEditModephone"
+      (click)="saveOrEditmobile(i)"
+    >
+      {{ isEditMode ? 'Save' : 'Edit' }}
+    </button>
+
+      <button
+      class="btn btn-success mt-3"
+      (click)="savephonenumber(i)"
+    >
+      Save new phone number
+    </button>
+
+ </div>
+ <button
+    class="btn btn-primary mt-3"
+    (click)="addphonenumber()"
+    [disabled]="customer.phoneNumbers.length >= 2"
+  >
+    Add mobile number
+  </button>
+
+      
       
         
