@@ -31,6 +31,11 @@ export class AuthService {
   }
 
 
+  changePassword(passwordObj:any){
+    return this.http.post<any>(`${this.baseUserUrl}change-password`, passwordObj)
+  }
+
+
   
 
     getUserInfo() {
@@ -69,6 +74,7 @@ export class AuthService {
     //   return this.http.post<any>(`${this.baseUserUrl}UpdatePhoneNumbers?userId=${userId}`, phoneNumbers);
     // }
     
+
 
     updateUserAddresses(addresses: Address[]): Observable<any> {
       return this.getUserInfo().pipe(

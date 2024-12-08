@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
     }, {
       validators: this.passwordMatchValidator
     });
-
     // Subscribe to value changes for password and confirmPassword
     this.signUpForm.get('password')?.valueChanges.subscribe(() => {
       this.signUpForm.get('password')?.updateValueAndValidity();
@@ -55,7 +54,7 @@ export class RegisterComponent implements OnInit {
         firstName,
         lastName,
         email,
-        nic: nicOrPassport,
+        nic : nicOrPassport,
         role,
         password
       };

@@ -1,4 +1,7 @@
-import { Component,Output,EventEmitter } from '@angular/core';
+import { Component,Input,EventEmitter,Output } from '@angular/core';
+import { SearchService } from '../../../services/search.service';
+import { Subscription } from 'rxjs';
+import { CustomerStateService } from '../../../services/customer-state.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,10 +9,33 @@ import { Component,Output,EventEmitter } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-  @Output() searchChanged = new EventEmitter<string>();
+ 
+  @Input() searchText: string = ''; // Bind this to the search bar
+  @Output() searchTextChange = new EventEmitter<string>();
 
-  onSearchChange(event: Event): void {
-    const inputElement = event.target as HTMLInputElement;
-    this.searchChanged.emit(inputElement.value);  // Emit the search query (input value)
-  }
+  isCustomerActive: boolean = false; // Track if Customer component is active
+  private subscription!: Subscription;
+  constructor(private searchService: SearchService,
+    private customerStateService: CustomerStateService
+  ) {}
+
+  ngOnInit(): void {
+    // Subscribe to the customer component state
+    this.subscription = this.customerStateService.isCustomerActive$.subscribe(
+      (isActive) => {
+        this.isCustomerActive = isActive;
+      }
+    );}
+    onSearchChange(value: string): void {
+      if (this.isCustomerActive) {
+        this.searchTextChange.emit(value); // Emit updated value to parent
+       
+      }
+    }
+    ngOnDestroy(): void {
+      // Unsubscribe from the customer state observable
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+      }
+    }
 }  

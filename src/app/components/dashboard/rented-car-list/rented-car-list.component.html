@@ -1,8 +1,8 @@
-<div class="col-12 col-md-9" >
+
     <div class="card shadow-sm border-0">
-        <div class="card-header bg-dark text-white w-100">
+        <div class="card-header bg-dark text-white">
             <!-- Tab Navigation -->
-            <ul class="nav nav-tabs card-header-tabs w-100">
+            <ul class="nav nav-tabs card-header-tabs">
                 <li *ngFor="let tab of tabs" class="nav-item">
                     <button class="nav-link" [ngClass]="{ active: activeTab === tab.id }" (click)="changeTab(tab.id)">
                         {{ tab.label }}
@@ -11,11 +11,13 @@
             </ul>
         </div>
         <div class="card-body ">
-            <!-- Dynamic Tab Content -->
             <ng-container [ngSwitch]="activeTab">
-                <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'"></app-ongoing-rental-history>
+
+            <!-- Dynamic Tab Content -->
+            <app-ongoing-rental-history *ngSwitchCase="'ongoing-rental-history'" ></app-ongoing-rental-history>
+
                 <app-rental-history *ngSwitchCase="'rental-history'"></app-rental-history>
             </ng-container>
         </div>
     </div>
-</div>
+

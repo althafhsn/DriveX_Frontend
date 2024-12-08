@@ -67,21 +67,30 @@ import { CarTripHistoryComponent } from './components/dashboard/cars/car-trip-hi
 import { CarDetailsComponent as Dashcardetails } from './components/dashboard/cars/car-details/car-details.component';
 import { AddCarComponent } from './components/dashboard/cars/add-car/add-car.component';
 import { ResetComponent } from './components/reset/reset.component';
+import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
+import { RentedCarFilterPipe } from './pipes/rented-car-filter.pipe';
 import { ExlporeCarComponent } from './components/exlpore-car/exlpore-car.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { AllBookingListComponent } from './components/dashboard/booking/all-booking-list/all-booking-list.component';
 import { BookingDetailsComponent } from './components/dashboard/booking/booking-details/booking-details.component';
 import { BookingCarDetailsComponent } from './components/dashboard/booking/booking-car-details/booking-car-details.component';
 import { BookingCustomerDetailsComponent } from './components/dashboard/booking/booking-customer-details/booking-customer-details.component';
+import { CustomerFilterPipe } from './pipes/customer-filter.pipe';
 import { AppRoutingModule } from './app-routing.module';
-import { RentedCarListComponent } from './components/dashboard/rented-car-list/rented-car-list.component';
 import { RentalHistoryComponent } from './components/dashboard/rented-car-list/rental-history/rental-history.component';
 import { OngoingRentalHistoryComponent } from './components/dashboard/rented-car-list/ongoing-rental-history/ongoing-rental-history.component';
 import { RentalFilterPipe } from './components/dashboard/rental-filter.pipe';
+ 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
- @NgModule({
-  declarations: [
+ 
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
+
+
+@NgModule({
+   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
@@ -144,16 +153,19 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     Dashcardetails,
     AddCarComponent,
     ResetComponent,
+    RentedCarFilterPipe,
     ExlporeCarComponent,
     LandingComponent,
     AllBookingListComponent,
     BookingDetailsComponent,
     BookingCarDetailsComponent,
     BookingCustomerDetailsComponent,
+    CustomerFilterPipe,
     RentedCarListComponent,
     RentalHistoryComponent,
     OngoingRentalHistoryComponent,
     RentalFilterPipe,
+    AddManagerComponent,
 
   ],
   imports: [
@@ -165,9 +177,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     CommonModule,
     AppRoutingModule,
-    BsDatepickerModule.forRoot(),
-    NoopAnimationsModule
-  ],
+     BsDatepickerModule.forRoot(),
+    NoopAnimationsModule,
+     BrowserAnimationsModule
+   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

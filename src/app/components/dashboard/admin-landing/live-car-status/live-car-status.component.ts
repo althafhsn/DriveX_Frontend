@@ -1,5 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RecentRentals } from '../../../../models/booking.model';
+import { BookingService } from '../../../../services/booking.service';
 interface CarStatus {
   carNumber: string;
   driver: string;
@@ -12,26 +14,25 @@ interface CarStatus {
   styleUrl: './live-car-status.component.css'
 })
 export class LiveCarStatusComponent {
-  carStatusList: CarStatus[] = [
-    { carNumber: '6485', driver: 'Alex Noman', status: 'Completed', earning: 35.44 },
-    { carNumber: '5665', driver: 'Razib Rahman', status: 'Pending', earning: 0.00 },
-    { carNumber: '1755', driver: 'Luke Norton', status: 'In Route', earning: 23.50 }
-  ];
+@Input() recentRentals!:RecentRentals[];
+errorMessage:string | null =null;
 
-  constructor() {}
+  constructor(private bookingService:BookingService) {}
 
-  ngOnInit(): void {}
-
-  getStatusClass(status: string): string {
-    switch (status) {
-      case 'Completed':
-        return 'text-success';
-      case 'Pending':
-        return 'text-warning';
-      case 'In Route':
-        return 'text-info';
-      default:
-        return '';
-    }
+  ngOnInit(): void {
+this.loadRecenRentals();
   }
+
+  loadRecenRentals():void{
+ this.bookingService.recentRentals().subscribe(
+  (data) => {
+    this.recentRentals = data;
+  },
+  (error) =>{
+    console.error('Error fetching booking data:', error);
+    this.errorMessage = 'Failed to load booking data.';
+  }
+ );
+  }
+
 }

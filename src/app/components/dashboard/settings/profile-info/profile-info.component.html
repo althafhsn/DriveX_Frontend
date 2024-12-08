@@ -1,15 +1,33 @@
-<div class="text-center">
-    <img src="path-to-image" alt="Profile Picture" class="img-fluid rounded-circle mb-3" />
-    <h5 class="mb-1">Mason Wilson</h5>
-    <p class="text-muted">Admin</p>
-    <button class="btn btn-sm btn-outline-primary">Update Picture</button>
-  </div>
-  <div class="mt-4">
-    <h6>Notifications</h6>
+<div class="all-managers-container bg-white rounded shadow-sm p-3">
+  <!-- Header Section -->
+  <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+    <h3 class="h6 mb-0">All Managers</h3>
     <div>
-      <label class="form-check-label">
-        <input type="checkbox" class="form-check-input" /> New Bookings
-      </label>
+      <button class="btn btn-light btn-sm me-2">
+        <i class="fas fa-ellipsis-h"></i>
+      </button>
+      <!-- Add Manager Button -->
+      <button class="btn btn-primary btn-sm" (click)="onAddManagerClick()">Add Manager</button>
     </div>
-    <!-- Add other toggles -->
-  </div>  
+  </div>
+
+  <!-- Manager List -->
+  <div class="managers-list overflow-auto" style="max-height: 450px;">
+    <!-- Loop through managers -->
+    <div *ngFor="let manager of managers" (click)="onManagerClick(manager)" class="mb-3">
+      <div class="d-flex align-items-center">
+        <img
+          [src]="manager.image"
+          alt="Avatar"
+          class="rounded-circle"
+          style="width: 45px; height: 45px; object-fit: cover;"
+        />
+        <div class="ms-3">
+          <div class="fw-bold">{{ manager.firstName }} {{ manager.lastName }}</div>
+          <div class="text-muted small">Email: {{ manager.email }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 

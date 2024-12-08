@@ -1,17 +1,27 @@
 <div *ngIf="customerResponse">
   <div class="card shadow-sm rounded p-4 position-relative">
     <!-- Edit/Save Button -->
-    <button
-      class="btn btn-outline-primary position-absolute top-0 end-0 m-2"
-     
-    >
-      {{ isEditable ? 'Save' : 'Edit' }}
-    </button>
+
+    <div class="position-absolute top-0 end-0 m-2">
+      <button
+        class="btn btn-outline-primary me-2"
+        (click)="toggleEdit()"
+      >
+        {{ isEditable ? 'Save' : 'Edit' }}
+      </button>
+      <button
+        class="btn btn-outline-danger"
+        (click)="deleteCustomer()"
+      >
+        Delete
+      </button>
+    </div>
+    
 
     <!-- Customer Basic Info -->
     <div class="d-flex align-items-center mb-4">
       <img
-        [src]="customerResponse.customer.image || 'default-avatar.png'"
+        [src]="customerResponse.customer.image || 'P1.jpg'"
         alt="Customer Avatar"
         class="rounded-circle border"
         style="width: 80px; height: 80px; object-fit: cover;"
@@ -33,87 +43,9 @@
             class="form-control"
           />
         </h4>
-        <p class="text-muted mb-0">ID: {{ customerResponse.customer.id }}</p>
+       
       </div>
     </div>
-
-    <!-- Address -->
-    <div class="row text-center border-top pt-3">
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].houseNo }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].houseNo"
-            class="form-control"
-            placeholder="House No"
-          />
-        </h5>
-        <p class="small text-muted">House No</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].street1 }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].street1"
-            class="form-control"
-            placeholder="Street 1"
-          />
-        </h5>
-        <p class="small text-muted">Street 1</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].street2 }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].street2"
-            class="form-control"
-            placeholder="Street 2"
-          />
-        </h5>
-        <p class="small text-muted">Street 2</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].city }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].city"
-            class="form-control"
-            placeholder="City"
-          />
-        </h5>
-        <p class="small text-muted">City</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].zipCode }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].zipCode"
-            class="form-control"
-            placeholder="Zip Code"
-          />
-        </h5>
-        <p class="small text-muted">Zip Code</p>
-      </div>
-      <div class="col-6 col-md-3 mb-3">
-        <h5 class="fw-bold">
-          <span *ngIf="!isEditable">{{ customerResponse.customer.addresses[0].country }}</span>
-          <input
-            *ngIf="isEditable"
-            [(ngModel)]="customerResponse.customer.addresses[0].country"
-            class="form-control"
-            placeholder="Country"
-          />
-        </h5>
-        <p class="small text-muted">Country</p>
-      </div>
-    </div>
-
-    <!-- Other Details -->
     <div class="row text-center border-top pt-3">
       <div class="col-6 col-md-3 mb-3">
         <h5 class="fw-bold">
@@ -161,17 +93,99 @@
       </div>
     </div>
 
+    <!-- Addresses -->
+    <div *ngFor="let address of customerResponse.customer.addresses" class="row text-center border-top pt-3">
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.houseNo }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.houseNo"
+            class="form-control"
+            placeholder="House No"
+          />
+        </h5>
+        <p class="small text-muted">House No</p>
+      </div>
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.street1 }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.street1"
+            class="form-control"
+            placeholder="Street 1"
+          />
+        </h5>
+        <p class="small text-muted">Street 1</p>
+      </div>
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.street2 }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.street2"
+            class="form-control"
+            placeholder="Street 2"
+          />
+        </h5>
+        <p class="small text-muted">Street 2</p>
+      </div>
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.city }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.city"
+            class="form-control"
+            placeholder="City"
+          />
+        </h5>
+        <p class="small text-muted">City</p>
+      </div>
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.zipCode }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.zipCode"
+            class="form-control"
+            placeholder="City"
+          />
+        </h5>
+        <p class="small text-muted">ZipCode</p>
+      </div>
+      <div class="col-6 col-md-3 mb-3">
+        <h5 class="fw-bold">
+          <span *ngIf="!isEditable">{{ address.country }}</span>
+          <input
+            *ngIf="isEditable"
+            [(ngModel)]="address.country"
+            class="form-control"
+            placeholder="City"
+          />
+        </h5>
+        <p class="small text-muted">Country</p>
+      </div>
+    </div>
+    <button *ngIf="isEditable && customerResponse.customer.addresses.length < 2" class="btn btn-outline-primary mb-3" (click)="addAddress()">+ Add Address</button>
+
+    
+
     <!-- Phone and Email -->
-    <div class="border-top pt-3">
-      <p class="mb-2">
-        <i class="fas fa-phone-alt text-primary me-2"></i>
-        <span *ngIf="!isEditable">{{ customerResponse.customer.phoneNumbers[0].mobile1 }}</span>
-        <input
-          *ngIf="isEditable"
-          [(ngModel)]="customerResponse.customer.phoneNumbers[0].mobile1"
-          class="form-control"
-        />
-      </p>
+   <!-- Phone Numbers -->
+   <div *ngFor="let phone of customerResponse.customer.phoneNumbers" class="border-top pt-3">
+    <p class="mb-2">
+      <i class="fas fa-phone-alt text-primary me-2"></i>
+      <span *ngIf="!isEditable">{{ phone.mobile1 }}</span>
+      <input
+        *ngIf="isEditable"
+        [(ngModel)]="phone.mobile1"
+        class="form-control"
+      />
+    </p>
+    <button *ngIf="isEditable && customerResponse.customer.phoneNumbers.length < 2" class="btn btn-outline-primary mb-3" (click)="addPhoneNumber()">+ Add Phone Number</button>
+  </div>
       <p>
         <i class="fas fa-envelope text-primary me-2"></i>
         <span *ngIf="!isEditable">{{ customerResponse.customer.email }}</span>
@@ -185,4 +199,4 @@
 
   
   </div>
-</div>
+

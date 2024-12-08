@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car, CarCustomerResponse, newcar } from '../models/car.model';
+import { Car, CarCustomerResponse, newcar, Revenue } from '../models/car.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,8 +53,14 @@ export class CarService {
   }
 
 
+  getRevenues():Observable<Revenue>{
+    return this.http.get<Revenue>(`${this.baseUrl}revenues`);
+  }
+
+
   getCarById(carId: string): Observable<newcar> {
     return this.http.get<newcar>(`${this.baseUrl}getById?id=${carId}`);
+
   }
   
 }
