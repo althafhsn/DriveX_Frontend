@@ -90,12 +90,3 @@ export interface Revenue{
   totalRevenue:number;
   totalCars:number;
   totalCustomers:number;}
-export interface rentalRequest{
-  carId:string,
-  userId:string,
-  startDate:string,
-  endDate:string,
-  action:string,
-  status:string
-
-}

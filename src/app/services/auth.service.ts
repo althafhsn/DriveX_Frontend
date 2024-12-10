@@ -5,7 +5,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenApiModel } from '../models/token-api-model';
 import { catchError, Observable, of, switchMap } from 'rxjs';
 import { Address, Customer, PhoneNumber } from '../models/customer.model';
-import { rentalRequest } from '../models/car.model';
 
 @Injectable({
   providedIn: 'root'
@@ -53,10 +52,7 @@ export class AuthService {
     }
 
 
-    placeRentalRequest(requestBody: rentalRequest): Observable<any> {
-      const apiUrl = 'http://localhost:5147/api/RentalRequest';
-      return this.http.post<any>(apiUrl, requestBody);
-    }
+   
     // editUser(userObj : any){
     //   const userId = this.getIdFromToken();
     //   if (!userId) {
