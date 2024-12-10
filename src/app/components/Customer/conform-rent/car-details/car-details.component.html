@@ -1,47 +1,4 @@
 <div class="container my-4 mt-5">
-  <!-- <div class="row" *ngIf="card">
-     <div class="col-lg-8">
-       <div class="mb-3">
-        <h2>{{ card.brandName }} {{ card.modelName }}</h2>
-      </div>
-
-       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div *ngFor="let image of card.images; let i = index" class="carousel-item" [class.active]="i === 0">
-            <img [src]="image.imagePath" class="d-block w-100" [alt]="'Car Image ' + (i + 1)">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-
-     <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body">
-           <div class="card mb-4">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-6"><strong>Gear Type:</strong> {{ card.gearType }}</div>
-                <div class="col-6"><strong>Mileage:</strong> {{ card.mileage }} KM</div>
-                <div class="col-6"><strong>Fuel:</strong> {{ card.fuelType }}</div>
-                <div class="col-6"><strong>Model:</strong>  card.year </div>
-                <div class="col-6"><strong>Seating Capacity:</strong> {{ card.seatCount }}</div>
-                <div class="col-6"><strong>Per Day:</strong> {{ card.pricePerDay }}</div>
-              </div>
-            </div>
-          </div>
-
- -->
-
-
-
 
  <div class="row" *ngIf="car">
   <!-- Left Section - Car Details -->
@@ -58,7 +15,7 @@
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
-      </button>
+      </button> 
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -67,57 +24,76 @@
   </div>
 
   <!-- Right Sidebar -->
-  <div class="col-lg-4">
+  <div class="col-lg-4 p-2">
     <div class="card mb-4">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-6"><strong>Gear Type:</strong> {{ car.gearType }}</div>
-          <div class="col-6"><strong>Mileage:</strong> {{ car.mileage }} KM</div>
-          <div class="col-6"><strong>Fuel:</strong> {{ car.fuelType }}</div>
-          <div class="col-6"><strong>Year:</strong> {{ car.year }}</div>
-          <div class="col-6"><strong>Seating Capacity:</strong> {{ car.seatCount }}</div>
-          <div class="col-6"><strong>Per Day:</strong>{{car.pricePerDay}} </div>
+      <!-- <div class="card-body">
+        <div class="row feature">
+          </div> 
+          <span class="col-6 icon"> <i class="fa-solid fa-cogs"> </i><strong>  Gear Type: </strong> {{ car.gearType }}</span>
+          <span class="col-6  icon"> <i class="fa-solid fa-road"  ></i><strong>  Mileage:</strong> {{ car.mileage }} KM</span>
+          <span class="col-6 icon"><i class="fa-solid fa-gas-pump"></i><strong>  Fuel:</strong> {{ car.fuelType }}</span>
+          <span class="col-6 icon"><strong>   <i class="fa-solid fa-calendar-alt"></i> </strong> Year: {{ car.year }}</span>
+          <span class="col-6 icon"><strong>  <i class="fa-solid fa-chair" ></i></strong> Seating Capacity: {{ car.seatCount }}</span>
+          <span class="col-6 icon"><strong><i class="fa-solid fa-calendar-day"></i></strong>  Per Day:{{car.pricePerDay}} </span>
+        </div> -->
+
+        <div class="card-body">
+          <div class="container">
+            <div class="row mb-2">
+              <!-- Gear Type -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-cogs me-2" style="font-size: 20px;"></i>
+                <strong>Gear: </strong>{{ car.gearType }}
+              </div>
+              <!-- Mileage -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-road me-2" style="font-size: 20px;"></i>
+                <strong>Mileage:</strong> {{ car.mileage }}KM
+              </div>
+            </div>
+            
+            <div class="row mb-2">
+              <!-- Fuel -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-gas-pump me-2" style="font-size: 20px;"></i>
+                <strong>Fuel:</strong> {{ car.fuelType }}
+              </div>
+              <!-- Year -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-calendar-alt me-2" style="font-size: 20px;"></i>
+                <strong>Year:</strong> {{ car.year }}
+              </div>
+            </div>
+        
+            <div class="row mb-2">
+              <!-- Seating Capacity -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-chair me-2" style="font-size: 20px;"></i>
+                <strong>Seats:</strong> {{ car.seatCount }}
+              </div>
+              <!-- Per Day -->
+              <div class="col-md-6 col-12 d-flex align-items-center">
+                <i class="fa-solid fa-calendar-day me-2" style="font-size: 20px;"></i>
+                <strong>Per Day:</strong> ${{ car.pricePerDay }}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
           <!-- Booking Form -->
-          <form #bookingForm="ngForm">
+          <form #bookingForm="ngForm" class="p-3">
             <label for="pickupDate">Pickup Date:</label>
-            <input type="text" class="form-control" id="pickupDate"  placeholder="pickupDate" bsDatepicker name="pickupDate" [(ngModel)]="pickupDate"
+            <input type="date" class="form-control" id="pickupDate"  name="pickupDate" [(ngModel)]="pickupDate"
               (change)="validateDates()"    (input)="checkFields()" />
             <p *ngIf="pickupDateError" class="text-danger">{{ pickupDateError }}</p>
 
             <label for="returnDate" class="mt-2">Return Date:</label>
-            <input type="text" class="form-control"    bsDatepickerid="returnDate" placeholder="returnDate" name="returnDate" [(ngModel)]="returnDate"
+            <input type="date" class="form-control"     name="returnDate" [(ngModel)]="returnDate"
               (change)="validateDates()"   (input)="checkFields()"  />
             <p *ngIf="returnDateError" class="text-danger">{{ returnDateError }}</p>
 
-            <!-- <div class="d-flex justify-content-between mt-3">
-              <button class="btn btn-primary" [disabled]="pickupDateError || returnDateError" (click)="saveDates()">
-                Save Dates
-              </button>
-            </div> -->
+         
 
             <p *ngIf="dateDifference !== null" class="mt-3">
               <strong>Duration:</strong> {{ dateDifference }} day(s)
@@ -128,9 +104,11 @@
             class="btn btn-primary w-100 mt-4"
              [disabled]="pickupDateError || returnDateError" (click)="bookNow()" [disabled]="isButtonDisabled" >Book Now</button>
           </form>
-        </div>
-      <!-- </div>
+      </div>
     </div>
   </div>
-</div> -->
+</div>    
+        <!-- </div> -->
+        <hr>
+     
 

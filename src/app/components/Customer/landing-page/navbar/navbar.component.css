@@ -1,8 +1,8 @@
-.navbar,.offcanvas {
-    background-color: #0c013b;
+/* .navbar,.offcanvas {
+    background-color: #0d0df9;
 
-}
-.offcanvas-title{background-color: #ff914d;}
+} */
+/* .offcanvas-title{background-color: #ff914d;} */
 
 .collapse{
     margin-right: 25%;
@@ -11,9 +11,9 @@
     background-color: rgb(242, 242, 245);
     border-radius: 5px;  
 }
-  .navbar-toggler{
-    background-color: #ff914d;
-  }
+  /* .navbar-toggler{
+    background-color: #223af0;
+  } */
 
   .btn-outline-orange {
     color: #efece9;
