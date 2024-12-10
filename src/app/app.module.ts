@@ -57,7 +57,6 @@ import { GraphComponent } from './components/dashboard/revenue/graph/graph.compo
 import { StatisticsComponent } from './components/dashboard/revenue/statics/statics.component';
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
 import { CustomerDetailWithCarComponent } from './components/dashboard/customer/customer-detail-with-car/customer-detail-with-car.component';
-import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
 import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
 import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
 import { CarsComponent } from './components/dashboard/cars/cars.component';
@@ -143,7 +142,6 @@ import { CancelledHistoryComponent } from './components/dashboard/rented-car-lis
     StatisticsComponent,
     AddCustomerComponent,
     CustomerDetailWithCarComponent,
-    ProfileSetComponent,
     PasswordChangeComponent,
     ViewPaymentComponent,
     CarsComponent,
