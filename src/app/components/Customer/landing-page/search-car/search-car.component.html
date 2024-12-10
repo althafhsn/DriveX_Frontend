@@ -1,37 +1,38 @@
-
+ 
   
 
 
-  <div class="container my-4 animate-top">
+  <div class="container my-4 animate-top  bg-dark">
     <form [formGroup]="dateForm" (ngSubmit)="onSubmit()" class="row g-2 align-items-center">
   
       <!-- Pickup Date -->
       <div class="col-md-4">
-        <label for="pickupDate" class="form-label fw-bold">Pickup Date</label>
+        <label for="pickupDate" class="form-label fw-bold text-white">Pickup Date</label>
         <input
           type="date"
           class="form-control"
           id="pickupDate"
+      
+            
           formControlName="pickupDate"
           [ngClass]="{ 'is-invalid': pickupDate?.invalid && (pickupDate?.touched || pickupDate?.dirty) }"
         
         />
         <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['pastDate']">
-          Pickup date cannot be in the past.
+          Pickup date cannot be in the past or today.
         </div>
         <div class="invalid-feedback" *ngIf="pickupDate?.errors?.['required']">
           Pickup date is required.
         </div>
       </div>
-  
       <!-- Return Date -->
       <div class="col-md-4">
-        <label for="returnDate" class="form-label fw-bold">Return Date</label>
+        <label for="returnDate" class="form-label fw-bold text-white">Return Date</label>
         <input
           type="date"
           class="form-control"
           id="returnDate"
-          formControlName="returnDate"
+           formControlName="returnDate"
           [ngClass]="{ 'is-invalid': returnDate?.invalid && (returnDate?.touched || returnDate?.dirty) }"
         />
         <div class="invalid-feedback" *ngIf="returnDate?.errors?.['required']">
@@ -44,11 +45,16 @@
   
       <!-- Search Button -->
       <div class="col-md-4 d-flex align-items-end" style="margin-top: 3%;">
-        <button type="submit" class="btn btn-outline-warning w-100" [disabled]="dateForm.invalid" >
-          <a routerLink="/Explorecar" style="text-decoration: none;">Search</a>
+        <button type="submit" class="btn btn-outline-orange w-100" [disabled]="dateForm.invalid" >
+          <a style="text-decoration: none;">Search</a>
         </button>
       </div>
   
     </form>
   </div>
-  
+ 
+
+
+ 
+
+   

@@ -1,1 +1,78 @@
-<p>history works!</p>
+<!-- <div class="container mt-3">
+              
+    <table class="table-bordered">
+      <thead>
+        <tr>
+          <th>CarRegistation No</th>
+          <th>Car Model & Brand</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Total Price</th>
+          <th colspan="2">Status</th>
+          <th colspan="2">Action</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>johnexample.com</td>
+          <td>johnexample.com</td>
+          <td>johnexample.com</td>
+          <td colspan="2">
+            <button class="btn btn-secondary">Aprove</button>
+            <button class="btn btn-danger">Cancel</button>
+          </td>
+          <td colspan="2">
+
+            <button class="btn btn-secondary">Rent</button>
+            <button class="btn btn-success">Retern</button>
+          </td>
+        </tr>
+      
+       
+      </tbody>
+    </table>
+  </div>
+ -->
+
+
+ <div class="container mt-3">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Reg No</th>
+          <th>Model & Brand</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Total Price</th>
+          <th colspan="2">Status</th>
+          <th colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody  *ngIf="rentalHistory && rentalHistory.length > 0; else noHistory">
+        <tr *ngFor="let rental of rentalHistory">
+          <td>{{rental.regNo}}</td>
+          <td>{{rental.brandName}} {{rental.modelName}}</td>
+          <td>{{rental.startDate | date}}</td>
+          <td>{{rental.endDate | date}}</td>
+          <td>{{rental.totalPrice}}</td>
+          <td colspan="2">
+            <span>{{ rental.action }}</span>
+            <button *ngIf="isCancelable(rental)" (click)="cancelBooking(rental.id)" class="btn btn-danger btn-sm">
+              Cancel
+            </button>          </td>
+          
+          <td>{{rental.status}}</td>
+        </tr>
+      </tbody>
+      <ng-template #noHistory>
+        <p>No rental history available.</p>
+      </ng-template>
+    </table>
+  </div>
+</div>
+
+

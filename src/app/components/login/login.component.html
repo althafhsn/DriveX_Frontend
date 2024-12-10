@@ -1,94 +1,139 @@
 <div class="outer">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-5">
-                <div class="panel border bg-white">
-                    <div class="panel-heading text-center mb-3 ">
-                        <h3 class="pt-3 font-weight-bold">Login</h3>
-                    </div>
-
-                    <div class="panel-body mx-3">
-                        <form action="" class="mb-4" [formGroup]="loginForm">
-                            <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')">
-                                    <span class="fa fa-user p-2"></span>
-                                    <input formControlName="username" type="text" placeholder="NIC / Passport / Licece">
+  
+        <section class="vh-100">
+            <div class="container py-5 h-50">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-xl-10">
+                        <div class="card shadow-lg" style="border-radius: 2rem;">
+                            <div class="row g-0">
+                                <!-- Image Section -->
+                                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                    <img src="car03.jpg" alt="login form" class="img-fluid"
+                                        style="border-radius: 1.5rem 0 0 1.5rem; object-fit: cover; width: 120%; height: 100%;" />
                                 </div>
-                                <small
-                                    *ngIf="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')"
-                                    class="text-danger">*Username is required</small>
-
-                            </div>
-
-                            <div class="form-group pt-3">
-                                <div class="input-field"
-                                    [class.error]="loginForm.controls['password'].dirty && loginForm.controls['password'].hasError('required')">
-                                    <span class="fa fa-lock p-2"></span>
-                                    <input formControlName="password" [type]="type" placeholder="Password">
-                                    <span (click)="hideShowPassword()" class="fa {{eyeIcon}} px-2"></span>
+                                <!-- Form Section -->
+                                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                    <div class="card-body  text-black">
+                                        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                                            <div class="text-center mb-2">
+                                                <h3 class="font-weight-bold">Sign In</h3>
+                                            </div>
+                                            <!-- Username Field -->
+                                            <div class="form-group ">
+                                                <div class="input-field" [class.error]="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')">
+                                                    <span class="fa fa-user p-2"></span>
+                                                    <input formControlName="username" type="text" class="form-control rounded-3"
+                                                           placeholder="NIC / Passport / License" />
+                                                </div>
+                                                <small *ngIf="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')" class="text-danger">
+                                                    *Username is required
+                                                </small>
+                                            </div>
+                                            <!-- Password Field -->
+                                            <div class="form-group pt-3">
+                                                <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.controls['password'].hasError('required')" style="position: relative;">
+                                                    <!-- Lock Icon inside input -->
+                                                    <span class="fa fa-lock p-2" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);"></span>
+                                                    <input formControlName="password" [type]="type" class="form-control rounded-3 pl-5" 
+                                                           placeholder="Password" />
+                                                    <!-- Eye Icon for password visibility toggle -->
+                                                    <span (click)="hideShowPassword()" class="fa {{eyeIcon}} px-2" 
+                                                          style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></span>
+                                                </div>
+                                                <small *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].hasError('required')" class="text-danger">
+                                                    *Password is required
+                                                </small>
+                                            </div>
+                                            
+                                            <!-- Forgot Password -->
+                                            <div class="form-inline mt-4 d-flex justify-content-end">
+                                                <a id="forget" class="font-weight-bold text-danger" data-toggle="modal"
+                                                   data-target="#forgetPasswordModal">
+                                                    Forgot Password?
+                                                </a>
+                                            </div>
+                                            <!-- Submit Button -->
+                                            <button type="submit" class="btn btn-dark mt-4 w-100 rounded-3">Login</button>
+                                            <!-- Sign Up Link -->
+                                            <div class="text-center pt-4 text-muted">
+                                                Don't have an account? <a routerLink="/register" class="font-weight-bold text-primary">Sign Up</a>
+                                            </div>
+                                        </form>
+                                        <!-- Social Links -->
+                                        <div class="mx-3 my-2 py-2 bordert">
+                                            <div class="text-center py-3">
+                                                <a href="https://www.facebook.com" target="_blank" class="px-3">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
+                                                         alt="Facebook" width="30">
+                                                </a>
+                                                <a href="https://www.google.com" target="_blank" class="px-3">
+                                                    <img src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-icon-PNG.png"
+                                                         alt="Google" width="30">
+                                                </a>
+                                                <a href="https://www.x.com" target="_blank" class="px-3">
+                                                    <img src="https://freepnglogo.com/images/all_img/1691832581twitter-x-icon-png.png"
+                                                         alt="X" width="30">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <small
-                                    *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].hasError('required')"
-                                    class="text-danger">*Username is required</small>
                             </div>
-                            <div class="form-inline fr mt-4 d-flex ">
-                                <a id="forget" class="font-weight-bold text-primary" data-toggle="modal"
-                                    data-target="#forgetPasswordModal">Forget
-                                    Password ?</a>
-                            </div>
-                            <button (click)="onLogin()" type="submit"
-                                class="btn btn-primary btn-block mt-4 w-100">Login</button>
-                            <div class="text-center pt-4 text-muted">Don't have an account? <a id="forget"
-                                    routerLink="/register">Sign Up</a></div>
-                        </form>
-                    </div>
-                    <div class="mx-3 my-2 py-2 bordert">
-                        <div class="text-center py-3">
-                            <a href="https://www.facebook.com" target="_blank" class="px-2"><img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"
-                                    alt=""></a>
-                            <a href="https://www.google.com" target="_blank" class="px-2"><img
-                                    src="https://image.similarpng.com/very-thumbnail/2020/06/Logo-google-icon-PNG.png"
-                                    alt=""></a>
-                            <a href="https://www.x.com" target="_blank" class="px-2"><img
-                                    src="https://freepnglogo.com/images/all_img/1691832581twitter-x-icon-png.png"
-                                    alt=""></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
 
-<!-- PAssword Reset Modal -->
-<div class="modal fade" id="forgetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgetPasswordModalTitle"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document" style="width: 300px;">
-        <div class="modal-content text-center">
-            <div class="modal-header h5 text-white bg-primary justify-content-center">
-                Password Reset
+   
+
+<div class="modal fade" id="forgetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgetPasswordModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 400px; width: 100%; height: auto;">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-dark text-white justify-content-center">
+                <h5 class="modal-title" id="forgetPasswordModalTitle">Password Reset</h5>
             </div>
-            <div class="modal-body px-5">
-                <p class="py-2">
-                    Enter your email address and we'll send you an email with instructions to reset your password.
-                </p>
-                <div data-mdb-input-init class="form-outline">
-                    <input id="typeEmail" class="form-control my-3" placeholder="Email to reset" type="email"
-                        [(ngModel)]="resetPaswordEmail" (ngModelChange)="checkValidEmail($event)" />
-                    <span *ngIf="!resetPaswordEmail" class="text-danger">*Email is required</span>
-                    <span *ngIf="!isValidEmail && resetPaswordEmail" class="text-danger">*Email is invalid</span>
 
+            <!-- Modal Body -->
+            <div class="modal-body px-4 py-3 ">
+                <small class="text-muted text-center mb-5">
+                    Enter your email address, and we'll send you instructions to reset your password.
+                </small>
+
+                <!-- Email Input Field -->
+                <div class="form-outline mb-3">
+                    <input id="typeEmail" 
+                           class="form-control form-control-lg" 
+                           placeholder="Email to reset" 
+                           type="email" 
+                           [(ngModel)]="resetPaswordEmail" 
+                           (ngModelChange)="checkValidEmail($event)" 
+                           required />
+                    <!-- Validation Messages -->
+                    <small *ngIf="!resetPaswordEmail" class="text-danger">*Email is required</small>
+                    <small *ngIf="!isValidEmail && resetPaswordEmail" class="text-danger">*Invalid email format</small>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button id="closeBtn" type="button" class="btn btn-primary d-none" data-dismiss="modal" ></button>
-                    <button type="button" (click)="confirmToSend()" class="btn btn-primary">Send Reset Email</button>
+
+                <!-- Send Reset Email Button -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="button" 
+                            (click)="confirmToSend()" 
+                            class="btn btn-primary btn-lg w-100" 
+                            [disabled]="!isValidEmail || !resetPaswordEmail">
+                        Send Reset Email
+                    </button>
                 </div>
-                <!-- <div class="d-flex justify-content-between mt-4">
-                    <a class="" href="#">Login</a>
-                    <a class="" href="#">Register</a>
-                </div> -->
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-link text-muted" data-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>

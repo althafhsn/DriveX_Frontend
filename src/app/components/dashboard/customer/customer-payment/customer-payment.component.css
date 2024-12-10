@@ -1,0 +1,16 @@
+.card {
+    border-radius: 15px;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .bg-success {
+    background-color: #28a745 !important;
+  }
+  
+  .bg-warning {
+    background-color: #ffc107 !important;
+  }
+  

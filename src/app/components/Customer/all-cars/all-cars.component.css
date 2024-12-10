@@ -1,48 +1,50 @@
-/* paginated-cards.component.css
 
-.container {
-    max-width: 800px;
-    margin: auto;
+.fixed-size {
+  /* width: 350px;  */
+  height: 300px; /* Fixed height */
+  position: relative;
+  overflow: hidden; /* Ensures content doesn't overflow */
+}
+
+   .card {
+    border-radius: 15px;
+    box-shadow: 5px 5px 6px #0a0a0a;
+    overflow: hidden;
+    text-align: start;
   }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px 0;
+
+  .price-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #1f0259;
+    color: #ff4949;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
-  
-  .card {
-    flex: 1 1 calc(25% - 10px);
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    background-color: #f9f9f9;
-    margin: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* 
+  .card-body .rating {
+    color: #0c0c0c;
+    font-size: 18px;
+  } */
+
+  .card-body h5 {
+    font-weight: bold;
   }
-  
-  .pagination-controls {
-    text-align: center;
-    margin-top: 20px;
+
+  .card-body .feature {
+    font-size: 18px;
+    color: #060000;
   }
-  
-  .pagination-controls button {
-    margin: 0 5px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
+
+
+  .card-img-top:hover {
+
+    border-radius: 12px;
+    padding: 12px;
     cursor: pointer;
+    
   }
-  
-  .pagination-controls button.active {
-    background-color: #0056b3;
-  }
-  
-  .pagination-controls button:hover {
-    background-color: #0056b3;
-  }
-   */

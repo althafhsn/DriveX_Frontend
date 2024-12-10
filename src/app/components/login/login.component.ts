@@ -76,18 +76,15 @@ export class LoginComponent implements OnInit {
             const tokenPayload = this.auth.decodeToken();
             this.userStore.setFullName(tokenPayload.unique_name);
             this.userStore.setRoleFromStore(tokenPayload.role);
-            this.toast.success("SUCCESS", "Login was Successed", 5000);
-
-            if (this.role === "Admin" || this.role === "Manager") {
-              this.router.navigate(['/dashboard']);
-            } else {
-              this.router.navigate(['./LandingPage']);
+            this.toast.success("SUCCESS", "Login has Successed", 5000);
+            this.router.navigate(['/'])
+            window.history.pushState(null, '', window.location.href);
+            window.onpopstate = function () {
+            window.history.pushState(null, '', window.location.href);
             }
-
           },
           error: (err) => {
-            this.toast.danger("ERROR", "Login was Failed", 5000)
-
+            this.toast.danger("ERROR", "Login has Failed", 5000)
           }
         });
     } else {
@@ -105,44 +102,48 @@ export class LoginComponent implements OnInit {
 
   confirmToSend() {
     // Check if the email is valid
-    if (this.checkValidEmail(this.resetPaswordEmail)) {
-      const encodedEmail = encodeURIComponent(this.resetPaswordEmail); // Encode the email
+    if (!this.checkValidEmail(this.resetPaswordEmail)) {
+      this.toast.danger("Error", "Invalid email format!", 5000);
+      return;
+    }
   
-      // Log the email for debugging purposes
-      console.log('Sending reset link to:', encodedEmail);
+    // Log the email for debugging
+    console.log("Sending reset link to:", this.resetPaswordEmail);
   
-      // Call the service to send the reset password link
-      this.resetService.sendResetPasswordLink(this.resetPaswordEmail).subscribe({
-        next: (res) => {
-          // Show success message
-          this.toast.success(
-            "SUCCESS", "Reset Password Mail Sent Successfully", 5000
-          );
-          
-          // Clear the email input field
-          this.resetPaswordEmail = '';
+    // Prepare the email object
+    const emailObj = { email: this.resetPaswordEmail };
   
-          // Close the modal or perform any other UI action
-          const buttonRef = document.getElementById('closeBtn');
-          buttonRef?.click();
-        },
-        error: (err) => {
-          // Handle errors
-          if (err.status === 400) {
+    // Call the service to send the reset password link
+    this.resetService.sendResetPasswordLink(emailObj).subscribe({
+      next: () => {
+        // Show success message
+        this.toast.success("SUCCESS", "Reset Password Mail Sent Successfully", 5000);
+  
+        // Clear the email input field
+        this.resetPaswordEmail = '';
+  
+        // Close the modal or perform any other UI action
+        const buttonRef = document.getElementById('closeBtn');
+        buttonRef?.click();
+      },
+      error: (err) => {
+        // Improved error handling
+        switch (err.status) {
+          case 400:
             this.toast.danger("Error", "Invalid email format!", 5000);
-          } else if (err.status === 404) {
+            break;
+          case 404:
             this.toast.danger("Error", "Email not found!", 5000);
-          } else {
+            break;
+          default:
             this.toast.danger(
               "Error", "Something went wrong. Please try again later.", 5000
             );
-          }
+            console.error("Error:", err); // Log for debugging
         }
-      });
-    } else {
-      // If the email is not valid, show an error
-      this.toast.danger("Error", "Please enter a valid email address.", 5000);
-    }
+      },
+    });
   }
+  
   
 }

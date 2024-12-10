@@ -1,27 +1,27 @@
-<div class="card-body text-center">
-    <!-- Earnings -->
-    <h3 class="fw-bold">$ {{ paymentSummary.todayEarnings | number: '1.2-2' }}</h3>
-    <p class="text-muted mb-1">
-      Compared to <span class="fw-bold">$ {{ paymentSummary.previousDayEarnings | number: '1.2-2' }}</span> previous day
-    </p>
-    <span class="badge" [ngClass]="{
-      'bg-success': paymentSummary.percentageChange >= 0,
-      'bg-danger': paymentSummary.percentageChange < 0
-    }">
-      {{ paymentSummary.percentageChange >= 0 ? '+' : '' }}{{ paymentSummary.percentageChange | number: '1.1-1' }}%
-    </span>
-  
-    <hr />
-  
-    <!-- Balance Summary -->
-    <div class="d-flex justify-content-between text-start mt-4">
-      <div>
-        <h6 class="fw-bold">$ {{ paymentSummary.totalBalance | number: '1.2-2' }}</h6>
-        <small class="text-muted">Total Balance</small>
+<div class="card shadow-sm rounded p-4">
+  <!-- Revenue Summary -->
+  <div class="text-center mb-4">
+    <h4 class="fw-bold">Revenue Summary</h4>
+  </div>
+
+  <!-- Revenue Details -->
+  <div class="row">
+    <!-- Total Revenue -->
+    <div class="col-md-6">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Revenue</h5>
+          <h3 class="fw-bold">LKR {{ customerResponse.customer.totalRevenue | currency }}</h3>
+        </div>
       </div>
-      <div>
-        <h6 class="fw-bold">$ {{ paymentSummary.totalWithdrawn | number: '1.2-2' }}</h6>
-        <small class="text-muted">Total Withdrawn</small>
+    </div>
+    <!-- Ongoing Revenue -->
+    <div class="col-md-6">
+      <div class="card text-white bg-warning mb-3">
+        <div class="card-body text-center">
+          <h5 class="card-title">Ongoing Revenue</h5>
+          <h3 class="fw-bold">LKR {{ customerResponse.customer.ongoingRevenue | currency }}</h3>
+        </div>
       </div>
     </div>
   </div>

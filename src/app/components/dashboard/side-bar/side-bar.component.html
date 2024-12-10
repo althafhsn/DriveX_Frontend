@@ -1,57 +1,120 @@
-<div class="sidebar">
-    <!-- Logo -->
-    <div class="sidebar-logo p-3">
-      <h2>CAR RENT</h2>
+
+
+
+   <div class="d-flex flex-column"  >
+    <!-- Mobile Menu Button -->
+    <button
+      class="btn btn-primary d-md-none m-3 text-white"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasSidebar"
+      aria-controls="offcanvasSidebar"
+    >
+      <i class="fas fa-bars"></i> Menu
+    </button>
+  
+    <!-- Sidebar for Mobile (Offcanvas) and Desktop -->
+    <div 
+      class="offcanvas offcanvas-end d-md-none    bg-white lex-column justify-content-center  d-flex align-items-center  w-30"
+      tabindex="-1"
+      id="offcanvasSidebar"
+      aria-labelledby="offcanvasSidebarLabel"
+      
+    >
+      <div class="offcanvas-header " >
+        <img src="BGR car (2).png" alt="Logo" class="me-2" style="height: 50px;" />
+        <button
+          type="button"
+          class="btn-close bg-white mt-2"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body " >
+        <!-- Sidebar Content -->
+        <a class="d-flex align-items-center p-2 text-dark" routerLink="main" routerLinkActive="active">
+          <i class="fas fa-tachometer-alt me-2"></i>
+          Dashboard
+        </a>
+        <a class="d-flex align-items-center p-2  text-dark" routerLink="customers" routerLinkActive="active">
+          <i class="fas fa-users me-2"></i>
+          Customers
+        </a>
+        <a class="d-flex align-items-center p-2 text-dark" routerLink="./bookings" routerLinkActive="active">
+          <i class="fas fa-book me-2"></i>
+          Bookings
+        </a>
+        <a class="d-flex align-items-center p-2 text-dark" routerLink="cars" routerLinkActive="active">
+          <i class="fas fa-bell me-2"></i>
+          Cars
+        </a>
+        <a class="d-flex align-items-center p-2 text-dark" routerLink="./rented-car-list" routerLinkActive="active">
+          <i class="fas fa-history me-2"></i>
+          Rented History
+        </a>
+        
+     
+        <a class="d-flex align-items-center p-2 text-dark" routerLink="settings" routerLinkActive="active">
+          <i class="fas fa-cog me-2"></i>
+          Settings
+        </a>
+        <a
+        class="d-flex align-items-center p-3 mt-auto logout  text-primary"
+        routerLink="/logout"
+        (click)="logout()"
+      >
+        <i class="fas fa-sign-out-alt me-2"></i>
+        Logout
+      </a>
+      </div>
     </div>
   
-    <!-- Navigation Links -->
-    <a routerLink="main" routerLinkActive="active">
-      <i class="fas fa-tachometer-alt"></i>
-      Dashboard
-    </a>
-  
-    <a routerLink="customers" routerLinkActive="active">
-      <i class="fas fa-users"></i>
-      Customers
-    </a>
-  
-    <a routerLink="./bookings" routerLinkActive="active">
-      <i class="fas fa-book"></i>
-      Bookings
-    </a>
-  
-    <a routerLink="/notifications" routerLinkActive="active">
-      <i class="fas fa-bell"></i>
-      Notifications
-    </a>
-  
-    <a routerLink="settings" routerLinkActive="active">
-      <i class="fas fa-cog"></i>
-      Settings
-    </a>
-  <hr>
-    <!-- Report Section Heading -->
-    <div class="report-heading mt-3 mb-1 p-3 text-white">Report</div>
-  
-    <a routerLink="revenue" routerLinkActive="active">
-      <i class="fas fa-credit-card"></i>
-      Revenue
-    </a>
-  
-    <a routerLink="/transactions" routerLinkActive="active">
-      <i class="fas fa-exchange-alt"></i>
-      Transactions
-    </a>
-  
-    <a routerLink="/car-report" routerLinkActive="active">
-      <i class="fas fa-chart-line"></i>
-      Car Report
-    </a>
-  
-    <!-- Logout Button -->
-    <a routerLink="/logout" class="logout mt-auto p-3 "(click)="logout()">
-      <i class="fas fa-sign-out-alt"></i>
-      Logout
-    </a>
+    <!-- Sidebar for Desktop -->
+    <div class="sidebar  text-white d-none d-md-block bg-dark position-fixed fs-6 vh-100">
+      <div class="sidebar-logo p-3 text-center">
+        <!-- <img src="logo4.png" alt="Logo" class="me-2" style="height: 40px;" /> -->
+        <img src="BRG car(1).png" alt="Logo" width="250px" height="60px">
+
+      </div>
+      <a class="d-flex align-items-center p-2 ms-4  " routerLink="main" routerLinkActive="active">
+        <i class="fas fa-tachometer-alt me-2"></i>
+        Dashboard
+      </a>
+      <a class="d-flex align-items-center p-2 ms-4  " routerLink="customers" routerLinkActive="active">
+        <i class="fas fa-users me-2"></i>
+        Customers
+      </a>
+      <a class="d-flex align-items-center p-2 ms-4 " routerLink="./bookings" routerLinkActive="active">
+        <i class="fas fa-book me-2"></i>
+        Bookings
+      </a>
+      <a class="d-flex align-items-center p-2 ms-4  " routerLink="cars" routerLinkActive="active">
+        <i class="fas fa-car me-2"></i>
+        Cars
+      </a>
+      <a class="d-flex align-items-center p-2 ms-4  " routerLink="./rented-car-list" routerLinkActive="active">
+        <i class="fas fa-history me-2"></i>
+        Rented History
+      </a>
+     
+      
+      <a class="d-flex align-items-center p-2 ms-4  " routerLink="settings" routerLinkActive="active">
+        <i class="fas fa-cog me-2"></i>
+        Settings
+      </a>
+      
+     <br>
+     <br>
+     <a  
+     class="d-flex align-items-center p-3   logout ms-0 text-white  bg-primary"
+     routerLink="/logout"
+     (click)="logout()"
+     style="margin-top:100%;"
+     
+   >
+     <i class="fas fa-sign-out-alt me-2"></i>
+     Logout
+   </a>
+    </div>
   </div>
   

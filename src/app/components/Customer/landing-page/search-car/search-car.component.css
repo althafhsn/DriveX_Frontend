@@ -1,7 +1,7 @@
 .animate-top {
     position: relative;
     animation: slideFromTop 2s ease-out forwards;
-    background-color: #1f0259;      
+    background-color: #0c013b;      
     color: aliceblue;
     padding-bottom: 12px;
     border-radius: 10px;
@@ -19,4 +19,15 @@
       /* Ends at its original position */
       opacity: 1;
     }
-}
+
+
+  }
+    .btn-outline-orange {
+      color: #efece9;
+      border-color: #f8f7f5;
+    }
+    
+    .btn-outline-orange:hover {
+      background-color:rgb(249, 245, 245);
+      color: black;
+    }

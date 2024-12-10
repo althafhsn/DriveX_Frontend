@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './search-car.component.html',
   styleUrl: './search-car.component.css'
 })
-export class SearchCarComponent implements OnInit{
+export class SearchCarComponent implements OnInit {
   dateForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) {}
@@ -40,10 +40,33 @@ export class SearchCarComponent implements OnInit{
       const { pickupDate, returnDate } = this.dateForm.value;
       localStorage.setItem('pickupDate', pickupDate);
       localStorage.setItem('returnDate', returnDate);
-      this.router.navigate(['/Explorecar']);
+      this.router.navigate(['/landing/explorecar']);
+
     }
   }
 
+  // onSubmit(): void {
+  //   if (this.dateForm.valid) {
+  //     const { pickupDate, returnDate } = this.dateForm.value;
+  
+  //     // Convert to ISO string if the value is a Date object
+  //     const formattedPickupDate =
+  //       typeof pickupDate === 'object' && pickupDate instanceof Date
+  //         ? pickupDate.toISOString().split('T')[0]
+  //         : pickupDate;
+  //     const formattedReturnDate =
+  //       typeof returnDate === 'object' && returnDate instanceof Date
+  //         ? returnDate.toISOString().split('T')[0]
+  //         : returnDate;
+  
+  //     // Save to localStorage
+  //     localStorage.setItem('pickupDate', formattedPickupDate);
+  //     localStorage.setItem('returnDate', formattedReturnDate);
+  
+  //     this.router.navigate(['/landing/explorecar']);
+  //   }
+  // }
+  
   // Validator: Ensure pickup date is not in the past
   private pastDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const selectedDate = new Date(control.value);

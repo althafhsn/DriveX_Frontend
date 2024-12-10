@@ -1,14 +1,16 @@
 .footer {
-    background-color: #0c013b;      color: #fff;
+    /* background-color: #0707da;       */
+   color: #fff;
    padding: 40px 0;
  }
 
- .footer-logo {
+ .footer-logo  {
    font-size: 28px;
    font-weight: bold;
-   color: #ff4949;
+   /* color: #ff914d; */
    margin-bottom: 20px;
  }
+
 
  .footer .footer-link {
    color: #ddd;
@@ -19,7 +21,7 @@
  }
 
  .footer .footer-link:hover {
-   color: #ff4949;
+   color: #ff914d;
  }
 
  .footer .footer-title {
@@ -40,7 +42,7 @@
 
  .footer .subscribe-form button {
    border-radius: 30px;
-   background-color: #ff4949;
+   background-color: #ff914d;
    color: #ffffff;
    border: none;
    padding: 12px 20px;
@@ -49,7 +51,8 @@
  }
 
  .footer .subscribe-form button:hover {
-   background-color: #e04040;
+   background-color: #ffffff;
+   color: #0c013b;
  }
 
  .footer .social-icons a {
@@ -60,7 +63,7 @@
  }
 
  .footer .social-icons a:hover {
-   color: #ff4949;
+   color: #ff914d;
  }
 
  .footer-bottom {

@@ -1,12 +1,26 @@
-.navbar {
-    background-color: #0c013b;
-}
+/* .navbar,.offcanvas {
+    background-color: #0d0df9;
+
+} */
+/* .offcanvas-title{background-color: #ff914d;} */
 
 .collapse{
     margin-right: 25%;
 } 
 .nav-link.active-link {
     background-color: rgb(242, 242, 245);
-    /* color: #7d08ea; Optional for better visibility */
-    border-radius: 5px; /* Optional for rounded corners */
+    border-radius: 5px;  
+}
+  /* .navbar-toggler{
+    background-color: #223af0;
+  } */
+
+  .btn-outline-orange {
+    color: #efece9;
+    border-color: #f7f6f5;
+  }
+  
+  .btn-outline-orange:hover {
+    background-color: #fd7e14;
+    color: #fff;
   }
