@@ -87,6 +87,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
 import { CancelledHistoryComponent } from './components/dashboard/rented-car-list/cancelled-history/cancelled-history/cancelled-history.component';
+import { OverdueRentalsComponent } from './components/dashboard/rented-car-list/overdue-rentals/overdue-rentals/overdue-rentals.component';
 
 
 @NgModule({
@@ -167,6 +168,7 @@ import { CancelledHistoryComponent } from './components/dashboard/rented-car-lis
     RentalFilterPipe,
     AddManagerComponent,
     CancelledHistoryComponent,
+    OverdueRentalsComponent,
 
   ],
   imports: [

@@ -104,3 +104,17 @@ export interface rentalRequest{
   status:string;
 
 }
+
+export interface OverDueRentals{
+    id:string;
+    carId:string;
+    userId:string;
+    startDate:string;
+    endDate:string;
+    overDueDuration:number;
+    overDueAmount:number;
+    status:string;
+    regNo:string;
+    nic:string;
+
+}
