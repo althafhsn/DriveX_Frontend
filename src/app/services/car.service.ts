@@ -54,7 +54,7 @@ export class CarService {
 
 
   getRevenues():Observable<Revenue>{
-    return this.http.get<Revenue>(`${this.baseUrl}revenues`);
+    return this.http.get<Revenue>(`${this.baseUrl}totals`);
   }
 
 
