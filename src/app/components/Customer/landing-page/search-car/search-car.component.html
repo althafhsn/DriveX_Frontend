@@ -2,18 +2,18 @@
   
 
 
-  <div class="container my-4 animate-top ">
+  <div class="container my-4 animate-top  bg-dark">
     <form [formGroup]="dateForm" (ngSubmit)="onSubmit()" class="row g-2 align-items-center">
   
       <!-- Pickup Date -->
       <div class="col-md-4">
-        <label for="pickupDate" class="form-label fw-bold">Pickup Date</label>
+        <label for="pickupDate" class="form-label fw-bold text-white">Pickup Date</label>
         <input
-          type="text"
+          type="date"
           class="form-control"
           id="pickupDate"
-        
-            bsDatepicker
+      
+            
           formControlName="pickupDate"
           [ngClass]="{ 'is-invalid': pickupDate?.invalid && (pickupDate?.touched || pickupDate?.dirty) }"
         
@@ -25,17 +25,14 @@
           Pickup date is required.
         </div>
       </div>
-  
       <!-- Return Date -->
       <div class="col-md-4">
-        <label for="returnDate" class="form-label fw-bold">Return Date</label>
+        <label for="returnDate" class="form-label fw-bold text-white">Return Date</label>
         <input
-          type="text"
+          type="date"
           class="form-control"
           id="returnDate"
-            bsDatepicker
-          
-          formControlName="returnDate"
+           formControlName="returnDate"
           [ngClass]="{ 'is-invalid': returnDate?.invalid && (returnDate?.touched || returnDate?.dirty) }"
         />
         <div class="invalid-feedback" *ngIf="returnDate?.errors?.['required']">

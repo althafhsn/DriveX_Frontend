@@ -39,10 +39,16 @@ export class AllCarsComponent implements OnInit {
   constructor(private carService: CarService) { }
  
   ngOnInit(): void {
+ // Clear the 'selectedCarBrand' from localStorage on page reload
+ localStorage.removeItem('selectedCarBrand');
+ this.getBrandByLocalStorage = null; // Clear the property as well
     this.validateDates();
     this.calculateDateDifference();
     this.fetchCars();
   }
+  
+  // If a value exists, store it temporarily and delete it from localStorage
+ 
 
   fetchCars(): void {
     this.carService.getCars().subscribe(
