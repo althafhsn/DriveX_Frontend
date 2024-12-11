@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenApiModel } from '../models/token-api-model';
 import { catchError, Observable, of, switchMap } from 'rxjs';
-import { Address, Customer, PhoneNumber } from '../models/customer.model';
+
+import { Customer } from '../models/customer.model';
+import { profileCustomer, Address, PhoneNumber} from '../models/profileCustomer.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,90 +34,87 @@ export class AuthService {
   }
 
 
-  changePassword(passwordObj:any){
+  changePassword(passwordObj: any) {
     return this.http.post<any>(`${this.baseUserUrl}change-password`, passwordObj)
   }
 
 
-  
 
-    getUserInfo() {
-      const userId = this.getIdFromToken();
-      if (!userId) {
-        console.error("User ID is undefined or null. Cannot fetch user info.");
-        return of(null); // Return an observable with a default value (e.g., null)
-      }
-      return this.http.get<any>(`${this.baseUserUrl}customer/${userId}`).pipe(
-        catchError((error) => {
-          console.error("Error fetching user info:", error);
-          return of(null); // Return null or a default value on error
-        })
-      );
+
+  getUserInfo() {
+    const userId = this.getIdFromToken();
+    if (!userId) {
+      console.error("User ID is undefined or null. Cannot fetch user info.");
+      return of(null); // Return an observable with a default value (e.g., null)
     }
+    return this.http.get<any>(`${this.baseUserUrl}customer/${userId}`).pipe(
+      catchError((error) => {
+        console.error("Error fetching user info:", error);
+        return of(null); // Return null or a default value on error
+      })
+    );
+  }
+  updateUserInfo(id: string, data: any): Observable<any> {
+    const url = `${this.baseUserUrl}${id}/update-profile`;
 
+    // Prepare the request body in the required format
+    const requestBody = {
+      id: this.getIdFromToken, // The user's ID
+      image: data.image || '', // Image field, defaulting to an empty string if not provided
+      firstName: data.firstName || '', // First name, defaulting to an empty string if not provided
+      lastName: data.lastName || '', // Last name, defaulting to an empty string if not provided
+      licence: data.licence || '' // Licence, defaulting to an empty string if not provided
+    };
 
-   
-    // editUser(userObj : any){
-    //   const userId = this.getIdFromToken();
-    //   if (!userId) {
-    //     console.error("User ID is undefined or null. Cannot edit user info.");
-    //     return of(null); // Return an observable with a default value (e.g., null)
-    //   }
-    //   return this.http.put<any>(`${this.baseUserUrl}${userId}`, userObj)
-    // }
+    // Send the PUT request with the formatted data
+    return this.http.put<any>(url, requestBody);
+  }
 
-    // updateUserAddresses(userId: string, addresses: Address[]) {
-    //   return this.http.post<any>(`${this.baseUserUrl}customersAddresses?userId=${userId}`, addresses);
-    // }
+  updateAddress(addressId: string, updatedAddress: Address): Observable<any> {
+    const url = `${this.baseUserUrl}${addressId}/updateAddress`; // Corrected URL structure
+    // Send only the address data, not the id
+    const addressPayload = {
+      id: updatedAddress.id,
+      houseNo: updatedAddress.houseNo,
+      street1: updatedAddress.street1,
+      street2: updatedAddress.street2,
+      city: updatedAddress.city,
+      zipCode: updatedAddress.zipCode,
+      country: updatedAddress.country
+    };
 
-    // updateUserPhoneNumbers(userId: string, phoneNumbers: PhoneNumber[]) {
-    //   return this.http.post<any>(`${this.baseUserUrl}UpdatePhoneNumbers?userId=${userId}`, phoneNumbers);
-    // }
-    
-
-
-    updateUserAddresses(addresses: Address[]): Observable<any> {
-      return this.getUserInfo().pipe(
-        switchMap((userInfo) => {
-          if (!userInfo?.id) {
-            console.error('Unable to update addresses. User ID is missing.');
-            return of(null); // Return an observable with a default value (e.g., null)
-          }
-          return this.http.post<any>(
-            `${this.baseUserUrl}customersAddresses?userId=${userInfo.id}`,
-            addresses
-          );
-        }),
-        catchError((error) => {
-          console.error('Error updating addresses:', error);
-          return of(null); // Return null or a default value on error
-        })
-      );
-    }
+    return this.http.put(url, addressPayload);
+  }
+  // Add a new address for the customer
+  addAddress(customerId: string, address: any): Observable<any> {
+    return this.http.post(`${this.baseUserUrl}address/${customerId}`, address);
+  }
+  deleteAddress(addressId: string): Observable<any> {
+    const url = `${this.baseUserUrl}${addressId}/deleteAddress`;
+    return this.http.delete(url);
+  }
+  addPhoneNumber(userId: string, phoneNumber: PhoneNumber): Observable<PhoneNumber> {
+    const url = `${this.baseUserUrl}${userId}/add-phone-number`;  
+    return this.http.post<PhoneNumber>(url, phoneNumber);  
+  }
+  deletePhoneNumber(phoneNumberId: string): Observable<any> {
+    const url = `${this.baseUserUrl}${phoneNumberId}/delete-phone-number`;
+    return this.http.delete(url);
+  }
+  updatePhoneNumber(phoneNumberId: string, phoneNumberData: { mobile1: string }): Observable<any> {
+    const url = `${this.baseUserUrl}${phoneNumberId}/update-phone-number`;
+    return this.http.put(url, phoneNumberData);
+  }
+ 
   
-    updateUserPhoneNumbers(phoneNumbers: PhoneNumber[]): Observable<any> {
-      return this.getUserInfo().pipe(
-        switchMap((userInfo) => {
-          if (!userInfo?.id) {
-            console.error('Unable to update phone numbers. User ID is missing.');
-            return of(null); // Return an observable with a default value (e.g., null)
-          }
-          return this.http.post<any>(
-            `${this.baseUserUrl}UpdatePhoneNumbers?userId=${userInfo.id}`,
-            phoneNumbers
-          );
-        }),
-        catchError((error) => {
-          console.error('Error updating phone numbers:', error);
-          return of(null); // Return null or a default value on error
-        })
-      );
-    }
-  
-    
 
-    
+
   
+
+
+
+
+
 
   signout() {
     localStorage.clear();

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Booking, Rentals } from '../../../../models/booking.model';
 import { BookingService } from '../../../../services/booking.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-ongoing-rental-history',
@@ -14,7 +15,12 @@ export class OngoingRentalHistoryComponent {
   query: string = ''; // Search query
   errorMessage: string | null = null;
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService
+   ,
+    private toast: NgToastService
+    
+
+  )  {}
 
   ngOnInit(): void {
     this.loadBookings();
@@ -43,7 +49,9 @@ export class OngoingRentalHistoryComponent {
       },
       (error: HttpErrorResponse) => {
         console.error('Error updating booking status:', error);
-        alert('Failed to update booking status. Please try again.');
+        // alert('Failed to update booking status. Please try again.');
+        this.toast.danger("Error", "Failed to update booking status. Please try again.", 5000);
+
       }
     );
   }

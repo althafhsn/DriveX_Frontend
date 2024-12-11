@@ -77,47 +77,49 @@
                   <div class="card">
                     <div class="position-relative fixed-size " >
                       <img [src]="card.images[0].imagePath" class="card-img-top" alt="Car Image" >
-                      <div class="price-tag"> per day{{ card.pricePerDay }}/=</div>
+                      <div class="price-tag">{{ card.pricePerDay }}/=</div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body fixed-size">
                       <div class="icon">
                         <i class="fa-solid fa-star text-warning" *ngFor="let _ of [1,2,3,4,5]"
                           style="font-size:12px;"></i>
                       </div>
-                      <h5 class="card-title">{{ card.brandName }} - {{ card.modelName }}</h5>
-                      <!-- <p class="card-text">{{ card.description }}</p>  -->
-                      <hr>
+                      <h5 class="card-title">{{ card.brandName }}/{{ card.modelName }}</h5>
+                       <hr>
                       <div class="feature">
                         <span class="icon"><i class="fa-solid fa-chair" style="font-size:20px;"></i></span>
                         SeatCount: {{ card.seatCount }} People
                       </div>
                       <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-door-open" style="font-size:20px;"></i></span>
-                        modelId: {{ card. modelId }}  
+                        <span class="icon"><i class="fa-solid fa-calendar-alt" style="font-size:20px;"></i></span>
+                        Year: {{ card.year }}  
                       </div>
                       <div class="feature">
                         <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                        Fuel Tank: {{ card.fuelType }} Liters
+                        Fuel Tank: {{ card.fuelType }} 
                       </div>
                       <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                        Geartype: {{ card.gearType }}
+                        <span class="icon"><i class="fa-solid fa-cogs " style="font-size:20px;"></i></span>
+                        Gear type: {{ card.gearType }}
                       </div>
 
                       <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                        Geartype: {{ card.status }}
+                        <span class="icon"><i class="fa-solid fa-times-circle" style="font-size:20px;"></i></span>
+                      Status: {{ card.status }}
                       </div>
                       
                       <div>
-                        <a [routerLink]="['/landing/conformrent', card.id]">
+                        <!-- <a     [routerLink]="card.gearType === 'Automatic' &&! pickupDateError && !returnDateError ? ['/landing/conformrent', card.id] : null"> -->
                           <button type="button" class="btn btn-outline-primary" style="width: 100%;"
-                            [disabled]="pickupDateError || returnDateError" 
+                           
                             [class.active]="card.id === selectedCarID"
-                            (click)="selectCar(card)">
+                            (click)="selectCar(card)"
+                            [disabled]="card.status === 'Unavailable' || pickupDateError || returnDateError" >
+                            <a  [routerLink]=" ['/landing/conformrent', card.id]">
                             Rent Now
+                            </a>
                           </button>
-                        </a>
+                        <!-- </a> -->
                       </div>
                     </div>
                   </div>

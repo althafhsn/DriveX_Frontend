@@ -4,6 +4,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Car } from '../../../models/car.model';
 import { CarService } from '../../../services/car.service';
+import { NgToastService,  } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-all-cars-customer',
@@ -22,7 +23,6 @@ export class AllCarsComponent implements OnInit {
   pickupDateError: string | null = null;
   returnDateError: string | null = null;
   errorMessage: string | null = null;
-  
   // Pagination
   currentPage: number = 1;
   itemsPerPage: number = 6;
@@ -36,7 +36,9 @@ export class AllCarsComponent implements OnInit {
     gearType: ''
   };
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService,
+    private toast: NgToastService,
+  ) { }
  
   ngOnInit(): void {
  // Clear the 'selectedCarBrand' from localStorage on page reload
@@ -106,9 +108,12 @@ export class AllCarsComponent implements OnInit {
       if (returnD > pickup) {
         const timeDiff = returnD.getTime() - pickup.getTime();
         this.dateDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        
       } else {
         this.dateDifference = null;
         alert('Return date must be after the pickup date.');
+        // this.toast.danger("ERROR", "Login has Failed", 5000,)
+
       }
     }
   }
@@ -118,9 +123,12 @@ export class AllCarsComponent implements OnInit {
       localStorage.setItem('pickupDate', this.pickupDate);
       localStorage.setItem('returnDate', this.returnDate);
       this.calculateDateDifference();
-      alert('Dates have been updated in localStorage.');
+      // alert('Dates have been updated in localStorage.');
+      this.toast.success("SUCCESS", "Dates have been updated in localStorage.", 5000);
+
     } else {
-      alert('Please select valid dates.');
+      // alert('Please select valid dates.');
+      this.toast.danger("Error", "Please select valid dates", 5000);
     }
   }
 

@@ -8,7 +8,18 @@
     background-color: rgb(243, 243, 247);
     color: black;
    }
+<<<<<<< HEAD
  
+=======
+   /* .sidebar{
+    width: 250px;
+   }
+  */
+  
+   
+  /* .offcanvas ,.sidebar{background-color: #0c013b;} */
+
+>>>>>>> 26033692b2415fe6e1b7c1a3c9e720ba9debde6d
   .btn-outline-orange {
     color: #efece9;
     border-color: #f7f6f5;

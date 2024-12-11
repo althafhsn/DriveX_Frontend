@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { BookingService } from '../../../../services/booking.service';
 import { rentalRequest } from '../../../../models/booking.model';
+import { NgToastService } from 'ng-angular-popup';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
@@ -31,13 +32,15 @@ priceperDay!:number;
 
 
 
+
   constructor(
     private carService: CarService,
     private toastrService: CarService,
     private http: HttpClient,
     private activateRout: ActivatedRoute,
     private authService:AuthService,
-    private bookingService:BookingService
+    private bookingService:BookingService,
+    private toast: NgToastService
   ) { }
 
   ngOnInit(): void {
@@ -77,8 +80,9 @@ priceperDay!:number;
   
     const userId = this.authService.getIdFromToken(); // Fetch userId from token
     if (!userId) {
-      alert('Unable to fetch user details. Please login again.');
-      return;
+      // alert('Unable to fetch user details. Please login again.');
+      this.toast.danger("Error", "Please select valid dates", 5000);
+            return;
     }
 
     const rentalRequest: rentalRequest = {
@@ -97,11 +101,14 @@ priceperDay!:number;
     this.bookingService.placeRentalRequest(rentalRequest).subscribe({
       next: (response) => {
         console.log('Rental request placed successfully:', response);
-        alert('Booking successful!');
+        // alert('Booking successful!');
+        this.toast.success("Error", "Booking successful!", 5000);
+
       },
       error: (error) => {
         console.error('Error placing rental request:', error);
-        alert('Booking failed. Please try again.');
+        // alert('Booking failed. Please try again.');
+        this.toast.danger("Error", "Booking failed. Please try again");
       }
     });
   }
@@ -143,7 +150,8 @@ priceperDay!:number;
 
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('You must be logged in to book. Redirecting to login page...');
+      // alert('You must be logged in to book. Redirecting to login page...');
+      this.toast.warning("Warning", "You must be logged in to book. Redirecting to login page...", 5000);
       window.location.href = '/login'; // Redirect to login page
       return;
     }
@@ -159,9 +167,11 @@ priceperDay!:number;
       this.lastUpdatedDate = now.toLocaleString();
       localStorage.setItem('lastUpdatedDate', this.lastUpdatedDate);
 
-      alert('Dates have been saved successfully.');
+      // alert('Dates have been saved successfully.');
+      this.toast.success("Success", "Dates have been saved successfully", 5000);
     } else {
-      alert('Please correct the errors before saving.');
+      // alert('Please correct the errors before saving.');
+      this.toast.danger("Error", "Please correct the errors before saving.", 5000);
     }
   }
 

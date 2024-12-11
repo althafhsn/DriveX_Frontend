@@ -1,6 +1,7 @@
 import { Component,Output,EventEmitter } from '@angular/core';
 import { Customer } from '../../../../models/customer.model';
 import { DashboardCustomerService } from '../../../../services/dashboard-customer.service';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-customer',
@@ -32,17 +33,20 @@ export class AddCustomerComponent {
   
  };
 
-constructor(private customerService: DashboardCustomerService) {}
+constructor(private customerService: DashboardCustomerService,private toast: NgToastService) {}
 
 // Method to handle form submission
 onAddCustomer() {
   this.customerService.addCustomer(this.newCustomer).subscribe({
     next: (response) => {
-      alert('Customer added successfully!');
+      // alert('Customer added successfully!');
+      this.toast.success("Success", "Customer added successfully!", 5000);
+
       window.location.reload();
     },
     error: (err) => {
-      alert('Failed to add customer!');
+      // alert('Failed to add customer!');
+      this.toast.danger("Error", "Failed to add customer!", 5000);
       console.error(err);
     }
   });

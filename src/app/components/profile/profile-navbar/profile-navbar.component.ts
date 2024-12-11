@@ -24,6 +24,7 @@ export class ProfileNavbarComponent {
     // Method to change tabs
     changeTab(tabId: string) {
       this.activeTab = tabId;
+    
     }
     // Method to check if All Customers List should show
     showAllCustomersList(): boolean {
