@@ -26,7 +26,9 @@
       <div class="card-body">
         <!-- Dynamic Tab Content -->
         <ng-container [ngSwitch]="activeTab">
-          <!-- <app-profile-set *ngSwitchCase="'profile-settings'"></app-profile-set> -->
+
+           <app-profile-settings  *ngSwitchCase="'profile-settings'"></app-profile-settings>
+
           <app-password-change *ngSwitchCase="'password-update'"></app-password-change>
           
           <!-- <app-view-payment *ngSwitchCase="'payment-methods'"></app-view-payment> -->

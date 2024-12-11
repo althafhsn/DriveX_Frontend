@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Booking, RecentRentals, RentalHistory, rentalRequest, Rentals } from '../models/booking.model';
+import { Booking, OverDueRentals, RecentRentals, RentalHistory, rentalRequest, Rentals } from '../models/booking.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -56,7 +56,10 @@ export class BookingService {
     return this.http.get<Rentals[]>(`${this.baseUrl}allCancelledRentals`);
   }
   
-
+  overDueRentals(): Observable<OverDueRentals[]> {
+    return this.http.get<OverDueRentals[]>(`${this.baseUrl}overdue-with-amount`);
+  }
+  
   recentRentals(): Observable<RecentRentals[]>{
     return this.http.get<RecentRentals[]>(`${this.baseUrl}recentRentalRequest`);
   }

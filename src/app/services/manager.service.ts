@@ -16,7 +16,7 @@ export class ManagerService {
     return this.http.get<Manager[]>(`${this.apiUrl}/all-managers-list`);
   }
   getManagerById(id: string): Observable<Manager> {
-    return this.http.get<Manager>(`${this.apiUrl}/manager/${id}`);
+    return this.http.get<Manager>(`${this.apiUrl}/manger/${id}`);
   }
   addManager(manager: Manager): Observable<Manager> {
     return this.http.post<Manager>(`${this.apiUrl}/add-manager-dashboard`, manager);
