@@ -1,9 +1,14 @@
 
-
+.fixed-size {
+  /* width: 350px;  */
+  height: 300px; /* Fixed height */
+  position: relative;
+  overflow: hidden; /* Ensures content doesn't overflow */
+}
 
    .card {
     border-radius: 15px;
-    box-shadow: 5px 15px 10px #1f0259;
+    box-shadow: 5px 5px 6px #0a0a0a;
     overflow: hidden;
     text-align: start;
   }
@@ -20,11 +25,11 @@
     border-radius: 50px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
-
+/* 
   .card-body .rating {
-    color: #ffcc00;
+    color: #0c0c0c;
     font-size: 18px;
-  }
+  } */
 
   .card-body h5 {
     font-weight: bold;

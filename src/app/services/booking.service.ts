@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Booking, RecentRentals, RentalHistory, Rentals } from '../models/booking.model';
+import { Booking, OverDueRentals, RecentRentals, RentalHistory, rentalRequest, Rentals } from '../models/booking.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,16 @@ export class BookingService {
   
     return this.http.put(url, { action }, { headers });
   }
+ 
+  CancelBookingAction(bookingId: string, action:'cancel'): Observable<any> {
+    const url = `${this.baseUrl}${bookingId}/cancel-by-user`; 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+  
+    return this.http.put(url, { action }, { headers });
+  }
+
   performingStatus(bookingId:string,status: 'returned' | 'rented'): Observable<any> {
    const url = `${this.baseUrl}${bookingId}/status`;
    const headers = new HttpHeaders({
@@ -42,6 +52,14 @@ export class BookingService {
     return this.http.get<Rentals[]>(`${this.baseUrl}allRented`);
   }
 
+  cancelledHistory(): Observable<Rentals[]> {
+    return this.http.get<Rentals[]>(`${this.baseUrl}allCancelledRentals`);
+  }
+  
+  overDueRentals(): Observable<OverDueRentals[]> {
+    return this.http.get<OverDueRentals[]>(`${this.baseUrl}overdue-with-amount`);
+  }
+  
   recentRentals(): Observable<RecentRentals[]>{
     return this.http.get<RecentRentals[]>(`${this.baseUrl}recentRentalRequest`);
   }
@@ -50,4 +68,7 @@ export class BookingService {
     return this.http.get<RentalHistory[]>(`${this.baseUrl}customer/${userId}`)
   }
   
+  placeRentalRequest(requestBody: rentalRequest): Observable<any> {
+    return this.http.post<rentalRequest>(`${this.baseUrl}`,requestBody);
+  }
 }

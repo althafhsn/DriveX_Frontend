@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class RentedCarListComponent {
   tabs = [
     { id: 'ongoing-rental-history', label: 'ongoing rental history' },
-    { id: 'rental-history', label: 'Rental History ' }
+    { id: 'rental-history', label: 'Rental History ' },
+    { id: 'cancelled-history', label: 'Cancelled History ' },
+    { id: 'overdue-rentals', label: 'Overdue-rental' }
    
   ];
   

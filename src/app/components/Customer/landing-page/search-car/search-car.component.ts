@@ -45,6 +45,28 @@ export class SearchCarComponent implements OnInit {
     }
   }
 
+  // onSubmit(): void {
+  //   if (this.dateForm.valid) {
+  //     const { pickupDate, returnDate } = this.dateForm.value;
+  
+  //     // Convert to ISO string if the value is a Date object
+  //     const formattedPickupDate =
+  //       typeof pickupDate === 'object' && pickupDate instanceof Date
+  //         ? pickupDate.toISOString().split('T')[0]
+  //         : pickupDate;
+  //     const formattedReturnDate =
+  //       typeof returnDate === 'object' && returnDate instanceof Date
+  //         ? returnDate.toISOString().split('T')[0]
+  //         : returnDate;
+  
+  //     // Save to localStorage
+  //     localStorage.setItem('pickupDate', formattedPickupDate);
+  //     localStorage.setItem('returnDate', formattedReturnDate);
+  
+  //     this.router.navigate(['/landing/explorecar']);
+  //   }
+  // }
+  
   // Validator: Ensure pickup date is not in the past
   private pastDateValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const selectedDate = new Date(control.value);

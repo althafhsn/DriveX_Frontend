@@ -1,73 +1,25 @@
-/* .sidebar {
-    background-color: #1d1d1d; 
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: #fff;
-  }
-  
-  .sidebar-logo h2 {
-    color: #ffffff;
-    font-size: 18px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  .sidebar a {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    font-size: 16px;
-    color: #ccc; 
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .sidebar a i {
-    margin-right: 10px; 
-  }
-  
-  
-  .sidebar a:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .sidebar a.active {
-    background-color: #007bff; 
-    color: #fff;
-  }
 
-  .report-heading {
-    font-size: 14px;
-    text-transform: uppercase;
-    padding-left: 20px;
-    color: #aaa; }
-  
-  
-
-  .logout {
-    margin-top: auto;
-    background-color: #333;
-    color: #ccc;
-  }
-  
-  .logout:hover {
-    background-color: #d9534f;
-    color: #fff;
-  }
-   */
    .sidebar a {
-    /* display: flex; */
-    /* align-items: center; */
-    /* padding: 15px 20px; */
-    font-size: 20px;
     color: #ccc; 
     text-decoration: none;
-    /* transition: background-color 0.3s, color 0.3s; */
-  }
+   }
   .sidebar a:hover{
-    background-color: aliceblue;
+    font-size: 19px;
+    background-color: rgb(243, 243, 247);
     color: black;
-    border-radius: 12px;
+   }
+ 
+  
+   
+  /* .offcanvas ,.sidebar{background-color: #0c013b;} */
+
+  .btn-outline-orange {
+    color: #efece9;
+    border-color: #f7f6f5;
   }
+  
+  .btn-outline-orange:hover {
+    background-color: #fd7e14;
+    color: #fff;
+  }
+  a{text-decoration: none;}

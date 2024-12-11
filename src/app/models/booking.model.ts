@@ -85,6 +85,36 @@ export interface Booking {
     modelName:string;
     startDate:string;
     endDate:string;
+    totalPrice:number;
     action:string;
     status:string;
   }
+
+  
+export interface rentalRequest{
+  id:string;
+  carId:string;
+  userId:string;
+  requestDate:string;
+  duration:number;
+  totalPrice:number;
+  startDate:string;
+  endDate:string;
+  action:string;
+  status:string;
+
+}
+
+export interface OverDueRentals{
+    id:string;
+    carId:string;
+    userId:string;
+    startDate:string;
+    endDate:string;
+    overDueDuration:number;
+    overDueAmount:number;
+    status:string;
+    regNo:string;
+    nic:string;
+
+}

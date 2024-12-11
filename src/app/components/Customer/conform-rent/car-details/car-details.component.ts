@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Car, newcar,rentalRequest } from '../../../../models/car.model';
+import { Car, newcar } from '../../../../models/car.model';
 import { CarService } from '../../../../services/car.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { BookingService } from '../../../../services/booking.service';
+import { rentalRequest } from '../../../../models/booking.model';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
@@ -34,7 +36,9 @@ priceperDay!:number;
     private toastrService: CarService,
     private http: HttpClient,
     private activateRout: ActivatedRoute,
-  private authService:AuthService) { }
+    private authService:AuthService,
+    private bookingService:BookingService
+  ) { }
 
   ngOnInit(): void {
     // Load dates from localStorage
@@ -70,7 +74,7 @@ priceperDay!:number;
       alert('Please select pickup and return dates!');
       return;
     }
-
+  
     const userId = this.authService.getIdFromToken(); // Fetch userId from token
     if (!userId) {
       alert('Unable to fetch user details. Please login again.');
@@ -78,16 +82,19 @@ priceperDay!:number;
     }
 
     const rentalRequest: rentalRequest = {
+      id: '', 
       carId: this.car.id,
       userId,
-      startDate: this.pickupDate,
-      endDate: this.returnDate,
-      action: 'Pending',
-      status: 'Request'
+      startDate: new Date(this.pickupDate).toISOString(), 
+      endDate: new Date(this.returnDate).toISOString(),
+      action: '',
+      status: '',
+      duration: 0, 
+      requestDate: new Date().toISOString(), 
+      totalPrice: 0 
     };
 
-    // Place the rental request
-    this.authService.placeRentalRequest(rentalRequest).subscribe({
+    this.bookingService.placeRentalRequest(rentalRequest).subscribe({
       next: (response) => {
         console.log('Rental request placed successfully:', response);
         alert('Booking successful!');
@@ -99,12 +106,7 @@ priceperDay!:number;
     });
   }
 
-// totalPrice(){
-//   this.duration = this.car.duration;
-//   this.priceperDay = this.car.pricePerDay;
-//   var totalPrice = this.duration * this.priceperDay;
-//   return totalPrice;
-// }
+
 
   validateDates(): void {
     this.pickupDateError = null;
