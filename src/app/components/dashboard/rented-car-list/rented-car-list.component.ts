@@ -11,9 +11,9 @@ export class RentedCarListComponent {
     { id: 'ongoing-rental-history', label: 'ongoing rental history' },
     { id: 'rental-history', label: 'Rental History ' },
     { id: 'cancelled-history', label: 'Cancelled History ' }
-   
+
   ];
-  
+
 
   activeTab: string = 'ongoing-rental-history'; // Default active tab
 
@@ -23,7 +23,7 @@ export class RentedCarListComponent {
     this.activeTab = tabId;
   }
   query: string = '';
-  
+  searchText: string = '';
   // Method to check if All Customers List should show
   showAllCustomersList(): boolean {
     return this.activeTab === 'rental-history';

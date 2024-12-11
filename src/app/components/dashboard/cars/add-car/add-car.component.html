@@ -3,10 +3,11 @@
   <form (ngSubmit)="onSubmit()" #carForm="ngForm" class="needs-validation">
     <!-- Multiple Images Upload -->
     <div class="mb-3">
-      <label for="images">Upload Images (Max: 4):</label>
-    
-      <div class="image-upload-container">
-        <div *ngFor="let image of selectedImages; let i = index" class="image-box">
+      <label for="images" class="d-block text-center">Upload Images (Max: 4):</label>
+      
+      <div class="image-upload-container d-flex justify-content-center flex-wrap">
+        <!-- Display selected images or image upload inputs -->
+        <div *ngFor="let image of selectedImages; let i = index" class="image-box mx-2">
           <img *ngIf="image" [src]="image" alt="Uploaded Image" class="uploaded-image" />
           <input
             *ngIf="!image"
@@ -19,7 +20,8 @@
           <div class="overlay" (click)="triggerFileInput(i)"></div>
         </div>
     
-        <div *ngFor="let i of remainingIndices()" class="image-box">
+        <!-- Remaining image slots -->
+        <div *ngFor="let i of remainingIndices()" class="image-box mx-2">
           <input
             type="file"
             id="imageInput{{ i }}"
@@ -32,171 +34,203 @@
       </div>
     </div>
     
+    
 
-    <!-- Brand Dropdown -->
-    <div class="mb-2">
-      <label for="brand">Select Brand:</label>
-      <div class="d-flex align-items-center">
-        <select
-          id="brand"
-          class="form-select form-control-sm me-2"
-          [(ngModel)]="newCar.brandId"
-          (change)="onBrandChange($event)"
-          name="brand"
-          required
-        >
-          <option value="" disabled>Select a Brand</option>
-          <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
-        </select>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleAddBrand()">+</button>
-      </div>
-      <div *ngIf="showAddBrand" class="mt-2">
+  
+    <div class="row mb-2">
+      <!-- Brand Input Section -->
+      <div class="col-6">
+        <label for="brand">Select Brand:</label>
         <div class="d-flex align-items-center">
-          <input
-            type="text"
-            class="form-control form-control-sm me-2"
-            placeholder="Enter new brand"
-            [(ngModel)]="newBrandName"
-            name="newBrandName"
-          />
-          <button type="button" class="btn btn-success btn-sm" (click)="addBrand()">Add</button>
+          <select
+            id="brand"
+            class="form-select form-control-sm me-2"
+            [(ngModel)]="newCar.brandId"
+            (change)="onBrandChange($event)"
+            name="brand"
+            required
+          >
+            <option value="" disabled>Select a Brand</option>
+            <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+          </select>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleAddBrand()">+</button>
+        </div>
+        <div *ngIf="showAddBrand" class="mt-2">
+          <div class="d-flex align-items-center">
+            <input
+              type="text"
+              class="form-control form-control-sm me-2"
+              placeholder="Enter new brand"
+              [(ngModel)]="newBrandName"
+              name="newBrandName"
+            />
+            <button type="button" class="btn btn-success btn-sm" (click)="addBrand()">Add</button>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Model Input Section -->
+      <div class="col-6">
+        <label for="model">Select Model:</label>
+        <div class="d-flex align-items-center">
+          <div class="flex-grow-1 me-2">
+            <select
+              id="model"
+              class="form-select form-control-sm"
+              [(ngModel)]="newCar.modelId"
+              name="model"
+              required
+              [disabled]="!models.length"
+            >
+              <option value="" disabled *ngIf="!models.length">Select a Model</option>
+              <option *ngFor="let model of models" [value]="model.id">{{ model.name }}</option>
+            </select>
+          </div>
+          <div class="d-flex align-items-center">
+            <div *ngIf="showAddModel" class="d-flex me-2">
+              <input
+                type="text"
+                class="form-control form-control-sm me-2"
+                placeholder="Enter new model"
+                [(ngModel)]="newModelName"
+                name="newModelName"
+              />
+              <button type="button" class="btn btn-success btn-sm me-2" (click)="addModel()">Add</button>
+              <button type="button" class="btn btn-secondary btn-sm" (click)="toggleAddModel()">Cancel</button>
+            </div>
+            <button
+              *ngIf="!showAddModel"
+              type="button"
+              class="btn btn-outline-primary btn-sm"
+              (click)="toggleAddModel()"
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Model Dropdown -->
-    <div class="mb-2">
-      <label for="model">Select Model:</label>
-      <div class="d-flex align-items-center">
-        <select
-          id="model"
-          class="form-select form-control-sm me-2"
-          [(ngModel)]="newCar.modelId"
-          name="model"
-          required
-          [disabled]="!models.length"
-        >
-          <option value="" disabled *ngIf="!models.length">Select a Models</option>
-          <option *ngFor="let model of models" [value]="model.id">{{ model.name }}</option>
-        </select>
-        <button type="button" class="btn btn-outline-primary btn-sm" (click)="toggleAddModel()">+</button>
-      </div>
-      <div *ngIf="showAddModel" class="mt-2">
-        <div class="d-flex align-items-center">
-          <input
-            type="text"
-            class="form-control form-control-sm me-2"
-            placeholder="Enter new model"
-            [(ngModel)]="newModelName"
-            name="newModelName"
-          />
-          <button type="button" class="btn btn-success btn-sm me-2" (click)="addModel()">Add</button>
-          <button type="button" class="btn btn-secondary btn-sm" (click)="toggleAddModel()">Cancel</button>
-        </div>
-      </div>
-    </div>
-
+    
+  
+    
     <!-- Remaining Fields -->
-    <div class="mb-2">
-      <label for="regNo">Registration Number:</label>
-      <input
-        type="text"
-        id="regNo"
-        class="form-control form-control-sm"
-        placeholder="Enter Registration Number"
-        [(ngModel)]="newCar.regNo"
-        name="regNo"
-        required
-      />
+    <div class="row mb-2">
+      <!-- Registration Number -->
+      <div class="col-6">
+        <label for="regNo">Registration Number:</label>
+        <input
+          type="text"
+          id="regNo"
+          class="form-control form-control-sm"
+          placeholder="Enter Registration Number"
+          [(ngModel)]="newCar.regNo"
+          name="regNo"
+          required
+        />
+      </div>
+    
+      <!-- Price Per Day -->
+      <div class="col-6">
+        <label for="pricePerDay">Price Per Day:</label>
+        <input
+          type="number"
+          id="pricePerDay"
+          class="form-control form-control-sm"
+          placeholder="Enter Price Per Day"
+          [(ngModel)]="newCar.pricePerDay"
+          name="pricePerDay"
+          required
+        />
+      </div>
     </div>
-
-    <div class="mb-2">
-      <label for="pricePerDay">Price Per Day:</label>
-      <input
-        type="number"
-        id="pricePerDay"
-        class="form-control form-control-sm"
-        placeholder="Enter Price Per Day"
-        [(ngModel)]="newCar.pricePerDay"
-        name="pricePerDay"
-        required
-      />
+    
+    <div class="row mb-2">
+      <!-- Gear Type -->
+      <div class="col-6">
+        <label for="gearType">Gear Type:</label>
+        <select
+          id="gearType"
+          class="form-select form-control-sm"
+          [(ngModel)]="newCar.gearType"
+          name="gearType"
+          required
+        >
+          <option value="" disabled>Select Gear Type</option>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+        </select>
+      </div>
+    
+      <!-- Fuel Type -->
+      <div class="col-6">
+        <label for="fuelType">Fuel Type:</label>
+        <select
+          id="fuelType"
+          class="form-select form-control-sm"
+          [(ngModel)]="newCar.fuelType"
+          name="fuelType"
+          required
+        >
+          <option value="" disabled>Select Fuel Type</option>
+          <option value="Petrol">Petrol</option>
+          <option value="Diesel">Diesel</option>
+        </select>
+      </div>
     </div>
-
-    <div class="mb-2">
-      <label for="gearType">Gear Type:</label>
-      <select
-        id="gearType"
-        class="form-select form-control-sm"
-        [(ngModel)]="newCar.gearType"
-        name="gearType"
-        required
-      >
-        <option value="" disabled>Select Gear Type</option>
-        <option value="Automatic">Automatic</option>
-        <option value="Manual">Manual</option>
-      </select>
+    
+    <div class="row mb-2">
+      <!-- Mileage -->
+      <div class="col-6">
+        <label for="mileage">Mileage (km):</label>
+        <input
+          type="text"
+          id="mileage"
+          class="form-control form-control-sm"
+          placeholder="Enter Mileage"
+          [(ngModel)]="newCar.mileage"
+          name="mileage"
+          required
+        />
+      </div>
+    
+      <!-- Year -->
+      <div class="col-6">
+        <label for="year">Year:</label>
+        <input
+          type="number"
+          id="year"
+          class="form-control form-control-sm"
+          placeholder="Enter Year"
+          [(ngModel)]="newCar.year"
+          name="year"
+          required
+        />
+      </div>
     </div>
-
-    <div class="mb-2">
-      <label for="fuelType">Fuel Type:</label>
-      <select
-        id="fuelType"
-        class="form-select form-control-sm"
-        [(ngModel)]="newCar.fuelType"
-        name="fuelType"
-        required
-      >
-        <option value="" disabled>Select Fuel Type</option>
-        <option value="Petrol">Petrol</option>
-        <option value="Diesel">Diesel</option>
-      </select>
+    
+    <div class="row mb-2">
+      <!-- Seat Count -->
+      <div class="col-6">
+        <label for="seatCount">Seat Count:</label>
+        <input
+          type="number"
+          id="seatCount"
+          class="form-control form-control-sm"
+          placeholder="Enter Seat Count"
+          [(ngModel)]="newCar.seatCount"
+          name="seatCount"
+          required
+        />
+      </div>
     </div>
-
-    <div class="mb-2">
-      <label for="mileage">Mileage (km):</label>
-      <input
-        type="text"
-        id="mileage"
-        class="form-control form-control-sm"
-        placeholder="Enter Mileage"
-        [(ngModel)]="newCar.mileage"
-        name="mileage"
-        required
-      />
-    </div>
-    <div class="mb-2">
-      <label for="seatCount">Year:</label>
-      <input
-        type="number"
-        id="year"
-        class="form-control form-control-sm"
-        placeholder="Enter Year"
-        [(ngModel)]="newCar.year"
-        name="year"
-        required
-      />
-    </div>
-    <div class="mb-2">
-      <label for="seatCount">Seat Count:</label>
-      <input
-        type="number"
-        id="seatCount"
-        class="form-control form-control-sm"
-        placeholder="Enter Seat Count"
-        [(ngModel)]="newCar.seatCount"
-        name="seatCount"
-        required
-      />
-    </div>
-    <div class="d-flex justify-content-center">
-    <button
-    type="submit"
-    class="btn btn-primary btn-sm w-50 "
-    [disabled]="!carForm.form.valid"
-  >
-    Add Car
-  </button>
-    </div>
-  </form>
-</div>
+    
+      <div class="d-flex justify-content-center">
+        <button
+          type="submit"
+          class="btn btn-primary btn-sm w-50"
+          [disabled]="!carForm.form.valid "
+        >
+          Add Car
+        </button>
+      </div>
+      
