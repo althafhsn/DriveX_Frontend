@@ -86,6 +86,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddManagerComponent } from './components/dashboard/settings/add-manager/add-manager.component';
+import { ProfileSettingsComponent } from './components/profile/profile-navbar/profile-settings/profile-settings.component';
 
 
 @NgModule({
@@ -165,6 +166,7 @@ import { AddManagerComponent } from './components/dashboard/settings/add-manager
     OngoingRentalHistoryComponent,
     RentalFilterPipe,
     AddManagerComponent,
+    ProfileSettingsComponent,
 
   ],
   imports: [

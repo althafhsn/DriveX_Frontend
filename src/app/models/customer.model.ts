@@ -19,6 +19,7 @@ export interface RentedCar {
 }
 
 export interface Address {
+  
   houseNo: string;
   street1: string;
   street2?: string | null;
