@@ -1,9 +1,8 @@
 
 .fixed-size {
-  /* width: 350px;  */
-  height: 300px; /* Fixed height */
+   height: 300px;  
   position: relative;
-  overflow: hidden; /* Ensures content doesn't overflow */
+  overflow: hidden;  
 }
 
    .card {
@@ -48,3 +47,4 @@
     cursor: pointer;
     
   }
+  a{text-decoration: none;}

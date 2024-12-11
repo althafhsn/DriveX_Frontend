@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import validateForm from '../../helpers/validateForm';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
+    private toast: NgToastService,
   ) { }
 
   ngOnInit(): void {
@@ -82,7 +84,8 @@ export class RegisterComponent implements OnInit {
         })
     } else {
       validateForm.validateAllFormFields(this.signUpForm);
-      alert('Form is invalid');
+   this.toast.danger("Error", "Form is invalid", 5000);
+
     }
   }
 

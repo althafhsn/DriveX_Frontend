@@ -1,4 +1,5 @@
 import { Component,Input } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-update-customer',
@@ -14,10 +15,18 @@ export class UpdateCustomerComponent {
     phone: '',
     address: ''
   };
+  constructor(
+  
+    private toast: NgToastService
+ 
+
+  ) { }
 
   // Method to handle form submission
   onSubmit() {
     console.log('Updated Customer:', this.customer);
-    alert('Customer updated successfully!');
+    // alert('Customer updated successfully!');
+    this.toast.success("Success", "Customer updated successfully!", 5000);
+
   }
 }

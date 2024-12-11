@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Car } from '../../../../models/car.model';
 import { HttpClient } from '@angular/common/http';
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-add-car',
   templateUrl: './add-car.component.html',
@@ -42,7 +43,7 @@ export class AddCarComponent {
   newModelName = '';
   isLoading = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private toast: NgToastService) { }
 
   ngOnInit(): void {
     this.fetchBrands();
@@ -109,7 +110,8 @@ export class AddCarComponent {
    */
   addBrand(): void {
     if (!this.newBrandName.trim()) {
-      alert('Brand name cannot be empty');
+      // alert('Brand name cannot be empty');
+      this.toast.warning("Warning", "Brand name cannot be empty", 5000);
       return;
     }
 
@@ -135,7 +137,8 @@ export class AddCarComponent {
    */
   toggleAddModel(): void {
     if (!this.newCar.brandId) {
-      alert('Please select a brand before adding a model');
+      // alert('Please select a brand before adding a model');
+      this.toast.warning("Warning", "Please select a brand before adding a model", 5000);
       return;
     }
     this.showAddModel = !this.showAddModel;
@@ -146,7 +149,8 @@ export class AddCarComponent {
    */
   addModel(): void {
     if (!this.newModelName.trim() || !this.newCar.brandId) {
-      alert('Model name cannot be empty and a brand must be selected');
+      // alert('Model name cannot be empty and a brand must be selected');
+      this.toast.warning("Warning", "Model name cannot be empty and a brand must be selected", 5000);
       return;
     }
 
@@ -205,12 +209,14 @@ export class AddCarComponent {
     this.http.post('http://localhost:5147/api/Car', carData).subscribe(
       (response) => {
         console.log('Car added successfully:', response);
-        alert('Car added successfully!');
+        // alert('Car added successfully!');
+        this.toast.success("Success", "Car added successfully!", 5000);
         window.location.reload();
       },
       (error) => {
         console.error('Error adding car:', error);
-        alert('Failed to add car. Please try again.');
+        // alert('Failed to add car. Please try again.');
+        this.toast.danger("Error", "Failed to add car. Please try again.", 5000);
       }
     );
   }
