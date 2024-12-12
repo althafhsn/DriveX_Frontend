@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
   styleUrl: './side-bar.component.css'
 })
 export class SideBarComponent implements OnInit {
+closeOffcanvas() {
+throw new Error('Method not implemented.');
+}
  role!:string
   constructor(
     private authService: AuthService,

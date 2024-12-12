@@ -1,34 +1,54 @@
 <div class="card shadow-lg border-primary rounded-3">
-  <div class="card-body">
+  <div class="card-body bg-light">
     <div *ngIf="booking; else noSelection" class="d-flex flex-column">
 
-      <!-- Booking Details in the First Line -->
-      <div class="d-flex justify-content-start align-items-center ">
-        <p class="m-4"><strong class="h6">Request Date: </strong> <span class="fw-bold">{{ booking.requestDate | date: 'mediumDate' }}</span></p>
-        <p class="m-4"><strong class="h6">Start Date: </strong> <span class="fw-bold">{{ booking.startDate | date: 'mediumDate' }}</span></p>
-        <p class="m-4"><strong class="h6">End Date: </strong> <span class="fw-bold">{{ booking.endDate | date: 'mediumDate' }}</span></p>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="d-flex justify-content-start">
-          <p class="m-4"><strong class="h6">Duration: </strong> <span class="fw-bold">{{ booking.duration }} days</span></p>
-          <p class="m-4"><strong class="h6">Total Price: </strong> <span class="fw-bold text-success">Rs.{{ booking.totalPrice }}</span></p>
+      <!-- Booking Details: First Row (3 details) -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-4 mb-2">
+          <p class="m-2"><strong class="h6 text-primary">Request Date: </strong> 
+            <span class="fw-bold">{{ booking.requestDate | date: 'mediumDate' }}</span>
+          </p>
         </div>
-
-        <!-- Action Buttons aligned to the Right -->
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success me-3" (click)="confirmBooking()" [disabled]="booking.action === 'approved'">
-            Confirm
-          </button>
-          <button class="btn btn-danger" (click)="cancelBooking()" [disabled]="booking.action === 'Cancelled'">
-            Cancel
-          </button>
+        <div class="col-12 col-md-4 mb-2">
+          <p class="m-2"><strong class="h6 text-primary">Start Date: </strong> 
+            <span class="fw-bold">{{ booking.startDate | date: 'mediumDate' }}</span>
+          </p>
+        </div>
+        <div class="col-12 col-md-4 mb-2">
+          <p class="m-2"><strong class="h6 text-primary">End Date: </strong> 
+            <span class="fw-bold">{{ booking.endDate | date: 'mediumDate' }}</span>
+          </p>
         </div>
       </div>
 
+      <!-- Booking Details: Second Row (2 details) -->
+      <div class="row mb-4">
+        <div class="col-12 col-md-4 mb-2">
+          <p class="m-2"><strong class="h6 text-primary">Duration: </strong> 
+            <span class="fw-bold">{{ booking.duration }} days</span>
+          </p>
+        </div>
+        <div class="col-12 col-md-4 mb-2">
+          <p class="m-2"><strong class="h6 text-primary">Total Price: </strong> 
+            <span class="fw-bold text-success">Rs.{{ booking.totalPrice }}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons aligned to the Right -->
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-success me-3" (click)="confirmBooking()" [disabled]="booking.action === 'approved'">
+          Confirm
+        </button>
+        <button class="btn btn-danger" (click)="cancelBooking()" [disabled]="booking.action === 'Cancelled'">
+          Cancel
+        </button>
+      </div>
     </div>
-    <ng-template #noSelection>
-      <p class="text-muted text-center fs-4">Please select a booking from the list.</p>
-    </ng-template>
   </div>
+
+  <!-- No Booking Selected Message -->
+  <ng-template #noSelection>
+    <p class="text-muted text-center fs-4">Please select a booking from the list.</p>
+  </ng-template>
 </div>
