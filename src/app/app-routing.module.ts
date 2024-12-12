@@ -10,7 +10,7 @@ import { ExlporeCarComponent } from './components/exlpore-car/exlpore-car.compon
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ProfileSetComponent } from './components/profile/profile-navbar/profile-set/profile-set.component';
+
 import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
 import { HistoryComponent } from './components/profile/history/history.component';
 import { SearchCarComponent } from './components/Customer/landing-page/search-car/search-car.component';
@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'profile-setting', component: ProfileSetComponent },
+  
       { path: 'profile-nav', component: ProfileNavbarComponent },
       { path: 'history', component: HistoryComponent },
       { path: 'search', component: SearchCarComponent },
