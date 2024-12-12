@@ -45,12 +45,8 @@ import { PasswordUpdateComponent } from './components/dashboard/settings/passwor
 import { UpdateCustomerComponent } from './components/dashboard/settings/update-customer/update-customer.component';
 import { UpdateCarComponent } from './components/dashboard/settings/update-car/update-car.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SettingComponent } from './components/profile/setting/setting.component';
 import { HistoryComponent } from './components/profile/history/history.component';
 import { ProfileNavbarComponent } from './components/profile/profile-navbar/profile-navbar.component';
-import { ProfileSettingComponent } from './components/profile/setting/profile-setting/profile-setting.component';
-import { ChangePasswordComponent } from './components/profile/setting/change-password/change-password.component';
-import { PaymentComponent } from './components/profile/setting/payment/payment.component';
 import { FilterPipe } from './filter.pipe';
 import { RevenueComponent } from './components/dashboard/revenue/revenue.component';
 import { GraphComponent } from './components/dashboard/revenue/graph/graph.component';
@@ -135,12 +131,12 @@ import { OverdueRentalsComponent } from './components/dashboard/rented-car-list/
     UpdateCustomerComponent,
     UpdateCarComponent,
     ProfileComponent,
-    SettingComponent,
+   
     HistoryComponent,
     ProfileNavbarComponent,
-    ProfileSettingComponent,
-    ChangePasswordComponent,
-    PaymentComponent,
+   
+   
+   
     FilterPipe,
     RevenueComponent,
     GraphComponent,
