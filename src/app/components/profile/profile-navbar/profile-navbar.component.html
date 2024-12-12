@@ -1,38 +1,24 @@
+<div class="col-12 col-md-9">
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white d-flex">
+      <!-- Tab Navigation -->
+      <ul class="nav nav-tabs card-header-tabs">
+        <li *ngFor="let tab of tabs" class="nav-item" (click)="changeTab(tab.id)">
+          <button class="nav-link" [ngClass]="{ active: activeTab === tab.id }">
+            {{ tab.label }}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <!-- Dynamic Tab Content -->
+      <ng-container [ngSwitch]="activeTab">
+        <app-profile-settings *ngSwitchCase="'profile-settings'"></app-profile-settings>
 
- 
+        <app-password-change *ngSwitchCase="'password-update'"></app-password-change>
 
 
-
- 
-  <div class="col-12 col-md-9">
-    <div class="card shadow-sm">
-      <div class="card-header bg-dark text-white d-flex">
-        <!-- Tab Navigation -->
-        <ul class="nav nav-tabs card-header-tabs">
-          <li
-            *ngFor="let tab of tabs"
-            class="nav-item"
-            (click)="changeTab(tab.id)"
-          >
-            <button
-              class="nav-link"
-              [ngClass]="{ active: activeTab === tab.id }"
-            >
-              {{ tab.label }}
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div class="card-body">
-        <!-- Dynamic Tab Content -->
-        <ng-container [ngSwitch]="activeTab">
-          <app-password-change *ngSwitchCase="'password-update'"></app-password-change>
-          
-          <!-- <app-view-payment *ngSwitchCase="'payment-methods'"></app-view-payment> -->
-       
-         </ng-container>
-      </div>
+      </ng-container>
     </div>
   </div>
-  
-
+</div>

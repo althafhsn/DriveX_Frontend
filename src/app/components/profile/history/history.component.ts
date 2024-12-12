@@ -3,6 +3,7 @@ import { Booking, RentalHistory } from '../../../models/booking.model';
 import { BookingService } from '../../../services/booking.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-history',
@@ -16,7 +17,8 @@ export class HistoryComponent {
   constructor(
     private bookingService: BookingService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private toast:NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -48,13 +50,15 @@ export class HistoryComponent {
     this.bookingService.CancelBookingAction(bookingId, 'cancel').subscribe({
       next: (response: Booking) => {
         console.log('Booking cancelled:', response);
-        alert('Booking has been successfully cancelled!');
+        this.toast.success("Success", "Booking has been successfully cancelled!", 5000);
+
         this.bookingUpdated.emit(response); // Emit the updated booking
         this.refreshRentalHistory(); // Refresh rental history after cancellation
       },
       error: (error) => {
         console.error('Error cancelling booking:', error);
-        alert('Failed to cancel booking. Please try again later.');
+        this.toast.danger("Error", "Failed to cancel booking. Please try again later.", 5000);
+
       },
     });
   }

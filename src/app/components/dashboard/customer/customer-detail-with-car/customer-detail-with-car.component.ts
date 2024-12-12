@@ -2,6 +2,7 @@ import { Component,OnInit,Input } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
 import { DashboardCustomerService } from '../../../../services/dashboard-customer.service';
 import { CustomerResponse } from '../../../../models/customer.model';
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-customer-detail-with-car',
   templateUrl: './customer-detail-with-car.component.html',
@@ -16,7 +17,10 @@ export class CustomerDetailWithCarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private customerService: DashboardCustomerService,
-    private router: Router
+    private router: Router,
+    
+      private toast: NgToastService
+   
   ) {}
 
   ngOnInit(): void {
@@ -70,7 +74,9 @@ export class CustomerDetailWithCarComponent implements OnInit {
       this.customerService.deleteCustomerById(this.customerResponse.customer.id).subscribe(
         () => {
           console.log(this.customerResponse.customer.id)
-          alert('Customer deleted successfully.');
+          // alert('Customer deleted successfully.');
+          this.toast.success("Success", "Customer deleted successfully.", 5000);
+
           window.location.reload(); // Reload the page
          
         },

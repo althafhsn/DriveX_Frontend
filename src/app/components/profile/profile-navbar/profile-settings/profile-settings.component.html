@@ -1,0 +1,155 @@
+<form [formGroup]="profileForm" class="container">
+  <!-- Basic Information -->
+  <div class="form-section border p-4 mb-4 bg-light rounded">
+    <h2 class="mb-3">Personal Information</h2>
+    <button class="btn btn-primary mb-3" (click)="toggleEditModePersonalInfo()">
+      {{ isEditModePersonalInfo ? 'Save' : 'Edit' }}
+    </button>
+    
+ <!-- Image Section -->
+<div class="mb-3">
+  <label class="form-label">Image</label>
+
+  <!-- Show image preview -->
+  <div *ngIf="profileForm.get('image')?.value" class="mb-2">
+    <img [src]="profileForm.get('image')?.value" alt="Customer Image" class="img-fluid" style="max-width: 200px;">
+  </div>
+
+  <!-- Image file input for editing the image -->
+  <input 
+    type="file" 
+    accept="image/*" 
+    (change)="onImageSelected($event)" 
+    *ngIf="isEditModePersonalInfo" 
+    class="form-control"
+  >
+</div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" formControlName="firstName" class="form-control">
+        <div class="text-danger" *ngIf="profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched">
+          First Name is required.
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" formControlName="lastName" class="form-control">
+        <div class="text-danger" *ngIf="profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched">
+          Last Name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control">
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">NIC</label>
+        <input type="text" formControlName="nic" class="form-control">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">License</label>
+      <input type="text" formControlName="licence" class="form-control">
+    </div>
+  </div>
+
+  <!-- Addresses Section -->
+  <div class="form-section border p-4 mb-4 bg-light rounded">
+    <h2 class="mb-3">Addresses</h2>
+    <!-- <button *ngIf="!isEditModeAddress" class="btn btn-primary mb-3" (click)="toggleEditModeAddress()">Edit</button> -->
+    <button (click)="toggleEditModeAddress()" class="btn btn-primary">
+      Edit Address
+    </button>
+    <div formArrayName="addresses">
+      <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i" class="mb-3">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">House No</label>
+            <input type="text" formControlName="houseNo" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Street 1</label>
+            <input type="text" formControlName="street1" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Street 2</label>
+            <input type="text" formControlName="street2" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">City</label>
+            <input type="text" formControlName="city" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Zip Code</label>
+            <input type="number" formControlName="zipCode" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Country</label>
+            <input type="text" formControlName="country" [readonly]="!isEditModeAddress" class="form-control">
+          </div>
+        </div>
+        <button (click)="updateAddress(i)" class="btn btn-success">
+          Save Updated Address
+        </button>
+        <button *ngIf="!address.value.id" (click)="saveNewAddress(i)" type="button" class="btn btn-success">
+          Save New Address
+        </button>
+        <button type="button" class="btn btn-danger mb-2" (click)="deleteAddress(addresses.at(i).get('id')?.value, i)">Remove Address</button>
+      </div>
+    </div>
+
+    <button *ngIf="addresses.length < 2 && isEditModeAddress" class="btn btn-success" (click)="addNewAddress()">Add New Address</button>
+  </div>
+
+  <!-- Phone Numbers Section -->
+  <div class="form-section border p-4 bg-light rounded">
+    <h2 class="mb-3">Phone Numbers</h2>
+    <button *ngIf="!isEditModePhoneNumber" class="btn btn-primary mb-3" (click)="toggleEditModePhoneNumber()">Edit</button>
+  
+    <div formArrayName="phoneNumbers">
+      <div *ngFor="let phoneNumber of phoneNumbers.controls; let i = index" [formGroupName]="i" class="mb-3">
+        <label class="form-label">Mobile</label>
+        <input type="text" formControlName="mobile1" [readonly]="!isEditModePhoneNumber" class="form-control">
+  
+        <!-- Remove Phone button -->
+        <button type="button" class="btn btn-danger mt-2" (click)="deletePhoneNumber(phoneNumbers.at(i).get('id')?.value, i)">Remove Phone</button>
+        <button (click)="updatePhoneNumber(i)" class="btn btn-success">
+          Save Updated Phone number
+        </button>
+        <!-- Save New Phone Number button, visible only if the phone number has no ID (new phone number) -->
+        <button 
+        *ngIf="!phoneNumber.value.id" 
+        (click)="saveNewPhoneNumber(i)" 
+        type="button" 
+        class="btn btn-success mt-2">
+        Save Phone Number
+      </button>
+    </div>
+  </div>
+
+  <!-- If phoneNumbers.length < 2, show "Add Phone Number" button, otherwise hide it -->
+  <button 
+    *ngIf="phoneNumbers.length < 2 && isEditModePhoneNumber" 
+    class="btn btn-success mt-3" 
+    (click)="addPhoneNumber()">
+    Add Phone Number
+  </button>
+  </div>
+</form>

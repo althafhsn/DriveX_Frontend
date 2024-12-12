@@ -8,7 +8,7 @@
       *ngFor="let brand of carBrands"
     >
     <a routerLink="./explorecar" (click)="storeBrandName(brand.name)">
-      <div class="brand-card">
+      <div class="brand-card p-4">
         <img [src]="brand.image" [alt]="brand.name" class="brand-logo">
         <p class="mt-2">{{ brand.name }}</p>
       </div>

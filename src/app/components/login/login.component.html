@@ -2,7 +2,7 @@
   
         <section class="vh-100">
             <div class="container py-5 h-50">
-                <div class="row d-flex justify-content-center align-items-center">
+                <div class="row d-flex justify-content-center align-items-center ">
                     <div class="col-xl-10">
                         <div class="card shadow-lg" style="border-radius: 2rem;">
                             <div class="row g-0">
@@ -16,14 +16,16 @@
                                     <div class="card-body  text-black">
                                         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                                             <div class="text-center mb-2">
-                                                <h3 class="font-weight-bold">Sign In</h3>
+                                                <h3 class="font-weight-bold mb-3">Sign In</h3>
                                             </div>
                                             <!-- Username Field -->
                                             <div class="form-group ">
                                                 <div class="input-field" [class.error]="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')">
-                                                    <span class="fa fa-user p-2"></span>
-                                                    <input formControlName="username" type="text" class="form-control rounded-3"
-                                                           placeholder="NIC / Passport / License" />
+                                                    <!-- <span class="fa fa-user p-2" ></span> -->
+                                                    <span class="fa fa-user p-2 ms-3" style="position: absolute; top: 22%;   transform: translateY(-50%);"></span>
+
+                                                    <input formControlName="username" type="text" class="form-control rounded-3 pl-5" 
+                                                           placeholder="NIC" />
                                                 </div>
                                                 <small *ngIf="loginForm.controls['username'].dirty && loginForm.controls['username'].hasError('required')" class="text-danger">
                                                     *Username is required
