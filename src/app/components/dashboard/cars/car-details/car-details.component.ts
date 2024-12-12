@@ -3,6 +3,7 @@ import { Car, CarCustomerResponse } from '../../../../models/car.model';
 import { Customer } from '../../../../models/customer.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from '../../../../services/car.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-car-details-dash',
@@ -19,7 +20,8 @@ carId!:string;
   constructor(
     private route : ActivatedRoute,
     private carService : CarService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -79,11 +81,13 @@ carId!:string;
     if (confirm('Are you sure you want to delete this car?')) {
       this.carService.deleteCar(this.carId).subscribe(
         (response) => {
-          alert('Car deleted successfully!');
+          // alert('Car deleted successfully!');
+          this.toast.success("Success", "Car deleted successfully!", 5000);
           // You may want to remove the car from a list in the UI or update your local state
         },
         (error) => {
-          alert('Failed to delete car!');
+          // alert('Failed to delete car!');
+          this.toast.danger("Error", "Failed to delete car!", 5000);
         }
       );
     }

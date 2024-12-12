@@ -1,20 +1,50 @@
-.card {
-  border: 1px solid #eaeaea;
+.car-list {
+  max-height: 450px; /* Maximum height for the scrollable container */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding-right: 10px; /* Adds padding for content */
 }
 
-.card img {
-  transition: transform 0.3s ease;
+.car-list::-webkit-scrollbar {
+  width: 8px;
 }
 
-.card img:hover {
-  transform: scale(1.1);
+.car-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
 }
 
-p {
-  margin-bottom: 0.5rem;
+.car-list::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
 }
 
-.row {
-  row-gap: 10px;
+.card-body {
+  background-color: #fff;
+  padding: 20px;
 }
 
+.car-list .d-flex {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee; /* Separator between items */
+  width: 180px;
+}
+
+.car-list img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+
+}
+
+.car-list .fw-bold {
+  font-weight: bold;
+  font-size: 0.6rem;
+}
+
+.car-list .text-muted {
+  font-size: 0.8rem;
+}
+
+.car-list .detail {
+  font-size: 0.9rem;
+}

@@ -1,50 +1,40 @@
-<div class="today-stats p-3">
+<div class="today-stats p-3 p-3 bg-white rounded shadow-sm">
 
-    <!-- Date Display -->
-    <div class="date-display">
-      <h5>Today's Statistics</h5>
-      <p>{{ currentDate | date: 'fullDate' }}, {{ currentTime }}</p>
+  <!-- Date Display -->
+  <div class="date-display">
+    <h5>Today's Statistics</h5>
+    <p>{{ currentDate | date: 'fullDate' }}, {{ currentTime }}</p>
+  </div>
+
+  <!-- Income Section -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Total Revenue</h5>
+      <h4>{{revenues.totalRevenue | currency:'LKR.'}}</h4>
+
     </div>
-  
-      <!-- Income Section -->
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Revenue</h5>
-          <h4>{{revenues.totalRevenue | currency:'LKR.'}}</h4>
-          <!-- <p class="text-muted">Compared to $9940 yesterday</p>
-          <p class="text-muted">Last week income $25658.00</p> -->
-        </div>
-      </div>
-    
-      <!-- Expenses Section -->
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Ongoing Revenue</h5>
-          <h4>{{revenues.totalOngoingRevenue | currency:'LKR.'}} </h4>
-          <!-- <p class="text-muted">Compared to $5240 yesterday</p>
-          <p class="text-muted">Last week expenses $22658.00</p> -->
-        </div>
-      </div>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Number of Cars</h5>
-          <h4>{{revenues.totalCars}} </h4>
-          <!-- <p class="text-muted">Compared to $5240 yesterday</p>
-          <p class="text-muted">Last week expenses $22658.00</p> -->
-        </div>
-      </div>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Total Number of Customers</h5>
-          <h4>{{revenues.totalCustomers}} </h4>
-          <!-- <p class="text-muted">Compared to $5240 yesterday</p>
-          <p class="text-muted">Last week expenses $22658.00</p> -->
-        </div>
-      </div>
-    
-      <!-- Hire vs Cancel Section -->
-      
-      </div>
-    
-    
-  
+  </div>
+
+  <!-- Expenses Section -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Total Ongoing Revenue</h5>
+      <h4>{{revenues.totalOngoingRevenue | currency:'LKR.'}} </h4>
+
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Total Number of Cars</h5>
+      <h4>{{revenues.totalCars}} </h4>
+
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Total Number of Customers</h5>
+      <h4>{{revenues.totalCustomers}} </h4>
+
+    </div>
+  </div>
+</div>

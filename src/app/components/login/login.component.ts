@@ -89,7 +89,9 @@ export class LoginComponent implements OnInit {
         });
     } else {
       validateForm.validateAllFormFields(this.loginForm);
-      alert('Form is invalid');
+      // alert('Form is invalid');
+      this.toast.danger("Error", "Form is invalid", 5000);
+
     }
   }
 
