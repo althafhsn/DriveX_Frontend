@@ -45,7 +45,6 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: ProfileComponent },
-
       { path: 'profile-nav', component: ProfileNavbarComponent },
       { path: 'history', component: HistoryComponent },
       { path: 'search', component: SearchCarComponent },

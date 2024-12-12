@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { ToasterPosition } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  // public ToasterPosition = ToasterPosition
+  ToasterPosition = ToasterPosition; // Make enum accessible in the template
   title = 'DriveX_Frontend';
   private = inject(NgToastService);
   toast: any;

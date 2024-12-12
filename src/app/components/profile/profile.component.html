@@ -3,14 +3,12 @@
 
         <!-- Left Sidebar - Search Filters -->
         <!-- Left Sidebar - Search Filters -->
-        <div class="col-md-3 mt-5">
+        <!-- <div class="col-md-3 mt-5">
             <div class="p-3 border rounded " style=" background-color: #0c013b;">
                 <div class="d-flex flex-column align-items-center justify-content-center">
 
                     <button (click)="changeView('settings')" class="btn btn-outline-warning btn-block btn-lg mt-2 "
                         [class.bg-warning]="true" [class.text-white]="true">
-
-
                         Setting
                     </button>
                 </div>
@@ -29,7 +27,47 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+        <div class="col-md-3 mt-5">
+            <div class="p-3 border rounded" style="background-color: #0c013b;">
+              <!-- Settings Button -->
+              <div class="d-flex flex-column align-items-center justify-content-center">
+                <button
+                  (click)="changeView('settings')"
+                  class="btn btn-outline-warning btn-block btn-lg mt-2"
+                  [class.bg-warning]="currentView === ''"
+                  [class.text-white]="currentView === ''"
+                >
+                  Setting
+                </button>
+              </div>
+          
+              <!-- History Button -->
+              <div class="d-flex flex-column align-items-center justify-content-center">
+                <button
+                  (click)="changeView('history')"
+                  class="btn btn-outline-warning btn-block btn-lg mt-2"
+                  [class.bg-warning]="currentView === 'history'"
+                  [class.text-white]="currentView === 'history'"
+                >
+                  History
+                </button>
+              </div>
+          
+              <!-- Logout Button -->
+              <div class="d-flex flex-column align-items-center justify-content-center">
+                <button
+                  (click)="logout()"
+                  class="btn btn-outline-warning btn-block btn-lg mt-2"
+                  [class.text-white]="currentView === ''"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+          
 
         <div class="col-md-9 mt-5">
             <div class="card  shadow-sm">
@@ -38,7 +76,6 @@
                         <ng-container [ngSwitch]="currentView">
                             <app-profile-navbar *ngSwitchDefault="'settings'"></app-profile-navbar>
                             <app-history *ngSwitchCase="'history'"></app-history>
-                            <!-- <p *ngSwitchDefault>Select an option from the menu</p> -->
                         </ng-container>
 
                     </div>

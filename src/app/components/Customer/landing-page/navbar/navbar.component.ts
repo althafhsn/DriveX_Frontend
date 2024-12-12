@@ -13,6 +13,7 @@ export class NavbarComponent {
   public users: any = [];
   // activeLink: string = '';
 
+
   public fullName: string = "";
   // public role: string = "";
 
@@ -34,6 +35,9 @@ export class NavbarComponent {
   // setActiveLink(link: string): void {
   //   this.activeLink = link;
   // }
+
+
+  
 
   ngOnInit() {
   

@@ -97,7 +97,7 @@
       </a>
      
       
-      <a class="d-flex align-items-center p-2 ms-4  " routerLink="settings" routerLinkActive="active">
+      <a *ngIf="role === 'admin'" class="d-flex align-items-center p-2 ms-4" routerLink="settings" routerLinkActive="active">
         <i class="fas fa-cog me-2"></i>
         Settings
       </a>
