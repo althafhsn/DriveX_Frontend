@@ -48,6 +48,8 @@ export class AddCarComponent {
   ngOnInit(): void {
     this.fetchBrands();
   }
+ 
+
 
   selectedImages: string[] = [];
 
