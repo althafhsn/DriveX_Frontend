@@ -1,7 +1,7 @@
 <div class="container-fluid py-3">
   <div class="row g-3">
     <div class="col-md-12">
-      <app-nav-bar></app-nav-bar>
+      <app-nav-bar [(searchText)]="searchText"></app-nav-bar>
     </div>
 
     <!-- Left Panel - All Bookings List -->
@@ -11,7 +11,11 @@
           <h5 class="mb-0">All Bookings</h5>
         </div>
         <div class="card-body p-3">
-          <app-all-booking-list (bookingSelected)="selectedBooking = $event"></app-all-booking-list>
+          <app-all-booking-list
+          (bookingSelected)="selectedBooking = $event"
+          [bookings]="booking"
+          [searchText]="searchText"
+          ></app-all-booking-list>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Car, CarCustomerResponse, newcar, Revenue } from '../models/car.model';
+import { AddFavouriteResponse, Car, CarCustomerResponse, newcar, Revenue } from '../models/car.model';
 
 
 @Injectable({
@@ -11,6 +11,8 @@ export class CarService {
   private baseUrl = 'http://localhost:5147/api/Car/';
   private brandBaseUrl = 'http://localhost:5147/api/Brand/';
   private modelBaseUrl = 'http://localhost:5147/api/Model/';
+
+  private favouriteUrl = 'http://localhost:5147/api/Favourite/';
 
   constructor(private http: HttpClient) {}
 
@@ -61,6 +63,18 @@ export class CarService {
   getCarById(carId: string): Observable<newcar> {
     return this.http.get<newcar>(`${this.baseUrl}getById?id=${carId}`);
 
+  }
+
+  addToFavourite(requestBody: AddFavouriteResponse): Observable<any> {
+    return this.http.post<AddFavouriteResponse>(`${this.favouriteUrl}add-to-favorites`,requestBody);
+  }
+  
+  getFavouritesByUserId(userId:string):Observable<AddFavouriteResponse[]>{
+    return this.http.get<AddFavouriteResponse[]>(`${this.favouriteUrl}user/${userId}`)
+  }
+
+  deleteFavourite(id: string): Observable<AddFavouriteResponse> {
+    return this.http.delete<AddFavouriteResponse> (`${this.favouriteUrl}delete-favorite/${id}`); 
   }
   
 }

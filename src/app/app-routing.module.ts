@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [blockLoginRegisterGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [blockLoginRegisterGuard] },
-  { path: 'reset', component: ResetComponent, canActivate: [blockLoginRegisterGuard] },
+  { path: 'reset', component: ResetComponent },
   {
     path: 'landing',
     component: LandingComponent,
@@ -45,7 +45,6 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: ProfileComponent },
-
       { path: 'profile-nav', component: ProfileNavbarComponent },
       { path: 'history', component: HistoryComponent },
       { path: 'search', component: SearchCarComponent },

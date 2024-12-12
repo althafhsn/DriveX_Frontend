@@ -1,28 +1,30 @@
 <div class="border-top pt-4 mt-4">
   <h4 class="fw-bold">Rented Cars</h4>
   <div *ngIf="customerResponse.rentedCars && customerResponse.rentedCars.length > 0; else noCars">
-    <table class="table table-bordered table-hover">
-      <thead class="table-light">
-        <tr>
-          <th>#</th>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Reg No</th>
-          <th>Rent Start</th>
-          <th>Rent End</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let car of customerResponse.rentedCars; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td>{{ car.brandName }}</td>
-          <td>{{ car.modelName }}</td>
-          <td>{{ car.regNo }}</td>
-          <td>{{ car.startDate | date: 'shortDate' }}</td>
-          <td>{{ car.endDate | date: 'shortDate' }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Reg No</th>
+            <th>Rent Start</th>
+            <th>Rent End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of customerResponse.rentedCars; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ car.brandName }}</td>
+            <td>{{ car.modelName }}</td>
+            <td>{{ car.regNo }}</td>
+            <td>{{ car.startDate | date: 'shortDate' }}</td>
+            <td>{{ car.endDate | date: 'shortDate' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <ng-template #noCars>
     <p class="text-muted">No rented cars available for this customer.</p>

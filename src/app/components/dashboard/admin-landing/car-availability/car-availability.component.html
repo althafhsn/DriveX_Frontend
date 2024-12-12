@@ -1,18 +1,26 @@
 <div class="car-availability p-3 bg-white rounded shadow-sm">
-    <h5 class="mb-3">Car Availability</h5>
-    <form class="d-flex align-items-center gap-3">
-      <!-- Car Number Input -->
+  <h5 class="mb-3">Car Availability</h5>
+  <form class="row g-3">
+    <!-- Car Number Input -->
+    <div class="col-12 col-md-3">
       <input type="text" class="form-control" placeholder="Car number" aria-label="Car number">
-  
-      <!-- Date Picker -->
-      <input type="date" class="form-control" aria-label="Date">
-  
-      <!-- Time Picker -->
-      <input type="time" class="form-control" aria-label="Time">
-  
-      <!-- Check Button -->
-      <button type="button" class="btn btn-primary">Check</button>
-    </form>
-  </div>
-  
+    </div>
 
+    <!-- Date Picker -->
+
+    <input type="date" class="form-control" aria-label="Date">
+    <div class="col-12 col-md-3">
+      <input type="date" class="form-control" aria-label="Date">
+    </div>
+
+    <!-- Time Picker -->
+    <div class="col-12 col-md-3">
+      <input type="time" class="form-control" aria-label="Time">
+    </div>
+
+    <!-- Check Button -->
+    <div class="col-12 col-md-2 d-flex justify-content-md-end">
+      <button type="button" class="btn btn-primary w-100">Check</button>
+    </div>
+  </form>
+</div>

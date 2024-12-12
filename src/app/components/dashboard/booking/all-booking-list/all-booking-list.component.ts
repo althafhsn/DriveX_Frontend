@@ -10,6 +10,7 @@ import { BookingService } from '../../../../services/booking.service';
 export class AllBookingListComponent {
   @Input() bookings: Booking[] = []; // Array to store bookings fetched from API
   @Output() bookingSelected = new EventEmitter<Booking>(); // Emit the selected booking object
+  @Input() searchText: string = '';
 
   selectedBookingId: string | null = null; // Track the selected booking ID
   errorMessage: string | null = null;
