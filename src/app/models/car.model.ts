@@ -19,6 +19,8 @@ export interface Car {
   rentalRequestStatus:string;
   ongoingRevenue:number;
   totalRevenue:number;
+  isFavourite?: boolean;
+
 }
 
 export interface newcar{
@@ -89,4 +91,11 @@ export interface Revenue{
   totalOngoingRevenue:number;
   totalRevenue:number;
   totalCars:number;
-  totalCustomers:number;}
+  totalCustomers:number;
+}
+
+export interface AddFavouriteResponse{
+  id:string;
+  carId:string;
+  userId:string;
+}

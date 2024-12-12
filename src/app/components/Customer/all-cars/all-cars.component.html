@@ -85,6 +85,11 @@
                           style="font-size:12px;"></i>
                       </div>
                       <h5 class="card-title">{{ card.brandName }} - {{ card.modelName }}</h5>
+                    
+                      <div (click)="onToggleFavourite(card)">
+                        <i [ngClass]="card.isFavourite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+                      </div>
+                                          
                       <!-- <p class="card-text">{{ card.description }}</p>  -->
                       <hr>
                       <div class="feature">
