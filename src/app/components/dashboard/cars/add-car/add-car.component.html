@@ -3,11 +3,10 @@
   <form (ngSubmit)="onSubmit()" #carForm="ngForm" class="needs-validation">
     <!-- Multiple Images Upload -->
     <div class="mb-3">
-      <label for="images" class="d-block text-center">Upload Images (Max: 4):</label>
-      
-      <div class="image-upload-container d-flex justify-content-center flex-wrap">
-        <!-- Display selected images or image upload inputs -->
-        <div *ngFor="let image of selectedImages; let i = index" class="image-box mx-2">
+      <label for="images">Upload Images (Max: 4):</label>
+    
+      <div class="image-upload-container d-flex justify-content-center align-items-center">
+        <div *ngFor="let image of selectedImages; let i = index" class="image-box ">
           <img *ngIf="image" [src]="image" alt="Uploaded Image" class="uploaded-image" />
           <input
             *ngIf="!image"
@@ -20,8 +19,7 @@
           <div class="overlay" (click)="triggerFileInput(i)"></div>
         </div>
     
-        <!-- Remaining image slots -->
-        <div *ngFor="let i of remainingIndices()" class="image-box mx-2">
+        <div *ngFor="let i of remainingIndices()" class="image-box">
           <input
             type="file"
             id="imageInput{{ i }}"
