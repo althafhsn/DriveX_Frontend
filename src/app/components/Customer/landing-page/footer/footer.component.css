@@ -42,7 +42,7 @@
 
  .footer .subscribe-form button {
    border-radius: 30px;
-   background-color: #ff914d;
+   background-color: #070707;
    color: #ffffff;
    border: none;
    padding: 12px 20px;
@@ -63,7 +63,7 @@
  }
 
  .footer .social-icons a:hover {
-   color: #ff914d;
+   color: #0b0400;
  }
 
  .footer-bottom {

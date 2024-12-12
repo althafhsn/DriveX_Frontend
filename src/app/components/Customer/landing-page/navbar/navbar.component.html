@@ -19,20 +19,24 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item p-2">
-            <a class="nav-link active text-dark  fw-bold" routerLink="/" routerLinkActive="text-warning"  aria-current="page" href="#">Home</a>
+            <a class="nav-link     fw-bold" routerLink="/" routerLinkActive="text-primary"  aria-current="page"   [routerLinkActiveOptions]="{ exact: true }"    
+            >Home</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link text-dark  fw-bold" routerLink="./explorecar" routerLinkActive="text-warning"  role="button" aria-expanded="false">Explore Car</a>
+            <a class="nav-link   fw-bold" routerLink="./explorecar" routerLinkActive="text-primary"  role="button" aria-expanded="false"  
+             >Explore Car</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link text-dark fw-bold " routerLinkActive="text-warning"  routerLink="./about">About Us</a>
+            <a class="nav-link  fw-bold " routerLinkActive="text-primary"  routerLink="./about"  
+           >About Us</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link text-dark  fw-bold" routerLinkActive="text-warning"  routerLink="./contact">Contact Us</a>
+            <a class="nav-link   fw-bold " routerLinkActive="text-primary"  routerLink="./contact"  
+           >Contact Us</a>
           </li>
-          <ng-container *ngIf="role === 'Admin'">
+          <ng-container *ngIf="role === 'Admin'|| 'Manager'">
             <li class="nav-item p-2  ">
-              <a class="nav-link text-dark fw-bold" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
+              <a class="nav-link   fw-bold" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
             </li>
           </ng-container>
         </ul>

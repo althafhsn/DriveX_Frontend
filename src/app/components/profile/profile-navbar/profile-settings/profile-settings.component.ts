@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { profileCustomer,Address } from '../../../../models/profileCustomer.model';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-profile-settings',
@@ -15,7 +16,7 @@ export class ProfileSettingsComponent implements OnInit {
   isEditModePhoneNumber = false; // Edit mode for phone numbers
   isAddingPhoneNumber = false; // To control the display of the new phone number input field
   newPhoneNumberControl = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]); // Input for new phone number
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService ,private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -78,7 +79,8 @@ export class ProfileSettingsComponent implements OnInit {
         },
         (error) => {
           console.error('Error deleting phone number', error);
-          alert('Failed to delete the phone number. Please try again.');
+          // alert('Failed to delete the phone number. Please try again.');
+          this.toast.warning("Warning","Failed to delete the phone number. Please try again.",5000)
         }
       );
     }
@@ -160,7 +162,9 @@ export class ProfileSettingsComponent implements OnInit {
         },
         (error) => {
           console.error('Error deleting phone number', error);
-          alert('Failed to delete the phone number. Please try again.');
+          // alert('Failed to delete the phone number. Please try again.');
+          this.toast.danger("error", "Failed to delete the phone number. Please try again.", 5000);
+
         }
       );
     } else {
@@ -174,7 +178,9 @@ export class ProfileSettingsComponent implements OnInit {
         mobile1: [phoneNumber?.mobile1 || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
       }));
     } else {
-      alert('You can only add up to 2 phone numbers.');
+      // alert('You can only add up to 2 phone numbers.');
+      this.toast.warning("Warning", "You can only add up to 2 phone numbers.", 5000);
+
     }
   }
 
@@ -191,7 +197,9 @@ export class ProfileSettingsComponent implements OnInit {
         country: [address?.country || '', [Validators.required]]
       }));
     } else {
-      alert('You can only add up to 2 addresses.');
+      // alert('You can only add up to 2 addresses.');
+      this.toast.warning("Warning", "You can only add up to 2 addresses.", 5000);
+
     }
   }
 
@@ -241,12 +249,16 @@ export class ProfileSettingsComponent implements OnInit {
     this.authService.addPhoneNumber(customerId, newPhoneNumber).subscribe(
       (response) => {
         console.log('Phone number added successfully!', response);
-        alert('Phone number added successfully!');
+        // alert('Phone number added successfully!');
+        this.toast.success("Success", "Phone number added successfully!", 5000);
+
         newPhoneNumberForm.patchValue(response); // Update the form with the response (e.g., with an ID from the backend)
       },
       (error) => {
         console.error('Error adding phone number', error);
-        alert('Failed to add the phone number. Please try again.');
+        // alert('Failed to add the phone number. Please try again.');
+        this.toast.danger("error", "Failed to add the phone number. Please try again.", 5000);
+
       }
     );
   }
@@ -301,13 +313,17 @@ export class ProfileSettingsComponent implements OnInit {
       this.authService.deleteAddress(addressId).subscribe(
         (response) => {
           console.log('Address deleted successfully!', response);
-          alert('Address deleted successfully!');
+          // alert('Address deleted successfully!');
+          this.toast.success("Success", "Address deleted successfully!.", 5000);
+
           // Remove the address from the array after successful deletion
           this.addresses.removeAt(index);
         },
         (error) => {
           console.error('Error deleting address', error);
-          alert('Failed to delete the address. Please try again.');
+          // alert('Failed to delete the address. Please try again.');
+          this.toast.danger("error", "Failed to delete the address. Please try again.", 5000);
+
         }
       );
     }}
@@ -341,7 +357,9 @@ export class ProfileSettingsComponent implements OnInit {
   updatePhoneNumber(index: number): void {
     const phoneNumberForm = this.phoneNumbers.at(index); // Get the specific phone number form group
     if (phoneNumberForm.invalid) {
-      alert('Please enter a valid phone number.');
+      // alert('Please enter a valid phone number.');
+      this.toast.warning("Warning", "Please enter a valid phone number", 5000);
+
       return;
     }
 
@@ -349,19 +367,25 @@ export class ProfileSettingsComponent implements OnInit {
     const phoneNumberData = phoneNumberForm.value; // Get the phone number data from the form
 
     if (!phoneNumberId) {
-      alert('Phone number ID is missing.');
+      // alert('Phone number ID is missing.');
+      this.toast.warning("Warning", "Phone number ID is missing.", 5000);
+
       return;
     }
 
     this.authService.updatePhoneNumber(phoneNumberId, phoneNumberData).subscribe(
       (response) => {
         console.log('Phone number updated successfully!', response);
-        alert('Phone number updated successfully!');
+        // alert('Phone number updated successfully!');
+        this.toast.success("success", "Phone number updated successfully!", 5000);
+
         phoneNumberForm.patchValue(response); // Update the form with the response data
       },
       (error) => {
         console.error('Error updating phone number', error);
-        alert('Failed to update the phone number. Please try again.');
+        // alert('Failed to update the phone number. Please try again.');
+        this.toast.danger("Error", "Failed to update the phone number. Please try again.", 5000);
+
       }
     );
   }
@@ -381,13 +405,17 @@ export class ProfileSettingsComponent implements OnInit {
     this.authService.updateAddress(addressId, updatedAddress).subscribe(
       (response) => {
         console.log('Address updated successfully!', response);
-        alert('Address updated successfully!');
+        // alert('Address updated successfully!');
+        this.toast.success("success", "Address updated successfully!", 5000);
+
         // Optional: Turn off edit mode
         // this.isEditModeAddress = false;
       },
       (error) => {
         console.error('Error updating address', error);
-        alert('Failed to update the address. Please try again.');
+        // alert('Failed to update the address. Please try again.');
+        this.toast.danger("Error", "Failed to update the address. Please try again.", 5000);
+
       }
     );
   }
@@ -405,7 +433,9 @@ export class ProfileSettingsComponent implements OnInit {
   saveNewAddress(index: number): void {
     const newAddressForm = this.addresses.at(index); // Get the address form at the given index
     if (newAddressForm.invalid) {
-      alert('Please fill in all required fields.');
+      // alert('Please fill in all required fields.');
+      this.toast.danger("Error", "Please fill in all required fields", 5000);
+
       return;
     }
   
@@ -415,14 +445,18 @@ export class ProfileSettingsComponent implements OnInit {
     this.authService.addAddress(customerId, newAddress).subscribe(
       (response) => {
         console.log('Address added successfully!', response);
-        alert('Address added successfully!');
+        // alert('Address added successfully!');
+        this.toast.success("Success", "Address added successfully!", 5000);
+
         
         // Update the address form with the response from the API
         newAddressForm.patchValue(response);
       },
       (error) => {
         console.error('Error adding address', error);
-        alert('Failed to add the address. Please try again.');
+        // alert('Failed to add the address. Please try again.');
+        this.toast.danger("Error", "Failed to add the address. Please try again.", 5000);
+
       }
     );
   }

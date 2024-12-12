@@ -4,7 +4,7 @@ import { CarService } from '../../../../services/car.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../../../../services/booking.service';
 import { rentalRequest } from '../../../../models/booking.model';
 import { NgToastService } from 'ng-angular-popup';
@@ -40,7 +40,8 @@ priceperDay!:number;
     private activateRout: ActivatedRoute,
     private authService:AuthService,
     private bookingService:BookingService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -81,7 +82,7 @@ priceperDay!:number;
     const userId = this.authService.getIdFromToken(); // Fetch userId from token
     if (!userId) {
       // alert('Unable to fetch user details. Please login again.');
-      this.toast.danger("Error", "Please select valid dates", 5000);
+      this.toast.danger("Error", "Unable to fetch user details. Please login again.", 5000);
             return;
     }
 
@@ -102,13 +103,16 @@ priceperDay!:number;
       next: (response) => {
         console.log('Rental request placed successfully:', response);
         // alert('Booking successful!');
-        this.toast.success("Error", "Booking successful!", 5000);
+        this.toast.success("Success", "Booking successful!", 5000);
 
       },
       error: (error) => {
         console.error('Error placing rental request:', error);
         // alert('Booking failed. Please try again.');
-        this.toast.danger("Error", "Booking failed. Please try again");
+        this.toast.danger("Error", "Profile  is not fill ");
+     // Redirect to the 'profile' page.
+  this.router.navigate(['landing/profile']);
+       
       }
     });
   }
