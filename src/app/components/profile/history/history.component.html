@@ -1,7 +1,7 @@
 
 
 
- <div class="container mt-3">
+ <div class="container mt-3" style="max-height: 400px; overflow-y: auto;">
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -15,7 +15,7 @@
           <th colspan="2">Action</th>
         </tr>
       </thead>
-      <tbody  *ngIf="rentalHistory && rentalHistory.length > 0; else noHistory">
+      <tbody *ngIf="rentalHistory && rentalHistory.length > 0; else noHistory">
         <tr *ngFor="let rental of rentalHistory">
           <td>{{rental.regNo}}</td>
           <td>{{rental.brandName}} {{rental.modelName}}</td>
@@ -26,8 +26,8 @@
             <span>{{ rental.action }}</span>
             <button *ngIf="isCancelable(rental)" (click)="cancelBooking(rental.id)" class="btn btn-danger btn-sm">
               Cancel
-            </button>          </td>
-          
+            </button>
+          </td>
           <td>{{rental.status}}</td>
         </tr>
       </tbody>
@@ -37,5 +37,3 @@
     </table>
   </div>
 </div>
-
-

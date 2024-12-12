@@ -1,16 +1,17 @@
 <nav class="navbar navbar-expand-lg fixed-top mt-0   bg-white  shadow p-3 bg-dark">
   <div class="container">
     <!-- Logo and Brand Name -->
-    <img src="BGR car (2).png" alt="Logo" width="200px" height="70px " class="bg-primary  ">
-
+    <!-- <img src="BGR car (2).png" alt="Logo" width="200px" height="70px " class="bg-primary  col-12 d-none d-md-block "> -->
+    <img src="BGR car (2).png" alt="Logo" class="img-fluid d-none d-md-block" style="width: 200px; height: 70px;">
+    
     <!-- Toggle button for mobile view -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-      aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation" >
+    <button class="navbar-toggler"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation" style="border: none; box-shadow: none;" >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Offcanvas Menu -->
-    <div class="offcanvas offcanvas-end  flex-column justify-content-center  d-flex align-items-center  w-30"
+    <div class="offcanvas offcanvas-start  flex-column justify-content-center  d-flex align-items-center "
       tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title text-dark pe-4 ps-4 " id="offcanvasRightLabel">Menu</h5>
@@ -19,25 +20,25 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item p-2">
-            <a class="nav-link     fw-bold" routerLink="/" routerLinkActive="text-primary"  aria-current="page"   [routerLinkActiveOptions]="{ exact: true }"    
+            <a class="nav-link     fw-bold" routerLink="/" routerLinkActive="text-primary"  aria-current="page"  data-bs-dismiss="offcanvas" [routerLinkActiveOptions]="{ exact: true }"    
             >Home</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link   fw-bold" routerLink="./explorecar" routerLinkActive="text-primary"  role="button" aria-expanded="false"  
+            <a class="nav-link   fw-bold" routerLink="./explorecar" routerLinkActive="text-primary"  role="button" aria-expanded="false" data-bs-dismiss="offcanvas" 
              >Explore Car</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link  fw-bold " routerLinkActive="text-primary"  routerLink="./about"  
+            <a class="nav-link  fw-bold " routerLinkActive="text-primary"  routerLink="./about" data-bs-dismiss="offcanvas" 
            >About Us</a>
           </li>
           <li class="nav-item p-2">
-            <a class="nav-link   fw-bold " routerLinkActive="text-primary"  routerLink="./contact"  
+            <a class="nav-link   fw-bold " routerLinkActive="text-primary"  routerLink="./contact" data-bs-dismiss="offcanvas" 
            >Contact Us</a>
           </li>
           <ng-container *ngIf="role === 'Admin' || role === 'Manager'">
 
             <li class="nav-item p-2  ">
-              <a class="nav-link   fw-bold" routerLink="../dashboard" role="button" aria-expanded="false">Dashboard</a>
+              <a class="nav-link   fw-bold" routerLink="../dashboard" role="button" aria-expanded="false" data-bs-dismiss="offcanvas">Dashboard</a>
             </li>
           </ng-container>
         </ul>
