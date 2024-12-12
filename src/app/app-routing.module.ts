@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'landing', pathMatch: 'full' },
   { path: 'login', component: LoginComponent, canActivate: [blockLoginRegisterGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [blockLoginRegisterGuard] },
-  { path: 'reset', component: ResetComponent, canActivate: [blockLoginRegisterGuard] },
+  { path: 'reset', component: ResetComponent },
   {
     path: 'landing',
     component: LandingComponent,

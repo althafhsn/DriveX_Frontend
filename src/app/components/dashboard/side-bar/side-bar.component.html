@@ -53,11 +53,13 @@
           Rented History
         </a>
         
-     
-        <a class="d-flex align-items-center p-2 text-dark" routerLink="settings" routerLinkActive="active">
-          <i class="fas fa-cog me-2"></i>
-          Settings
-        </a>
+        <ng-container *ngIf="role === 'Admin'">
+          <a  class="d-flex align-items-center p-2 text-dark" routerLink="settings" routerLinkActive="active">
+            <i class="fas fa-cog me-2"></i>
+            Settings
+          </a>
+        </ng-container>
+        
         <a
         class="d-flex align-items-center p-3 mt-auto logout  text-primary"
         routerLink="/logout"
@@ -96,11 +98,12 @@
         Rented History
       </a>
      
-      
-      <a *ngIf="role === 'admin'" class="d-flex align-items-center p-2 ms-4" routerLink="settings" routerLinkActive="active">
+      <ng-container  *ngIf="role === 'Admin'">
+      <a class="d-flex align-items-center p-2 ms-4" routerLink="settings" routerLinkActive="active">
         <i class="fas fa-cog me-2"></i>
         Settings
       </a>
+    </ng-container>
       
      <br>
      <br>

@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
   styleUrl: './side-bar.component.css'
 })
 export class SideBarComponent implements OnInit {
- role!:string
+ public role:string | null = null;
+ public token:string | null = null;
   constructor(
     private authService: AuthService,
-    private userstore:UserStoreService
+    private store:UserStoreService
 
   ) { }
   
@@ -19,14 +20,25 @@ export class SideBarComponent implements OnInit {
     this.authService.signout();
   }
   ngOnInit(): void {
-    this.userstore.getRoleFromStore().subscribe({
-      next: (val) => {
-        const roleInToken = this.authService.getRoleFromToken();
-        this.role = val || roleInToken;
-      },
-      error: (err) => {
-        console.error("Failed to fetch role from store:", err);
-      }
-    });
+      // Fetch and set the user's role
+      this.store.getRoleFromStore().subscribe({
+        next: (val) => {
+          const roleInToken = this.authService.getRoleFromToken();
+          this.role = val || roleInToken;
+        },
+        error: (err) => {
+          console.error("Failed to fetch role from store:", err);
+        }
+      });
+  
+      this.token = this.authService.getToken();
+      this.store.getRoleFromStore().subscribe({
+        next: (val) => {
+          this.role = val || this.authService.getRoleFromToken();
+        },
+        error: (err) => {
+          console.error("Failed to fetch role from store:", err);
+        }
+      });
   }
 }
