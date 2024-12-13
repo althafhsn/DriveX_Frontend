@@ -11,7 +11,7 @@ export class BookingService {
 
   constructor(private http: HttpClient) {}
 
-  // Method to fetch all cars
+  
   getBookings(): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.baseUrl}getAllRentalRequests`);
   }
