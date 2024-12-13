@@ -11,7 +11,7 @@
       <div class="card text-white bg-success mb-3">
         <div class="card-body text-center">
           <h5 class="card-title">Total Revenue</h5>
-          <h3 class="fw-bold">LKR {{ customerResponse.customer.totalRevenue | currency }}</h3>
+          <h3 class="fw-bold"> {{ customerResponse.customer.totalRevenue | currency : "LKR" }}</h3>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <div class="card text-white bg-warning mb-3">
         <div class="card-body text-center">
           <h5 class="card-title">Ongoing Revenue</h5>
-          <h3 class="fw-bold">LKR {{ customerResponse.customer.ongoingRevenue | currency }}</h3>
+          <h3 class="fw-bold"> {{ customerResponse.customer.ongoingRevenue | currency :'LKR' }}</h3>
         </div>
       </div>
     </div>
