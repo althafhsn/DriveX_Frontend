@@ -17,7 +17,7 @@ export class AllCustomersListComponent implements OnInit {
   errorMessage: string | null = null;
   @Input() searchText: string = '';
   selectedCustomer: CustomerResponse | null = null;
-  rentedCars: any[] = []; // To store rented car details
+  rentedCars: any[] = []; 
   constructor(
     
     private dashBoardListCustomer: DashboardCustomerService,

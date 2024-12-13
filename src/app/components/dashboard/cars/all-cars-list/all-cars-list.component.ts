@@ -2,24 +2,30 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Car, CarCustomerResponse } from '../../../../models/car.model';
 
 import { CarService } from '../../../../services/car.service';
+import { SearchService } from '../../../../services/search.service';
 @Component({
   selector: 'app-all-cars-list-dash',
   templateUrl: './all-cars-list.component.html',
   styleUrl: './all-cars-list.component.css'
 })
 export class AllCarsListComponent {
-  @Input() cars: Car[] = []; // Array to store cars fetched from API
+  @Input() cars: Car[] = []; 
   @Output() carSelected = new EventEmitter<CarCustomerResponse>();
-
+  @Input() searchText: string = '';
   selectedCar!: CarCustomerResponse
   associateCustomer!: any[]
   errorMessage!: string
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService,
+    private searchService:SearchService
+
+  ) { }
 
   ngOnInit(): void {
-    console.log('Cars array on init:', this.cars); // Log cars array to debug
     this.loadCars(); // Load cars from backend
+    this.searchService.searchText$.subscribe(
+      (text) => (this.searchText = text)
+    );
   }
 
   // Load cars from API

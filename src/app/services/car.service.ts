@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AddFavouriteResponse, Car, CarCustomerResponse, newcar, Revenue } from '../models/car.model';
 
 
@@ -9,6 +9,11 @@ import { AddFavouriteResponse, Car, CarCustomerResponse, newcar, Revenue } from 
 })
 export class CarService {
   private baseUrl = 'http://localhost:5147/api/Car/';
+    private isCarComponentActive = new BehaviorSubject<boolean>(false);
+      isCarActive$ = this.isCarComponentActive.asObservable();
+      setBookingActiveState(isActive: boolean): void {
+        this.isCarComponentActive.next(isActive);
+      }
   private brandBaseUrl = 'http://localhost:5147/api/Brand/';
   private modelBaseUrl = 'http://localhost:5147/api/Model/';
 

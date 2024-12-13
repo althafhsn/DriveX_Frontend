@@ -142,8 +142,7 @@ export class AllCarsComponent implements OnInit {
       localStorage.setItem('pickupDate', this.pickupDate);
       localStorage.setItem('returnDate', this.returnDate);
       this.calculateDateDifference();
-      // alert('Dates have been updated in localStorage.');
-      this.toast.success("SUCCESS", "Dates have been updated in localStorage.", 5000);
+     
 
     } else {
       // alert('Please select valid dates.');

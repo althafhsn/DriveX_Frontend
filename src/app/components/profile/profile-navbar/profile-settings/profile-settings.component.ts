@@ -15,6 +15,9 @@ export class ProfileSettingsComponent implements OnInit {
   isEditModeAddress = false; // Edit mode for addresses
   isEditModePhoneNumber = false; // Edit mode for phone numbers
   isAddingPhoneNumber = false; // To control the display of the new phone number input field
+  isEditMode: boolean = false;
+  hideUpdateButton = false; 
+  
   newPhoneNumberControl = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]); // Input for new phone number
   constructor(private fb: FormBuilder, private authService: AuthService ,private toast: NgToastService) {}
 
@@ -107,47 +110,12 @@ export class ProfileSettingsComponent implements OnInit {
     this.newPhoneNumberControl.reset();
   }
 
+
   // Method to hide the "Add Phone Number" input field
   cancelAddPhoneNumber(): void {
     this.isAddingPhoneNumber = false;
   }
 
-  // // Method to save a new phone number
-  // saveNewPhoneNumber(): void {
-  //   if (this.newPhoneNumberControl.invalid) {
-  //     alert('Please enter a valid phone number.');
-  //     return;
-  //   }
-
-  //   const newPhoneNumber = this.newPhoneNumberControl.value; // Get the input value
-  //   const customerId = this.authService.getIdFromToken(); // Get the customer's ID from the token
-
-  //   const phoneNumberData = {
-  //     mobile1: newPhoneNumber
-  //   };
-
-  //   this.authService.addPhoneNumber(customerId, phoneNumberData).subscribe(
-  //     (response) => {
-  //       console.log('Phone number added successfully!', response);
-  //       alert('Phone number added successfully!');
-        
-  //       // Add the newly saved phone number to the form array
-  //       this.phoneNumbers.push(
-  //         this.fb.group({
-  //           id: [response.id], // Assuming the response contains the ID
-  //           mobile1: [response.mobile1, [Validators.required, Validators.pattern('^[0-9]{10}$')]]
-  //         })
-  //       );
-
-  //       // Hide the Add Phone Number input field
-  //       this.isAddingPhoneNumber = false;
-  //     },
-  //     (error) => {
-  //       console.error('Error adding phone number', error);
-  //       alert('Failed to add the phone number. Please try again.');
-  //     }
-  //   );
-  // }
 
   // Method to remove a phone number
   removePhoneNumber(index: number): void {
@@ -172,6 +140,7 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
   addNewPhoneNumber(phoneNumber: any = null): void {
+    this.hideUpdateButton = true;
     if (this.phoneNumbers.length < 2) {
       this.phoneNumbers.push(this.fb.group({
         id: [phoneNumber?.id || ''],
@@ -203,37 +172,7 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
 
-   // Remove a phone number
-  //  removePhoneNumber(index: number): void {
-  //   if (this.phoneNumbers.length > 1) {
-  //     const phoneNumberId = this.phoneNumbers.at(index).get('id')?.value;
-  //     if (phoneNumberId) {
-  //       this.authService.deletePhoneNumber(phoneNumberId).subscribe(
-  //         (response) => {
-  //           console.log('Phone number deleted successfully!', response);
-  //           alert('Phone number deleted successfully!');
-  //           this.phoneNumbers.removeAt(index);
-  //         },
-  //         (error) => {
-  //           console.error('Error deleting phone number', error);
-  //           alert('Failed to delete the phone number. Please try again.');
-  //         }
-  //       );
-  //     } else {
-  //       this.phoneNumbers.removeAt(index);
-  //     }
-  //   }
-  // }
-  // addNewPhoneNumber(phoneNumber: any = null): void {
-  //   if (this.phoneNumbers.length < 2) {  // Limit to 2 phone numbers
-  //     this.phoneNumbers.push(this.fb.group({
-  //       id: [phoneNumber?.id || ''],  // Use existing phone number ID if available, else set as empty
-  //       mobile1: [phoneNumber?.mobile1 || '', [Validators.required, Validators.pattern('^[0-9]{10}$')]]  // Example validation for a 10-digit phone number
-  //     }));
-  //   } else {
-  //     alert('You can only add up to 2 phone numbers.');
-  //   }
-  // }
+
 
   saveNewPhoneNumber(index: number): void {
     const newPhoneNumberForm = this.phoneNumbers.at(index); // Access the form at the given index
@@ -276,7 +215,7 @@ export class ProfileSettingsComponent implements OnInit {
 
       // Automatically call saveNewPhoneNumber for the newly added phone number
       const newPhoneIndex = this.phoneNumbers.length - 1; // Index of the new phone number
-      this.saveNewPhoneNumber(newPhoneIndex); 
+      // this.saveNewPhoneNumber(newPhoneIndex); 
     }
   }
 
@@ -303,6 +242,7 @@ export class ProfileSettingsComponent implements OnInit {
 
   toggleEditModeAddress(): void {
     this.isEditModeAddress = !this.isEditModeAddress;
+    this.isEditMode = !this.isEditMode;
   }
 
   toggleEditModePhoneNumber(): void {
@@ -355,6 +295,7 @@ export class ProfileSettingsComponent implements OnInit {
     }
   }
   updatePhoneNumber(index: number): void {
+   
     const phoneNumberForm = this.phoneNumbers.at(index); // Get the specific phone number form group
     if (phoneNumberForm.invalid) {
       // alert('Please enter a valid phone number.');
@@ -417,7 +358,10 @@ export class ProfileSettingsComponent implements OnInit {
         this.toast.danger("Error", "Failed to update the address. Please try again.", 5000);
 
       }
+      
     );
+    this.isEditMode = false;
+
   }
   // Save all addresses if multiple edits were made
   submitAllAddresses(): void {

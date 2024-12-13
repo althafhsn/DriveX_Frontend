@@ -3,8 +3,7 @@
   class="form-control"
   placeholder="Search..."
   [(ngModel)]="searchText"
-  (ngModelChange)="onSearchChange($event)"
-  [disabled]="!isCustomerActive"
+  (ngModelChange)="onSearchChange(searchText)"
   
   
 />

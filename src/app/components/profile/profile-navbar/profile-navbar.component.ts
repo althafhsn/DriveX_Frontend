@@ -16,9 +16,9 @@ export class ProfileNavbarComponent {
     // Tabs List
     tabs = [
       { id: 'profile-settings', label: 'Profile Settings'},
-      { id: 'password-update', label: 'Change Password' },
-      { id: 'favourite-cars', label: 'Favourite-Cars' }
-      // { id: 'payment-methods', label: 'Contact Details' },
+      { id: 'password-update', label: 'Change Password' }
+     
+      
       
     ];
   

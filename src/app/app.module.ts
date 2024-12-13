@@ -54,7 +54,6 @@ import { StatisticsComponent } from './components/dashboard/revenue/statics/stat
 import { AddCustomerComponent } from './components/dashboard/customer/add-customer/add-customer.component';
 import { CustomerDetailWithCarComponent } from './components/dashboard/customer/customer-detail-with-car/customer-detail-with-car.component';
 import { PasswordChangeComponent } from './components/profile/profile-navbar/password-change/password-change.component';
-import { ViewPaymentComponent } from './components/profile/profile-navbar/view-payment/view-payment.component';
 import { CarsComponent } from './components/dashboard/cars/cars.component';
 import { AllCarsListComponent } from './components/dashboard/cars/all-cars-list/all-cars-list.component';
 import { CarRevenueDetailsComponent } from './components/dashboard/cars/car-revenue-details/car-revenue-details.component';
@@ -87,7 +86,8 @@ import { ProfileSettingsComponent } from './components/profile/profile-navbar/pr
 import { CancelledHistoryComponent } from './components/dashboard/rented-car-list/cancelled-history/cancelled-history/cancelled-history.component';
 import { OverdueRentalsComponent } from './components/dashboard/rented-car-list/overdue-rentals/overdue-rentals/overdue-rentals.component';
 import { BookingPipe } from './pipes/booking.pipe';
-import { FavouriteCarsComponent } from './components/profile/profile-navbar/favourite-cars/favourite-cars/favourite-cars.component';
+import { CarsFilterPipe } from './pipes/cars-filter.pipe';
+
 
 
 
@@ -146,7 +146,6 @@ import { FavouriteCarsComponent } from './components/profile/profile-navbar/favo
     AddCustomerComponent,
     CustomerDetailWithCarComponent,
     PasswordChangeComponent,
-    ViewPaymentComponent,
     CarsComponent,
     AllCarsListComponent,
     CarRevenueDetailsComponent,
@@ -171,7 +170,7 @@ import { FavouriteCarsComponent } from './components/profile/profile-navbar/favo
     CancelledHistoryComponent,
     OverdueRentalsComponent,
     BookingPipe,
-    FavouriteCarsComponent,
+    CarsFilterPipe
 
 
   ],

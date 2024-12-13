@@ -63,11 +63,21 @@
 
   <!-- Addresses Section -->
   <div class="form-section border p-4 mb-4 bg-light rounded">
-    <h2 class="mb-3">Addresses</h2>
-    <!-- <button *ngIf="!isEditModeAddress" class="btn btn-primary mb-3" (click)="toggleEditModeAddress()">Edit</button> -->
-    <button (click)="toggleEditModeAddress()" class="btn btn-primary">
-      Edit Address
-    </button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Addresses</h2>
+      <div>
+        <button (click)="toggleEditModeAddress()" class="btn btn-primary me-2">
+          Edit
+        </button>
+        <button 
+          type="button" 
+          *ngIf="addresses.length < 2 && isEditModeAddress" 
+          class="btn btn-success" 
+          (click)="addNewAddress()">+
+        </button>
+      </div>
+    </div>
+  
     <div formArrayName="addresses">
       <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i" class="mb-3">
         <div class="row">
@@ -75,81 +85,114 @@
             <label class="form-label">House No</label>
             <input type="text" formControlName="houseNo" [readonly]="!isEditModeAddress" class="form-control">
           </div>
-
           <div class="col-md-6 mb-3">
             <label class="form-label">Street 1</label>
             <input type="text" formControlName="street1" [readonly]="!isEditModeAddress" class="form-control">
           </div>
         </div>
-
+  
         <div class="row">
           <div class="col-md-6 mb-3">
             <label class="form-label">Street 2</label>
             <input type="text" formControlName="street2" [readonly]="!isEditModeAddress" class="form-control">
           </div>
-
           <div class="col-md-6 mb-3">
             <label class="form-label">City</label>
             <input type="text" formControlName="city" [readonly]="!isEditModeAddress" class="form-control">
           </div>
         </div>
-
+  
         <div class="row">
           <div class="col-md-6 mb-3">
             <label class="form-label">Zip Code</label>
             <input type="number" formControlName="zipCode" [readonly]="!isEditModeAddress" class="form-control">
           </div>
-
           <div class="col-md-6 mb-3">
             <label class="form-label">Country</label>
             <input type="text" formControlName="country" [readonly]="!isEditModeAddress" class="form-control">
           </div>
         </div>
-        <button (click)="updateAddress(i)" class="btn btn-success">
-          Save Updated Address
-        </button>
-        <button *ngIf="!address.value.id" (click)="saveNewAddress(i)" type="button" class="btn btn-success">
-          Save New Address
-        </button>
-        <button type="button" class="btn btn-danger mb-2" (click)="deleteAddress(addresses.at(i).get('id')?.value, i)">Remove Address</button>
+  
+        <div class="d-flex justify-content-end align-items-center gap-2">
+          <button *ngIf="isEditMode" (click)="updateAddress(i)" class="btn btn-success">
+            Update
+          </button>
+          <button 
+            *ngIf="!address.value.id" 
+            (click)="saveNewAddress(i)" 
+            type="button" 
+            class="btn btn-success">
+            Save New Address
+          </button>
+          <button 
+            type="button" 
+            class="btn btn-danger" 
+            (click)="deleteAddress(addresses.at(i).get('id')?.value, i)">
+            Remove
+          </button>
+        </div>
       </div>
     </div>
-
-    <button *ngIf="addresses.length < 2 && isEditModeAddress" class="btn btn-success" (click)="addNewAddress()">Add New Address</button>
   </div>
+  
 
   <!-- Phone Numbers Section -->
   <div class="form-section border p-4 bg-light rounded">
-    <h2 class="mb-3">Phone Numbers</h2>
-    <button *ngIf="!isEditModePhoneNumber" class="btn btn-primary mb-3" (click)="toggleEditModePhoneNumber()">Edit</button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="mb-0">Phone Numbers</h2>
+      <div>
+        <button 
+          *ngIf="!isEditModePhoneNumber " 
+          class="btn btn-primary me-2" 
+          (click)="toggleEditModePhoneNumber()">Edit
+        </button>
+        <button 
+          *ngIf="phoneNumbers.length < 2 && isEditModePhoneNumber" 
+          class="btn btn-success" 
+          (click)="addPhoneNumber()">+
+        </button>
+      </div>
+    </div>
   
     <div formArrayName="phoneNumbers">
-      <div *ngFor="let phoneNumber of phoneNumbers.controls; let i = index" [formGroupName]="i" class="mb-3">
+      <div 
+        *ngFor="let phoneNumber of phoneNumbers.controls; let i = index" 
+        [formGroupName]="i" 
+        class="mb-3">
+        
         <label class="form-label">Mobile</label>
-        <input type="text" formControlName="mobile1" [readonly]="!isEditModePhoneNumber" class="form-control">
+        <input 
+          type="text" 
+          formControlName="mobile1" 
+          [readonly]="!isEditModePhoneNumber" 
+          class="form-control">
+        
+        <div class="d-flex justify-content-end align-items-center gap-2 mt-2">
+          <!-- Update button -->
+          <button 
+            *ngIf="isEditModePhoneNumber || !hideUpdateButton" 
+            class="btn btn-success" 
+            (click)="updatePhoneNumber(i)">
+            Update
+          </button>
   
-        <!-- Remove Phone button -->
-        <button type="button" class="btn btn-danger mt-2" (click)="deletePhoneNumber(phoneNumbers.at(i).get('id')?.value, i)">Remove Phone</button>
-        <button (click)="updatePhoneNumber(i)" class="btn btn-success">
-          Save Updated Phone number
-        </button>
-        <!-- Save New Phone Number button, visible only if the phone number has no ID (new phone number) -->
-        <button 
-        *ngIf="!phoneNumber.value.id" 
-        (click)="saveNewPhoneNumber(i)" 
-        type="button" 
-        class="btn btn-success mt-2">
-        Save Phone Number
-      </button>
+          <!-- Save button for new phone numbers -->
+          <button 
+            *ngIf="!phoneNumber.value.id" 
+            class="btn btn-success" 
+            (click)="saveNewPhoneNumber(i)">
+            Save
+          </button>
+  
+          <!-- Remove button -->
+          <button 
+            class="btn btn-danger" 
+            (click)="deletePhoneNumber(phoneNumbers.at(i).get('id')?.value, i)">
+            Remove Phone
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- If phoneNumbers.length < 2, show "Add Phone Number" button, otherwise hide it -->
-  <button 
-    *ngIf="phoneNumbers.length < 2 && isEditModePhoneNumber" 
-    class="btn btn-success mt-3" 
-    (click)="addPhoneNumber()">
-    Add Phone Number
-  </button>
-  </div>
+  
 </form>

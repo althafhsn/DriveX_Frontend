@@ -23,6 +23,7 @@ export class BookingDetailsComponent {
           // alert('Booking has been confirmed!');
           this.toast.success("Success", "Booking has been confirmed!", 5000);
           this.bookingUpdated.emit(response); // Emit the updated booking
+        
         },
         error: (error) => {
           console.error('Error confirming booking:', error);
