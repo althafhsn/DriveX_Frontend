@@ -27,6 +27,9 @@
         <hr>
         <strong class="text-center fs-4">What Are You Looking For</strong>
         <hr>
+        <button class="btn btn-primary mb-3" (click)="toggleFavourite()">
+          {{ showOnlyFavourites ? 'Show All Cars' : 'Show Favourites' }}
+        </button>
         <h6>Brand</h6>
         <div class="mb-3">
           <select class="form-select" [(ngModel)]="selectedFilters.brand" (change)="onFilterChange()">
@@ -74,7 +77,6 @@
             <div class="container">
               <div class="row g-4">
                 <div class="col-md-4" *ngFor="let card of paginatedCars | carFilter:selectedFilters">
-
                   <div class="card fixed-height-card bg-white">
                     <div class="position-relative   ">
                       <img [src]="card.images[0].imagePath" class="card-img-top fixed-height-img" alt="Car Image"
@@ -83,13 +85,15 @@
 
                       <div class="price-tag"> Rs.{{ card.pricePerDay }}</div>
                     </div>
+                    <div (click)="onToggleFavourite(card)" [style.color]="card.isFavourite ? '#fb0404' : 'inherit'">
+                      <i [ngClass]="card.isFavourite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
+                    </div>
                     <h5 class="card-title ms-3 mt-2">{{ card.brandName }}/{{ card.modelName }}</h5>
 
                     <div class="card-body fixed-height-body row ">
 
-                      <div (click)="onToggleFavourite(card)">
-                        <i [ngClass]="card.isFavourite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
-                      </div>
+
+
 
                       <div class="feature col-md-6 col-6 d-flex align-items-center">
                         <span class="icon"> <i class="fa-solid fa-people-line"></i> {{ card.seatCount }}</span>
@@ -97,17 +101,17 @@
                       </div>
 
                       <div class="feature col-md-6 col-6 d-flex align-items-center">
-                        <span class="icon"><i class="fa-solid fa-calendar-alt" ></i> {{ card.year
+                        <span class="icon"><i class="fa-solid fa-calendar-alt"></i> {{ card.year
                           }} </span>
 
                       </div>
                       <div class="feature col-md-6 col-6 d-flex align-items-center">
-                        <span class="icon"><i class="fa-solid fa-gas-pump" ></i> {{ card.fuelType
+                        <span class="icon"><i class="fa-solid fa-gas-pump"></i> {{ card.fuelType
                           }} </span>
 
                       </div>
                       <div class="feature col-md-6 col-6 d-flex align-items-center">
-                        <span class="icon"><i class="fa-solid fa-cogs " ></i> {{ card.gearType
+                        <span class="icon"><i class="fa-solid fa-cogs "></i> {{ card.gearType
                           }}</span>
 
                       </div>
@@ -119,16 +123,18 @@
                       <br>
 
                       <div>
-                       
-                          <a [routerLink]=" ['/landing/conformrent', card.id]">
-                            <button type="button" class="btn btn-outline-primary " style="width: 100%;"
+
+                        <a [routerLink]=" ['/landing/conformrent', card.id]">
+                          <button type="button" class="btn btn-outline-primary " style="width: 100%;"
                             [class.active]="card.id === selectedCarID" (click)="selectCar(card)"
                             [disabled]="card.status === 'Unavailable' || pickupDateError || returnDateError">
 
                             Rent Now
                           </button>
-                          </a>
-                      
+                        </a>
+
+
+
                       </div>
                     </div>
                   </div>

@@ -87,6 +87,7 @@ import { ProfileSettingsComponent } from './components/profile/profile-navbar/pr
 import { CancelledHistoryComponent } from './components/dashboard/rented-car-list/cancelled-history/cancelled-history/cancelled-history.component';
 import { OverdueRentalsComponent } from './components/dashboard/rented-car-list/overdue-rentals/overdue-rentals/overdue-rentals.component';
 import { BookingPipe } from './pipes/booking.pipe';
+import { FavouriteCarsComponent } from './components/profile/profile-navbar/favourite-cars/favourite-cars/favourite-cars.component';
 
 
 
@@ -170,6 +171,7 @@ import { BookingPipe } from './pipes/booking.pipe';
     CancelledHistoryComponent,
     OverdueRentalsComponent,
     BookingPipe,
+    FavouriteCarsComponent,
 
 
   ],
