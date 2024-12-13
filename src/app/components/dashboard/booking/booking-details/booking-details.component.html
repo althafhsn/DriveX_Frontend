@@ -1,4 +1,4 @@
-<div class="card shadow-lg border-primary rounded-3">
+<div class="card shadow-lg rounded-3">
   <div class="card-body bg-light">
     <div *ngIf="booking; else noSelection" class="d-flex flex-column">
 
@@ -49,6 +49,6 @@
 
   <!-- No Booking Selected Message -->
   <ng-template #noSelection>
-    <p class="text-muted text-center fs-4">Please select a booking from the list.</p>
+    <p class="text-muted text-center">Please select a booking from the list.</p>
   </ng-template>
 </div>

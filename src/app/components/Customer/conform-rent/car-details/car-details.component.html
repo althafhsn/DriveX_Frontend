@@ -26,27 +26,18 @@
   <!-- Right Sidebar -->
   <div class="col-lg-4 p-2">
     <div class="card mb-4">
-      <!-- <div class="card-body">
-        <div class="row feature">
-          </div> 
-          <span class="col-6 icon"> <i class="fa-solid fa-cogs"> </i><strong>  Gear Type: </strong> {{ car.gearType }}</span>
-          <span class="col-6  icon"> <i class="fa-solid fa-road"  ></i><strong>  Mileage:</strong> {{ car.mileage }} KM</span>
-          <span class="col-6 icon"><i class="fa-solid fa-gas-pump"></i><strong>  Fuel:</strong> {{ car.fuelType }}</span>
-          <span class="col-6 icon"><strong>   <i class="fa-solid fa-calendar-alt"></i> </strong> Year: {{ car.year }}</span>
-          <span class="col-6 icon"><strong>  <i class="fa-solid fa-chair" ></i></strong> Seating Capacity: {{ car.seatCount }}</span>
-          <span class="col-6 icon"><strong><i class="fa-solid fa-calendar-day"></i></strong>  Per Day:{{car.pricePerDay}} </span>
-        </div> -->
+      
 
         <div class="card-body">
           <div class="container">
             <div class="row mb-2">
               <!-- Gear Type -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-cogs me-2" style="font-size: 20px;"></i>
                 <strong>Gear: </strong>{{ car.gearType }}
               </div>
               <!-- Mileage -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-road me-2" style="font-size: 20px;"></i>
                 <strong>Mileage:</strong> {{ car.mileage }}KM
               </div>
@@ -54,12 +45,12 @@
             
             <div class="row mb-2">
               <!-- Fuel -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-gas-pump me-2" style="font-size: 20px;"></i>
                 <strong>Fuel:</strong> {{ car.fuelType }}
               </div>
               <!-- Year -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-calendar-alt me-2" style="font-size: 20px;"></i>
                 <strong>Year:</strong> {{ car.year }}
               </div>
@@ -67,12 +58,12 @@
         
             <div class="row mb-2">
               <!-- Seating Capacity -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-chair me-2" style="font-size: 20px;"></i>
                 <strong>Seats:</strong> {{ car.seatCount }}
               </div>
               <!-- Per Day -->
-              <div class="col-md-6 col-12 d-flex align-items-center">
+              <div class="col-md-6 col-6 d-flex align-items-center">
                 <i class="fa-solid fa-calendar-day me-2" style="font-size: 20px;"></i>
                 <strong>Per Day:</strong> ${{ car.pricePerDay }}
               </div>
@@ -97,7 +88,9 @@
 
             <p *ngIf="dateDifference !== null" class="mt-3">
               <strong>Duration:</strong> {{ dateDifference }} day(s)
-             
+            </p>
+            <p  *ngIf="dateDifference !== null" class="mt-3">
+              <strong>Total Amount:</strong> Rs. {{ car.pricePerDay * dateDifference }}
             </p>
 
             <button type="submit" 

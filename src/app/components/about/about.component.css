@@ -1,21 +1,9 @@
 
-.highlight-text {
-    color: #FF5733; /* Change this color code to your preferred color */
-}
-.description {
-    display: block; /* Forces the text to appear on the next line */
-    margin-top: 5px; /* Optional: adds a little spacing between the two lines */
-}
+
 
 .subscribe-section {
-    background-color: #ff6f00;
-    color:black;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 900px;
+     max-width: 900px;
     margin: 50px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 

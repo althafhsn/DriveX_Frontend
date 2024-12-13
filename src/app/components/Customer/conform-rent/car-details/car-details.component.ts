@@ -3,7 +3,7 @@ import { Car, newcar } from '../../../../models/car.model';
 import { CarService } from '../../../../services/car.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../../../../services/booking.service';
 import { rentalRequest } from '../../../../models/booking.model';
@@ -73,19 +73,19 @@ priceperDay!:number;
   checkFields(): void {
     this.isButtonDisabled = !this.pickupDate || !this.returnDate;
   }
+
   bookNow(): void {
     if (!this.pickupDate || !this.returnDate) {
-      alert('Please select pickup and return dates!');
+      this.toast.danger("Error", "Please select pickup and return dates!", 5000);
       return;
     }
   
-    const userId = this.authService.getIdFromToken(); // Fetch userId from token
+    const userId = this.authService.getIdFromToken();
     if (!userId) {
-      // alert('Unable to fetch user details. Please login again.');
       this.toast.danger("Error", "Unable to fetch user details. Please login again.", 5000);
-            return;
+      return;
     }
-
+  
     const rentalRequest: rentalRequest = {
       id: '', 
       carId: this.car.id,
@@ -98,24 +98,81 @@ priceperDay!:number;
       requestDate: new Date().toISOString(), 
       totalPrice: 0 
     };
-
+  
     this.bookingService.placeRentalRequest(rentalRequest).subscribe({
       next: (response) => {
         console.log('Rental request placed successfully:', response);
-        // alert('Booking successful!');
         this.toast.success("Success", "Booking successful!", 5000);
-
       },
       error: (error) => {
-        console.error('Error placing rental request:', error);
-        // alert('Booking failed. Please try again.');
-        this.toast.danger("Error", "Profile  is not fill ");
-     // Redirect to the 'profile' page.
-  this.router.navigate(['landing/profile']);
-       
+        console.error('Full error object:', JSON.stringify(error, null, 2)); 
+  console.log('Status code:', error.status); // Log status code
+  console.log('Message:', error.message); // Log main message
+  console.log('Status text:', error.statusText); // Log status text
+
+  
+        let backendErrorMessage = 'An unknown error occurred.';
+  
+        if (error instanceof HttpErrorResponse) {
+          if (error.error) {
+            // Check if error.error is a string or an object
+            if (typeof error.error === 'string') {
+              backendErrorMessage = error.error; // If it's a simple string message
+            } 
+            else if (typeof error.error === 'object') {
+              // If it's an object, try to extract meaningful information
+              backendErrorMessage = error.error.error || error.error.message || error.message;
+            }
+          } else {
+            backendErrorMessage = error.message;
+          }
+        } else if (error instanceof Error) {
+          backendErrorMessage = error.message;
+        }
+  
+        console.log('Extracted error message:', backendErrorMessage);
+  
+        switch(backendErrorMessage) {
+          case "User's primary address must include HouseNo, Street1, City, and Country.":
+            this.toast.danger("Error", "Your primary address is incomplete. Please update your profile.", 5000);
+            this.router.navigate(['landing/profile']);
+            break;
+          case "Car not found.":
+            this.toast.danger("Error", "The selected car could not be found. Please try again.", 5000);
+            break;
+          case "User not found.":
+            this.toast.danger("Error", "User not found. Please log in again.", 5000);
+            break;
+          case "User's license is required.":
+            this.toast.danger("Error", "Your license information is required. Please update your profile.", 5000);
+            this.router.navigate(['landing/profile']);
+            break;
+          case "User's primary phone number is required.":
+            this.toast.danger("Error", "Your primary phone number is required. Please update your profile.", 5000);
+            this.router.navigate(['landing/profile']);
+            break;
+          case "The requested rental period conflicts with an existing rental.":
+            this.toast.danger("Error", "The selected rental period conflicts with an existing booking. Please choose different dates.", 5000);
+            break;
+          case "End date must be later than start date.":
+            this.toast.danger("Error", "The end date must be later than the start date.", 5000);
+            break;
+          default:
+            // If backendErrorMessage exists, use it; otherwise, display the default
+            this.toast.danger("Error", backendErrorMessage || "Unable to process your request at this time. Please try again later.", 5000);
+            break;
+        }
       }
     });
   }
+  
+
+  
+
+
+
+
+
 
 
 

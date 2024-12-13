@@ -1,42 +1,15 @@
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Left Sidebar - Search Filters -->
-        <!-- Left Sidebar - Search Filters -->
-        <!-- <div class="col-md-3 mt-5">
-            <div class="p-3 border rounded " style=" background-color: #0c013b;">
-                <div class="d-flex flex-column align-items-center justify-content-center">
 
-                    <button (click)="changeView('settings')" class="btn btn-outline-warning btn-block btn-lg mt-2 "
-                        [class.bg-warning]="true" [class.text-white]="true">
-                        Setting
-                    </button>
-                </div>
-
-                <div class="d-flex flex-column align-items-center justify-content-center">
-
-                    <button (click)="changeView('history')" class="btn btn-outline-warning btn-block btn-lg mt-2"
-                        [class.bg-warning]="currentView === 'history'" [class.text-white]="currentView ==='history'">
-                        History
-                    </button>
-                </div>
-
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <button (click)="logout()" class="btn btn-outline-warning btn-block btn-lg mt-2">
-                        Logout
-                    </button>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="col-md-3 mt-5">
-            <div class="p-3 border rounded" style="background-color: #0c013b;">
+        <div class="col-md-3 mt-5 ">
+            <div class="p-3 border rounded bg-light" >
               <!-- Settings Button -->
               <div class="d-flex flex-column align-items-center justify-content-center">
                 <button
                   (click)="changeView('settings')"
-                  class="btn btn-outline-warning btn-block btn-lg mt-2"
-                  [class.bg-warning]="currentView === ''"
+                  class="btn btn-outline-primary btn-block btn-lg mt-2"
+                  [class.bg-primary]="currentView === ''"
                   [class.text-white]="currentView === ''"
                 >
                   Setting
@@ -47,8 +20,8 @@
               <div class="d-flex flex-column align-items-center justify-content-center">
                 <button
                   (click)="changeView('history')"
-                  class="btn btn-outline-warning btn-block btn-lg mt-2"
-                  [class.bg-warning]="currentView === 'history'"
+                  class="btn btn-outline-primary btn-block btn-lg mt-2"
+                  [class.bg-primary]="currentView === 'history'"
                   [class.text-white]="currentView === 'history'"
                 >
                   History
@@ -59,8 +32,8 @@
               <div class="d-flex flex-column align-items-center justify-content-center">
                 <button
                   (click)="logout()"
-                  class="btn btn-outline-warning btn-block btn-lg mt-2"
-                  [class.text-white]="currentView === ''"
+                  class="btn btn-outline-primary btn-block btn-lg mt-2"
+                  [class.text-primary]="currentView === ''"
                 >
                   Logout
                 </button>
