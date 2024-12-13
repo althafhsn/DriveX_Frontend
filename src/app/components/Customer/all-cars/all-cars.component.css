@@ -1,16 +1,39 @@
 
-.fixed-size {
+/* .fixed-size {
    height: 300px;  
   position: relative;
   overflow: hidden;  
+} */
+/* Fixed height for the entire card */
+.fixed-height-card {
+  height: 400px; /* You can adjust this height as needed */
+  display: flex;
+  flex-direction: column;
 }
 
-   .card {
+/* Fixed height for the card image */
+.fixed-height-img {
+  height: 200px; /* Adjust based on your image aspect ratio */
+  object-fit: cover; /* Ensures the image fills the space and maintains aspect ratio */
+}
+
+/* Fixed height for the card body */
+.fixed-height-body {
+  flex-grow: 1; /* This will allow the body to take up remaining space */
+  overflow-y: auto; /* Adds scroll if content overflows */
+  padding: 10px;
+  
+}
+.card{
+  background-color: rgb(248, 246, 246);
+}
+
+   /* .card {
     border-radius: 15px;
     box-shadow: 5px 5px 6px #0a0a0a;
     overflow: hidden;
     text-align: start;
-  }
+  } */
 
   .price-tag {
     position: absolute;

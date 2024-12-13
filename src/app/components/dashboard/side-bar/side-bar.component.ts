@@ -8,8 +8,12 @@ import { Observable } from 'rxjs';
   styleUrl: './side-bar.component.css'
 })
 export class SideBarComponent implements OnInit {
+
+ 
+
  public role:string | null = null;
  public token:string | null = null;
+
   constructor(
     private authService: AuthService,
     private store:UserStoreService

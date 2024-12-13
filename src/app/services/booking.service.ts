@@ -1,13 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Booking, OverDueRentals, RecentRentals, RentalHistory, rentalRequest, Rentals } from '../models/booking.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService {
   private baseUrl = 'http://localhost:5147/api/RentalRequest/';
+    private isBookingComponentActive = new BehaviorSubject<boolean>(false);
+    isBookingActive$ = this.isBookingComponentActive.asObservable();
+    setBookingActiveState(isActive: boolean): void {
+      this.isBookingComponentActive.next(isActive);
+    }
 
   constructor(private http: HttpClient) {}
 
@@ -26,6 +31,7 @@ export class BookingService {
   
     return this.http.put(url, { action }, { headers });
   }
+  
  
   CancelBookingAction(bookingId: string, action:'cancel'): Observable<any> {
     const url = `${this.baseUrl}${bookingId}/cancel-by-user`; 

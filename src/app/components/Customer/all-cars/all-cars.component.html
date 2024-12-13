@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: #e0f2fd;">
+<div class="container"  >
   <div class="row">
     <div class="col-md-3 mt-5 mb-5  ">
       <div class="p-3 border rounded bg-white">
@@ -68,57 +68,61 @@
     </div>
 
     <div class="col-md-9 mt-5 mb-5 ">
-      <div class="card  shadow-sm bg-white">
+      <div class="card  shadow-sm">
         <div class="row g-0">
           <div class="container py-5">
             <div class="container">
               <div class="row g-4">
                 <div class="col-md-4" *ngFor="let card of paginatedCars | carFilter:selectedFilters">
-                  <div class="card">
-                    <div class="position-relative fixed-size " >
-                      <img [src]="card.images[0].imagePath" class="card-img-top" alt="Car Image" >
+
+                  <div class="card fixed-height-card bg-white">
+                    <div class="position-relative   " >
+                      <img [src]="card.images[0].imagePath" class="card-img-top fixed-height-img" alt="Car Image" style="height: 200px; object-fit: cover;">
+
+              
                       <div class="price-tag">{{ card.pricePerDay }}/=</div>
                     </div>
-                    <div class="card-body fixed-size">
-                      <div class="icon">
-                        <i class="fa-solid fa-star text-warning" *ngFor="let _ of [1,2,3,4,5]"
-                          style="font-size:12px;"></i>
+                    <h5 class="card-title ms-3 mt-2">{{ card.brandName }}/{{ card.modelName }}</h5>
+
+                    <div class="card-body fixed-height-body row ">
+                      
+                      <div (click)="onToggleFavourite(card)">
+                        <i [ngClass]="card.isFavourite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'"></i>
                       </div>
-                      <h5 class="card-title">{{ card.brandName }}/{{ card.modelName }}</h5>
-                       <hr>
-                      <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-chair" style="font-size:20px;"></i></span>
-                        SeatCount: {{ card.seatCount }} People
-                      </div>
-                      <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-calendar-alt" style="font-size:20px;"></i></span>
-                        Year: {{ card.year }}  
-                      </div>
-                      <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i></span>
-                        Fuel Tank: {{ card.fuelType }} 
-                      </div>
-                      <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-cogs " style="font-size:20px;"></i></span>
-                        Gear type: {{ card.gearType }}
+                     
+                      <div class="feature col-md-6 col-12 d-flex align-items-center">
+                        <span class="icon"> <i class="fa-solid fa-people-line"></i> {{ card.seatCount }}</span>
+                         
                       </div>
 
-                      <div class="feature">
-                        <span class="icon"><i class="fa-solid fa-times-circle" style="font-size:20px;"></i></span>
-                      Status: {{ card.status }}
+                      <div class="feature col-md-6 col-12 d-flex align-items-center">
+                        <span class="icon"><i class="fa-solid fa-calendar-alt" style="font-size:20px;"></i> {{ card.year }}  </span>
+                        
                       </div>
+                      <div class="feature col-md-6 col-12 d-flex align-items-center">
+                        <span class="icon"><i class="fa-solid fa-gas-pump" style="font-size:20px;"></i> {{ card.fuelType }} </span>
+                        
+                      </div>
+                      <div class="feature col-md-6 col-12 d-flex align-items-center">
+                        <span class="icon"><i class="fa-solid fa-cogs " style="font-size:20px;"></i> {{ card.gearType }}</span>
                       
+                      </div>
+
+                      <div class="feature col-md-6 col-12 d-flex align-items-center">
+                        <span class="icon"><i class="fa-solid fa-check"></i> {{ card.status }}</span>
+                      
+                      </div>
+                      <br>
+
                       <div>
                         <!-- <a     [routerLink]="card.gearType === 'Automatic' &&! pickupDateError && !returnDateError ? ['/landing/conformrent', card.id] : null"> -->
-                          <button type="button" class="btn btn-outline-primary "style="width: 100%;"
-                           
-                            [class.active]="card.id === selectedCarID"
-                            (click)="selectCar(card)"
-                            [disabled]="card.status === 'Unavailable' || pickupDateError || returnDateError" >
-                            <a  [routerLink]=" ['/landing/conformrent', card.id]">
+                        <button type="button" class="btn btn-outline-primary " style="width: 100%;"
+                          [class.active]="card.id === selectedCarID" (click)="selectCar(card)"
+                          [disabled]="card.status === 'Unavailable' || pickupDateError || returnDateError">
+                          <a [routerLink]=" ['/landing/conformrent', card.id]">
                             Rent Now
-                            </a>
-                          </button>
+                          </a>
+                        </button>
                         <!-- </a> -->
                       </div>
                     </div>
@@ -128,11 +132,11 @@
 
               <!-- Pagination Controls-->
               <div class="pagination-controls mt-5 d-flex justify-content-center mt-5">
-                <button class="btn btn-primary me-2" (click)="prevPage()"
-                  [disabled]="currentPage === 1">Previous</button>
-                <span>Page {{ currentPage }} of {{ totalPages() }}</span>
-                <button class="btn btn-primary ms-2" (click)="nextPage()"
-                  [disabled]="currentPage === totalPages()">Next</button>
+                <button class="btn btn-outline-primary me-2" (click)="prevPage()"
+                  [disabled]="currentPage === 1"><i class="fa-solid fa-angle-left"></i></button>
+                <span>{{ currentPage }} of {{ totalPages() }}</span>
+                <button class="btn btn-outline-primary ms-2" (click)="nextPage()"
+                  [disabled]="currentPage === totalPages()"><i class="fa-solid fa-chevron-right"></i></button>
               </div>
             </div>
 

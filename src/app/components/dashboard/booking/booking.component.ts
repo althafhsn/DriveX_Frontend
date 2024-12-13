@@ -8,4 +8,7 @@ import { Booking } from '../../../models/booking.model';
 })
 export class BookingComponent {
   selectedBooking: Booking | null = null;
+  booking: Booking [] = [];
+  searchText: string = '';
+
 }

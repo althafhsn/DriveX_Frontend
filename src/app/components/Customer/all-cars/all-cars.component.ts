@@ -1,10 +1,10 @@
- 
-
- 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Car } from '../../../models/car.model';
+import { AddFavouriteResponse, Car } from '../../../models/car.model';
 import { CarService } from '../../../services/car.service';
-import { NgToastService,  } from 'ng-angular-popup';
+
+import { AuthService } from '../../../services/auth.service';
+import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-all-cars-customer',
@@ -14,7 +14,9 @@ import { NgToastService,  } from 'ng-angular-popup';
 export class AllCarsComponent implements OnInit {
   @Input() cars: Car[] = [];
   @Output() selectedCar = new EventEmitter<Car>();
-  
+  @Input() favourite!: AddFavouriteResponse;
+  favourites: AddFavouriteResponse[] = [];
+
   pickupDate: string | null = localStorage.getItem('pickupDate') || '';
   returnDate: string | null = localStorage.getItem('returnDate') || '';
   getBrandByLocalStorage = localStorage.getItem("selectedCarBrand");
@@ -23,13 +25,24 @@ export class AllCarsComponent implements OnInit {
   pickupDateError: string | null = null;
   returnDateError: string | null = null;
   errorMessage: string | null = null;
+
+
+  public id!: string
+  favouriteMappings: { [carId: string]: string } = {};
+  message: string = '';
+  // handleFavoruit: any = this.addToFavorites();
+  isText: boolean = false;
+  heartIcon!: string
+  isMethod: any;
+
+
   // Pagination
   currentPage: number = 1;
   itemsPerPage: number = 6;
 
   // Filter properties
   selectedFilters: any = {
-    brand:this.getBrandByLocalStorage,
+    brand: this.getBrandByLocalStorage,
     model: '',
     seatCount: '',
     fuelType: '',
@@ -38,31 +51,39 @@ export class AllCarsComponent implements OnInit {
 
   constructor(private carService: CarService,
     private toast: NgToastService,
+    private authService: AuthService
   ) { }
- 
+
   ngOnInit(): void {
- // Clear the 'selectedCarBrand' from localStorage on page reload
- localStorage.removeItem('selectedCarBrand');
- this.getBrandByLocalStorage = null; // Clear the property as well
+    // Clear the 'selectedCarBrand' from localStorage on page reload
+    localStorage.removeItem('selectedCarBrand');
+    this.getBrandByLocalStorage = null; // Clear the property as well
     this.validateDates();
     this.calculateDateDifference();
     this.fetchCars();
-  }
-  
-  // If a value exists, store it temporarily and delete it from localStorage
- 
+    this.fetchFavourites();
 
-  fetchCars(): void {
-    this.carService.getCars().subscribe(
-      (data: Car[]) => {
-        this.cars = data;
-      },
-      (error) => {
-        console.error('Error fetching car data:', error);
-        this.errorMessage = 'Failed to load car data. Please try again later.';
-      }
-    );
+    this.cars = this.cars.map(card => ({
+      ...card,
+      isFavourite: false // Default value
+    }));
   }
+
+  
+    fetchCars(): void {
+      this.carService.getCars().subscribe(
+        (data: Car[]) => {
+          this.cars = data.map(car => ({
+            ...car,
+            isFavourite: !!this.favouriteMappings[car.id], // Mark as favourite if the carId exists in mapping
+          }));
+        },
+        (error) => {
+          console.error('Error fetching car data:', error);
+          this.message = 'Failed to load car data. Please try again later.';
+        }
+      );
+    }
 
 
 
@@ -72,6 +93,7 @@ export class AllCarsComponent implements OnInit {
 
   selectCar(card: Car): void {
     this.selectedCarID = card.id;
+    console.log(this.selectedCarID)
   }
 
   validateDates(): void {
@@ -155,6 +177,83 @@ export class AllCarsComponent implements OnInit {
 
   // Filter change handlers
   onFilterChange(): void {
-    this.currentPage = 1; // Reset to first page when filters change
+    this.currentPage = 1; 
   }
+
+
+
+  onToggleFavourite(car: Car): void {
+    const userId = this.authService.getIdFromToken();
+    if (!userId) {
+      this.message = 'User is not authenticated. Please log in.';
+      return;
+    }
+  
+    if (car.isFavourite) {
+      // Remove from favorites
+      const favouriteId = this.favouriteMappings[car.id];
+      if (!favouriteId) {
+        console.error('No favourite ID found for car:', car.id);
+        return;
+      }
+  
+      this.carService.deleteFavourite(favouriteId).subscribe({
+        next: () => {
+          this.message = 'Car removed from favorites.';
+          car.isFavourite = false; // Update UI
+          delete this.favouriteMappings[car.id]; // Remove from mapping
+        },
+        error: (error) => {
+          console.error('Error deleting favorite:', error);
+          this.message = 'Failed to remove car from favorites. Please try again.';
+        }
+      });
+    } else {
+      // Add to favorites
+      const requestBody = {
+        id: '',
+        carId: car.id,
+        userId: userId
+      };
+  
+      this.carService.addToFavourite(requestBody).subscribe({
+        next: (response: AddFavouriteResponse) => {
+          this.message = 'Car added to favorites.';
+          car.isFavourite = true; // Update UI
+          this.favouriteMappings[car.id] = response.id; // Store the favouriteId for this car
+        },
+        error: (error) => {
+          console.error('Error adding favorite:', error);
+          this.message = 'Failed to add car to favorites. Please try again.';
+        }
+      });
+    }
+  }
+  
+  
+  fetchFavourites(): void {
+    const userId = this.authService.getIdFromToken();
+    this.carService.getFavouritesByUserId(userId).subscribe(
+      (data: AddFavouriteResponse[]) => {
+        this.favourites = data;
+        this.favouriteMappings = {}; // Reset the mapping
+        data.forEach((fav) => {
+          this.favouriteMappings[fav.carId] = fav.id; // Map carId to favouriteId
+          const car = this.cars.find((c) => c.id === fav.carId); // Match with car
+          if (car) {
+            car.isFavourite = true; // Mark as favorite in the car list
+          }
+        });
+        console.log('Fetched favourites:', this.favourites);
+      },
+      (error) => {
+        this.message = 'Failed to load favorites. Please try again.';
+        console.error('Error fetching favorites:', error);
+      }
+    );
+  }
+  
+
+
+
 }

@@ -4,7 +4,7 @@
     text-decoration: none;
    }
   .sidebar a:hover{
-    /* font-size: 19px; */
+
     background-color: rgb(243, 243, 247);
     color: black;
    }
@@ -19,4 +19,20 @@
     background-color: #fd7e14;
     color: #fff;
   }
-  a{text-decoration: none;}
+  a{text-decoration: none;
+  }
+
+  .offcanvas {
+    background-color: rgba(1, 2, 19, 0.5); /* Light color with 80% opacity */
+    backdrop-filter: blur(0.005px); /* Optional: Adds a blur effect for a frosted glass look */
+}
+  
+  .offcanvas-body a {
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  
+  .offcanvas-body a:hover {
+    color: #007bff; /* Change color on hover */
+  }
+  
