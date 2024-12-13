@@ -1,57 +1,63 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, pipe, switchMap, throwError } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-import { NgToastService } from 'ng-angular-popup';
+import { TokenApiModel } from '../models/token-api-model';
 import { Router } from '@angular/router';
-import { TokenApiModel, } from '../models/token-api-model';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from './../services/auth.service';
+import { Injectable } from '@angular/core';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpInterceptor,
+  HttpErrorResponse
+} from '@angular/common/http';
+import { catchError, Observable, switchMap, throwError } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(
-    private authService: AuthService,
-    private toast: NgToastService,
-    private router: Router
-  ) { }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
+  constructor(private auth: AuthService, private toast: NgToastService, private router: Router) {}
 
-    if (token) {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const myToken = this.auth.getToken();
+
+    // this.start.load();
+    if(myToken){
       request = request.clone({
-        setHeaders: { Authorization: `Bearer ${token}` }
-      });
+        setHeaders: {Authorization:`Bearer ${myToken}`}  // "Bearer "+myToken
+      })
     }
 
     return next.handle(request).pipe(
-      catchError((err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            return this.handleUnAuthorizedError(request, next)
+      catchError((err:any)=>{
+        if(err instanceof HttpErrorResponse){
+          if(err.status === 401){
+            //this.toast.warning({detail:"Warning", summary:"Token is expired, Please Login again"});
+            //this.router.navigate(['login'])
+            //handle
+            return this.handleUnAuthorizedError(request,next);
           }
         }
-        return throwError(() => new Error('Some other Error Occured'))
+        return throwError(()=> err)
       })
     );
   }
-  handleUnAuthorizedError(req :HttpRequest<any> , next : HttpHandler) {
-
-    let tokenApiModel = new TokenApiModel();
-    tokenApiModel.accessToken = this.authService.getToken()!;
-    tokenApiModel.refreshToken = this.authService.getRefreshToken()!;
-    return this.authService.renewToken(tokenApiModel)
+  handleUnAuthorizedError(req: HttpRequest<any>, next: HttpHandler){
+    let tokeApiModel = new TokenApiModel();
+    tokeApiModel.accessToken = this.auth.getToken()!;
+    tokeApiModel.refreshToken = this.auth.getRefreshToken()!;
+    return this.auth.renewToken(tokeApiModel)
     .pipe(
-      switchMap((data : TokenApiModel)=>{
-        this.authService.storeRefreshToken(data.refreshToken);
-        this.authService.storeToken(data.accessToken);
+      switchMap((data:TokenApiModel)=>{
+        this.auth.storeRefreshToken(data.refreshToken);
+        this.auth.storeToken(data.accessToken);
         req = req.clone({
-          setHeaders: { Authorization: `Bearer ${data.accessToken}` }
-        });
+          setHeaders: {Authorization:`Bearer ${data.accessToken}`}  // "Bearer "+myToken
+        })
         return next.handle(req);
       }),
       catchError((err)=>{
         return throwError(()=>{
-          this.toast.warning("Warning", "Session is expired, Please Login again", 6000);
+          this.toast.warning("Warning", "Session is expired, Please Login again");
           this.router.navigate(['login'])
         })
       })

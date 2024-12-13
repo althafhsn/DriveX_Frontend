@@ -90,13 +90,13 @@ priceperDay!:number;
       id: '', 
       carId: this.car.id,
       userId,
-      startDate: new Date(this.pickupDate).toISOString(), 
+      startDate: new Date(this.pickupDate).toISOString(),
       endDate: new Date(this.returnDate).toISOString(),
       action: '',
       status: '',
-      duration: 0, 
-      requestDate: new Date().toISOString(), 
-      totalPrice: 0 
+      duration: 0,
+      requestDate: new Date().toISOString(),
+      totalPrice: 0
     };
   
     this.bookingService.placeRentalRequest(rentalRequest).subscribe({
@@ -105,34 +105,36 @@ priceperDay!:number;
         this.toast.success("Success", "Booking successful!", 5000);
       },
       error: (error) => {
-        console.error('Full error object:', JSON.stringify(error, null, 2)); 
-  console.log('Status code:', error.status); // Log status code
-  console.log('Message:', error.message); // Log main message
-  console.log('Status text:', error.statusText); // Log status text
-
+        console.error('Full error object:', JSON.stringify(error, null, 2));
   
         let backendErrorMessage = 'An unknown error occurred.';
+        let statusCode = error.status || 'Unknown';
+        let statusText = error.statusText || 'Unknown';
+  
+        console.log('Status code:', statusCode);
+        console.log('Message:', error.error);
+        console.log('Status text:', statusText);
   
         if (error instanceof HttpErrorResponse) {
           if (error.error) {
-            // Check if error.error is a string or an object
             if (typeof error.error === 'string') {
-              backendErrorMessage = error.error; // If it's a simple string message
-            } 
-            else if (typeof error.error === 'object') {
-              // If it's an object, try to extract meaningful information
-              backendErrorMessage = error.error.error || error.error.message || error.message;
+              backendErrorMessage = error.error; // If the error message is a simple string
+            } else if (typeof error.error === 'object') {
+              // Extract meaningful message if the error contains nested information
+              backendErrorMessage = error.error.error || error.error.error || error.error;
             }
           } else {
-            backendErrorMessage = error.message;
+            backendErrorMessage = error.error;
           }
-        } else if (error instanceof Error) {
-          backendErrorMessage = error.message;
+        } else if (error) {
+          backendErrorMessage = error.error;
+          ;
         }
   
         console.log('Extracted error message:', backendErrorMessage);
   
-        switch(backendErrorMessage) {
+        // Handle specific backend error messages
+        switch (backendErrorMessage) {
           case "User's primary address must include HouseNo, Street1, City, and Country.":
             this.toast.danger("Error", "Your primary address is incomplete. Please update your profile.", 5000);
             this.router.navigate(['landing/profile']);
@@ -158,13 +160,14 @@ priceperDay!:number;
             this.toast.danger("Error", "The end date must be later than the start date.", 5000);
             break;
           default:
-            // If backendErrorMessage exists, use it; otherwise, display the default
+            // Default message if no case matches
             this.toast.danger("Error", backendErrorMessage || "Unable to process your request at this time. Please try again later.", 5000);
             break;
         }
       }
     });
   }
+  
   
 
   
