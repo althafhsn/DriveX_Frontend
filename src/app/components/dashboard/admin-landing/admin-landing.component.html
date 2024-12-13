@@ -9,8 +9,20 @@
       <!-- Main Content Column -->
       <div class="col-md-9">
         
-        <!-- Car Availability -->
-        
+       
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid">
+            <h4 class="navbar-text">
+              Welcome {{role}}!
+            </h4>
+            <button class="btn btn-light position-relative">
+              <i class="fas fa-bell"></i> 
+              <span class="badge bg-danger position-absolute top-0 start-100 translate-middle badge rounded-pill">
+               {{rentalRequestCount}}
+              </span>
+            </button>
+          </div>
+        </nav>
   
         <!-- Live Car Status and Earning Summary -->
         <div class="row mb-4">
