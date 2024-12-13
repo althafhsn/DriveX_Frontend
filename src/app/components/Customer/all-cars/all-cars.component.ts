@@ -49,6 +49,9 @@ export class AllCarsComponent implements OnInit {
     gearType: ''
   };
 
+
+  showOnlyFavourites: boolean = false;
+
   constructor(private carService: CarService,
     private toast: NgToastService,
     private authService: AuthService
@@ -85,13 +88,7 @@ export class AllCarsComponent implements OnInit {
       );
     }
 
-
-
-
-
-
-
-  selectCar(card: Car): void {
+ selectCar(card: Car): void {
     this.selectedCarID = card.id;
     console.log(this.selectedCarID)
   }
@@ -238,10 +235,10 @@ export class AllCarsComponent implements OnInit {
         this.favourites = data;
         this.favouriteMappings = {}; // Reset the mapping
         data.forEach((fav) => {
-          this.favouriteMappings[fav.carId] = fav.id; // Map carId to favouriteId
-          const car = this.cars.find((c) => c.id === fav.carId); // Match with car
+          this.favouriteMappings[fav.carId] = fav.id; 
+          const car = this.cars.find((c) => c.id === fav.carId); 
           if (car) {
-            car.isFavourite = true; // Mark as favorite in the car list
+            car.isFavourite = true; 
           }
         });
         console.log('Fetched favourites:', this.favourites);
@@ -254,6 +251,32 @@ export class AllCarsComponent implements OnInit {
   }
   
 
-
+  toggleFavourite(): void {
+    const userId = this.authService.getIdFromToken();
+    if (!userId) {
+      this.message = 'User is not authenticated. Please log in.';
+      return;
+    }
+  
+    this.carService.getFavouritesByUserId(userId).subscribe(
+      (favourites: AddFavouriteResponse[]) => {
+        // Get all favorite carIds
+        const favouriteCarIds = favourites.map(fav => fav.carId);
+  
+        // Update the car list based on favorites
+        this.showOnlyFavourites = !this.showOnlyFavourites;
+        if (this.showOnlyFavourites) {
+          this.cars = this.cars.filter(car => favouriteCarIds.includes(car.id));
+        } else {
+          this.fetchCars(); 
+        }
+      },
+      (error) => {
+        console.error('Error fetching favourites:', error);
+        this.message = 'Failed to load favorites. Please try again.';
+      }
+    );
+  }
+  
 
 }
